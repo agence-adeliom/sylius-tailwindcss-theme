@@ -1,0 +1,20 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block title %}{{ product.name }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include '@SyliusShop/Product/Show/_breadcrumb.html.twig' %}
+    </div>
+    <div class="wrapper-12 container mt-6 md:mt-10">
+        <div class="demi-col">
+            {{ sylius_template_event('sylius.shop.product.show.left_sidebar', _context) }}
+        </div>
+        <div class="demi-col">
+            {{ sylius_template_event('sylius.shop.product.show.right_sidebar', _context) }}
+        </div>
+    </div>
+
+    {{ sylius_template_event('sylius.shop.product.show.content', _context) }}
+
+{% endblock %}

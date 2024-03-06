@@ -1,0 +1,10 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<div id="sylius-cart-button" class="z-[100] dropdown dropdown-bottom dropdown-end">
+    <div tabindex="0" role="button" class="btn btn-outline flex items-center justify-end" {{ sylius_test_html_attribute('cart-button') }}>
+        {{ sylius_template_event('sylius.shop.cart.widget.button', {'cart': cart}) }}
+    </div>
+    <div class="dropdown-content z-[100]">
+        {{ sylius_template_event('sylius.shop.cart.widget.popup', {'cart': cart}) }}
+    </div>
+</div>

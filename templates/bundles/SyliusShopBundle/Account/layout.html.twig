@@ -1,0 +1,24 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+    <div class='container'>
+        {% block breadcrumb '' %}
+    </div>
+
+    <section class='container grid grid-cols-12 gap-x-6'>
+
+
+        <div class='col-span-full lg:col-span-3 mb-10 lg:mb-0 card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 p-6 lg:p-8 h-fit'>
+            {{ sylius_template_event('sylius.shop.account.layout.menu') }}
+        </div>
+
+        <div class='col-span-full lg:col-start-4 lg:col-end-13 lg:pl-20'>
+            {{ sylius_template_event('sylius.shop.account.layout.before_subcontent') }}
+
+            {% block subcontent %}
+            {% endblock %}
+
+            {{ sylius_template_event('sylius.shop.account.layout.after_subcontent') }}
+        </div>
+    </section>
+{% endblock %}

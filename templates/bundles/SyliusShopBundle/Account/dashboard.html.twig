@@ -1,0 +1,95 @@
+{% extends '@SyliusShop/Account/layout.html.twig' %}
+
+{% block title %}
+    {{ 'sylius.ui.my_account'|trans }}
+    |
+    {{ parent() }}
+{% endblock %}
+
+{% import '@SyliusShop/Common/Macro/headers.html.twig' as headers %}
+{% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
+{% import '@SyliusShop/Common/Macro/breadcrumbs.html.twig' as breadcrumbs %}
+
+{% block breadcrumb breadcrumbs.standard([
+    {link: path('sylius_shop_account_dashboard'), label: 'sylius.ui.my_account'|trans},
+    {label: 'sylius.ui.my_account'|trans}
+]) %}
+
+{% block subcontent %}
+    {{ headers.default('sylius.ui.my_account'|trans, '', 'sylius.ui.manage_your_personal_information_and_preferences'|trans) }}
+
+    {{ sylius_template_event('sylius.shop.account.dashboard.after_content_header', {'customer': customer}) }}
+
+    <div class="mb-5" {{ sylius_test_html_attribute('customer-information') }}>
+
+        <div class="bg-base text-base-content shadow-2xl ring-offset-base p-5 lg:p-10">
+            <strong class="heading heading-4 pb-3">{{ customer.fullName }}</strong>
+
+            <div class="flex flex-col md:flex-row md:flex-wrap gap-2 lg:gap-4 mt-5">
+                <div class="flex flex-col" style="flex: 1">
+                    <span class="mb-1 font-bold">{{ 'sylius.ui.email'|trans }}</span>
+                    <div class="mb-0 flex flex-col gap-1">
+                        {{ customer.email }}
+                        {% if not customer.user.verified %}
+                            <div class="badge badge-error gap-1 flex items-center">
+                                <i class="fa-solid fa-times"></i>
+                                {{ 'sylius.ui.not_verified'|trans }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="flex flex-col" style="flex: 1">
+                    <span class="mb-1 font-bold">{{ 'sylius.ui.phone_number'|trans }}</span>
+                    <span class="mb-0">{{ customer.phoneNumber }}</span>
+                </div>
+                <div class="flex flex-col" style="flex: 1">
+                    <span class="mb-1 font-bold">{{ 'sylius.ui.password'|trans }}</span>
+                    <span class="mb-0">*********</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center md:justify-between mt-5">
+                <div class='flex flex-wrap gap-3'>
+                    <a href="{{ path('sylius_shop_account_profile_update') }}" class="btn btn-link btn-sm no-underline p-0">
+                        {{ icons.edit('') }}
+                        {{ 'sylius.ui.edit'|trans }}
+                    </a>
+                    <a href="{{ path('sylius_shop_account_change_password') }}" class="btn btn-link btn-sm no-underline p-0">
+                        {{ icons.lock('') }}
+                        {{ 'sylius.ui.change_password'|trans }}
+                    </a>
+                </div>
+
+                {% if not customer.user.verified %}
+                    <form action="{{ path('sylius_shop_user_request_verification_token') }}" {{ sylius_test_html_attribute('verification-form') }} method="post">
+                        <button type="submit" class="btn btn-primary btn-sm max-md:mt-2" {{ sylius_test_html_attribute('verification-button') }}>
+                            {{ icons.success('') }}
+                            {{ 'sylius.ui.verify'|trans }}
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    {% if customer.defaultAddress %}
+        <div class="border rounded border-base h-100 p-5 lg:p-10">
+            <div class="flex flex-col gap-4">
+                <strong class="heading heading-6">{{ 'sylius.ui.default_address'|trans }}</strong>
+                {% include '@SyliusShop/Common/_address.html.twig' with {'address': customer.defaultAddress} %}
+            </div>
+
+            <div class="mt-5">
+                <a href="{{ path('sylius_shop_account_address_book_update', {'id': customer.defaultAddress.id}) }}" class="btn btn-link btn-sm no-underline p-0">
+                    {{ icons.edit('') }}
+                    {{ 'sylius.ui.edit'|trans }}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
+    {{ sylius_template_event('sylius.shop.account.dashboard.after_information', {'customer': customer}) }}
+
+
+{% endblock %}

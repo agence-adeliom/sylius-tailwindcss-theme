@@ -1,0 +1,7 @@
+<section class="container">
+    {{ render(url('sylius_shop_partial_product_index_latest', {
+        count: 5,
+        role: 'grid-item',
+        template: '@SyliusShop/Homepage/_customList.html.twig',
+    })) }}
+</section>

@@ -1,0 +1,8 @@
+{% set role = products|length == 5 ? 'grid-item' : '' %}
+
+<div class="grid grid-cols-12 md:grid-cols-6 lg:grid-cols-3 gap-6">
+    {% for product in products %}
+        {% include '@SyliusShop/Product/_box.html.twig' with {role} %}
+    {% endfor %}
+</div>
+

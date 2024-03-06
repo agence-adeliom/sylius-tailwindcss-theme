@@ -1,0 +1,15 @@
+<div class="{{ withDescription ? 'flex' : 'flex' }} gap-2" id="applied_promotions" data-applied-promotions-locale="{{ sylius.localeCode }}">
+    {% for applied_promotion in applied_promotions %}
+        <div class="flex gap-3 tems-center leading-8">
+            <div class="badge badge-lg px-2 h-8 badge-primary sylius_catalog_promotion">
+                {{ applied_promotion.label }}
+            </div>
+            {% if applied_promotion.description and withDescription %}
+                <span class="text-primary">
+					{{ applied_promotion.description }}
+				</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+

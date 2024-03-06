@@ -1,0 +1,62 @@
+name: Code Quality
+
+on:
+    push:
+        branches: [master]
+        paths-ignore:
+            - README.md
+    pull_request:
+        branches: [master]
+        paths-ignore:
+            - README.md
+
+jobs:
+    TwigCS:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            -
+                name: 'Setup PHP'
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.0'
+                    coverage: none
+
+            - name: Composer - Get Cache Directory
+              id: composer-cache
+              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+            - uses: actions/cache@v3
+              id: cache-composer
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: composer-php-${{ github.sha }}
+                  restore-keys: composer-php-
+
+            - name: Composer - Create cache directory
+              run: mkdir -p /home/runner/.composer/cache
+              if: steps.cache-composer.outputs.cache-hit != 'true'
+
+            - name: Composer - Validate composer.json and composer.lock
+              run: composer validate --strict
+
+            - name: Composer - Github Auth
+              run: composer config -g github-oauth.github.com ${{ github.token }}
+
+            - name: Composer - Update dependencies
+              run: composer update --no-progress
+
+            - name: Yarn install
+              uses: borales/actions-yarn@v4
+              with:
+                  cmd: install
+
+            - name: Yarn ESLint
+              uses: borales/actions-yarn@v4
+              with:
+                  cmd: lint
+
+            - name: TwigCS - Check
+              run: vendor/bin/twigcs templates/ --severity error --display blocking --reporter githubAction

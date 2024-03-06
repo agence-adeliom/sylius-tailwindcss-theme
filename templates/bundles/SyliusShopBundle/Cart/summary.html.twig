@@ -1,0 +1,36 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% import '@SyliusShop/Common/Macro/messages.html.twig' as messages %}
+
+{% set header = 'sylius.ui.your_shopping_cart' %}
+
+{% block title %}
+	{{ header|trans }}
+	|
+	{{ parent() }}
+{% endblock %}
+
+{% block content %}
+	{% if not cart.empty %}
+		{% include '@SyliusShop/Cart/Summary/_header.html.twig' %}
+
+		<div class="wrapper-12 mb-5 container">
+			<div class="col-span-full lg:col-span-8">
+				{{ sylius_template_event('sylius.shop.cart.items', {cart, form}) }}
+			</div>
+			<div class="col-span-full lg:col-span-4">
+				<div class="lg:ml-6 -mt-8 sticky-top z-0 card shrink-0 w-full shadow-2xl bg-base-100 gap-2 p-8">
+					{{ sylius_template_event('sylius.shop.cart.summary', {cart}) }}
+				</div>
+			</div>
+		</div>
+
+		{{ sylius_template_event('sylius.shop.cart.suggestions', {'cart': cart}) }}
+	{% else %}
+		<div class="container">
+			{{ messages.info('sylius.ui.your_cart_is_empty') }}
+		</div>
+	{% endif %}
+{% endblock %}

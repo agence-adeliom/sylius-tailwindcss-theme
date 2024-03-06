@@ -1,0 +1,9 @@
+/* price widget */
+.price-widget-container {
+    @apply flex flex-wrap justify-between items-center my-8
+}
+
+/* Similar products */
+.similar-image-card {
+    @apply w-full h-full object-cover rounded
+}

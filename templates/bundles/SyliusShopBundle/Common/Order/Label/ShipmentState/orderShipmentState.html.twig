@@ -1,0 +1,14 @@
+{% set view_options = {
+    cart: {icon: "fas fa-adjust", bgColor: "secondary", textColor: "secondary-content"},
+    cancelled: {icon: "fas fa-ban", bgColor: "danger", textColor: "error-content"},
+    shipped: {icon: "fas fa-plane", bgColor: "success", textColor: "success-content"},
+    partially_shipped: {icon: "fas fa-adjust", bgColor: "warning", textColor: "warning-content"},
+    partially_paid: {icon: "fas fa-clock", bgColor: "primary", textColor: "primary-content"},
+} %}
+
+{% set value = 'sylius.ui.' ~ state %}
+
+<span class="bg-{{ view_options[state]['bgColor'] }} text-{{ view_options[state]['textColor'] }} badge"> 
+    <i class="{{ view_options[state]['icon'] }} icon"></i>
+    {{ 'sylius.ui.state'|trans }}: <span id="order-shipment-status" {{ sylius_test_html_attribute('order-shipment-state') }}>{{ value|trans }}</span>
+</span>

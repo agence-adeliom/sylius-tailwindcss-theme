@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>
+			{% block title %}
+				{{ sylius.channel.name }}
+			{% endblock %}
+		</title>
+
+		<meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport">
+
+		{% block metatags '' %}
+
+		{% block stylesheets %}
+			{{ sylius_template_event('sylius.shop.layout.stylesheets') }}
+		{% endblock %}
+
+		{{ sylius_template_event('sylius.shop.layout.head') }}
+	</head>
+
+	<body class="flex flex-col min-vh-100 bg-base-100 font-body">
+		{{ sylius_template_event('sylius.shop.layout.before_body') }}
+
+		{% block top %}
+			<nav class="w-full flex lg:items-center justify-center bg-primary text-primary-content">
+				<div class="container flex flex-col gap-6 lg:items-center justify-between py-4 lg:flex-row md:py-2">
+					<a href="#" class="font-semibold text-sm">{{ 'sylius.top_bar'|trans }}</a>
+					<div class="flex max-sm:flex-wrap flex-1 w-full gap-6 items-center min-sm:justify-between lg:justify-end">
+                        {% include '@SyliusShop/Layout/Topbar/_themeSwitcher.html.twig' %}
+						{{ sylius_template_event('sylius.shop.layout.topbar') }}
+					</div>
+				</div>
+			</nav>
+		{% endblock %}
+
+		{% block header %}
+			{{ sylius_template_event('sylius.shop.layout.header') }}
+		{% endblock %}
+
+		<div class="min-h-[50vh]">
+			{% include '@SyliusShop/_flashes.html.twig' %}
+
+			{{ sylius_template_event('sylius.shop.layout.before_content') }}
+
+			{% block content %}{% endblock %}
+
+			{{ sylius_template_event('sylius.shop.layout.after_content') }}
+		</div>
+
+		{% block footer %}
+			{% include '@SyliusShop/_footer.html.twig' %}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ sylius_template_event('sylius.shop.layout.javascripts') }}
+		{% endblock %}
+
+		{{ sylius_template_event('sylius.shop.layout.after_body') }}
+
+		<div class="loading-overlay" data-js-loading-overlay>
+			<div class="loading loading-spinner loading-md" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+
+	</body>
+</html>

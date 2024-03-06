@@ -1,0 +1,15 @@
+{% macro simple(paginator, options) %}
+	{% if paginator.haveToPaginate() %}
+		{{ pagerfanta(paginator, 'default', options|default({
+            'prev_message': 'sylius.ui.previous'|trans,
+            'next_message': 'sylius.ui.next'|trans,
+            'css_container_class': 'join',
+            'css_disabled_class': 'btn-disabled',
+            'css_active_class': 'btn-active',
+            'css_dots_class': 'btn-disabled',
+            'css_item_class': 'btn join-item',
+            'css_prev_class': 'btn-secondary',
+            'css_next_class': 'btn-secondary',
+        })) }}
+	{% endif %}
+{% endmacro %}

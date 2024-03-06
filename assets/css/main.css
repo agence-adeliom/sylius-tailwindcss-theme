@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts */
+@import "./Fonts/index.css";
+
+/* Layout */
+@import "./Layout/index.css";
+
+/* Typography */
+@import "./Typography/index.css";
+
+/* Action */
+@import "./Action/index.css";
+
+/* Feedback */
+@import "./Feedback/index.css";
+
+/* Utils */
+@import "./Utils/index.css";
+
+/* Form */
+@import "./Forms/index.css";
+
+/* Product page */
+@import "./Product/index.css";

@@ -1,0 +1,23 @@
+<div class="mb-3 p-5 lg:p-10 card shrink-0 w-full shadow-2xl bg-base-100 p-8">
+    <h2 class="heading-6 font-bold mb-5">{{ 'sylius.ui.personal_information'|trans }}</h2>
+
+    <div class="row">
+        <div class="col">{{ form_row(form.firstName) }}</div>
+        <div class="col">{{ form_row(form.lastName) }}</div>
+    </div>
+
+    {{ form_row(form.email) }}
+    {{ form_row(form.phoneNumber) }}
+    {{ form_row(form.subscribedToNewsletter) }}
+
+    <h2 class="heading-6 font-bold mt-10 mb-5">{{ 'sylius.ui.account_credentials'|trans }}</h2>
+
+    {{ form_row(form.user.plainPassword.first) }}
+    {{ form_row(form.user.plainPassword.second) }}
+
+    <button type="submit" class="btn btn-primary mt-10" {{ sylius_test_html_attribute('register-button') }}>
+        {{ 'sylius.ui.create_an_account'|trans }}
+    </button>
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+</div>

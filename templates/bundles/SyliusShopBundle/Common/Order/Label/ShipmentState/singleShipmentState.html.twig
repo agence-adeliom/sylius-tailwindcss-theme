@@ -1,0 +1,13 @@
+{% set view_options = {
+    cart: {icon: "fas fa-adjust", bgColor: "secondary", textColor: "secondary-content"},
+    cancelled: {icon: "fas fa-ban", bgColor: "danger", textColor: "error-content"},
+    shipped: {icon: "fas fa-plane", bgColor: "success", textColor: "success-content"},
+    ready: {icon: "fas fa-clock", bgColor: "primary", textColor: "primary-content"},
+} %}
+
+{% set value = 'sylius.ui.' ~ state %}
+
+<span class="bg-{{ view_options[state]['bgColor'] }} text-{{ view_options[state]['textColor'] }} badge flex items-center gap-1 p-3">
+    <i class="{{ view_options[state]['icon'] }} icon"></i>
+    {{ value|trans }}
+</span>

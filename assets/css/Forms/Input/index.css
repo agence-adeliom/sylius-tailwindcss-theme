@@ -1,0 +1,41 @@
+/* Select */
+.form-select {
+    @apply select select-bordered w-full
+}
+
+/* Labels */
+.label-text {
+    @apply mb-1 block;
+}
+
+/* Form field errors */
+.invalid-feedback {
+    @apply text-error text-sm;
+}
+
+/* Checkboxes */
+.form-check {
+    @apply flex items-center gap-2;
+}
+
+#sylius_customer_registration_subscribedToNewsletter {
+    @apply toggle toggle-primary;
+}
+.form-check-input {
+    @apply checkbox checkbox-sm checkbox-primary;
+}
+
+/* Date input */
+input[type="date"] {
+    @apply flex-row;
+}
+
+form .label.required :after {
+    margin: -0.2em 0em 0em 0.2em;
+    content: '*';
+    color: #DB2828;
+}
+
+.text-error {
+    @apply p-1 block;
+}

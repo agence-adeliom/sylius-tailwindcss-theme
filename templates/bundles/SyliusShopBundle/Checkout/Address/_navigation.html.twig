@@ -1,0 +1,10 @@
+<div class="flex items-center justify-between mt-4 flex-wrap gap-4">
+    <a href="{{ path('sylius_shop_homepage') }}" class="btn btn-light">
+        <i class="fa-solid fa-arrow-left"></i>
+        {{ 'sylius.ui.back_to_store'|trans }}
+    </a>
+    <button type="submit" class="btn btn-primary" {{ sylius_test_html_attribute('next-step') }}>
+        <i class="fa-solid fa-arrow-right"></i>
+        {{ 'sylius.ui.next'|trans }}
+    </button>
+</div>

@@ -1,0 +1,40 @@
+{% set product = variant.product %}
+
+<div class="flex flex-col">
+    <div class="flex flex-col">
+        <strong class="mb-0 sylius-product-name" {{ sylius_test_html_attribute('product-name', item.productName) }}>
+            <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}">{{ item.productName }}</a>
+        </strong>
+
+        <small class="sylius-product-variant-code mb-2" {{ sylius_test_html_attribute('product-variant-code') }}>
+            {{ variant.code }}
+        </small>
+    </div>
+
+    {% if product.hasOptions() %}
+        <div class="flex flex-col md:flex-row md:items-center gap-8 mb-2 sylius-product-options" {{ sylius_test_html_attribute('product-options') }}>
+            {% for option_value in variant.optionValues %}
+                <div class="flex flex-col lg:flex-row gap-2">
+                    <strong class="text-sm">{{ option_value.name }}:</strong>
+                    <span class="font-normal text-sm" data-sylius-option-name="{{ option_value.name }}" {{ sylius_test_html_attribute('option-name', option_value.name) }}>
+						{{ option_value.value }}
+					</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% elseif item.variantName is not null %}
+        <div class="small mb-2 sylius-product-variant-name" {{ sylius_test_html_attribute('product-variant-name') }}>
+            <small>{{ item.variantName }}</small>
+        </div>
+    {% endif %}
+
+    <button
+        type="button"
+        data-js-remove-from-cart-button
+        data-js-remove-from-cart-redirect-url="{{ path('sylius_shop_cart_summary') }}"
+        data-js-remove-from-cart-csrf-token="{{ csrf_token(item.id) }}"
+        data-js-remove-from-cart-api-url="{{ path('sylius_shop_ajax_cart_item_remove', {'id': item.id}) }}"
+        class="btn btn-sm btn-link sylius-cart-remove-button w-fit h-auto items-center p-0"
+        {{ sylius_test_html_attribute('cart-remove-button', item.productName) }}
+    > {{ 'sylius.ui.delete'|trans }} </button>
+</div>

@@ -1,0 +1,8 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
+
+{{ icons.cart() }}
+<span id="sylius-cart-total" {{ sylius_test_html_attribute('cart-total') }}>
+	{{- money.convertAndFormat(cart.itemsTotal) -}}
+</span>
+<span class="badge badge-primary indicator-item">{{cart.totalQuantity}}</span>

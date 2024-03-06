@@ -1,0 +1,5 @@
+{# Set in case of slider to add loop index to id number of each card #}
+{% set _number = number is defined ? number : '' %}
+
+{{ sylius_template_event('sylius.shop.product.index.box', {'product': product, role: role|default(''), number: _number}) }}
+

@@ -1,0 +1,37 @@
+{% extends '@SyliusShop/Account/AddressBook/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block title %}
+	{{ 'sylius.ui.edit_my_address'|trans }}
+	|
+	{{ parent() }}
+{% endblock %}
+
+{% import '@SyliusShop/Common/Macro/headers.html.twig' as headers %}
+
+{% block subcontent %}
+	<div>
+		{{ headers.default('sylius.ui.address_book'|trans, '', 'sylius.ui.edit_my_address'|trans) }}
+
+		{{ sylius_template_event('sylius.shop.account.address_book.update.after_content_header', {'address': address}) }}
+
+		{{ form_start(form, {'action': path('sylius_shop_account_address_book_update', {'id': address.id}), 'method': 'PUT', 'attr': {'class': 'loadable', 'novalidate': 'novalidate'}}) }}
+
+		{% include '@SyliusShop/Common/Form/_address.html.twig' with {'form': form} %}
+
+		<div class="w-full flex items-center justify-between flex-wrap gap-y-2">
+			<a href="{{ path('sylius_shop_account_address_book_index') }}" class="btn btn-outline">
+				{{ 'sylius.ui.cancel'|trans }}
+			</a>
+			<button type="submit" class="btn btn-primary" {{ sylius_test_html_attribute('save-changes') }}>
+				{{ 'sylius.ui.save_changes'|trans }}
+			</button>
+		</div>
+
+		{{ sylius_template_event('sylius.shop.account.address_book.update.form', {'address': address}) }}
+
+		{{ form_row(form._token) }}
+		{{ form_end(form, {'render_rest': false}) }}
+	</div>
+{% endblock %}

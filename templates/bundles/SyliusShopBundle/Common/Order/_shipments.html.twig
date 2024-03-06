@@ -1,0 +1,27 @@
+{% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
+
+<div class="w-full flex flex-col p-5 border border-base rounded lg:h-full">
+    <div class="">
+        <b>{{ 'sylius.ui.shipment'|trans }}</b>
+    </div>
+    <div class="">
+        {% for shipment in order.shipments %}
+            {% set state = shipment.state %}
+
+            <div class="list-group list-group-flush flex flex-wrap items-center flex-row gap-2 lg:gap-3 mt-4">
+                {{ icons.transport('text-gray-500') }}
+                <div class=''>
+                    <div id="sylius-shipping-method" {{ sylius_test_html_attribute('shipping-method') }}>
+                        <strong>{{ shipment.method }}</strong>
+                    </div>
+
+                    {% if state != 'cart' %}
+                        <p id="shipment-status" {{ sylius_test_html_attribute('shipment-state') }}>
+                            {% include "@SyliusShop/Common/Order/Label/ShipmentState/singleShipmentState.html.twig" with {state} %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

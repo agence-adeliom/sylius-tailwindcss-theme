@@ -1,0 +1,14 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block content %}
+
+    {% include '@SyliusShop/Product/Index/_header.html.twig' %}
+    <div class="wrapper-12 mt-3md:mt-6 mb-4 md:mb-10 container">
+        <div class="col-span-full  md:col-span-4 lg:col-span-3">
+            {% include '@SyliusShop/Product/Index/_sidebar.html.twig' %}
+        </div>
+        <div class="col-span-full md:col-span-8 lg:col-span-9">
+            {% include '@SyliusShop/Product/Index/_main.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

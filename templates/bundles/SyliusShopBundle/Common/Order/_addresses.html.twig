@@ -1,0 +1,18 @@
+<div class="w-full flex flex-wrap items-center rounded border">
+    <div class="w-full lg:w-1/2 flex flex-col p-5 lg:p-10 border-b lg:border-b-0 lg:border-r border-base" id="sylius-billing-address" {{ sylius_test_html_attribute('billing-address') }}>
+        <div class="mb-4">
+            <b>{{ 'sylius.ui.shipping_address'|trans }}</b>
+        </div>
+        <div class="">
+            {% include '@SyliusShop/Common/_address.html.twig' with {address: order.shippingAddress} %}
+        </div>
+    </div>
+    <div class="w-full lg:w-1/2 flex flex-col p-5 lg:p-10" id="sylius-shipping-address" {{ sylius_test_html_attribute('shipping-address') }}>
+        <div class="mb-4">
+            <b>{{ 'sylius.ui.billing_address'|trans }}</b>
+        </div>
+        <div class="">
+            {% include '@SyliusShop/Common/_address.html.twig' with {address: order.billingAddress} %}
+        </div>
+    </div>
+</div>

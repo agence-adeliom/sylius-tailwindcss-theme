@@ -1,0 +1,36 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block title %}
+	{{ 'sylius.ui.contact_us'|trans }}
+	|
+	{{ parent() }}
+{% endblock %}
+
+{% import '@SyliusShop/Common/Macro/headers.html.twig' as headers %}
+
+{% block content %}
+
+    <div class="md:my-20 container">
+        <div class="flex md:gap-10 gap-16 flex-col lg:flex-row-reverse items-start">
+            <div class="grow text-center lg:text-left">
+                {{ headers.default('sylius.ui.contact_us'|trans, '', 'sylius.ui.use_the_contact_form_below_to_send_us_a_message'|trans) }}
+                {{ sylius_template_event('sylius.shop.contact.request.after_content_header') }}
+            </div>
+            <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
+                <form class="card-body">
+                    {{ form_start(form, {'action': path('sylius_shop_contact_request'), 'attr': {'class': 'loadable', 'novalidate': 'novalidate'}}) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.message) }}
+
+                    {{ sylius_template_event('sylius.shop.contact.request.form', {'form': form}) }}
+
+                    {{ form_row(form._token) }}
+                    <button type="submit" class="btn btn-primary" {{ sylius_test_html_attribute('send-button') }}>{{ 'sylius.ui.send'|trans }}</button>
+                    {{ form_end(form, {'render_rest': false}) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

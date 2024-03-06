@@ -1,0 +1,7 @@
+<div class="wrapper-12 container">
+    {% for product in products %}
+        <div class="col-span-full md:col-span-6 lg:col-span-3">
+            {% include '@SyliusShop/Product/_box.html.twig' %}
+        </div>
+    {% endfor %}
+</div>

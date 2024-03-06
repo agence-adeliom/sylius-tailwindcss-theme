@@ -1,0 +1,27 @@
+{% import '@SyliusShop/Common/Macro/breadcrumbs.html.twig' as breadcrumbs %}
+{% import '@SyliusShop/Common/Macro/headers.html.twig' as headers %}
+
+{% extends '@SyliusShop/layout.html.twig' %}
+{% set product = (resources|first).reviewSubject|default(false) %}
+
+{% block content %}
+    <div class="container">
+
+        {% if product %}
+            {% include '@SyliusShop/Product/Show/_breadcrumb.html.twig' with {crumbs: [{label: 'sylius.ui.reviews'|trans}]} %}
+        {% endif %}
+
+        {{ headers.default('sylius.ui.reviews'|trans) }}
+
+        <div class="wrapper-12">
+            <div class="col-span-full md:col-span-4 lg:col-span-3">
+                {{ sylius_template_event('sylius.shop.product_review.index.product_box', _context) }}
+            </div>
+            <div class="col-span-full md:col-span-8 lg:col-span-9">
+                <div class='shadow-2xl ring-offset-base px-4 pb-4 md:px-6 md:pb-6' id="sylius-product-reviews" {{ sylius_test_html_attribute('product-reviews') }}>
+                    {{ sylius_template_event('sylius.shop.product_review.index.list', _context) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

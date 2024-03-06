@@ -1,0 +1,24 @@
+{% import '@SyliusShop/Common/Macro/money.html.twig' as money %}
+
+<label
+    class="flex items-center gap-2 mb-2 md:gap-4 cursor-pointer"
+    {{ sylius_test_html_attribute('shipping-item') }}
+>
+    <div {{ sylius_test_html_attribute('shipping-method-checkbox') }}>
+        {{ form_widget(form, {
+            label_attr: {class: 'hidden', 'aria-hidden': true},
+            attr: {class: 'm-0 radio radio-sm'}
+        }|merge(sylius_test_form_attribute('shipping-method-select'))) }}
+    </div>
+
+    <div class="flex flex-col gap-2 flex-wrap">
+        <p class="font-bold" {{ sylius_test_html_attribute('shipping-method-label') }}>
+            {{ form.vars.label }}
+        </p>
+        {% if method.description is not null %}
+            <p class="mb-1">{{ method.description }}</p>
+        {% endif %}
+    </div>
+
+    <strong class="badge badge-primary ml-auto" {{ sylius_test_html_attribute('shipping-method-fee') }}>{{ money.convertAndFormat(fee) }}</strong>
+</label>

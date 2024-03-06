@@ -1,0 +1,21 @@
+<label
+    class="flex items-top gap-2 mb-2 md:gap-4 cursor-pointer"
+    {{ sylius_test_html_attribute('payment-item') }}
+>
+    <div {{ sylius_test_html_attribute('payment-method-checkbox') }}>
+        {{ form_widget(form, {
+            label_attr: {class: 'hidden', 'aria-hidden': true},
+            attr: {class: 'm-0 radio radio-sm'}
+        }|merge(sylius_test_form_attribute('payment-method-select'))) }}
+    </div>
+
+    <div class="flex flex-col gap-2">
+        <p class="font-bold" {{ sylius_test_html_attribute('shipping-method-label') }}>
+            {{ form.vars.label }}
+        </p>
+        {% if method.description is not null %}
+            <p class="mb-1">{{ method.description }}</p>
+        {% endif %}
+    </div>
+
+</label>

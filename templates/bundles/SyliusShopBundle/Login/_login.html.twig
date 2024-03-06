@@ -1,0 +1,26 @@
+<div class="col-span-full md:col-span-6 lg:col-span-3 p-5 lg:p-10 card shrink-0 w-full shadow-2xl bg-base-100 p-8">
+	<h2 class="heading-6 font-bold mb-3">{{ 'sylius.ui.registered_customers'|trans }}</h2>
+
+	<p class="mb-3">{{ 'sylius.ui.if_you_have_an_account_sign_in_with_your_email_address'|trans }}.</p>
+
+	{{ form_start(form, {'action': path('sylius_shop_login_check'), 'attr': {'class': 'loadable', 'novalidate': 'novalidate'}}) }}
+
+	{% include '@SyliusShop/Login/_form.html.twig' %}
+
+	{{ sylius_template_event('sylius.shop.login.form', {'form': form}) }}
+
+    <div class="divider"></div>
+
+    <div class="flex flex-col gap-2 md:gap-0 md:flex-row w-full justify-between">
+        <button type="submit" class="btn btn-primary" {{ sylius_test_html_attribute('login-button') }}>
+            {{ 'sylius.ui.login'|trans }}
+        </button>
+
+        <a href="{{ path('sylius_shop_request_password_reset_token') }}" class="btn btn-outline">{{ 'sylius.ui.forgot_password'|trans }}</a>
+    </div>
+
+
+	<input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
+
+	{{ form_end(form, {'render_rest': false}) }}
+</div>

@@ -1,0 +1,24 @@
+{{ sylius_template_event('sylius.shop.product.index.before_vertical_menu', {'taxon': taxon}) }}
+{% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
+
+<p class="heading-5 font-bold text-light-emphasis py-4 border-b-2 border-light">{{ taxon.name }}</p>
+
+<ul class="nav flex-column list-disc list-inside mt-4">
+    {% if taxon.parent is not empty and not taxon.parent.isRoot() %}
+        <li class="nav-item">
+            <a href="{{ path('sylius_shop_product_index', {'slug': taxon.parent.slug, '_locale': taxon.parent.translation.locale}) }}" class="text-sm inline-flex items-center gap-2">
+                {{ 'sylius.ui.go_level_up'|trans }}
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
+        </li>
+
+    {% endif %}
+
+    {% for child in taxon.children %}
+        <li class="nav-item">
+            <a href="{{ path('sylius_shop_product_index', {'slug': child.slug, '_locale': child.translation.locale}) }}" class="nav-link">{{ child.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{{ sylius_template_event('sylius.shop.product.index.after_vertical_menu', {'taxon': taxon}) }}

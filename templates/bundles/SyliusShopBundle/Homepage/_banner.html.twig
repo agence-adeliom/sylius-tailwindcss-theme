@@ -1,0 +1,13 @@
+
+<section class="container !mt-0">
+    <div class="w-full relative  min-h-[420px] flex items-center lg:items-end">
+        {% set src = use_webpack ? asset('build/shop/images/homepage-banner.jpg', 'shop') : asset('assets/shop/img/homepage-banner.jpg') %}
+
+        <img class="img-fluid absolute w-full h-full object-cover" style="min-height: 240px" src="{{ src }}" alt="{{ 'sylius.homepage.banner_content'|trans }}">
+
+        <div class="max-w-[660px] w-full relative z-[90] p-10 lg:p-20">
+            <h1 class="font-bold mb-8 heading-3 text-white leading-normal">{{ 'sylius.homepage.banner_content'|trans }}</h1>
+            <a href="#" class="btn btn-primary">{{ 'sylius.homepage.banner_button'|trans }}</a>
+        </div>
+    </div>
+</section>
