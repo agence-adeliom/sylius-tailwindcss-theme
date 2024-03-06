@@ -14,6 +14,9 @@ Files/folders to copy:
 npm install
 npm i -D tailwindcss
 npm i -D daisyui@latest
+npm i axios
+npm i postcss-loader@^7.0.0 --save-dev
+npm i autoprefixer --save-dev
 ```
 
 #### 3. Import `tailwind-theme` config in your `./webpack.config.js`

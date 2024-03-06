@@ -6,7 +6,7 @@
          bootstrap="config/bootstrap.php">
     <testsuites>
         <testsuite name="Test Suite">
-            <directory>vendor/sylius/tailwind-theme/tests/PHPUnit</directory>
+            <directory>vendor/agence-adeliom/sylius-tailwindcss-theme/tests/PHPUnit</directory>
         </testsuite>
     </testsuites>
 

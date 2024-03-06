@@ -38,12 +38,6 @@
         "symfony/web-profiler-bundle": "^5.4",
         "vimeo/psalm": "4.7.1"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:agence-adeliom/sylius-tailwindcss-theme.git"
-        }
-    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\TailwindTheme\\": "tests/PHPUnit/"
@@ -54,7 +48,7 @@
             "title": "Sylius Tailwind Theme"
         },
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "0.x-dev"
         }
     },
     "config": {

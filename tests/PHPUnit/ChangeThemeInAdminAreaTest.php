@@ -51,7 +51,7 @@ final class ChangeThemeInAdminAreaTest extends AbstractTest
         $this->client->request('GET', $url);
         self::assertSelectorTextContains('h1', 'Edit channel');
 
-        $crawler = $this->client->submitForm('Save changes', ['sylius_channel[themeName]' => 'sylius/tailwind-theme',]);
+        $crawler = $this->client->submitForm('Save changes', ['sylius_channel[themeName]' => 'agence-adeliom/sylius-tailwindcss-theme',]);
 
         $crawler = $this->client->request('GET', '/');
         $bootstrapBodyClass = $crawler->filter('body')->attr('class');

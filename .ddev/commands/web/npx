@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## Description: Lunch bin console without memory limit
+## Usage: npx
+## Example: "ddev npx"
+
+node_modules/.bin/npx $@

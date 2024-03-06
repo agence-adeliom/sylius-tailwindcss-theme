@@ -21,7 +21,7 @@ To test other versions :
 $ make install -e SYLIUS_VERSION=XX SYMFONY_VERSION=YY
 ```
 
-To reset (drop database and delete files) test environment:
+To reset (drop database and delete files) dev environment:
 ```bash
 $ make reset
 ```

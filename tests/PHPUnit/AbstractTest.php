@@ -26,9 +26,9 @@ abstract class AbstractTest extends WebTestCase
         $this->switchTheme(null);
     }
 
-    protected function useBootstrapTheme(): void
+    protected function useTheme(): void
     {
-        $this->switchTheme('sylius/tailwind-theme');
+        $this->switchTheme('agence-adeliom/sylius-tailwindcss-theme');
     }
 
     private function switchTheme(?string $theme): void

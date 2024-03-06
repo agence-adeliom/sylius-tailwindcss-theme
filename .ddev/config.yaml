@@ -1,4 +1,4 @@
-name: sylius-tailwind-theme
+name: sylius-tailwindcss-theme
 type: php
 docroot: public
 php_version: "8.2"
@@ -24,7 +24,6 @@ web_environment:
     - SITE_DOMAIN_NAME=https://sylius-tailwind-theme.ddev.site
     - MAILER_DSN=smtp://localhost:1025
     - MYSQL_URL=mysql://db:db@db:3306/db?serverVersion=8.0.33&charset=utf8mb4
-
 
 # Key features of ddev's config.yaml:
 

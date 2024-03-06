@@ -41,3 +41,4 @@ yarn-error.log
 ###< symfony/web-server-bundle ###
 
 install/Application
+.idea
