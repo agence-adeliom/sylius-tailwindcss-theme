@@ -1,5 +1,5 @@
 {
-    "name": "agence-adeliom/sylius-tailwind-theme",
+    "name": "agence-adeliom/sylius-tailwindcss-theme",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin", "sylius-theme"],
     "description": "Tailwindcss and daisyUI Theme for Sylius",
@@ -38,6 +38,12 @@
         "symfony/web-profiler-bundle": "^5.4",
         "vimeo/psalm": "4.7.1"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:agence-adeliom/sylius-tailwindcss-theme.git"
+        }
+    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\TailwindTheme\\": "tests/PHPUnit/"
