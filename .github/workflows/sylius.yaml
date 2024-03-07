@@ -38,11 +38,11 @@ jobs:
                     coverage: none
             -
                 name: 'Setup Node'
-                uses: actions/setup-node@v3
+                uses: actions/setup-node@v4
                 with:
                     node-version: '${{ matrix.node }}'
             -
-                uses: actions/checkout@v3
+                uses: actions/checkout@v4
             -
                 name: 'Composer - Get Cache Directory'
                 id: composer-cache
@@ -65,7 +65,7 @@ jobs:
                 
             -   name: Cache node modules
                 id: cache-npm
-                uses: actions/cache@v3
+                uses: actions/cache@v4
                 env:
                     cache-name: cache-node-modules
                 with:
