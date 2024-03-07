@@ -58,7 +58,7 @@ final class ChangeThemeInAdminAreaTest extends AbstractTest
 
         self::assertNotSame($semanticBodyClass, $bootstrapBodyClass);
         self::assertStringContainsString('pushable', $semanticBodyClass);
-        self::assertStringContainsString('d-flex', $bootstrapBodyClass);
+        self::assertStringContainsString('flex flex-col', $bootstrapBodyClass);
     }
 
     private function adminLogin(): void

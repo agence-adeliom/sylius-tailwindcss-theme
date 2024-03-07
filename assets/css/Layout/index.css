@@ -8,10 +8,12 @@
 .demi-col {
     @apply col-span-full lg:col-span-6;
 }
+
 /* Colonne 1/3 et full mobile */
 .third-col {
     @apply col-span-full lg:col-span-4;
 }
+
 /* Colonne 1/4 et full mobile */
 .quarter-col {
     @apply col-span-full lg:col-span-3;

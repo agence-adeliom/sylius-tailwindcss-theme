@@ -9,7 +9,7 @@
         {% if required -%}
             {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
         {%- endif -%}
-        <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+        <{{ element|default('label') }}{% if label_attr %}{% with{attr: label_attr} %}{{ block('attributes') }}{% endwith %}{% endif %}>
             <span>{{- block('form_label_content') -}}</span>
         </{{ element|default('label') }}>
     {%- endif -%}
@@ -26,7 +26,7 @@
         <div class="{{ attr.joinItem is defined ? 'join-item ' : '' }}input input-bordered flex items-center gap-2{{ errors|length > 0 ? ' input-error' : '' }}">
     {% endif %}
             {% if icon is defined %}
-                {{ icon | raw }}
+                {{ icon|raw }}
             {% endif %}
             {{- parent() -}}
     {% if type is not defined or type != 'hidden' %}
@@ -43,10 +43,10 @@
 {%- endblock form_errors -%}
 
 {%- block checkbox_row -%}
-    {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('mb-6')) }) -%}
+    {%- set row_attr = row_attr|merge({class: row_attr.class|default(row_class|default('mb-6'))}) -%}
     {%- set widget_attr = {} -%}
     {%- if help is not empty -%}
-        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~ "_help"}} -%}
     {%- endif -%}
     <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
         {{- form_errors(form) -}}

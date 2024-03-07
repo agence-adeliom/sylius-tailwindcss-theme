@@ -17,19 +17,19 @@
 
 {% block item %}
     {% set is_active = item.uri in app.request.pathInfo %}
- 
+
     <li class="border-b border-base flex group">
         <a class="group-hover:text-primary text-sm py-4 flex items-center justify-between w-full {{ is_active ? 'text-primary' : '' }}" href="{{ item.uri }}">
-            {{ item.label|trans }}  
+            {{ item.label|trans }}
             {{ block('icon') }}
-        </a>  
-    </li> 
-{% endblock %}   
+        </a>
+    </li>
+{% endblock %}
 
 {% block icon %}
-    {% set icon = item.labelAttribute('icon') %} 
+    {% set icon = item.labelAttribute('icon') %}
 
-    {% if icon %} 
+    {% if icon %}
         <i class="fa-solid fa-{{ icon is same as('cart') ? 'shopping-cart' : icon }} {{ is_active ? 'text-primary' : '' }}"></i>
     {% endif %}
 {% endblock %}

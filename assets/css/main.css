@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 /* Fonts */
-@import "./Fonts/index.css";
+@import url("./Fonts/index.css");
 
 /* Layout */
-@import "./Layout/index.css";
+@import url("./Layout/index.css");
 
 /* Typography */
-@import "./Typography/index.css";
+@import url("./Typography/index.css");
 
 /* Action */
-@import "./Action/index.css";
+@import url("./Action/index.css");
 
 /* Feedback */
-@import "./Feedback/index.css";
+@import url("./Feedback/index.css");
 
 /* Utils */
-@import "./Utils/index.css";
+@import url("./Utils/index.css");
 
 /* Form */
-@import "./Forms/index.css";
+@import url("./Forms/index.css");
 
 /* Product page */
-@import "./Product/index.css";
+@import url("./Product/index.css");

@@ -1,11 +1,11 @@
-{% set cardClass = "flex flex-wrap rounded-2xl bg-neutral text-neutral-content p-8 mt-6" %}
-<div class="{{ cardClass }} flex-col text-center">
+{% set card_class = "flex flex-wrap rounded-2xl bg-neutral text-neutral-content p-8 mt-6" %}
+<div class="{{ card_class }} flex-col text-center">
     <div class="border-4 mx-auto rounded-full w-[90px] h-[90px] mb-2 flex items-center justify-center border-neutral-300"><i class="fa-solid fa-phone-flip text-5xl"></i></div>
     <a href="tel:+48 123 456 789" class="text-2xl font-bold">+48 123 456 789</a>
     <div class="mb-3">{{ 'sylius.ui.need_assistance'|trans }} {{ 'sylius.ui.call_us'|trans }}</div>
 </div>
 
-<div class="{{ cardClass }} justify-around">
+<div class="{{ card_class }} justify-around">
     <i class="fa-brands fa-cc-mastercard text-6xl block w-fit"></i>
     <i class="fa-brands fa-cc-visa text-6xl block w-fit"></i>
     <i class="fa-brands fa-cc-paypal text-6xl block w-fit"></i>

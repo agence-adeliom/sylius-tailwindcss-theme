@@ -1,4 +1,4 @@
-@import "./Input/index.css";
+@import url("./Input/index.css");
 
 .loadable {
     @apply relative;

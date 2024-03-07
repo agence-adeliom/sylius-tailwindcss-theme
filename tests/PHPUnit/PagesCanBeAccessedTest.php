@@ -22,7 +22,7 @@ final class PagesCanBeAccessedTest extends AbstractTest
     protected function setUp(): void
     {
         $this->client = self::createClient();
-        $this->useBootstrapTheme();
+        $this->useTailwindTheme();
     }
 
     /**

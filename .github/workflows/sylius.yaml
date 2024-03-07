@@ -2,7 +2,7 @@ name: Install & Test
 'on':
     push:
         branches:
-            - master
+            - 0.x
         paths-ignore:
             - README.md
     pull_request:
@@ -20,12 +20,12 @@ jobs:
                 sylius:
                     - 1.12.0
                 symfony:
-                    - 6.3
+                    - 6.4
                 node:
-                    - 18.x
+                    - 20.x
         env:
             APP_ENV: test
-            package-name: sylius/bootstrap-theme
+            package-name: agence-adeliom/sylius-tailwindcss-theme
         steps:
             -
                 name: 'Setup PHP'
@@ -62,20 +62,29 @@ jobs:
             -
                 name: 'Composer - Github Auth'
                 run: 'composer config -g github-oauth.github.com ${{ github.token }}'
-            -
-                name: 'Yarn - Get cache directory'
-                id: yarn-cache
-                run: 'echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT'
-            -
-                name: 'Yarn - Set Cache'
+                
+            -   name: Cache node modules
+                id: cache-npm
                 uses: actions/cache@v3
+                env:
+                    cache-name: cache-node-modules
                 with:
-                    path: '${{ steps.yarn-cache.outputs.dir }}'
-                    key: 'node-${{ matrix.node }}-yarn-${{ hashFiles(''**/package.json **/yarn.lock'') }}'
-                    restore-keys: "node-${{ matrix.node }}-yarn-\n"
+                    # npm cache files are stored in `~/.npm` on Linux/macOS
+                    path: ~/.npm
+                    key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                    restore-keys: |
+                        ${{ runner.os }}-build-${{ env.cache-name }}-
+                        ${{ runner.os }}-build-
+                        ${{ runner.os }}-
+
+            -   if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+                name: List the state of node modules
+                continue-on-error: true
+                run: npm list    
+                
             -
                 name: 'Install Sylius-Standard and Plugin'
-                run: 'make install -e SYLIUS_VERSION=${{ matrix.sylius }} SYMFONY_VERSION=${{ matrix.symfony }} PHP_VERSION=${{ matrix.php }}'
+                run: 'make install-ci -e SYLIUS_VERSION=${{ matrix.sylius }} SYMFONY_VERSION=${{ matrix.symfony }} PHP_VERSION=${{ matrix.php }}'
             -
                 name: 'Output PHP version for Symfony CLI'
                 working-directory: ./install/Application
@@ -90,7 +99,7 @@ jobs:
                 run: 'symfony server:start --port=8080 --dir=public --daemon'
             -
                 name: 'Run PHPUnit'
-                run: 'make phpunit'
+                run: 'make phpunit-ci'
         services:
             mariadb:
                 image: 'mariadb:10'

@@ -21,6 +21,7 @@
 #sylius_customer_registration_subscribedToNewsletter {
     @apply toggle toggle-primary;
 }
+
 .form-check-input {
     @apply checkbox checkbox-sm checkbox-primary;
 }
@@ -30,8 +31,8 @@ input[type="date"] {
     @apply flex-row;
 }
 
-form .label.required :after {
-    margin: -0.2em 0em 0em 0.2em;
+form .label.required ::after {
+    margin: -0.2em 0 0 0.2em;
     content: '*';
     color: #DB2828;
 }

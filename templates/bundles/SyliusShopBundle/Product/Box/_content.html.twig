@@ -13,10 +13,10 @@
 {# Used to set dynamic id to card #}
 {% set _number = number is defined and number ? number : null %}
 {% if _number %}
-    {% set _cardId = 'id=slide' ~ _number %}
+    {% set _card_id = 'id=slide' ~ _number %}
 {% endif %}
 
-<div {{ _cardId is defined ? _cardId : null }} class="card card-product relative {{ role|default('') }} {{ _class is defined ? _class : '' }} " {{ sylius_test_html_attribute('product') }}>
+<div {{ _card_id is defined ? _card_id : null }} class="card card-product relative {{ role|default('') }} {{ _class is defined ? _class : '' }} " {{ sylius_test_html_attribute('product') }}>
 
     <div class='relative group'>
         <div class="opacity-0 absolute-full bg-neutral bg-opacity-60 group-hover:opacity-100 backdrop-blur-sm rounded trans-default flex items-center justify-center">
