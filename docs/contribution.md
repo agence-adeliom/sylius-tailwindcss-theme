@@ -1,4 +1,4 @@
-## Quickstart Installation
+## Installation for contribution & test
 
 ### Prerequis
 
@@ -11,7 +11,8 @@
 2. Run install command : 
     
     ```bash
-    $ make install-project
+    $ make install-project # first install or after a remove
+    $ make start # project already installed
     ```
     Default values : XX=1.12.13 and YY=6.4 and ZZ=8.2
     
@@ -30,26 +31,37 @@
 
 ### Modify code
 
-After project installation, you can modify themes files here `templates/bundles/`.
-To send files into your installed test project just execute following command after changes :
+1. After project installation, you can modify themes files here `install/Application/themes/TailwindTheme` assets and templates files. 
 
-1. Apply changes
-
-    ```bash
-    $ make apply-changes
-    ```
-
-2. Build changes
+2. To compile tailwind and assets changes use :
 
     ```bash
-    $ make build-changes
-    # Or
-    $ make watch-changes
+    $ make watch
     ```
 
-3. Lint changes
+3. When changes are done you have to put back your modification into this root project.
 
     ```bash
-    $ make lint-changes
+    $ make get-changes
     ```
 
+    You can do it manually or you can execute `make get-changes`
+    
+    This command will get back `templates` and `assets` folder, `tailwind.config.js`, `postcss.config.js` file into root folder.
+
+
+4. Lint before commit
+
+    ```bash
+    $ make lint
+    ```
+
+    This command will use your own composer and php version
+
+
+5. git commit & push
+
+### Contribution
+
+1. Fork this github project
+2. Create an issue and pull request

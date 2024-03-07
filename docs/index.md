@@ -2,9 +2,10 @@
 
 ### Summary
 
-| 📚                  |                                            |
-|:--------------------|-----------------------------------------------:|
-| **1. Installation** |                   [Read here](installation.md) |
+| 📚                                         |                              |
+|:-------------------------------------------|-----------------------------:|
+| **1. Installation in your Sylius project** | [Read here](installation.md) |
+| **1. Installation for contribution**       | [Read here](contribution.md) |
 
 ### Learn more
 

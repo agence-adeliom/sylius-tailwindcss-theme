@@ -113,21 +113,24 @@ help: ## Dislay this help
 	done; unset IFS;
 .PHONY: help
 
-apply-changes:
-	cp -r assets ${TEST_DIRECTORY}/themes/TailwindTheme
-	cp -r templates ${TEST_DIRECTORY}/themes/TailwindTheme
+get-changes:
+	rm -rf ./assets
+	rm -rf ./templates
+	rm -rf ./tailwind.config.js
+	rm -rf ./postcss.config.js
+	cp -r ${TEST_DIRECTORY}/themes/TailwindTheme/assets ./
+	cp -r ${TEST_DIRECTORY}/themes/TailwindTheme/templates ./
+	cp ${TEST_DIRECTORY}/tailwind.config.js ./tailwind.config.js
+	cp ${TEST_DIRECTORY}/postcss.config.js ./postcss.config.js
 
-build-changes:
-	${NPM} install
-	${NPM} run build
 
-watch-changes:
+watch:
 	${NPM} install
 	${NPM} run watch
 
-lint-changes:
-	$(DDEV) composer install
-	$(DDEV) exec vendor/bin/twigcs templates/ --severity error --display blocking --reporter githubAction
+lint:
+	composer install
+	vendor/bin/twigcs templates/ --severity error --display blocking --reporter githubAction
 
 ###
 ### CI TEST
