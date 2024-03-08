@@ -28,7 +28,7 @@ class SyliusRating {
     const renderElement = document.createElement('div');
 
     for (let i = 1; i <= this.ratingMax; i++) {
-      const element = document.createElement('span');
+      const element = document.createElement(this.viewOnly ? 'span' : 'button');
       element.dataset.jsRatingValue = i;
 
       if (this.viewOnly === false) {

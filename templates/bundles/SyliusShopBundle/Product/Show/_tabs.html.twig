@@ -1,19 +1,18 @@
 <div role="tablist" class="tabs tabs-lg tabs-bordered w-full my-20 container">
-    <input type="radio" name="product_tabs" class="tab px-4 md:px-10 text-nowrap" aria-label="{{ 'sylius.ui.details'|trans }}" checked/>
-    <div role="tabpanel" class="tab-content py-8">
-         {% include '@SyliusShop/Product/Show/Tabs/_details.html.twig' %}
-    </div>
+	<input type="radio" name="product_tabs" class="tab px-4 md:px-10 text-nowrap" aria-label="{{ 'sylius.ui.details'|trans }}" checked/>
+	<div role="tabpanel" class="tab-content py-8">
+		{% include '@SyliusShop/Product/Show/Tabs/_details.html.twig' %}
+	</div>
 
-    {% if product.attributes|length > 0 %}
-        <input type="radio" name="product_tabs" class="tab px-4 md:px-10 text-nowrap" aria-label="{{ 'sylius.ui.attributes'|trans }}"/>
-        <div role="tabpanel" class="tab-content py-8">
-             {% include '@SyliusShop/Product/Show/Tabs/_attributes.html.twig' %}
-        </div>
-    {% endif %}
+	{% if product.attributes|length > 0 %}
+		<input type="radio" name="product_tabs" class="tab px-4 md:px-10 text-nowrap" aria-label="{{ 'sylius.ui.attributes'|trans }}" tabindex="0"/>
+		<div role=" tabpanel" class=" tab-content py-8">
+			{% include '@SyliusShop/Product/Show/Tabs/_attributes.html.twig' %}
+		</div>
+	{% endif %}
 
-    <input type="radio" name="product_tabs" class="tab  px-4 md:px-10 text-nowrap" aria-label="{{ 'sylius.ui.reviews'|trans ~ ' (' ~ product.acceptedReviews|length ~ ')' }}"/>
-    <div role="tabpanel" class="tab-content py-8">
-         {% include '@SyliusShop/Product/Show/Tabs/_reviews.html.twig' %}
-    </div>
-
+	<input type="radio" name="product_tabs" class="tab  px-4 md:px-10 text-nowrap" aria-label="{{ 'sylius.ui.reviews'|trans ~ ' (' ~ product.acceptedReviews|length ~ ')' }}"/>
+	<div role="tabpanel" class="tab-content py-8">
+		{% include '@SyliusShop/Product/Show/Tabs/_reviews.html.twig' %}
+	</div>
 </div>
