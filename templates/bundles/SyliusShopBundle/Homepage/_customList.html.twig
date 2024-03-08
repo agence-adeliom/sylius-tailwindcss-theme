@@ -3,67 +3,62 @@
 {% set role = products|length == 5 ? 'grid-item' : '' %}
 
 <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-4 gap-6">
-    {% for product in products %}
-        {% if loop.index == 1 %}
-            <div class="col-span-full lg:col-span-2 lg:row-span-4">
-        {% elseif loop.index == 2 %}
-            <div class="col-span-1 lg:row-span-2 lg:col-start-3">
-        {% elseif loop.index == 3 %}
-            <div class="col-span-1 lg:row-span-2 lg:col-start-3 lg:row-start-3">
-        {% elseif loop.index == 4 %}
-            <div class="col-span-1 lg:row-span-2 lg:col-start-4 lg:row-start-1">
-        {% elseif loop.index == 5 %}
-            <div class="col-span-1 lg:row-span-2 lg:col-start-4 lg:row-start-3">
-        {% endif %}
+	{% for product in products %}
+		{% if loop.index == 1 %}
+			<div class="col-span-full lg:col-span-2 lg:row-span-4">
+			{% elseif loop.index == 2 %}
+				<div class="col-span-1 lg:row-span-2 lg:col-start-3">
+				{% elseif loop.index == 3 %}
+					<div class="col-span-1 lg:row-span-2 lg:col-start-3 lg:row-start-3">
+					{% elseif loop.index == 4 %}
+						<div class="col-span-1 lg:row-span-2 lg:col-start-4 lg:row-start-1">
+						{% elseif loop.index == 5 %}
+							<div class="col-span-1 lg:row-span-2 lg:col-start-4 lg:row-start-3">
+							{% endif %}
 
-            <div class="card card-product relative {{ role|default('') }}" {{ sylius_test_html_attribute('product') }}>
+							<a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="card card-product relative {{ role|default('') }}" {{ sylius_test_html_attribute('product') }} aria-label="{{ product.name }}">
 
-                <div class='relative group'>
-                    <div class="opacity-0 absolute-full bg-neutral bg-opacity-60 group-hover:opacity-100 backdrop-blur-sm rounded trans-default flex items-center justify-center">
-                        <a class='absolute-full' href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}"></a>
+								<div class='relative group'>
+									<div class="opacity-0 absolute-full bg-neutral bg-opacity-60 group-hover:opacity-100 backdrop-blur-sm rounded trans-default flex items-center justify-center">
+										<div class='btn btn-outline btn-outline-base-100 relative z-10'>
+											{{ 'sylius.ui.view_more'|trans }}
+										</div>
+									</div>
+									{% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product, 'class': 'card-img-top'} %}
+								</div>
 
-                        <a href='{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}' class='btn btn-outline btn-outline-base-100 relative z-10'>
-                            {{ 'sylius.ui.view_more'|trans }}
-                        </a>
-                    </div>
-                    {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product, 'class': 'card-img-top'} %}
-                </div>
+								<div class="py-2" {{ sylius_test_html_attribute('product-content') }}>
+									<h3 class="sylius-product-name heading-5 card-title" {{ sylius_test_html_attribute('product-name', product.name) }}>
+										{{ product.name }}
+									</h3>
 
-                <div class="py-2" {{ sylius_test_html_attribute('product-content') }}>
-                    <h5 class="sylius-product-name heading-5 card-title" {{ sylius_test_html_attribute('product-name', product.name) }}>
-                        <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}">
-                            {{ product.name }}
-                        </a>
-                    </h5>
+									{% if not product.enabledVariants.empty() %}
+										{% set variant = product|sylius_resolve_variant %}
+										{% set price = money.calculatePrice(variant) %}
+										{% set original_price = money.calculate_original_price(variant) %}
+										{% set applied_promotions = variant.getappliedPromotionsForChannel(sylius.channel) %}
 
-                    {% if not product.enabledVariants.empty() %}
-                        {% set variant = product|sylius_resolve_variant %}
-                        {% set price = money.calculatePrice(variant) %}
-                        {% set original_price = money.calculate_original_price(variant) %}
-                        {% set applied_promotions = variant.getappliedPromotionsForChannel(sylius.channel) %}
+										{% if applied_promotions %}
+											<div class="absolute top-0 right-0 p-2 ">
+												{% include '@SyliusShop/Product/Show/_catalogPromotionLabels.html.twig' with {'applied_promotions': applied_promotions, 'withDescription': false} %}
+											</div>
+										{% endif %}
 
-                        {% if applied_promotions %}
-                            <div class="absolute top-0 right-0 p-2 ">
-                                {% include '@SyliusShop/Product/Show/_catalogPromotionLabels.html.twig' with {'applied_promotions': applied_promotions, 'withDescription': false} %}
-                            </div>
-                        {% endif %}
+										<div class="flex items-baseline flex-wrap gap-2">
 
-                        <div class="flex items-baseline flex-wrap gap-2">
+											<span class="card-subtitle fw-medium sylius-product-price" {{ sylius_test_html_attribute('product-price') }}>{{ price }}</span>
 
-                            <span class="card-subtitle fw-medium sylius-product-price" {{ sylius_test_html_attribute('product-price') }}>{{ price }}</span>
+											{% if variant|sylius_has_discount({'channel': sylius.channel}) %}
+												<span class="small card-subtitle mx-2 sylius-product-original-price" {{ sylius_test_html_attribute('product-original-price') }}>
+													<del>{{ original_price }}</del>
+												</span>
+											{% endif %}
+										</div>
 
-                            {% if variant|sylius_has_discount({'channel': sylius.channel}) %}
-                                <span class="small card-subtitle mx-2 sylius-product-original-price" {{ sylius_test_html_attribute('product-original-price') }}>
-                                    <del>{{ original_price }}</del>
-                                </span>
-                            {% endif %}
-                        </div>
+									{% endif %}
 
-                    {% endif %}
-
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
+								</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>

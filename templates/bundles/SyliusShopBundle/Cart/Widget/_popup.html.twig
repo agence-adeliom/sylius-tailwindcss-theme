@@ -1,34 +1,36 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 
-<div class=" w-80 dropdown-header shadow-2xl">
-    <div class="card-body">
-        {% if cart is defined and cart.items|length >= 1 %}
-            <span class="font-bold text-lg">{{- 'sylius.ui.item.choice'|trans({'%count%': cart.items|length})|replace({', ': ''}) }}</span>
-            {% for item in cart.items %}
-                {% set variant = item.variant %}
-                {% set product = variant.product %}
+<div class=" w-80 dropdown-header">
+	<div class="card-body">
+		{% if cart is defined and cart.items|length >= 1 %}
+			<span class="font-bold text-lg">{{- 'sylius.ui.item.choice'|trans({'%count%': cart.items|length})|replace({', ': ''}) }}</span>
+			{% for item in cart.items %}
+				{% set variant = item.variant %}
+				{% set product = variant.product %}
 
-                <li class="wrapper-12 gap-3 py-2 border-bottom border-light">
-                    <div class="col-span-3">{% include '@SyliusShop/Product/_mainImage.html.twig' with {product, filter: 'sylius_shop_product_tiny_thumbnail'} %}</div>
-                    <div class="col-span-9 flex flex-col justify-center">
-                        <b class="fw-medium small">{{ item.product }}</b>
-                        <div class="mt-1 small">
-                            <span class="">{{ item.quantity }} x </span>
-                            <span class="fw-medium">{{ money.convertAndFormat(item.unitPrice) }}</span>
-                        </div>
-                    </div>
-                </li>
-            {% endfor %}
-            <div class="flex flex-wrap justify-between py-2 fw-medium">
-                <span>{{ 'sylius.ui.subtotal'|trans }}:</span>
-                <strong>{{ money.convertAndFormat(cart.itemsTotal) }}</strong>
-            </div>
-            <div class="card-actions">
-                <a href="{{ path('sylius_shop_checkout_start') }}" class="btn btn-primary w-full">{{ 'sylius.ui.checkout'|trans }}</a>
-                <a href="{{ path('sylius_shop_cart_summary') }}" class="btn btn-outline w-full">{{ 'sylius.ui.view_and_edit_cart'|trans }}</a>
-            </div>
-        {% else %}
-            {{ 'sylius.ui.your_cart_is_empty'|trans }}
-        {% endif %}
-    </div>
+				<li class="wrapper-12 gap-3 py-2 border-bottom border-light">
+					<div class="col-span-3">{% include '@SyliusShop/Product/_mainImage.html.twig' with {product, filter: 'sylius_shop_product_tiny_thumbnail'} %}</div>
+					<div class="col-span-9 flex flex-col justify-center">
+						<b class="fw-medium small">{{ item.product }}</b>
+						<div class="mt-1 small">
+							<span class="">{{ item.quantity }}
+								x
+							</span>
+							<span class="fw-medium">{{ money.convertAndFormat(item.unitPrice) }}</span>
+						</div>
+					</div>
+				</li>
+			{% endfor %}
+			<div class="flex flex-wrap justify-between py-2 fw-medium">
+				<span>{{ 'sylius.ui.subtotal'|trans }}:</span>
+				<strong>{{ money.convertAndFormat(cart.itemsTotal) }}</strong>
+			</div>
+			<div class="card-actions">
+				<a href="{{ path('sylius_shop_checkout_start') }}" class="btn btn-primary w-full">{{ 'sylius.ui.checkout'|trans }}</a>
+				<a href="{{ path('sylius_shop_cart_summary') }}" class="btn btn-outline w-full">{{ 'sylius.ui.view_and_edit_cart'|trans }}</a>
+			</div>
+		{% else %}
+			{{ 'sylius.ui.your_cart_is_empty'|trans }}
+		{% endif %}
+	</div>
 </div>

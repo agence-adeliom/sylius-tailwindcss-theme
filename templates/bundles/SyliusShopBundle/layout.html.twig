@@ -23,6 +23,9 @@
 	</head>
 
 	<body class="flex flex-col min-vh-100 bg-base-100 font-body">
+		<a class="sr-only focus:not-sr-only focus-visible:not-sr-only !absolute !top-2 !left-2 btn btn-neutral" href="#main">Skip to content</a>
+
+
 		{{ sylius_template_event('sylius.shop.layout.before_body') }}
 
 		{% block top %}
@@ -30,7 +33,7 @@
 				<div class="container flex flex-col gap-6 lg:items-center justify-between py-4 lg:flex-row md:py-2">
 					<a href="#" class="font-semibold text-sm">{{ 'sylius.top_bar'|trans }}</a>
 					<div class="flex max-sm:flex-wrap flex-1 w-full gap-6 items-center min-sm:justify-between lg:justify-end">
-                        {% include '@SyliusShop/Layout/Topbar/_themeSwitcher.html.twig' %}
+						{% include '@SyliusShop/Layout/Topbar/_themeSwitcher.html.twig' %}
 						{{ sylius_template_event('sylius.shop.layout.topbar') }}
 					</div>
 				</div>
@@ -41,7 +44,7 @@
 			{{ sylius_template_event('sylius.shop.layout.header') }}
 		{% endblock %}
 
-		<div class="min-h-[50vh]">
+		<div class="min-h-[50vh]" id="main">
 			{% include '@SyliusShop/_flashes.html.twig' %}
 
 			{{ sylius_template_event('sylius.shop.layout.before_content') }}

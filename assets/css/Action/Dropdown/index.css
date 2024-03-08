@@ -1,7 +1,7 @@
 .dropdown-header {
-    @apply p-2 pb-0 mt-3 z-[100] card card-compact bg-neutral text-neutral-content shadow-2xl;
+    @apply p-2 mt-3 z-[100] card card-compact bg-neutral text-neutral-content shadow-xl;
 }
 
 .dropdown-item-header {
-    @apply  btn btn-sm w-full btn-block mb-2;
+    @apply btn btn-sm w-full btn-block;
 }

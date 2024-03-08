@@ -1,60 +1,62 @@
 <div class="flex gap-4">
-    {% if is_granted('ROLE_USER') %}
+	{% if is_granted('ROLE_USER') %}
 
-        <div class="dropdown z-[101] dropdown-end static sm:relative" {{ sylius_test_html_attribute('locale-selector') }}>
-            <div tabindex="0" role="button" class="" {{ sylius_test_html_attribute('full-name') }}>
-                <i class="fa-solid fa-user me-2"></i>
-                {{ app.user.customer.firstName }}
-                <svg width="12px" height="12px" class="h-2 w-2 fill-current opacity-60 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048"><path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path></svg>
-            </div>
+		<div class="dropdown z-[101] dropdown-end static sm:relative" {{ sylius_test_html_attribute('locale-selector') }}>
+			<div tabindex="0" role="button" class="" {{ sylius_test_html_attribute('full-name') }}>
+				<i class="fa-solid fa-user me-2"></i>
+				{{ app.user.customer.firstName }}
+				<svg width="12px" height="12px" class="h-2 w-2 fill-current opacity-60 inline-block" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 2048 2048">
+					<path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+				</svg>
+			</div>
 
-            <ul tabindex="0" class="dropdown-content dropdown-header w-80 max-lg:left-0">
-                <li>
-                    <a class="dropdown-item-header" href="{{ path('sylius_shop_account_dashboard') }}">
-                        <i class="fa-solid fa-user"></i>
-                        {{ 'sylius.ui.my_account'|trans }}
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item-header" href="{{ path('sylius_shop_account_profile_update') }}">
-                        <i class="fa-solid fa-user-gear"></i>
-                        {{ 'sylius.menu.shop.account.personal_information'|trans }}
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item-header" href="{{ path('sylius_shop_account_change_password') }}">
-                        <i class="fa-solid fa-key"></i>
-                        {{ 'sylius.menu.shop.account.change_password'|trans }}
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item-header" href="{{ path('sylius_shop_account_order_index') }}">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        {{ 'sylius.menu.shop.account.order_history'|trans }}
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item-header" href="{{ path('sylius_shop_account_address_book_index') }}">
-                        <i class="fa-solid fa-address-book"></i>
-                        {{ 'sylius.menu.shop.account.address_book'|trans }}
-                    </a>
-                </li>
+			<ul tabindex="0" class="dropdown-content dropdown-header w-80 gap-2 max-lg:left-0">
+				<li>
+					<a class="dropdown-item-header" href="{{ path('sylius_shop_account_dashboard') }}">
+						<i class="fa-solid fa-user"></i>
+						{{ 'sylius.ui.my_account'|trans }}
+					</a>
+				</li>
+				<li>
+					<a class="dropdown-item-header" href="{{ path('sylius_shop_account_profile_update') }}">
+						<i class="fa-solid fa-user-gear"></i>
+						{{ 'sylius.menu.shop.account.personal_information'|trans }}
+					</a>
+				</li>
+				<li>
+					<a class="dropdown-item-header" href="{{ path('sylius_shop_account_change_password') }}">
+						<i class="fa-solid fa-key"></i>
+						{{ 'sylius.menu.shop.account.change_password'|trans }}
+					</a>
+				</li>
+				<li>
+					<a class="dropdown-item-header" href="{{ path('sylius_shop_account_order_index') }}">
+						<i class="fa-solid fa-clock-rotate-left"></i>
+						{{ 'sylius.menu.shop.account.order_history'|trans }}
+					</a>
+				</li>
+				<li>
+					<a class="dropdown-item-header" href="{{ path('sylius_shop_account_address_book_index') }}">
+						<i class="fa-solid fa-address-book"></i>
+						{{ 'sylius.menu.shop.account.address_book'|trans }}
+					</a>
+				</li>
 
-                <li>
-                    <a class="dropdown-item-header" href="{{ path('sylius_shop_logout') }}" {{ sylius_test_html_attribute('logout-button') }}>
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        {{ 'sylius.ui.logout'|trans }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    {% else %}
-        <a class="link link-hover" href="{{ path('sylius_shop_login') }}">
-            {{ 'sylius.ui.login'|trans }}
-        </a>
+				<li>
+					<a class="dropdown-item-header" href="{{ path('sylius_shop_logout') }}" {{ sylius_test_html_attribute('logout-button') }}>
+						<i class="fa-solid fa-arrow-right-from-bracket"></i>
+						{{ 'sylius.ui.logout'|trans }}
+					</a>
+				</li>
+			</ul>
+		</div>
+	{% else %}
+		<a class="link link-hover" href="{{ path('sylius_shop_login') }}">
+			{{ 'sylius.ui.login'|trans }}
+		</a>
 
-        <a class="link link-hover" href="{{ path('sylius_shop_register') }}">
-            {{ 'sylius.ui.register'|trans }}
-        </a>
-    {% endif %}
+		<a class="link link-hover" href="{{ path('sylius_shop_register') }}">
+			{{ 'sylius.ui.register'|trans }}
+		</a>
+	{% endif %}
 </div>

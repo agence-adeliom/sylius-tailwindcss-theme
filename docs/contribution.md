@@ -2,21 +2,23 @@
 
 ### Prerequis
 
-- Install [DDEV](https://ddev.readthedocs.io/en/stable/)
+-   Install [DDEV](https://ddev.readthedocs.io/en/stable/)
 
 ### Test project locally with DDEV
 
 1. Adjust ddev configuration and choose your php, database and node version.
 
-2. Run install command : 
-    
+2. Run install command :
+
     ```bash
     $ make install-project # first install or after a remove
     $ make start # project already installed
     ```
+
     Default values : XX=1.12.13 and YY=6.4 and ZZ=8.2
-    
+
     To test other versions :
+
     ```bash
     $ make install-project -e SYLIUS_VERSION=XX SYMFONY_VERSION=YY
     ```
@@ -31,7 +33,7 @@
 
 ### Modify code
 
-1. After project installation, you can modify themes files here `install/Application/themes/TailwindTheme` assets and templates files. 
+1. After project installation, you can modify themes files here `install/Application/themes/TailwindTheme` assets and templates files.
 
 2. To compile tailwind and assets changes use :
 
@@ -46,9 +48,8 @@
     ```
 
     You can do it manually or you can execute `make get-changes`
-    
-    This command will get back `templates` and `assets` folder, `tailwind.config.js`, `postcss.config.js` file into root folder.
 
+    This command will get back `templates` and `assets` folder, `tailwind.config.js`, `postcss.config.js` file into root folder.
 
 4. Lint before commit
 
@@ -57,7 +58,6 @@
     ```
 
     This command will use your own composer and php version
-
 
 5. git commit & push
 

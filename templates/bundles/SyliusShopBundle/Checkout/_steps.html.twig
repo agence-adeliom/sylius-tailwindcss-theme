@@ -1,15 +1,19 @@
 {% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
 
 {% set active_class = ' step-info before:!bg-primary/50' %}
+{% set steps_clickable = [] %}
 
 {% if active is not defined or active == 'address' %}
-    {% set steps = {address: active_class, select_shipping: 'disabled', select_payment: 'disabled', complete: 'disabled'} %}
+	{% set steps = {address: active_class, select_shipping: 'disabled', select_payment: 'disabled', complete: 'disabled'} %}
 {% elseif active == 'select_shipping' %}
-    {% set steps = {address: 'step-success', select_shipping: active_class, select_payment: 'disabled', complete: 'disabled'} %}
+	{% set steps = {address: 'step-success', select_shipping: active_class, select_payment: 'disabled', complete: 'disabled'} %}
+	{% set steps_clickable = ['address'] %}
 {% elseif active == 'select_payment' %}
-    {% set steps = {address: 'step-success', select_shipping: 'step-success', select_payment: active_class, complete: 'disabled'} %}
+	{% set steps = {address: 'step-success', select_shipping: 'step-success', select_payment: active_class, complete: 'disabled'} %}
+	{% set steps_clickable = ['address', 'select_shipping'] %}
 {% else %}
-    {% set steps = {address: 'step-success', select_shipping: 'step-success', select_payment: 'step-success', complete: active_class} %}
+	{% set steps = {address: 'step-success', select_shipping: 'step-success', select_payment: 'step-success', complete: active_class} %}
+	{% set steps_clickable = ['address', 'select_shipping', 'select_payment'] %}
 {% endif %}
 
 
@@ -18,31 +22,71 @@
 
 {% set steps_count = 'four' %}
 {% if not order_requires_payment and not order_requires_shipping %}
-    {% set steps_count = 'two' %}
+	{% set steps_count = 'two' %}
 {% elseif not order_requires_payment or not order_requires_shipping %}
-    {% set steps_count = 'three' %}
+	{% set steps_count = 'three' %}
 {% endif %}
 
 <div class="mb-5 flex py-10 lg:py-20">
-    <ul class="container steps steps-vertical lg:steps-horizontal">
-        <li class="step step-success" title="{{ 'sylius.ui.view_and_edit_cart'|trans }}" >
-            <a href="{{ path('sylius_shop_cart_summary') }}">{{ icons.cart() }} {{ 'sylius.ui.cart'|trans }}</a>
-        </li>
-        <li class="step {{ steps['address'] }}" title="{{ 'sylius.ui.fill_in_your_billing_and_shipping_addresses'|trans }}" >
-            <a href="{{ path('sylius_shop_checkout_address') }}">{{ icons.address() }} {{ 'sylius.ui.address'|trans }}</a>
-        </li>
-        {% if order_requires_shipping %}
-            <li class="step {{ steps['select_shipping'] }}" title="{{ 'sylius.ui.choose_how_your_goods_will_be_delivered'|trans }}" >
-                <a href="{{ path('sylius_shop_checkout_select_shipping') }}">{{ icons.transport() }} {{ 'sylius.ui.shipping'|trans }}</a>
-            </li>
-        {% endif %}
-        {% if order_requires_payment %}
-            <li class="step {{ steps['select_payment'] }}" title="{{ 'sylius.ui.choose_how_you_will_pay'|trans }}" >
-                <a href="{{ path('sylius_shop_checkout_select_payment') }}">{{ icons.creditCard() }} {{ 'sylius.ui.payment'|trans }}</a>
-            </li>
-        {% endif %}
-        <li class="step {{ steps['complete'] }}" title="{{ 'sylius.ui.review_and_confirm_your_order'|trans }}" >
-            <a href="{{ path('sylius_shop_checkout_complete') }}">{{ icons.flag() }} {{ 'sylius.ui.complete'|trans }}</a>
-        </li>
-    </ul>
+	<ul class="container steps steps-vertical lg:steps-horizontal">
+		<li class="step step-success" title="{{ 'sylius.ui.view_and_edit_cart'|trans }}">
+			<a href="{{ path('sylius_shop_cart_summary') }}">{{ icons.cart() }}
+				{{ 'sylius.ui.cart'|trans }}</a>
+		</li>
+		<li class="step {{ steps['address'] }}" title="{{ 'sylius.ui.fill_in_your_billing_and_shipping_addresses'|trans }}">
+			{% if 'address' in steps_clickable %}
+				<a href="{{ path('sylius_shop_checkout_address') }}">
+				{% endif %}
+				<div class="flex items-center gap-2">
+					{{ icons.address() }}
+					{{ 'sylius.ui.address'|trans }}
+				</div>
+				{% if 'address' in steps_clickable %}
+				</a>
+			{% endif %}
+		</li>
+
+		{% if order_requires_shipping %}
+			<li class="step {{ steps['select_shipping'] }}" title="{{ 'sylius.ui.choose_how_your_goods_will_be_delivered'|trans }}">
+				{% if 'select_shipping' in steps_clickable %}
+					<a href="{{ path('sylius_shop_checkout_select_shipping') }}">
+					{% endif %}
+					<div class="flex items-center gap-2">
+						{{ icons.transport() }}
+						{{ 'sylius.ui.shipping'|trans }}
+					</div>
+					{% if 'select_shipping' in steps_clickable %}
+					</a>
+				{% endif %}
+			</li>
+		{% endif %}
+
+		{% if order_requires_payment %}
+			<li class="step {{ steps['select_payment'] }}" title="{{ 'sylius.ui.choose_how_you_will_pay'|trans }}">
+				{% if 'select_payment' in steps_clickable %}
+					<a href="{{ path('sylius_shop_checkout_select_payment') }}">
+					{% endif %}
+					<div class="flex items-center gap-2">
+						{{ icons.creditCard() }}
+						{{ 'sylius.ui.payment'|trans }}
+					</div>
+					{% if 'select_payment' in steps_clickable %}
+					</a>
+				{% endif %}
+			</li>
+		{% endif %}
+
+		<li class="step {{ steps['complete'] }}" title="{{ 'sylius.ui.review_and_confirm_your_order'|trans }}">
+			{% if 'complete' in steps_clickable %}
+				<a href="{{ path('sylius_shop_checkout_complete') }}">
+				{% endif %}
+				<div class="flex items-center gap-2">
+					{{ icons.flag() }}
+					{{ 'sylius.ui.complete'|trans }}
+				</div>
+				{% if 'complete' in steps_clickable %}
+				</a>
+			{% endif %}
+		</li>
+	</ul>
 </div>
