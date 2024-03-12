@@ -21,6 +21,7 @@ import SyliusProvinceField from './sylius-province-field';
 import SyliusAddressBook from './sylius-address-book';
 import SyliusLoadableForms from './sylius-loadable-forms';
 import { SyliusToggleTheme, SyliusApplyTheme } from './sylius-toggle-theme';
+import '@fortawesome/fontawesome-free/js/all.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
