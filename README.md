@@ -10,12 +10,12 @@ TODO
 
 ## Discover
 
-| Discover         |                                                                                  |
-|:-----------------|---------------------------------------------------------------------------------:|
-| Demo             |                                [Visit our demo site](https://www.adeliom.com) 🚀 |
-| Screenshots      | ![notes!](./docs/medias/home1.png)<br/>[View more](./docs/screenshots.md) |
-| Performances     |                                           ![notes!](./docs/medias/notes.png)    |
-
+| Discover             |                                                                           |
+|:---------------------|--------------------------------------------------------------------------:|
+| Demo                 |                         [Visit our demo site](https://www.adeliom.com) 🚀 |
+| Screenshots          | ![notes!](./docs/medias/home1.png)<br/>[View more](./docs/screenshots.md) |
+| Performances desktop |                                ![notes!](./docs/medias/notes_desktop.png) |
+| Performances mobile  |                                 ![notes!](./docs/medias/notes_mobile.png) |
 
 ## Documentation
 
