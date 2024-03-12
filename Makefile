@@ -90,7 +90,6 @@ install-sylius:
 	${NPM} install
 	${NPM} install tailwindcss
 	${NPM} install daisyui
-	${NPM} install axios
 	${NPM} install postcss-loader@^7.0.0 --save-dev
 	${NPM} install autoprefixer --save-dev
 	${NPM} run build
@@ -211,7 +210,6 @@ install-sylius-ci:
 	${NPM_CI} install
 	${NPM_CI} install tailwindcss
 	${NPM_CI} install daisyui
-	${NPM_CI} install axios
 	${NPM_CI} install postcss-loader@^7.0.0 --save-dev
 	${NPM_CI} install autoprefixer --save-dev
 	${NPM_CI} run build

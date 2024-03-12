@@ -9,7 +9,7 @@
 
 /* eslint-env browser */
 
-import axios from 'axios';
+import { fetcher } from './utils'
 
 const SyliusAddToCart = (el) => {
   const element = el;
@@ -18,26 +18,33 @@ const SyliusAddToCart = (el) => {
   const validationElement = element.querySelector('[data-js-add-to-cart="error"]');
 
   element.addEventListener('submit', (e) => {
-    const request = axios.post(url, new FormData(element));
-
+    const formData = new FormData(element);
     e.preventDefault();
 
-    request.then(() => {
-      validationElement.classList.add('d-none');
-      window.location.href = redirectUrl;
-    });
+    (async() => {
+      try {
+        const response = await fetcher(url, { method: 'POST', body: formData });
+        const data = await response.json();
 
-    request.catch((error) => {
-      validationElement.classList.remove('d-none');
-      let validationMessage = '';
+        if (!response.ok) {
+          validationElement.classList.remove('hidden');
+          let validationMessage = '';
+    
+          Object.entries(data.errors.errors).forEach(([, message]) => {
+            validationMessage += message;
+          });
+    
+          validationElement.innerHTML = validationMessage;
+          element.classList.remove('is-loading');
+          throw new Error(validationMessage);
+        }
 
-      Object.entries(error.response.data).forEach(([, message]) => {
-        validationMessage += message.errors;
-      });
-
-      validationElement.innerHTML = validationMessage;
-      element.classList.remove('loading');
-    });
+        validationElement.classList.add('hidden');
+        window.location.href = redirectUrl;
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   });
 };
 

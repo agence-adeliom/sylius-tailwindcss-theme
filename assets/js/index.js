@@ -8,7 +8,6 @@
  */
 
 /* eslint-env browser */
-import axios from 'axios';
 
 import SyliusRating from './sylius-rating';
 import SyliusToggle from './sylius-toggle';
@@ -22,11 +21,6 @@ import SyliusProvinceField from './sylius-province-field';
 import SyliusAddressBook from './sylius-address-book';
 import SyliusLoadableForms from './sylius-loadable-forms';
 import { SyliusToggleTheme, SyliusApplyTheme } from './sylius-toggle-theme';
-
-// Global axios settings
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8';
-axios.defaults.headers.post.accept = 'application/json, text/javascript, */*; q=0.01';
-axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
 
 document.addEventListener('DOMContentLoaded', () => {
 

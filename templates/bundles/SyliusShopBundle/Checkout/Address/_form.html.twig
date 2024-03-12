@@ -6,6 +6,11 @@
 			{% include '@SyliusShop/Checkout/Address/_addressBookSelect.html.twig' %}
 		</div>
 
+		{% if form.customer is defined %}
+			{% include '@SyliusShop/Common/Form/_login.html.twig' with {'form': form.customer} %}
+		{% endif %}
+
+
 		{% include '@SyliusShop/Common/Form/_address.html.twig' with {'form': form.billingAddress, 'order': order, 'type': 'billing'} %}
 
 		{{ form_row(form.differentShippingAddress, sylius_test_form_attribute('different-shipping-address')|sylius_merge_recursive({'attr': {'data-js-toggle': '[data-js-address-book="sylius-shipping-address"]', 'class': 'toggle'}})) }}

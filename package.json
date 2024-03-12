@@ -6,7 +6,6 @@
     "lint-style": "stylelint --fix --no-cache \"./assets/**/*.css\""
   },
   "devDependencies": {
-    "axios": "^1.6.7",
     "daisyui": "^4.7.2",
     "eslint": "^8.56.0",
     "lint-staged": "^15.2.2",
