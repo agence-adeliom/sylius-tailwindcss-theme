@@ -51,7 +51,7 @@ const displayProvinceInputValue = async (provinceContainer, select) => {
 
       provinceContainer.innerHTML =
         data.content
-        .replace('</label>', '</label><div class="input input-bordered flex items-center gap-2">')
+        .replace('</label>', '</label><div class="form-input">')
         .replace('<label', '<label class="label"')
         .replace('name="sylius_address_province"', `name="${provinceInputFieldName}"${provinceInputValue}`)
         .replace('id="sylius_address_province"', `id="${provinceInputFieldId}"`)

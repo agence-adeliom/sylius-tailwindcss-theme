@@ -23,7 +23,7 @@
 {% block form_widget_simple -%}
     {% set attr = attr|merge({class: (attr.class|default('') ~ ' grow w-full')|trim}) %}
     {% if type is not defined or type != 'hidden' %}
-        <div class="{{ attr.joinItem is defined ? 'join-item ' : '' }}input input-bordered flex items-center gap-2{{ errors|length > 0 ? ' input-error' : '' }}">
+        <div class="{{ attr.joinItem is defined ? 'join-item ' : '' }}form-input{{ errors|length > 0 ? ' input-error' : '' }}">
     {% endif %}
             {% if icon is defined %}
                 {{ icon|raw }}
