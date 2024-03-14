@@ -41,7 +41,7 @@
 	push
 
 	# Enable gzip compression (and zstd)
-	encode zstd gzip
+	encode gzip zstd
 
 	import caching
 }

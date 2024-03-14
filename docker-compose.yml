@@ -5,6 +5,7 @@ services:
           context: .
           dockerfile: Dockerfile
         image: sylius
+        command: php -v
         environment:
           APP_ENV: dev
           DATABASE_URL: mysql://user:password@database:3306/mydatabase?serverVersion=10.11.7-MariaDB&charset=utf8mb4

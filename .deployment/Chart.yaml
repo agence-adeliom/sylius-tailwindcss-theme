@@ -1,0 +1,16 @@
+apiVersion: v2
+description: Sylius TailwindCSS Theme Chart for Kubernetes
+name: sylius-tailwindcss-theme
+version: 0.0.1
+appVersion: 0.0.1
+kubeVersion: ">=1.22.0-0"
+sources:
+- https://github.com/agence-adeliom/sylius-tailwindcss-theme
+dependencies:
+- name: common
+  repository: https://bjw-s.github.io/helm-charts
+  version: ~3.0
+- name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: ~12.2
+  condition: mariadb.enabled
