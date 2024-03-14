@@ -1,0 +1,52 @@
+(caching) {
+        @static {
+                file
+                path *.css *.js *.ico *.gif *.jpg *.jpeg *.png *.svg *.woff
+                path /build/*
+                path /media/*
+        }
+        handle @static {
+	        header Cache-Control "public, max-age=31536000, must-revalidate"
+        }
+        @nocache {
+                path /sitemap*
+        }
+        handle @nocache {
+	        header Cache-Control "no-cache, no-store, must-revalidate"
+        }
+}
+
+:80 {
+	root * {$DOCUMENT_ROOT:/var/www/html/}
+
+	# Point all PHP requests to an upstream socket, served by php-fpm
+	php_fastcgi localhost:9000 {
+        trusted_proxies private_ranges
+        capture_stderr
+	}
+
+	# Enable logging
+	log {
+		output stderr
+		format console
+		level ERROR
+	}
+
+	log {
+		output discard
+		level INFO
+	}
+
+	file_server
+	push
+
+	# Enable gzip compression (and zstd)
+	encode zstd gzip
+
+	import caching
+}
+
+:2021 {
+	tls internal
+	metrics
+}

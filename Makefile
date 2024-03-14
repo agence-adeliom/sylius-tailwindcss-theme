@@ -88,10 +88,8 @@ install-sylius:
 	${CONSOLE} sylius:fixtures:load default -n
 	${MYSQL} db -e "UPDATE sylius_channel SET theme_name = 'agence-adeliom/sylius-tailwindcss-theme' WHERE id = 1"
 	${NPM} install
-	${NPM} install tailwindcss
-	${NPM} install daisyui
-	${NPM} install postcss-loader@^7.0.0 --save-dev
-	${NPM} install autoprefixer --save-dev
+	${NPM} install tailwindcss @fortawesome/fontawesome-free daisyui
+	${NPM} install postcss-loader@^7.0.0 autoprefixer --save-dev
 	${NPM} run build
 	${CONSOLE} cache:clear
 	echo 'Project installation completed successfully.'
@@ -150,6 +148,7 @@ NPM_CI=cd ./install/Application && npm
 
 
 install-ci: sylius-ci ## Install Plugin on Sylius [SYLIUS_VERSION=1.12.13] [SYMFONY_VERSION=6.4]
+install-docker: sylius-docker ## Install Plugin on Sylius [SYLIUS_VERSION=1.12.13] [SYMFONY_VERSION=6.4]
 .PHONY: install
 
 reset-ci: ## Remove dependencies
@@ -167,6 +166,7 @@ phpunit-ci: phpunit-configure phpunit-run ## Run PHPUnit
 ### ¯¯¯¯¯¯
 
 sylius-ci: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-ci
+sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-docker
 .PHONY: sylius-ci
 
 sylius-standard-ci:
@@ -207,12 +207,18 @@ install-sylius-ci:
 	${CONSOLE_CI} doctrine:database:create --if-not-exists
 	${CONSOLE_CI} doctrine:migrations:migrate -n
 	${CONSOLE_CI} sylius:fixtures:load default -n
+	${MYSQL} db -e "UPDATE sylius_channel SET theme_name = 'agence-adeliom/sylius-tailwindcss-theme' WHERE id = 1"
 	${NPM_CI} install
 	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
 	${NPM_CI} run build
 	${CONSOLE_CI} cache:clear
 
+install-sylius-docker:
+	${NPM_CI} install
+	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
+	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
+	${NPM_CI} run build
 
 phpunit-configure-ci:
 	cp phpunit.xml.dist ${TEST_DIRECTORY_CI}/phpunit.xml

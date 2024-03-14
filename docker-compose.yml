@@ -1,0 +1,26 @@
+name: sylius-tailwindcss-theme
+services:
+    sylius:
+        build: 
+          context: .
+          dockerfile: Dockerfile
+        image: sylius
+        environment:
+          APP_ENV: dev
+          DATABASE_URL: mysql://user:password@database:3306/mydatabase?serverVersion=10.11.7-MariaDB&charset=utf8mb4
+        ports:
+            - 80:80
+    database:
+      image: mariadb:10
+      environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: mydatabase
+        MYSQL_USER: user
+        MYSQL_PASSWORD: password
+      volumes:
+        - data:/var/lib/mysql
+      ports:
+        - "3306:3306"
+    
+volumes:
+  data:
