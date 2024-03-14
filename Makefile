@@ -208,10 +208,8 @@ install-sylius-ci:
 	${CONSOLE_CI} doctrine:migrations:migrate -n
 	${CONSOLE_CI} sylius:fixtures:load default -n
 	${NPM_CI} install
-	${NPM_CI} install tailwindcss
-	${NPM_CI} install daisyui
-	${NPM_CI} install postcss-loader@^7.0.0 --save-dev
-	${NPM_CI} install autoprefixer --save-dev
+	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
+	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
 	${NPM_CI} run build
 	${CONSOLE_CI} cache:clear
 
