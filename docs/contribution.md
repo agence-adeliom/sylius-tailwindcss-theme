@@ -1,6 +1,6 @@
 ## Installation for contribution & test
 
-### Prerequis
+### Requirement
 
 -   Install [DDEV](https://ddev.readthedocs.io/en/stable/)
 

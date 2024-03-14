@@ -1,21 +1,46 @@
-<img src="./docs/medias/sylius.svg" alt="image" width="300" height="auto">
+<p align="center">
+    <img width="40%" src="./docs/medias/sylius.svg" />
+    <h1 align="center">SyliusTailwindcssTheme</h1>
+    <p align="center">A Sylius theme powered by Tailwindcss, DaisyUI with build process based on <a target="_blank" href="https://symfony.com/doc/current/frontend.html">Webpack Encore.</a>
+    <br/>By <a target="_blank" href="https://www.adeliom.com">Adeliom</a></p>
+</p>
+<p align="center">
+    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />
+</p>
 
-# SyliusTailwindcssTheme
-A Sylius theme powered by Tailwindcss, DaisyUI, SyliusThemeBundle, WebpackEncoreBundle.
-By [Adeliom](https://www.adeliom.com)
+### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
+
+## Preview
+
+### Homepage
+
+<a href="./docs/medias/home1.png" target="_blank">
+    <img src="./docs/medias/home1.png" align="center" height="50%">
+</a>
+
+### [View more](./docs/screenshots.md)
+
+### Performance tests
+
+<details>
+    <summary>Desktop</summary>
+    <hr>
+    <a href="./docs/medias/notes_desktop.png" target="_blank">
+        <img src="./docs/medias/notes_desktop.png" align="center">
+    </a>
+</details>
+
+<details>
+    <summary>Mobile</summary>
+    <hr>
+    <a href="./docs/medias/notes_mobile.png" target="_blank">
+        <img src="./docs/medias/notes_mobile.png" align="center">
+    </a>
+</details>
 
 ## Why Tailwindcss & DaisyUI
 
 TODO
-
-## Discover
-
-| Discover             |                                                                           |
-|:---------------------|--------------------------------------------------------------------------:|
-| Demo                 |                         [Visit our demo site](https://www.adeliom.com) 🚀 |
-| Screenshots          | ![notes!](./docs/medias/home1.png)<br/>[View more](./docs/screenshots.md) |
-| Performances desktop |                                ![notes!](./docs/medias/notes_desktop.png) |
-| Performances mobile  |                                 ![notes!](./docs/medias/notes_mobile.png) |
 
 ## Documentation
 
@@ -24,7 +49,7 @@ TODO
 
 ## Bug Tracking
 
-If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/royalphp/sylius-bootstrap-theme/issues).
+If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/agence-adeliom/sylius-tailwindcss-theme/issues).
 
 ## License
 
