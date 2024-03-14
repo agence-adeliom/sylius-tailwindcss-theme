@@ -207,7 +207,7 @@ install-sylius-ci:
 	${CONSOLE_CI} doctrine:database:create --if-not-exists
 	${CONSOLE_CI} doctrine:migrations:migrate -n
 	${CONSOLE_CI} sylius:fixtures:load default -n
-	${MYSQL} db -e "UPDATE sylius_channel SET theme_name = 'agence-adeliom/sylius-tailwindcss-theme' WHERE id = 1"
+	${CONSOLE_CI} doctrine:query:sql "UPDATE sylius_channel SET theme_name = 'agence-adeliom/sylius-tailwindcss-theme' WHERE id = 1"
 	${NPM_CI} install
 	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
