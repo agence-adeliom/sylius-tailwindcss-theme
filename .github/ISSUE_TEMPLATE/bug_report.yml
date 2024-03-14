@@ -1,0 +1,72 @@
+name: Bug report
+description: Create a bug report to help us fix a demonstrable problem with code in the package.
+title: "[BUG]: <Context of the issue>"
+labels: [bug]
+assignees: jeromeengeln
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue description
+      description: |
+        Describe the issue in as much detail as possible.
+
+        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files into it.
+      placeholder: |
+        Steps to reproduce with below code sample:
+        1. do thing
+        2. click...
+        3. observe behavior
+        4. see error logs below
+    validations:
+      required: true
+  - type: textarea
+    id: media
+    attributes:
+      label: Media & Screenshots
+      description: Include screenshots or video of reproduction as much as possible
+  - type: input
+    id: theme-version
+    attributes:
+      label: SyliusTailwindcssTheme Version
+      description: What version of SyliusTailwindcssTheme are you using?
+      placeholder: 0.0.1
+    validations:
+      required: false
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: Which versions are you using?
+      value: |
+       - Sylius version: [1.12]
+       - Symfony version: [6.4, 7.0]
+       - PHP version: [7.4, 8.0, 8.1, 8.2, 8.3]
+
+       - Any other details...
+  - type: textarea
+    id: browser
+    attributes:
+      label: Web Browser
+      description: Which web browser are you using?
+      value: |
+       - Browser [e.g. chrome, safari]:
+
+       - Any other details...
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority this issue should have
+      description: Please be realistic. If you need to elaborate on your reasoning, please use the Issue description field above.
+      options:
+        - Low (slightly annoying)
+        - Medium (should be fixed soon)
+        - High (immediate attention needed)
+    validations:
+      required: true
+  - type: checkboxes
+    id: questions
+    attributes:
+      label: Please review the checkboxes that are applicable.
+      options:
+        - label: This issue is directly related to Sylius
