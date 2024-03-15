@@ -12,14 +12,14 @@ const SyliusToggleTheme = () => {
 }
 
 const SyliusApplyTheme = () => {
-
   if (
     localStorage.getItem('color-theme')
   ) {
     document.documentElement.setAttribute('data-theme', localStorage.getItem('color-theme'));
-  } else if (!('color-theme' in localStorage) &&
+  } else if (
+    !('color-theme' in localStorage) &&
     window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+      //document.documentElement.setAttribute('data-theme', 'dark');
   }
 }
 

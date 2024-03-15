@@ -9,7 +9,7 @@
 
 /* eslint-env browser */
 
-import axios from 'axios';
+import { fetcher } from './utils'
 
 const SyliusRemoveFromCart = (el) => {
   const element = el;
@@ -20,8 +20,27 @@ const SyliusRemoveFromCart = (el) => {
   element.addEventListener('click', (e) => {
     e.preventDefault();
 
-    axios.delete(url, { data: { _csrf_token: csrfToken } })
-      .then(() => { window.location.replace(redirectUrl); });
+    (async() => {
+      try {
+        const response = await fetcher(url, { 
+          method: 'DELETE', 
+          body: JSON.stringify({ _csrf_token: csrfToken}), 
+          headers: { 
+            'Content-Type': 'application/json',  
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'X-Requested-With': 'XMLHttpRequest'
+          } 
+        } );
+
+        if (response.ok) {
+          window.location.replace(redirectUrl);
+        } else {
+          throw new Error('Failed to remove from cart');
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    })();
   });
 };
 

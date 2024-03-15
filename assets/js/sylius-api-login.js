@@ -9,7 +9,7 @@
 
 /* eslint-env browser */
 
-import axios from 'axios';
+import { fetcher } from './utils'
 
 const SyliusApiLogin = (el) => {
   const element = el;
@@ -29,12 +29,20 @@ const SyliusApiLogin = (el) => {
     params.append('_password', passwordField.value);
     params.append([csrfTokenName], csrfTokenField.value);
 
-    axios.post(url, params)
-      .then(() => { window.location.reload(); })
-      .catch((error) => {
-        validationField.classList.remove('d-none');
-        validationField.innerHTML = error.response.data.message;
-      });
+    (async() => {
+      try {
+        const response = await fetcher(url, { method: 'POST', body: params });
+        const data = await response.json();
+        if (data.success) {
+          window.location.reload();
+        } else {
+          validationField.classList.remove('hidden');
+          validationField.innerHTML = data.message;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   });
 };
 

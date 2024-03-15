@@ -9,14 +9,14 @@
 
 /* eslint-env browser */
 
-import axios from 'axios';
+import { fetcher } from './utils'
 
 const SyliusApiToggle = (el) => {
   const element = el;
   const url = element.getAttribute('data-js-login-check-email-url');
   const toggleableElement = document.querySelector('[data-js-login="form"]');
 
-  const debounce = (callback, duration) => {
+  const debounce = (callback, duration) => {  
     // eslint-disable-next-line
     let timeout = null;
 
@@ -29,12 +29,17 @@ const SyliusApiToggle = (el) => {
   }
 
   element.addEventListener('input', debounce((e) => {
-    toggleableElement.classList.add('d-none');
+    toggleableElement.classList.add('hidden');
 
     if (e.target.value.length > 3) {
-      axios.get(url, { params: { email: e.target.value } })
-        .then(() => { toggleableElement.classList.remove('d-none'); })
-        .catch(() => { toggleableElement.classList.add('d-none'); });
+      (async() => {
+        try {
+          const response = await fetcher(url + "?" + new URLSearchParams({ email: e.target.value }), { method: 'GET' } );
+          response.ok ? toggleableElement.classList.remove('hidden') : toggleableElement.classList.add('hidden');
+        } catch (error) {
+          console.log(error)
+        }
+      })();
     }
   }, 1500));
 };

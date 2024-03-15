@@ -1,12 +1,17 @@
 <div data-js-login id="sylius-api-login">
-    {{ form_row(form.email, sylius_test_form_attribute('login-email')|sylius_merge_recursive({'attr': {'data-js-login': 'email', 'data-js-login-check-email-url': path('sylius_shop_ajax_user_check_action')}})) }}
+	{{ form_row(form.email, sylius_test_form_attribute('login-email')|sylius_merge_recursive({'attr': {'data-js-login': 'email', 'data-js-login-check-email-url': path('sylius_shop_ajax_user_check_action')}})) }}
 
-    <div data-js-login="form" class="mb-3 d-none" id="sylius-api-login-form">
-        <input class="form-control" type="password" placeholder="{{ 'sylius.ui.password'|trans }}" {{ sylius_test_html_attribute('password-input') }}>
-        <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
-        <button class="btn btn-primary mt-3" data-js-login-url="{{ path('sylius_shop_login_check') }}" type="button" id="sylius-api-login-submit" {{ sylius_test_html_attribute('login-button') }}>
-            {{ 'sylius.ui.sign_in'|trans }}
-        </button>
-    </div>
-    <div class="alert alert-danger hidden" {{ sylius_test_html_attribute('login-validation-error') }}></div>
+	<div data-js-login="form" class="mb-3 hidden" id="sylius-api-login-form">
+		<div class="flex flex-col gap-3 md:flex-row">
+			<div class="form-input md:flex-1">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+				<input class="form-control" type="password" placeholder="{{ 'sylius.ui.password'|trans }}" {{ sylius_test_html_attribute('password-input') }}>
+			</div>
+			<input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
+			<button class="btn btn-primary max-md:w-full" data-js-login-url="{{ path('sylius_shop_login_check') }}" type="button" id="sylius-api-login-submit" {{ sylius_test_html_attribute('login-button') }}>
+				{{ 'sylius.ui.sign_in'|trans }}
+			</button>
+		</div>
+		<div class="alert alert-error mt-3 hidden" {{ sylius_test_html_attribute('login-validation-error') }}></div>
+	</div>
 </div>

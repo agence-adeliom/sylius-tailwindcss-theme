@@ -1,0 +1,12 @@
+install
+etc
+docs
+node_modules
+.git
+.github
+.ddev
+tests
+.idea
+.cd .babelrc
+.DS_Store
+debug

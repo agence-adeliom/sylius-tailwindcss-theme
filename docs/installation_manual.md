@@ -3,10 +3,11 @@
 #### 1. Copy files from the repository to `./themes/TailwindTheme`
 
 Files/folders to copy:
-* `assets`
-* `templates`
-* `tailwind.config.js`
-* `webpack.config.js`
+
+-   `assets`
+-   `templates`
+-   `tailwind.config.js`
+-   `webpack.config.js`
 
 #### 2. Install node dependencies
 
@@ -14,7 +15,6 @@ Files/folders to copy:
 npm install
 npm i -D tailwindcss
 npm i -D daisyui@latest
-npm i axios
 npm i postcss-loader@^7.0.0 --save-dev
 npm i autoprefixer --save-dev
 ```

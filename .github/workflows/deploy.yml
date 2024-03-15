@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Release"]
+    types: [completed]
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'}}
+    environment: 
+      name: demo
+      url: https://sylius-tailwind.adeliom.io
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Setup Helm
+        id: install-helm
+        uses: azure/setup-helm@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup kubectl
+        id: install-kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Configure kubectl
+        run: |
+          mkdir -p ~/.kube/
+          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+
+      - name: Deploy
+        working-directory: .deployment
+        run: |
+            helm upgrade --install sylius . --namespace sylius \
+                --set mariadb.enabled=true \
+                --set ingress.main.enabled=true

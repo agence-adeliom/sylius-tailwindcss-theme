@@ -1,13 +1,15 @@
 {% macro default(header, icon, subheader) %}
-    <h1 class="heading-4 my-8">
-        {% if icon is not empty %}
-            {{ icon }}
-        {% endif %}
+	<div class="flex flex-col gap-4 mt-8 mb-4">
+		<h1 class="heading-4">
+			{% if icon is not empty %}
+				{{ icon }}
+			{% endif %}
 
-        {{ header }}
-    </h1>
+			{{ header }}
+		</h1>
 
-    {% if subheader is not empty %}
-        <p class="text-body-secondary mb-4">{{ subheader|raw }}</p>
-    {% endif %}
+		{% if subheader is not empty %}
+			<p class="text-body-secondary">{{ subheader|raw }}</p>
+		{% endif %}
+	</div>
 {% endmacro %}

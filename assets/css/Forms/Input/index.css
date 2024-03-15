@@ -1,6 +1,11 @@
 /* Select */
 .form-select {
-    @apply select select-bordered w-full
+    @apply select select-bordered w-full;
+}
+
+/* Input */
+.form-input {
+    @apply input input-bordered flex items-center gap-2;
 }
 
 /* Labels */
@@ -33,8 +38,8 @@ input[type="date"] {
 
 form .label.required ::after {
     margin: -0.2em 0 0 0.2em;
-    content: '*';
-    color: #DB2828;
+    content: "*";
+    color: #db2828;
 }
 
 .text-error {

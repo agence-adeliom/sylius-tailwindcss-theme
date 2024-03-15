@@ -1,20 +1,21 @@
 <div class="border rounded border-base h-100 p-5 lg:p-10">
-    <div class="" {{ sylius_test_html_attribute('address', "%s %s"|format(address.firstName, address.lastName)) }}>
-        {% include '@SyliusShop/Common/_address.html.twig' with {'address': address} %}
-    </div>
+	<div class="" {{ sylius_test_html_attribute('address', "%s %s"|format(address.firstName, address.lastName)) }}>
+		{% include '@SyliusShop/Common/_address.html.twig' with {'address': address} %}
+	</div>
 
-    <div class="flex max-md:flex-wrap justify-between mt-4">
-        {{ render(path('sylius_shop_account_address_book_set_as_default', {'id': address.id})) }}
-        <div class="flex gap-1 max-md:mt-2">
-            <a href="{{ path('sylius_shop_account_address_book_update', {'id': address.id}) }}" class="btn btn-outline btn-sm" {{ sylius_test_html_attribute('edit-button') }}>{{ 'sylius.ui.edit'|trans }}</a>
+	<div class="flex max-md:flex-wrap gap-2 justify-between mt-4">
+		<div class="flex gap-2">
+			<a href="{{ path('sylius_shop_account_address_book_update', {'id': address.id}) }}" class="btn btn-outline btn-sm" {{ sylius_test_html_attribute('edit-button') }}>{{ 'sylius.ui.edit'|trans }}</a>
 
-            <form action="{{ path('sylius_shop_account_address_book_delete', {'id': address.id}) }}" method="post" onsubmit="return confirm('{{ " sylius.ui.are_your_sure_you_want_to_perform_this_action"|trans }}');">
-                <input type="hidden" name="_method" value="DELETE">
-                <button class="btn btn-warning btn-sm" type="submit">
-                    {{ 'sylius.ui.delete'|trans }}
-                </button>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token(address.id) }}"/>
-            </form>
-        </div>
-    </div>
+			<form action="{{ path('sylius_shop_account_address_book_delete', {'id': address.id}) }}" method="post" onsubmit="return confirm('{{ " sylius.ui.are_your_sure_you_want_to_perform_this_action"|trans }}');">
+				<input type="hidden" name="_method" value="DELETE">
+				<button class="btn btn-warning btn-sm" type="submit">
+					{{ 'sylius.ui.delete'|trans }}
+				</button>
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token(address.id) }}"/>
+			</form>
+		</div>
+
+		{{ render(path('sylius_shop_account_address_book_set_as_default', {'id': address.id})) }}
+	</div>
 </div>
