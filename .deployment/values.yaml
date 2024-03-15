@@ -17,7 +17,7 @@ controllers:
           repository: docker.io/adeliom/sylius-tailwindcss-theme
           # -- image tag
           # this example is not automatically updated, so be sure to use the latest image
-          tag: "{{.Chart.AppVersion}}"
+          tag: latest
           # -- image pull policy
           pullPolicy: Always
         # -- environment variables.

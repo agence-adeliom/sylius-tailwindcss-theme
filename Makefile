@@ -166,7 +166,7 @@ phpunit-ci: phpunit-configure phpunit-run ## Run PHPUnit
 ### ¯¯¯¯¯¯
 
 sylius-ci: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-ci
-sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-docker
+sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-docker set-proxies
 .PHONY: sylius-ci
 
 sylius-standard-ci:
@@ -226,3 +226,5 @@ phpunit-configure-ci:
 phpunit-run-ci:
 	cd ${TEST_DIRECTORY_CI} && ./vendor/bin/phpunit --testdox
 
+set-proxies:
+	cp .docker/stub/trusted_proxies.yaml ${TEST_DIRECTORY_CI}/config/packages
