@@ -3,5 +3,5 @@
 {% set path = options.link.url|default(path(options.link.route|default(grid.requestConfiguration.getRouteName('show')), options.link.parameters|default({'id': data.id}))) %}
 
 {% if data.paymentState in ['awaiting_payment'] %}
-    {{ buttons.default(path, action.label, null, action.options.icon|default('fa-solid fa-credit-card'), 'btn-outline btn-sm') }}
+    {{ buttons.default(path, action.label, null, action.options.icon|default('fa-solid fa-credit-card'), 'btn-outline h-fit py-1') }}
 {% endif %}

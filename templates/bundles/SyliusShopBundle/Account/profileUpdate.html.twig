@@ -25,14 +25,14 @@
 
 		<input type="hidden" name="_method" value="PUT"/>
 
-		<div class="grid grid-cols-12 gap-x-6">
-			<div class="col-span-6">{{ form_row(form.firstName) }}</div>
-			<div class="col-span-6">{{ form_row(form.lastName) }}</div>
+		<div class="wrapper-12 gap-y-0">
+			<div class="col-span-full sm:col-span-6">{{ form_row(form.firstName) }}</div>
+			<div class="col-span-full sm:col-span-6">{{ form_row(form.lastName) }}</div>
 		</div>
 		{{ form_row(form.email, sylius_test_form_attribute('email')) }}
-		<div class="grid grid-cols-12 gap-x-6">
-			<div class="col-span-6">{{ form_row(form.birthday) }}</div>
-			<div class="col-span-6">{{ form_row(form.gender) }}</div>
+		<div class="wrapper-12 gap-y-0">
+			<div class="col-span-full sm:col-span-6">{{ form_row(form.birthday) }}</div>
+			<div class="col-span-full sm:col-span-6">{{ form_row(form.gender) }}</div>
 		</div>
 		{{ form_row(form.phoneNumber) }}
 		{{ form_row(form.subscribedToNewsletter, sylius_test_form_attribute('subscribe-newsletter')) }}
