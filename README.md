@@ -12,12 +12,11 @@
 
 ## Introduction
 
-- 3.5kB of Javascript
-- 35kB of CSS
 - UI components with DaisyUI (no Javascript)
 - A very simple theme colors configuration
 - Homepage Lighthouse report at level 100
 - A new front-end alternative based on Tailwindcss
+- Less javascript
 
 ## Preview
 
