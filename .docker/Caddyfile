@@ -21,7 +21,7 @@
 
 	# Point all PHP requests to an upstream socket, served by php-fpm
 	php_fastcgi localhost:9000 {
-        trusted_proxies private_ranges
+        trusted_proxies private_ranges 100.0.0.0/8
         capture_stderr
 	}
 
