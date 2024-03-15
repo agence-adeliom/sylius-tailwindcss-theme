@@ -20,13 +20,13 @@ jobs:
 
       - name: Setup Helm
         id: install-helm
-        uses: azure/setup-helm@v3
+        uses: azure/setup-helm@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup kubectl
         id: install-kubectl
-        uses: azure/setup-kubectl@v3
+        uses: azure/setup-kubectl@v4
 
       - name: Configure kubectl
         run: |
