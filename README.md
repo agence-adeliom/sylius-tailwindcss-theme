@@ -10,9 +10,16 @@
 
 ### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
 
-## Preview
+## Introduction
 
-### Homepage
+- 3.5kB of Javascript
+- 35kB of CSS
+- UI components with DaisyUI (no Javascript)
+- A very simple theme colors configuration
+- Homepage Lighthouse report at level 100
+- A new front-end alternative based on Tailwindcss
+
+## Preview
 
 <a href="./docs/medias/home1.png" target="_blank">
     <img src="./docs/medias/home1.png" align="center" height="50%">
@@ -43,7 +50,6 @@
 
 [Documentation is available in the *docs* folder.](docs/index.md)
 
-
 ## Bug Tracking
 
 If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/agence-adeliom/sylius-tailwindcss-theme/issues).
@@ -55,6 +61,9 @@ If you want to report a bug or suggest an idea, please use [GitHub issues](https
 ## Authors
 
 The theme was created by [Adeliom](https://www.adeliom.com).
+
+Thanks to [@djacquemard](https://github.com/djacquemard) [@BaptisteAdeliom](https://github.com/BaptisteAdeliom) [@hschuhler](https://github.com/hschuhler) [@jeromeengeln](https://github.com/jeromeengeln) [@arnaud-ritti](https://github.com/arnaud-ritti)
+
 And was originally inspired by [Sylius community BootstrapTheme](https://github.com/SyliusCrafts/BootstrapTheme).
 
 ## License
