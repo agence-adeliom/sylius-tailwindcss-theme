@@ -38,9 +38,6 @@
     </a>
 </details>
 
-## Why Tailwindcss & DaisyUI
-
-TODO
 
 ## Documentation
 
@@ -55,13 +52,10 @@ If you want to report a bug or suggest an idea, please use [GitHub issues](https
 
 [Documentation is available in the *docs/contribution.md* file.](docs/contribution.md)
 
-### Thanks to
-
-[![](https://contrib.rocks/image?repo=agence-adeliom/sylius-tailwindcss-theme)](https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors)
-
 ## Authors
 
-The theme was originally created by [Adeliom](https://www.adeliom.com).
+The theme was created by [Adeliom](https://www.adeliom.com).
+And was originally inspired by [Sylius community BootstrapTheme](https://github.com/SyliusCrafts/BootstrapTheme).
 
 ## License
 
