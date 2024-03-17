@@ -94,7 +94,7 @@ install-sylius:
 	${NPM} install
 	${NPM} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM} install postcss-loader@^7.0.0 autoprefixer --save-dev
-	${NPM} run build
+	${NPM} run build:prod
 	${CONSOLE} cache:clear
 	echo 'Project installation completed successfully.'
 	echo 'Navigate here : https://sylius-tailwindcss-theme.ddev.site/'
@@ -219,14 +219,14 @@ install-sylius-ci:
 	${NPM_CI} install
 	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
-	${NPM_CI} run build
+	${NPM_CI} run build:prod
 	${CONSOLE_CI} cache:clear
 
 install-sylius-docker:
 	${NPM_CI} install
 	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
-	${NPM_CI} run build
+	${NPM_CI} run build:prod
 
 phpunit-configure-ci:
 	cp phpunit.xml.dist ${TEST_DIRECTORY_CI}/phpunit.xml
