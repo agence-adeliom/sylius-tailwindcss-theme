@@ -84,7 +84,7 @@ endif
 	echo "                json_manifest_path: '%kernel.project_dir%/public/themes/tailwind-theme/manifest.json'" >> ${TEST_DIRECTORY}/config/packages/assets.yaml
 	echo "        tailwindTheme: '%kernel.project_dir%/public/themes/tailwind-theme'" >> ${TEST_DIRECTORY}/config/packages/webpack_encore.yaml
 	echo "    webp:" >> ${TEST_DIRECTORY}/config/packages/liip_imagine.yaml
-	echo "    	generate: true" >> ${TEST_DIRECTORY}/config/packages/liip_imagine.yaml
+	echo "        generate: true" >> ${TEST_DIRECTORY}/config/packages/liip_imagine.yaml
 
 install-sylius:
 	${CONSOLE} doctrine:database:create --if-not-exists
@@ -208,8 +208,8 @@ endif
 	echo "            tailwindTheme:" >> ${TEST_DIRECTORY_CI}/config/packages/assets.yaml
 	echo "                json_manifest_path: '%kernel.project_dir%/public/themes/tailwind-theme/manifest.json'" >> ${TEST_DIRECTORY_CI}/config/packages/assets.yaml
 	echo "        tailwindTheme: '%kernel.project_dir%/public/themes/tailwind-theme'" >> ${TEST_DIRECTORY_CI}/config/packages/webpack_encore.yaml
-	echo "    webp:" >> ${TEST_DIRECTORY}/config/packages/liip_imagine.yaml
-	echo "    	generate: true" >> ${TEST_DIRECTORY}/config/packages/liip_imagine.yaml
+	echo "    webp:" >> ${TEST_DIRECTORY_CI}/config/packages/liip_imagine.yaml
+	echo "        generate: true" >> ${TEST_DIRECTORY_CI}/config/packages/liip_imagine.yaml
 
 install-sylius-ci:
 	${CONSOLE_CI} doctrine:database:create --if-not-exists
