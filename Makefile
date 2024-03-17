@@ -50,6 +50,8 @@ sylius-standard:
 	cp .env.local.dist ./install/Application/.env.local
 	cd install/Application && $(DDEV) start
 	${COMPOSER} config allow-plugins true
+	#https://github.com/api-platform/core/issues/6226
+	${COMPOSER} config conflict '{"api-platform/core": "v2.7.17"}'
 	${COMPOSER} require sylius/sylius:"~${SYLIUS_VERSION}"
 
 update-dependencies:
@@ -174,6 +176,8 @@ sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci insta
 sylius-standard-ci:
 	${COMPOSER_CI_ROOT} create-project sylius/sylius-standard ${TEST_DIRECTORY_CI} "~${SYLIUS_VERSION}" --no-install --no-scripts
 	${COMPOSER_CI} config allow-plugins true
+	#https://github.com/api-platform/core/issues/6226
+	${COMPOSER_CI} config conflict '{"api-platform/core": "v2.7.17"}'
 	${COMPOSER_CI} require sylius/sylius:"~${SYLIUS_VERSION}"
 
 update-dependencies-ci:
