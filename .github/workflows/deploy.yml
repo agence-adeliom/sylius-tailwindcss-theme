@@ -16,7 +16,7 @@ jobs:
       url: https://sylius-tailwind.adeliom.io
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Helm
         id: install-helm
