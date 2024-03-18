@@ -39,6 +39,6 @@ jobs:
             helm upgrade --install sylius . --namespace sylius \
                 --set mariadb.enabled=true \
                 --set ingress.main.enabled=true \
-                --set-string controllers.main.image.tag=${{ github.sha }} \
+                --set-string controllers.main.containers.main.image.tag=${{ github.sha }} \
                 --set-string controllers.main.annotations.commit=${{ github.sha }} \
                 --set-string controllers.main.containers.main.env.COMMIT=${{ github.sha }}
