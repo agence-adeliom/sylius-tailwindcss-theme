@@ -4,20 +4,20 @@
     <p align="center">A Sylius theme powered by Tailwindcss, DaisyUI with build process based on <a target="_blank" href="https://symfony.com/doc/current/frontend.html">Webpack Encore.</a>
     <br/>By <a target="_blank" href="https://www.adeliom.com">Adeliom</a></p>
 </p>
-<p align="center">
-    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />
-</p>
+
+[//]: # (<p align="center">)
+[//]: # (    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />)
+[//]: # (</p>)
 
 ### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
 
 ## Introduction
 
-- UI components with DaisyUI (no Javascript)
-- A very simple theme colors configuration
-- Homepage Lighthouse report at level 100
-- A new front-end alternative based on Tailwindcss
-- Less javascript
-
+- A new Sylius front-end alternative based on Tailwindcss and daisyUI
+- Pure CSS UI components
+- Create themes with zero effort
+- Only `5kB` of Javascript & `45kB` of CSS
+- Start your Sylius projects with an optimized code : 💯 in Lighthouse page load report
 ## Preview
 
 <a href="./docs/medias/home1.png" target="_blank">
@@ -64,6 +64,8 @@ The theme was created by [Adeliom](https://www.adeliom.com).
 Thanks to [@djacquemard](https://github.com/djacquemard) [@BaptisteAdeliom](https://github.com/BaptisteAdeliom) [@hschuhler](https://github.com/hschuhler) [@jeromeengeln](https://github.com/jeromeengeln) [@arnaud-ritti](https://github.com/arnaud-ritti)
 
 And was originally inspired by [Sylius community BootstrapTheme](https://github.com/SyliusCrafts/BootstrapTheme).
+
+[//]: # ([![]&#40;https://contrib.rocks/image?repo=agence-adeliom/sylius-tailwindcss-theme&#41;]&#40;https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors&#41;)
 
 ## License
 
