@@ -56,7 +56,7 @@ module.exports = {
           'light-content': "#FFFFFF",
         },
         dark: {
-          "primary": "#198A73",
+          "primary": "#177c68",
           "primary-content": "#FFFFFF",
           "secondary": "#162434",
           "secondary-content": "#FFFFFF",
@@ -77,7 +77,7 @@ module.exports = {
         adeliom: {
           "primary": "#8c46ff",
           "primary-content": "#FFFFFF",
-          "secondary": "#ec2e69",
+          "secondary": "#530ECB",
           "secondary-content": "#FFFFFF",
           "accent": "#fcb900",
           "accent-content": "#fff",
