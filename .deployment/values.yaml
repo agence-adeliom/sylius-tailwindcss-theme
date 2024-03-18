@@ -22,6 +22,7 @@ controllers:
           pullPolicy: Always
         # -- environment variables.
         # @default -- See [values.yaml](./values.yaml)
+        env: {}
         envFrom:
         - configMap: config
 

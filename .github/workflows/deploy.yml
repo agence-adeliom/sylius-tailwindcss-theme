@@ -40,4 +40,4 @@ jobs:
                 --set mariadb.enabled=true \
                 --set ingress.main.enabled=true \
                 --set-string controllers.main.annotations.commit=${{ github.sha }} \
-                --set-string controllers.main.containers.env.COMMIT=${{ github.sha }}
+                --set-string controllers.main.containers.main.env.COMMIT=${{ github.sha }}
