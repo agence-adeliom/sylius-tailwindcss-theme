@@ -7,6 +7,6 @@
 {#    {% set size = random(5) * 200 %}#}
 {#    {% set path = "https://picsum.photos/#{ size }/#{ size }.jpg" %}#}
 
-<div class="aspect-square">
+<div class="{{ wrapperClass|default('aspect-square') }}">
     <img src="{{ path }}" alt="{{ product.name }}" class="{{ class|default('') }} similar-image-card" {{ sylius_test_html_attribute('main-image') }} />
 </div>

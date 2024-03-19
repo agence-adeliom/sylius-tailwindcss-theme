@@ -6,22 +6,20 @@
 {% set variant = item.variant %}
 {% set product = variant.product %}
 
-<li class="wrapper-12 py-2 md:py-4 border-b border-light" {{ sylius_test_html_attribute('product-row', item.productName) }}>
-	<div class="col-span-full md:col-span-4 lg:col-span-2">
-		{% include '@SyliusShop/Product/_mainImage.html.twig' with {product, 'filter': 'sylius_shop_product_tiny_thumbnail'} %}
+<li class="wrapper-12 gap-y-0 py-2 md:py-4 border-b border-light" {{ sylius_test_html_attribute('product-row', item.productName) }}>
+	<div class="col-span-4 md:col-span-6 lg:col-span-9 flex flex-col md:flex-row">
+		{% include '@SyliusShop/Product/_mainImage.html.twig' with {product, 'filter': 'sylius_shop_product_tiny_thumbnail', wrapperClass: 'h-fit', class: 'md:w-[100px] lg:w-[150px] h-auto aspect-square max-md:mb-2 md:mr-10'} %}
+		<div class="hidden md:block">
+			{% include '@SyliusShop/Product/_info.html.twig' with {variant} %}
+		</div>
 	</div>
 
-	<div class="col-span-full md:col-span-8">
-		{% include '@SyliusShop/Product/_info.html.twig' with {variant} %}
-
-		{{ item.quantity }}
-		x
+	<div class='col-span-3 md:col-span-2 lg:col-span-1 text-end'>
 		{% if item.unitPrice != item.discountedUnitPrice %}
 			<small class="old-price" {{ sylius_test_html_attribute('product-old-price', item.productName) }}>
 				<s>{{ money.convertAndFormat(item.unitPrice) }}</s>
 			</small>
 		{% endif %}
-
 		<span class="sylius-unit-price" {{ sylius_test_html_attribute('product-unit-price', item.productName) }}>
 			{{ money.convertAndFormat(item.discountedUnitPrice) }}
 			{% if item.unitPrice != item.discountedUnitPrice %}
@@ -30,11 +28,17 @@
 				</span>
 			{% endif %}
 		</span>
-
 	</div>
 
-	<div class="col-span-full md:col-span-4 lg:col-span-2 text-end font-bold">
+	<div class='col-span-2 md:col-span-2 lg:col-span-1 text-end'>
+		{{ item.quantity }}
+	</div>
+
+	<div class="col-span-2 md:col-span-2 lg:col-span-1 text-end font-bold">
 		{{ money.convertAndFormat(item.subtotal) }}
 	</div>
 
+	<div class="col-span-full md:hidden">
+		{% include '@SyliusShop/Product/_info.html.twig' with {variant} %}
+    </div>
 </li>
