@@ -1,7 +1,7 @@
 {% set nb_products = products|length %}
 <div class='w-full relative'>
     {% if nb_products > 2 %}
-        <div class="carousel w-full flex items-center relative">
+        <div class="carousel w-full flex lg:items-center relative">
             {% for product in products %}
                 {% include '@SyliusShop/Product/_box.html.twig' with {role: 'carousel-product', number: loop.index} %}
             {% endfor %}
