@@ -72,8 +72,13 @@
                 </tr>
             </thead>
             <tbody>
+                {% set customClass = '' %}
+
                 {% for row in data %}
-                    {{ table.row(grid, definition, row) }}
+                    {% if definition.actionGroups.item is defined and definition.getEnabledActions('item')|length > 0 %}
+                        {% set customClass = 'flex gap-2' %}
+                    {% endif %}
+                    {{ table.row(grid, definition, row, customClass) }}
                 {% endfor %}
             </tbody>
         </table>
