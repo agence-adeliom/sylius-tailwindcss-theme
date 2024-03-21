@@ -4,15 +4,21 @@
     <p align="center">A Sylius theme powered by Tailwindcss, DaisyUI with build process based on <a target="_blank" href="https://symfony.com/doc/current/frontend.html">Webpack Encore.</a>
     <br/>By <a target="_blank" href="https://www.adeliom.com">Adeliom</a></p>
 </p>
-<p align="center">
-    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />
-</p>
+
+[//]: # (<p align="center">)
+[//]: # (    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />)
+[//]: # (</p>)
 
 ### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
 
-## Preview
+## Introduction
 
-### Homepage
+- A new Sylius front-end alternative based on Tailwindcss and daisyUI
+- Pure CSS UI components
+- Create themes with zero effort
+- Only `5kB` of Javascript & `45kB` of CSS
+- Start your Sylius projects with an optimized code : 💯 in Lighthouse page load report
+## Preview
 
 <a href="./docs/medias/home1.png" target="_blank">
     <img src="./docs/medias/home1.png" align="center" height="50%">
@@ -38,28 +44,30 @@
     </a>
 </details>
 
-## Why Tailwindcss & DaisyUI
-
-TODO
-
 ## Documentation
 
 [Documentation is available in the *docs* folder.](docs/index.md)
-
 
 ## Bug Tracking
 
 If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/agence-adeliom/sylius-tailwindcss-theme/issues).
 
+## Contribution
+
+[Documentation is available in the *docs/contribution.md* file.](docs/contribution.md)
+
+## Authors
+
+The theme was created by [Adeliom](https://www.adeliom.com).
+
+Thanks to [@djacquemard](https://github.com/djacquemard) [@BaptisteAdeliom](https://github.com/BaptisteAdeliom) [@hschuhler](https://github.com/hschuhler) [@jeromeengeln](https://github.com/jeromeengeln) [@arnaud-ritti](https://github.com/arnaud-ritti)
+
+And was originally inspired by [Sylius community BootstrapTheme](https://github.com/SyliusCrafts/BootstrapTheme).
+
+[//]: # ([![]&#40;https://contrib.rocks/image?repo=agence-adeliom/sylius-tailwindcss-theme&#41;]&#40;https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors&#41;)
+
 ## License
 
 This theme uses [MIT License](LICENSE.md).
 
-## Authors
 
-The theme was originally created by [Adeliom](https://www.adeliom.com).
-See the list of [contributors](https://github.com/agence-adeliom/sylius-tailwindcss-theme/contributors).
-
-## Contribution
-
-[Documentation is available in the *docs/contribution.md* file.](docs/contribution.md)

@@ -17,7 +17,7 @@ controllers:
           repository: docker.io/adeliom/sylius-tailwindcss-theme
           # -- image tag
           # this example is not automatically updated, so be sure to use the latest image
-          tag: "{{.Chart.AppVersion}}"
+          tag: latest
           # -- image pull policy
           pullPolicy: Always
         # -- environment variables.
@@ -82,7 +82,7 @@ configMaps:
     data:
       APP_ENV: prod
       DATABASE_URL: mysql://sylius:changeme@{{ .Release.Name }}-mariadb:3306/sylius?serverVersion=10.11.7-MariaDB&charset=utf8mb4
-      TRUSTED_PROXIES: 127.0.0.1,10.0.0.0/8,REMOTE_ADDR
+      TRUSTED_PROXIES: 127.0.0.1,10.0.0.0/8,100.0.0.0/8,REMOTE_ADDR
 
 # -- Enable and configure mariadb database subchart under this key.
 #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)

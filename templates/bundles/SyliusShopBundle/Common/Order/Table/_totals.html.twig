@@ -7,12 +7,12 @@
 {% set order_promotion_adjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
 {% set order_promotions = sylius_aggregate_adjustments(order.adjustmentsRecursively(order_promotion_adjustment)) %}
 {% set class = class|default({
-    row: 'flex justify-between items-center py-2 border-b',
-    total_row: 'flex justify-between items-center py-2 font-medium',
+    row: 'flex justify-end items-center py-2 border-b border-b-neutral gap-2',
+    total_row: 'flex justify-end items-center py-2 font-medium gap-2',
     highlight: 'font-medium',
 }) %}
 
-<div class="bg-base-100 mt-2 p-2 lg:p-4">
+<div class="bg-base-100 mt-2">
 
     <div class="{{ class.row }}" id="subtotal" {{ sylius_test_html_attribute('subtotal') }}>
         <span>{{ 'sylius.ui.items_total'|trans }}:</span>
@@ -54,7 +54,7 @@
 
     {% include '@SyliusShop/Common/Order/Table/_shipping.html.twig' with {order, class} %}
 
-    <div class="{{ class.total_row }}" id="total" {{ sylius_test_html_attribute('order-total') }}>
+    <div class="{{ class.total_row }} text-xl" id="total" {{ sylius_test_html_attribute('order-total') }}>
         <span>{{ 'sylius.ui.total'|trans }}:</span>
         <span class="{{ class.highlight }}">{{ money.convertAndFormat(order.total) }}</span>
     </div>

@@ -16,17 +16,17 @@ jobs:
       url: https://sylius-tailwind.adeliom.io
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Helm
         id: install-helm
-        uses: azure/setup-helm@v3
+        uses: azure/setup-helm@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup kubectl
         id: install-kubectl
-        uses: azure/setup-kubectl@v3
+        uses: azure/setup-kubectl@v4
 
       - name: Configure kubectl
         run: |
@@ -38,4 +38,7 @@ jobs:
         run: |
             helm upgrade --install sylius . --namespace sylius \
                 --set mariadb.enabled=true \
-                --set ingress.main.enabled=true
+                --set ingress.main.enabled=true \
+                --set-string controllers.main.containers.main.image.tag=${{ github.sha }} \
+                --set-string controllers.main.annotations.commit=${{ github.sha }} \
+                --set-string controllers.main.containers.main.env.COMMIT=${{ github.sha }}

@@ -50,6 +50,8 @@ sylius-standard:
 	cp .env.local.dist ./install/Application/.env.local
 	cd install/Application && $(DDEV) start
 	${COMPOSER} config allow-plugins true
+	#https://github.com/api-platform/core/issues/6226
+	${COMPOSER} req api-platform/core:v2.7.16 --prefer-source --no-scripts --no-install
 	${COMPOSER} require sylius/sylius:"~${SYLIUS_VERSION}"
 
 update-dependencies:
@@ -81,6 +83,8 @@ endif
 	echo "            tailwindTheme:" >> ${TEST_DIRECTORY}/config/packages/assets.yaml
 	echo "                json_manifest_path: '%kernel.project_dir%/public/themes/tailwind-theme/manifest.json'" >> ${TEST_DIRECTORY}/config/packages/assets.yaml
 	echo "        tailwindTheme: '%kernel.project_dir%/public/themes/tailwind-theme'" >> ${TEST_DIRECTORY}/config/packages/webpack_encore.yaml
+	echo "    webp:" >> ${TEST_DIRECTORY}/config/packages/liip_imagine.yaml
+	echo "        generate: true" >> ${TEST_DIRECTORY}/config/packages/liip_imagine.yaml
 
 install-sylius:
 	${CONSOLE} doctrine:database:create --if-not-exists
@@ -90,7 +94,7 @@ install-sylius:
 	${NPM} install
 	${NPM} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM} install postcss-loader@^7.0.0 autoprefixer --save-dev
-	${NPM} run build
+	${NPM} run build:prod
 	${CONSOLE} cache:clear
 	echo 'Project installation completed successfully.'
 	echo 'Navigate here : https://sylius-tailwindcss-theme.ddev.site/'
@@ -166,12 +170,14 @@ phpunit-ci: phpunit-configure phpunit-run ## Run PHPUnit
 ### ¯¯¯¯¯¯
 
 sylius-ci: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-ci
-sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-docker
+sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-docker set-proxies
 .PHONY: sylius-ci
 
 sylius-standard-ci:
 	${COMPOSER_CI_ROOT} create-project sylius/sylius-standard ${TEST_DIRECTORY_CI} "~${SYLIUS_VERSION}" --no-install --no-scripts
 	${COMPOSER_CI} config allow-plugins true
+	#https://github.com/api-platform/core/issues/6226
+	${COMPOSER_CI} req api-platform/core:v2.7.16 --prefer-source --no-scripts --no-install
 	${COMPOSER_CI} require sylius/sylius:"~${SYLIUS_VERSION}"
 
 update-dependencies-ci:
@@ -202,6 +208,8 @@ endif
 	echo "            tailwindTheme:" >> ${TEST_DIRECTORY_CI}/config/packages/assets.yaml
 	echo "                json_manifest_path: '%kernel.project_dir%/public/themes/tailwind-theme/manifest.json'" >> ${TEST_DIRECTORY_CI}/config/packages/assets.yaml
 	echo "        tailwindTheme: '%kernel.project_dir%/public/themes/tailwind-theme'" >> ${TEST_DIRECTORY_CI}/config/packages/webpack_encore.yaml
+	echo "    webp:" >> ${TEST_DIRECTORY_CI}/config/packages/liip_imagine.yaml
+	echo "        generate: true" >> ${TEST_DIRECTORY_CI}/config/packages/liip_imagine.yaml
 
 install-sylius-ci:
 	${CONSOLE_CI} doctrine:database:create --if-not-exists
@@ -211,14 +219,14 @@ install-sylius-ci:
 	${NPM_CI} install
 	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
-	${NPM_CI} run build
+	${NPM_CI} run build:prod
 	${CONSOLE_CI} cache:clear
 
 install-sylius-docker:
 	${NPM_CI} install
 	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
 	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
-	${NPM_CI} run build
+	${NPM_CI} run build:prod
 
 phpunit-configure-ci:
 	cp phpunit.xml.dist ${TEST_DIRECTORY_CI}/phpunit.xml
@@ -226,3 +234,5 @@ phpunit-configure-ci:
 phpunit-run-ci:
 	cd ${TEST_DIRECTORY_CI} && ./vendor/bin/phpunit --testdox
 
+set-proxies:
+	cp .docker/stub/trusted_proxies.yaml ${TEST_DIRECTORY_CI}/config/packages
