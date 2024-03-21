@@ -4,7 +4,6 @@ docs
 node_modules
 .git
 .github
-.ddev
 tests
 .idea
 .cd .babelrc

@@ -1,67 +1,77 @@
-## Installation for contribution & test
 
-### Requirement
+## Requirement
 
--   Install [DDEV](https://ddev.readthedocs.io/en/stable/)
+- Be sure you have node 14 on your machine. You can use NVM to easily switch versions.
+- Be sure you have docker on your machine.
+- Be sure you have the Symfony binary on your machine `curl -sS https://get.symfony.com/cli/installer | bash`
 
-### Test project locally with DDEV
+## Installation
 
-1. Adjust ddev configuration and choose your php, database and node version.
+`make install`
 
-2. Run install command :
+- Go https://127.0.0.1:8000 (check your console)
+
+This will run a Sylius app (the one in tests/Application/) with the plugin installed and all Sylius' sample data. It uses the symfony binary.
+
+## Usage
+
+### List all available commands
+
+`make help`
+
+### Running minimum plugin tests
+
+- Lint twig
+
+    `make test.twig`
+
+[//]: # (- PHPUnit)
+
+[//]: # ()
+[//]: # (    `make test.phpunit`)
+
+[//]: # ()
+[//]: # (- PHP CS fixer)
+
+[//]: # ()
+[//]: # (    `make test.phpcs` Tip: You can fix your code with `make test.phpcs.fix`!)
+
+[//]: # ()
+[//]: # (- PHPSpec)
+
+[//]: # ()
+[//]: # (    `make test.phpspec`)
+
+[//]: # ()
+[//]: # (- PHPStan)
+
+[//]: # ()
+[//]: # (    `make test.phpstan`)
+
+### Build assets
+
+The Sylius app is installed here `tests/Application/`
+
+- Build assets
 
     ```bash
-    $ make install-project # first install or after a remove
-    $ make start # project already installed
+    $ make build-theme
+    $ make watch-theme
     ```
 
-    Default values : XX=1.12.13 and YY=6.4 and ZZ=8.2
-
-    To test other versions :
+- Apply change : `ROOT THEME FILES` from / to `PROJECT THEME FILES `
 
     ```bash
-    $ make install-project -e SYLIUS_VERSION=XX SYMFONY_VERSION=YY
+    $ make apply-theme # Update tests/Application project theme files with root theme files)
+
+    $ make reset-theme # Reversed operation
     ```
 
-3. Navigate here : https://sylius-tailwindcss-theme.ddev.site/
+### Stop
 
-4. To reset (drop database and delete files) dev environment:
+`make down`
 
-    ```bash
-    $ make remove-project
-    ```
+### Reset project
 
-### Modify code
+`make reset`
 
-1. After project installation, you can modify themes files here `install/Application/themes/TailwindTheme` assets and templates files.
-
-2. To compile tailwind and assets changes use :
-
-    ```bash
-    $ make watch
-    ```
-
-3. When changes are done you have to put back your modification into this root project.
-
-    ```bash
-    $ make get-changes
-    ```
-
-    You can do it manually or you can execute `make get-changes`
-
-    This command will get back `templates` and `assets` folder, `tailwind.config.js`, `postcss.config.js` file into root folder.
-
-4. Lint before commit
-
-    ```bash
-    $ make lint
-    ```
-
-    This command will use your own composer and php version
-
-5. git commit & push
-
-### Contribution
-
-1. Fork this github project
-2. Create an issue and pull request
