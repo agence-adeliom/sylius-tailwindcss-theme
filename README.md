@@ -44,7 +44,6 @@
     </a>
 </details>
 
-
 ## Documentation
 
 [Documentation is available in the *docs* folder.](docs/index.md)
