@@ -5,6 +5,7 @@ Encore
   .setPublicPath('/themes/tailwind-theme')
   .addEntry('app', './themes/TailwindTheme/assets/index.js')
   .enablePostCssLoader()
+  .enableSassLoader()
   .disableSingleRuntimeChunk()
   .cleanupOutputBeforeBuild()
   .enableSourceMaps(!Encore.isProduction())
