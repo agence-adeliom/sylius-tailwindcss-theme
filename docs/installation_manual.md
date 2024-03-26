@@ -8,15 +8,12 @@ Files/folders to copy:
 -   `templates`
 -   `tailwind.config.js`
 -   `webpack.config.js`
+-   `postcss.config.js`
 
 #### 2. Install node dependencies
 
 ```bash
-npm install
-npm i -D tailwindcss
-npm i -D daisyui@latest
-npm i postcss-loader@^7.0.0 --save-dev
-npm i autoprefixer --save-dev
+npm i -D tailwindcss postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui
 ```
 
 #### 3. Import `tailwind-theme` config in your `./webpack.config.js`
