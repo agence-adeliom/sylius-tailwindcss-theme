@@ -1,0 +1,7 @@
+<div class="w-full">
+    <form method="get" action="{{ path('sylius_shop_product_index', {'slug': app.request.attributes.get('slug')}) }}">
+        <div class="flex gap-4">
+            {% hook 'search' %}
+        </div>
+    </form>
+</div>

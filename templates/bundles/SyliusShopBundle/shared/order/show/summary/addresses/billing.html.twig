@@ -1,0 +1,5 @@
+<div class="col-span-12 md:col-span-6 mb-3" {{ sylius_test_html_attribute('billing-address') }}>
+    <div class="card border-0 bg-neutral p-6">
+        {% hook 'billing' with { 'address': hookable_metadata.context.order.billingAddress } %}
+    </div>
+</div>

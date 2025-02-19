@@ -1,0 +1,34 @@
+{% set form = hookable_metadata.context.form %}
+{% set form_promotion_coupon = form.promotionCoupon %}
+
+{% if form_promotion_coupon is defined %}
+    <div class="my-4">
+        <div class="p-4 bg-neutral rounded">
+            <div class="" {{ sylius_test_html_attribute('cart-promotion-coupon') }}>
+                {% if form_promotion_coupon.vars.value is not empty and form_promotion_coupon.vars.valid %}
+                    <div class="card flex flex-row justify-content-between align-items-center w-100 py-2 px-3">
+                        <div class="flex flex-wrap" style="gap: .5rem 0;">
+                            <span class="me-2">{{ 'sylius.ui.applied_coupon'|trans }}:</span>
+                            <span class="badge flex items-center text-secondary">
+                                {{ form_promotion_coupon.vars.value }}
+                            </span>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-transparent flex items-center p-0"
+                            data-action="live#action:prevent"
+                            data-live-action-param="removeCoupon"
+                            {{ sylius_test_html_attribute('cart-promotion-remove-coupon') }}
+                        >
+                            {{ ux_icon('tabler:trash', {class: 'icon icon-sm'}) }}
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="join field">
+                        {{ form_widget(form_promotion_coupon, sylius_test_form_attribute('cart-promotion-coupon-input')|sylius_merge_recursive({'attr': {'data-model': 'norender|sylius_shop_cart[promotionCoupon]', 'form': form.vars.id, 'placeholder': 'sylius.ui.enter_your_code'|trans ~ '...', 'class': 'input input-bordered join-item'}})) }}
+                        <button class="btn btn-outline join-item rounded-r-lg" type="button" {{ sylius_test_html_attribute('apply-coupon-button') }} data-action="live#$render">{{ 'sylius.ui.apply_coupon'|trans }}</button>
+                    </div>
+                    <div>{{ form_errors(form_promotion_coupon) }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}

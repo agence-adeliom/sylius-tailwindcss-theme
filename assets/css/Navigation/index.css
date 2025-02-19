@@ -1,0 +1,11 @@
+.breadcrumb {
+    @apply flex gap-4 items-center;
+} 
+
+.breadcrumb .breadcrumb-item {
+    @apply relative flex items-center gap-1;
+}
+
+.breadcrumb .breadcrumb-item.active {
+    @apply text-primary;
+}

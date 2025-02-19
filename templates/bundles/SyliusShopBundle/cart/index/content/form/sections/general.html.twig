@@ -1,0 +1,13 @@
+<div class="grid grid-cols-12 gap-6">
+    <div class="col-span-12 lg:col-span-8 mb-4 relative">
+        <div data-loading>
+            <div class="sylius-shop-loader">
+                <img src="{{ asset('build/shop/images/loader.gif', 'shop') }}" alt="{{ 'sylius.ui.loading'|trans }}"/>
+            </div>
+        </div>
+        {% hook 'general#left' %}
+    </div>
+    <div class="col-span-12 lg:col-span-4 mb-4">
+        {% hook 'general#right' %}
+    </div>
+</div>

@@ -1,0 +1,35 @@
+{# Rendered with \Sylius\Bundle\ShopBundle\Twig\Component\Common\CartComponent #}
+
+<div class="translate-x-full flex flex-col duration-300 ease-in-out fixed top-0 right-0 w-screen md:w-[500px] h-full z-[100] bg-base-100 p-6" js-cart-layer id="" {{ attributes }}>
+    {% hook 'cart' with { cart } %}
+</div>
+<div class="w-screen h-screen fixed z-10 top-0 left-0 bg-black/60 opacity-0 pointer-events-none" js-cart-backdrop></div>
+
+<script>
+
+let cartBtn = document.querySelector('[js-cart-opener]');
+let cartLayer = document.querySelector('[js-cart-layer]');
+let cartBackdrop = document.querySelector('[js-cart-backdrop]');
+let cartClose = document.querySelector('[js-close-cart]');
+
+cartBtn.addEventListener('click', () => {
+    toggleClass(cartBackdrop, cartLayer)
+})
+
+cartClose.addEventListener('click', () => {
+    toggleClass(cartBackdrop, cartLayer)
+})
+
+const toggleClass = (cartBackdrop, cartLayer) => {
+    cartLayer.classList.toggle('translate-x-full');
+    cartBackdrop.classList.toggle('opacity-0');
+    cartBackdrop.classList.toggle('pointer-events-none');
+}
+
+cartBackdrop.addEventListener('click', () => {
+    toggleClass(cartBackdrop, cartLayer)
+})
+
+
+
+</script>

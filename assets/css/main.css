@@ -14,6 +14,9 @@
 /* Action */
 @import url("./Action/index.css");
 
+/* Checkout */
+@import url("./Checkout/index.css");
+
 /* Feedback */
 @import url("./Feedback/index.css");
 
@@ -25,3 +28,6 @@
 
 /* Product page */
 @import url("./Product/index.css");
+
+/* Navigation page */
+@import url("./Navigation/index.css");

@@ -1,0 +1,10 @@
+{% macro show(rating = 3) %}
+    <div class="flex">
+        {% for i in 1..5 %}
+            <label class="rating-product">
+                <input class="hidden" type="radio" {% if loop.index == rating %}checked{% endif %} disabled>
+                <i class="fa-regular fa-star"></i>
+            </label>
+        {% endfor %}
+    </div>
+{% endmacro %}

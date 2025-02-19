@@ -1,0 +1,16 @@
+{% macro breadcrumbs(items) %}
+    <ol class="breadcrumb" aria-label="breadcrumbs">
+        {% for item in items %}
+            <li class="breadcrumb-item {{ item.active is defined and item.active ? ' active' }}">
+                {% if item.path is defined %}
+                    <a class="link-reset" href="{{ item.path }}">{{ item.label|raw }}</a>
+                {% else %}
+                    <span class="text-body-tertiary text-break">{{ item.label|raw }}</span>
+                {% endif %}
+                {% if not loop.last %}
+                    <i class="fa-solid fa-chevron-right"></i>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+{% endmacro %}

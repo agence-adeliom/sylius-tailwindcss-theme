@@ -1,0 +1,9 @@
+{% set form = hookable_metadata.context.form %}
+
+<div>
+    {% if form.provinceCode is defined %}
+        {{ form_row(form.provinceCode, {'attr': {'class': 'input input-bordered w-full'}}) }}
+    {% elseif form.provinceName is defined %}
+        {{ form_row(form.provinceName, {'attr': {'class': 'input input-bordered w-full'}}) }}
+    {% endif %}
+</div>

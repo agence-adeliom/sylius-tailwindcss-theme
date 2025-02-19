@@ -1,0 +1,11 @@
+.steps .steps-item-active a {
+    @apply text-primary
+}
+
+.steps .steps-item {
+    @apply flex gap-2 items-center
+}
+
+.tunnelHeight {
+   @apply min-h-[calc(100vh-84px)]
+}

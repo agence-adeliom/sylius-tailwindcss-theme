@@ -10,11 +10,11 @@
 /* eslint-env browser */
 
 import SyliusRating from './sylius-rating';
-import SyliusToggle from './sylius-toggle';
+import SyliusToggle from './sylius-toggle'; 
 import SyliusAddToCart from './sylius-add-to-cart';
 import SyliusRemoveFromCart from './sylius-remove-from-cart';
 import SyliusApiToggle from './sylius-api-toggle';
-import SyliusApiLogin from './sylius-api-login';
+import SyliusApiLogin from './sylius-api-login'; 
 import SyliusVariantsPrices from './sylius-variants-prices';
 import SyliusVariantImages from './sylius-variant-images';
 import SyliusProvinceField from './sylius-province-field';
@@ -26,7 +26,6 @@ import '@fortawesome/fontawesome-free/scss/brands.scss';
 import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
-
   // Add to cart
   document.querySelectorAll('[data-js-add-to-cart="form"]')
     .forEach(el => SyliusAddToCart(el));

@@ -1,0 +1,12 @@
+{% from '@SyliusShop/shared/macro/order/state.html.twig' import label %}
+
+{% set order = hookable_metadata.context.order %}
+
+<div class="grid grid-cols-2 gap-6">
+    <div class="col-span-1">
+        {{ 'sylius.ui.state'|trans }}
+    </div>
+    <div class="col-span-1">
+        {{ label(order.state) }}
+    </div>
+</div>

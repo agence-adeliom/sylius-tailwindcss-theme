@@ -1,0 +1,8 @@
+{% set address = hookable_metadata.context.address %}
+
+<div class="card border-0 bg-neutral p-6 mb-3">
+    <div {{ sylius_test_html_attribute('address', "%s %s"|format(address.firstName, address.lastName)) }}>
+        {% hook 'address' with { address, customer: address.customer } %}
+    </div>
+</div>
+

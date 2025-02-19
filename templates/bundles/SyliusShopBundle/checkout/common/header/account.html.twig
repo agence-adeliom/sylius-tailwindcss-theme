@@ -1,0 +1,17 @@
+{% set order = hookable_metadata.context.order %}
+
+{% if order.customer.id|default(null) is not null %}
+    <div class="" {{ sylius_test_html_attribute('purchaser-name-or-email') }}>
+        {{ 'sylius.ui.checking_out_as'|trans }}
+        <a class="link-reset" href="{{ path('sylius_shop_account_dashboard') }}">
+            {{ app.user is null ? order.customer.email : order.customer.fullName|default(order.customer.email) }}.
+        </a>
+    </div>
+{% else %}
+    <div class="">
+        <a class="btn btn-icon px-2" href="{{ path('sylius_shop_login') }}">
+            <i class="fa-regular fa-user"></i>
+            <div class="hidden lg:block px-2">{{ 'sylius.ui.sign_in'|trans }}</div>
+        </a>
+    </div>
+{% endif %}

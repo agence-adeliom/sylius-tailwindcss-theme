@@ -7,3 +7,7 @@
 .similar-image-card {
     @apply w-full h-full object-cover rounded
 }
+
+.rating-product:has(:checked) i {
+    @apply text-primary
+}
