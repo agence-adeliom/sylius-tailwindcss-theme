@@ -19,9 +19,9 @@ jobs:
                 php:
                     - 8.2
                 sylius:
-                    - 1.13.0
+                    - 2.0.0
                 symfony:
-                    - 6.4
+                    - 7.1
                 node:
                     - 20.x
         env:

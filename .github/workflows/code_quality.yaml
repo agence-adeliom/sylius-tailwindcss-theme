@@ -2,7 +2,6 @@ name: Code Quality
 
 on:
     push:
-        branches: [ 0.x, 1.x, 2.x ]
         paths-ignore:
             - README.md
     pull_request:
@@ -47,7 +46,7 @@ jobs:
             -   name: Setup node
                 uses: actions/setup-node@v4
                 with:
-                    node-version: 18
+                    node-version: 20
 
             -   name: Install
                 run: npm install
