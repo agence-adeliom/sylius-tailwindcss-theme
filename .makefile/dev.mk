@@ -102,7 +102,7 @@ platform:
 		(cd ${APP_DIR} && echo "    webp:" >> ./config/packages/liip_imagine.yaml); \
 		(cd ${APP_DIR} && echo "        generate: true" >> ./config/packages/liip_imagine.yaml); \
 		(cp tailwind.config.js ${APP_DIR}/tailwind.config.js); \
-		(cp postcss.config.js ${APP_DIR}/postcss.config.js); \
+		(cp postcss.config.mjs ${APP_DIR}/postcss.config.mjs); \
 	fi
 
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config github-oauth.github.com ${GITHUB_TOKEN})
@@ -122,7 +122,7 @@ platform_assets:
 	rm -rf ${APP_DIR}/node_modules
 	mkdir ${APP_DIR}/node_modules
 	rm -rf ${APP_DIR}/package-lock.json
-	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm install -D tailwindcss postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui")
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm install -D postcss postcss-loader postcss-cli tailwindcss @tailwindcss/postcss daisyui@beta @fortawesome/fontawesome-free")
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm nodejs)
 
 platform_debug:
@@ -148,6 +148,10 @@ node-shell:
 HELP += $(call help,node-watch,			Run assets build as watch)
 node-watch:
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm run watch")
+
+HELP += $(call help,node-watch,			Run assets build as watch)
+node-build:
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm run build:prod")
 
 HELP += $(call help,bundle_dependencies_install,			Install bundles assets npm dependencies)
 bundle_dependencies_install:
