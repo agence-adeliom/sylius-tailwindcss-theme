@@ -1,7 +1,7 @@
 FROM adeliom/php:8.2-caddy-node20
 
 ARG SYLIUS_VERSION=2.0.0
-ARG SYMFONY_VERSION=7.1
+ARG SYMFONY_VERSION=7.2
 
 RUN apk add --update make
 

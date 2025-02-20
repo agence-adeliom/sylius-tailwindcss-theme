@@ -10,6 +10,7 @@
 [//]: # (</p>)
 
 ### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
+### NEW ✨ Compatible with Sylius 2.0
 
 ## Introduction
 

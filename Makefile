@@ -9,7 +9,8 @@ SHELL=/bin/bash
 ### ¯¯¯
 
 SYLIUS_VERSION=2.0.0
-SYMFONY_VERSION=7.1
+SYMFONY_VERSION=7.2
+NODE_VERSION=20
 COMPOSE_PROJECT_NAME=sylius-happy-cms-plugin
 
 PLUGIN_NAME=agence-adeliom/sylius-tailwindcss-theme
