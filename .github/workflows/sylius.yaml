@@ -2,8 +2,7 @@ name: Install & Test
 'on':
     push:
         branches:
-            - 0.x
-            - 1.x
+            - 2.x
         paths-ignore:
             - README.md
     pull_request:
@@ -21,7 +20,7 @@ jobs:
                 sylius:
                     - 2.0.0
                 symfony:
-                    - 7.1
+                    - 7.2
                 node:
                     - 20.x
         env:
