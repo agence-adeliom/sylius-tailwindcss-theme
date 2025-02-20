@@ -19,7 +19,7 @@
         "sylius/sylius": "^2.0"
     },
     "require-dev": {
-        "friendsoftwig/twigcs": "^6.4 || ^v7.0"
+        "friendsoftwig/twigcs": "^6.5"
     },
     "autoload-dev": {
         "psr-4": {
@@ -38,8 +38,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "symfony/thanks": true,
-            "symfony/runtime": true
+            "php-http/discovery": true,
+            "symfony/runtime": true,
+            "symfony/thanks": true
         }
     }
 }

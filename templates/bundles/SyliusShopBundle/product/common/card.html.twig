@@ -2,7 +2,7 @@
     <a class="link-reset" href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" {{ sylius_test_html_attribute('product-content') }} aria-label="{{ product.name }}">
         <div class="mb-4">
             <div class="overflow-auto bg-light rounded-3 aspect-3/4">
-                {{ component('sylius_shop:main_image', { product: product, class: "w-100 h-100 object-fit-cover" }) }}
+                {{ component('sylius_shop:main_image', {product: product, class: "w-100 h-100 object-fit-cover"}) }}
             </div>
         </div>
         <div class="h6 text-break" {{ sylius_test_html_attribute('product-name', product.name) }}>
@@ -11,8 +11,8 @@
     </a>
     <div>
         {% if not product.enabledVariants.empty() %}
-            {{ component('sylius_shop:catalog_promotions', { variant: variant, appliedPromotions: applied_promotions, withDescription: false }) }}
-            {{ component('sylius_shop:product:card:price', { variant: variant, template: '@SyliusShop/product/common/price.html.twig' }) }}
+            {{ component('sylius_shop:catalog_promotions', {variant: variant, appliedPromotions: applied_promotions, withDescription: false}) }}
+            {{ component('sylius_shop:product:card:price', {variant: variant, template: '@SyliusShop/product/common/price.html.twig'}) }}
         {% endif %}
     </div>
 </div>

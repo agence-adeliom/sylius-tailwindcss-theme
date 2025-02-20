@@ -13,34 +13,34 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=2" name="viewport">
 
         {% block metatags %}
-            {% hook '#metatags' with { _prefixes: prefixes } %}
+            {% hook '#metatags' with {_prefixes: prefixes} %}
         {% endblock %}
 
         {% block stylesheets %}
-            {% hook '#stylesheets' with { _prefixes: prefixes } %}
+            {% hook '#stylesheets' with {_prefixes: prefixes} %}
         {% endblock %}
 
-        {% hook 'head' with { _prefixes: prefixes } %}
+        {% hook 'head' with {_prefixes: prefixes} %}
     </head>
 
     <body data-route="{{ app.request.get('_route') }}">
         {% block body %}
-            <div class="{% apply escape %}{% hook '#body_classes' with { _prefixes: prefixes } %}{% endapply %}">
+            <div class="{% apply escape %}{% hook '#body_classes' with {_prefixes: prefixes} %}{% endapply %}">
                 {% block header %}
-                    {% hook 'header' with { _prefixes: prefixes } %}
+                    {% hook 'header' with {_prefixes: prefixes} %}
                 {% endblock %}
 
                 {% block content %}{% endblock %}
 
                 {% block footer %}
-                    {% hook 'footer' with { _prefixes: prefixes } %}
+                    {% hook 'footer' with {_prefixes: prefixes} %}
                 {% endblock %}
             </div>
-            {% hook 'offcanvas' with { _prefixes: prefixes } %}
+            {% hook 'offcanvas' with {_prefixes: prefixes} %}
         {% endblock %}
 
         {% block javascripts %}
-            {% hook '#javascripts' with { _prefixes: prefixes } %}
+            {% hook '#javascripts' with {_prefixes: prefixes} %}
         {% endblock %}
     </body>
 </html>

@@ -4,15 +4,15 @@
     {% if taxon.enabledChildren|length > 0 %}
             <li>
                 <details>
-                    {% hook 'item#dropdown' with { taxon } %}
+                    {% hook 'item#dropdown' with {taxon} %}
                 </details>
             </li>
     {% else %}
         {% if taxon.level == 1 %}
-            {% hook 'item#link' with { taxon } %}
+            {% hook 'item#link' with {taxon} %}
         {% else %}
             <ul tabindex="{{ loop.index }}" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                {% hook 'item#link' with { taxon } %}
+                {% hook 'item#link' with {taxon} %}
             </ul>
         {% endif %}
     {% endif %}

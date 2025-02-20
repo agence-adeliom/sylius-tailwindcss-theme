@@ -10,7 +10,7 @@
             {{ form_start(form, {'attr': {'data-action': 'live#action:prevent live#$render', 'data-live-action-param': 'addToCart'}}) }}
             {{ form_errors(form) }}
 
-            {% hook 'add_to_cart' with { product, form } %}
+            {% hook 'add_to_cart' with {product, form} %}
 
             {{ form_row(form._token) }}
             {{ form_end(form, {'render_rest': false}) }}

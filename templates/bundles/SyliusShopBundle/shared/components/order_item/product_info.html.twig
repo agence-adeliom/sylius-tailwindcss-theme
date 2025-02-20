@@ -22,9 +22,9 @@
 
         {% if product.hasOptions() %}
             <div {{ sylius_test_html_attribute('product-options') }}>
-                {% for optionValue in variant.optionValues %}
-                    <small class="" {{ sylius_test_html_attribute('option-name', optionValue.name) }}>
-                        {{ optionValue.name }}: <span {{ sylius_test_html_attribute('option-value') }}>{{ optionValue.value }}</span>
+                {% for option_value in variant.optionValues %}
+                    <small class="" {{ sylius_test_html_attribute('option-name', option_value.name) }}>
+                        {{ option_value.name }}: <span {{ sylius_test_html_attribute('option-value') }}>{{ option_value.value }}</span>
                     </small>
                 {% endfor %}
             </div>

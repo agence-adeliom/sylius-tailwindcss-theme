@@ -1,7 +1,7 @@
 {% if app.session is not null and app.session.started %}
     {% for type in ['success', 'error', 'info', 'warning'] %}
         {% for flash in app.session.flashbag.get(type) %}
-            {% set header = 'sylius.ui.'~type %}
+            {% set header = 'sylius.ui.' ~ type %}
             {% if type == 'error' %}
                 {% set type = 'danger' %}
             {% endif %}

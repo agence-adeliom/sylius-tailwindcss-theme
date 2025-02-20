@@ -6,7 +6,7 @@
     <table class="table table-borderless align-middle">
         <tbody>
             {% for item in cart.items %}
-                {% hook 'items' with { item } %}
+                {% hook 'items' with {item} %}
             {% endfor %}
         </tbody>
     </table>

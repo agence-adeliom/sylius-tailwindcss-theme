@@ -9,7 +9,7 @@
 
         <div class="card bg-neutral border-0 mb-3 card-body" {{ sylius_test_html_attribute('shipping-item') }}>
             <label class="flex justify-between gap-3">
-                {% hook 'choice' with { fee, 'form': choice_form, method } %}
+                {% hook 'choice' with {fee, 'form': choice_form, method} %}
             </label>
         </div>
     {% else %}

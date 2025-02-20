@@ -5,7 +5,7 @@
         <div class="bg-base border-b py-4 ">
             <div class="container">
                 <div class="flex gap-6 justify-between items-center">
-                    {% hook 'sylius_shop.checkout.common.header' with { order } %}
+                    {% hook 'sylius_shop.checkout.common.header' with {order} %}
                 </div>
             </div>
         </div>
@@ -18,10 +18,9 @@
                     </div>
                     {% block sidebar %}
                         <div class="col-span-12 lg:col-span-5 relative py-5">
-                            {% hook 'sylius_shop.checkout.common.sidebar' with { order } %}
+                            {% hook 'sylius_shop.checkout.common.sidebar' with {order} %}
                             <div class="left-1/2 max-lg:-translate-x-1/2 w-screen lg:left-0 lg:w-[50vw] h-full bg-neutral absolute top-0 z-1"></div>
                         </div>
-                        
                     {% endblock %}
                 </div>
             </div>
