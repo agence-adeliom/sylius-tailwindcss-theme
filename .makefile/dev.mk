@@ -122,7 +122,7 @@ platform_assets:
 	rm -rf ${APP_DIR}/node_modules
 	mkdir ${APP_DIR}/node_modules
 	rm -rf ${APP_DIR}/package-lock.json
-	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm install -D tailwindcss postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui")
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm install -D tailwindcss@3 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui")
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm nodejs)
 
 platform_debug:

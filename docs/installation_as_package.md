@@ -118,7 +118,7 @@ webpack_encore:
 
 ```bash
 $ npm install
-$ npm install -D tailwindcss postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui
+$ npm install -D tailwindcss@3 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui
 $ npm run build:prod
 ```
 

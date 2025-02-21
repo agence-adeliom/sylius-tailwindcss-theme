@@ -13,7 +13,7 @@ Files/folders to copy:
 #### 2. Install node dependencies
 
 ```bash
-npm i -D tailwindcss postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui
+npm install -D tailwindcss@3 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui
 ```
 
 #### 3. Import `tailwind-theme` config in your `./webpack.config.js`
