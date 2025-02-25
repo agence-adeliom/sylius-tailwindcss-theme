@@ -1,11 +1,14 @@
+@reference '../../main.css';
+
+
 /* Select */
 .form-select {
-    @apply select select-bordered w-full;
+    @apply select w-full;
 }
 
 /* Input */
 .form-input {
-    @apply input input-bordered flex items-center gap-2;
+    @apply input flex items-center gap-2;
 }
 
 /* Labels */

@@ -1,3 +1,5 @@
+@reference '../main.css';
+
 /* Grid layout */
 .wrapper-12 {
     @apply grid grid-cols-12 gap-6;

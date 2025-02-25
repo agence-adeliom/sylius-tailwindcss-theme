@@ -1,3 +1,5 @@
+@reference '../main.css';
+
 @import url("./Input/index.css");
 
 .loadable {
