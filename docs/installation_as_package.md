@@ -9,93 +9,21 @@ You can follow the same steps, just replace `bootstrap` by `tailwind`
 1. Install package :
 
 ```bash
-composer require agence-adeliom/sylius-tailwindcss-theme
+composer require agence-adeliom/sylius-tailwindcss-theme ^2.0.0
 ```
 
-2. In the `config/packages/_sylius.yaml` file, add the path to the installed package
+2. Copy all templates files into your project theme folder
 
-```yaml
-sylius_theme:
-    sources:
-        filesystem:
-            directories:
-                - "%kernel.project_dir%/vendor/agence-adeliom/sylius-tailwindcss-theme"
-                - "%kernel.project_dir%/themes"
-```
-
-3. Create your custom child theme directory and composer file : `themes/TailwindChildTheme/composer.json`
-
-```json
-{
-    "name": "acme/sylius-tailwindcss-child-theme",
-    "description": "Tailwind child theme",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "James Potter",
-            "email": "prongs@example.com"
-        }
-    ],
-    "extra": {
-        "sylius-theme": {
-            "title": "Tailwind child theme",
-            "parents": [ "agence-adeliom/sylius-tailwindcss-theme" ]
-        }
-    }
-}
-```
-
-4. Compile Webpack Encore
-
-- Add following code into `webpack.config.js`
-
-```js
-// TailwindTheme
-Encore.reset();
-
-Encore
-    .setOutputPath('public/themes/tailwind-theme')
-    .setPublicPath('/themes/tailwind-theme')
-    .addEntry('app', './themes/TailwindChildTheme/assets/index.js')
-    .enablePostCssLoader()
-    .enableSassLoader()
-    .disableSingleRuntimeChunk()
-    .cleanupOutputBeforeBuild()
-    .enableSourceMaps(!Encore.isProduction())
-    .enableVersioning(Encore.isProduction());
-
-const tailwindTheme = Encore.getWebpackConfig();
-tailwindTheme.name = 'tailwindTheme';
-
-module.exports = [shopConfig, adminConfig, appShopConfig, appAdminConfig, tailwindTheme];
-```
-
-- Create a `tailwind.config.js` file and add content from `vendor/agence-adeliom/sylius-tailwindcss-theme/tailwind.config.js`
-
-You can run:
 ```bash
-$ cp vendor/agence-adeliom/sylius-tailwindcss-theme/tailwind.config.js ./
+mkdir -p themes/TailwindTheme
+cp -R vendor/agence-adeliom/sylius-tailwindcss-theme/assets ./themes/TailwindTheme/
+cp -R vendor/agence-adeliom/sylius-tailwindcss-theme/templates ./themes/TailwindTheme/
+cp vendor/agence-adeliom/sylius-tailwindcss-theme/webpack.config.js ./themes/TailwindTheme/
+cp vendor/agence-adeliom/sylius-tailwindcss-theme/composer.json ./themes/TailwindTheme/
+cp vendor/agence-adeliom/sylius-tailwindcss-theme/postcss.config.mjs ./
 ```
 
-Then white list content path :
-```js
-{
-    content: [
-        './vendor/agence-adeliom/sylius-tailwindcss-theme/assets/**/*.js',
-        './vendor/agence-adeliom/sylius-tailwindcss-theme/themes/**/assets/**/*.js',
-        './vendor/agence-adeliom/sylius-tailwindcss-theme/templates/**/*.html.twig',
-        './vendor/agence-adeliom/sylius-tailwindcss-theme/themes/**/*.html.twig',
-        './vendor/agence-adeliom/sylius-tailwindcss-theme/themes/**/*.html.twig',
-      ]
-}
-```
-
-- Create index asset into `themes/TailwindChildTheme/assets/index.js` and add:
-
-```js
-import '../../../vendor/agence-adeliom/sylius-tailwindcss-theme/assets/index';
-```
-
+3. Configure assets and webpack
 
 - In the `config/packages/assets.yaml` add:
 ```yaml
@@ -114,12 +42,32 @@ webpack_encore:
         tailwindTheme: '%kernel.project_dir%/public/themes/tailwind-theme'
 ```
 
+
+4. Compile Webpack Encore
+
+- Add following code into `webpack.config.js`
+
+```js
+// TailwindTheme
+Encore.reset();
+const tailwindTheme = require('./themes/TailwindTheme/webpack.config');
+
+module.exports = [shopConfig, adminConfig, appShopConfig, appAdminConfig, tailwindTheme];
+```
+
 - Run :
 
 ```bash
 $ npm install
-$ npm install -D tailwindcss@3 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui
+$ yarn install
+```
+```bash
+$ npm install -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss
+$ yarn add -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss 
+```
+```bash
 $ npm run build:prod
+$ yarn run build:prod
 ```
 
 5. Change channel configuration

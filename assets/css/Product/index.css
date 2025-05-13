@@ -1,3 +1,5 @@
+@reference '../main.css';
+
 /* price widget */
 .price-widget-container {
     @apply flex flex-wrap justify-between items-center my-8

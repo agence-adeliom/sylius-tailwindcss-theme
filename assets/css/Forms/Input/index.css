@@ -1,3 +1,5 @@
+@reference '../main.css';
+
 /* Select */
 .form-select {
     @apply select select-bordered w-full;
