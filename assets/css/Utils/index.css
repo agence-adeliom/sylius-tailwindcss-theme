@@ -19,3 +19,7 @@ section.container {
 .flex-center {
     @apply flex items-center justify-center;
 }
+
+.img-fluid {
+    @apply object-cover w-full h-full
+}

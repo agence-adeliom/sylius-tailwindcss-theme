@@ -21,10 +21,12 @@ import SyliusProvinceField from './sylius-province-field';
 import SyliusAddressBook from './sylius-address-book';
 import SyliusLoadableForms from './sylius-loadable-forms';
 import { SyliusToggleTheme, SyliusApplyTheme } from './sylius-toggle-theme';
-import '@fortawesome/fontawesome-free/scss/solid.scss';
-import '@fortawesome/fontawesome-free/scss/brands.scss';
-import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
-
+// import '@fortawesome/fontawesome-free/css/solid.css';
+// import '@fortawesome/fontawesome-free/scss/brands.scss'; 
+// import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+import '../fontawesome/css/solid.css';
+import '../fontawesome/css/brands.css';
+import '../fontawesome/css/fontawesome.css';
 document.addEventListener('DOMContentLoaded', () => {
   // Add to cart
   document.querySelectorAll('[data-js-add-to-cart="form"]')

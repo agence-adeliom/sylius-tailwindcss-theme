@@ -1,5 +1,5 @@
-@reference '../main.css';
+@reference '../../main.css';
 
 .loading-overlay {
-    @apply hidden is-loading:flex absolute inset-0 bg-base-100 bg-opacity-80 items-center justify-center;
+    @apply hidden is-loading:flex absolute inset-0 bg-base-100/80 items-center justify-center;
 }
