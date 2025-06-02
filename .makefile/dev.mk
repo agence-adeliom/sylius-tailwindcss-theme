@@ -101,11 +101,10 @@ platform:
 		(cd ${APP_DIR} && echo "        tailwindTheme: '%kernel.project_dir%/public/themes/tailwind-theme'" >> ./config/packages/webpack_encore.yaml); \
 		(cd ${APP_DIR} && echo "    webp:" >> ./config/packages/liip_imagine.yaml); \
 		(cd ${APP_DIR} && echo "        generate: true" >> ./config/packages/liip_imagine.yaml); \
-		(cp tailwind.config.js ${APP_DIR}/tailwind.config.js); \
-		(cp postcss.config.js ${APP_DIR}/postcss.config.js); \
+		(cp postcss.config.mjs ${APP_DIR}/postcss.config.mjs); \
 	fi
 
-	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config github-oauth.github.com ${GITHUB_TOKEN})
+	#cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config github-oauth.github.com ${GITHUB_TOKEN})
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config minimum-stability dev)
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config extra.symfony.allow-contrib true)
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config repositories.plugin '{"type": "path", "url": "../../"}')
