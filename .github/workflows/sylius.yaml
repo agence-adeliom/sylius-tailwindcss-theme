@@ -19,8 +19,10 @@ jobs:
                     - 8.2
                 sylius:
                     - 2.0.0
+                sylius_standard:
+                    - 2.0.0
                 symfony:
-                    - 7.2
+                    - "~7.2.5"
                 node:
                     - 20.x
         env:
@@ -81,7 +83,7 @@ jobs:
                 
             -
                 name: 'Install Sylius-Standard and Plugin'
-                run: 'make install-ci -e SYLIUS_VERSION=${{ matrix.sylius }} SYMFONY_VERSION=${{ matrix.symfony }} PHP_VERSION=${{ matrix.php }}'
+                run: 'make install-ci -e SYLIUS_VERSION=${{ matrix.sylius }} SYMFONY_VERSION=${{ matrix.symfony }} SYLIUS_STANDARD_VERSION=${{ matrix.sylius_standard }} PHP_VERSION=${{ matrix.php }}'
             -
                 name: 'Output PHP version for Symfony CLI'
                 working-directory: ./install/Application

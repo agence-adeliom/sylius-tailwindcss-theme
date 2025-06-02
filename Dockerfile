@@ -1,7 +1,8 @@
 FROM adeliom/php:8.2-caddy-node20
 
-ARG SYLIUS_VERSION=2.0.0
-ARG SYMFONY_VERSION=7.2
+ARG SYLIUS_VERSION="~2.0.0"
+ARG SYLIUS_STANDARD_VERSION="~2.0.0"
+ARG SYMFONY_VERSION="v7.2.5"
 
 RUN apk add --update make
 
@@ -10,7 +11,7 @@ RUN mkdir -p /opt/sylius
 COPY . /opt/sylius
 
 RUN cd /opt/sylius && \
-    make install-docker -e SYLIUS_VERSION=$SYLIUS_VERSION SYMFONY_VERSION=$SYMFONY_VERSION
+    make install-docker -e SYLIUS_VERSION=$SYLIUS_VERSION SYMFONY_VERSION=$SYMFONY_VERSION SYLIUS_STANDARD_VERSION=$SYLIUS_STANDARD_VERSION
 
 RUN cp -ra /opt/sylius/install/Application/. /var/www/html && \
     rm -rf /opt/sylius && \
