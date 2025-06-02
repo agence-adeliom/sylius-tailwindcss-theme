@@ -38,11 +38,10 @@ sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci insta
 sylius-standard-ci:
 	${COMPOSER_CI_ROOT} create-project sylius/sylius-standard ${TEST_DIRECTORY_CI} "${SYLIUS_VERSION}" --no-install --no-scripts
 	${COMPOSER_CI} config allow-plugins true
-	${COMPOSER_CI} require sylius/sylius:"${SYLIUS_VERSION}"
+	${COMPOSER_CI} require sylius/sylius="${SYLIUS_VERSION}" --no-scripts --no-install
 
 update-dependencies-ci:
 	${COMPOSER_CI} config extra.symfony.require "${SYMFONY_VERSION}"
-	${COMPOSER_CI} update --no-progress -n
 
 install-plugin-ci:
 	${COMPOSER_CI} config repositories.plugin '{"type": "path", "url": "../../"}'
