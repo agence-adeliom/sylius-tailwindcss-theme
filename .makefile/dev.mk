@@ -42,7 +42,7 @@ php.ini: php.ini.dist
 	ln -s php.ini.dist php.ini
 
 ${APP_DIR}:
-	(symfony composer create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_VERSION}" ${APP_DIR})
+	(symfony composer create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_STANDARD_VERSION}" ${APP_DIR})
 	cd ${APP_DIR} && chmod -R 777 public
 	echo "COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME}" >> ${APP_DIR}/.env
 	echo "NODE_VERSION=${NODE_VERSION}" >> ${APP_DIR}/.env
@@ -91,7 +91,9 @@ platform:
 		(cd ${APP_DIR} && sed -i'' -e 's|- "80:80"|- "$(DOCKER_PHP_PORT):80"\n        depends_on:\n            - php|g' compose.override.yml); \
 		(cd ${APP_DIR} && sed -i'' -e 's|            - public-media:/srv/sylius/public/media:ro,nocopy|            - public-media:/srv/sylius/public/media:ro,nocopy\n            - ../../:/srv/sylius/${PLUGIN_DIR}:rw|g' compose.override.yml); \
 		(cd ${APP_DIR} && sed -i'' -e 's|plugin-proposal-object-rest-spread|plugin-transform-object-rest-spread|g' .babelrc); \
+		(cd ${APP_DIR} && sed -i'' -e 's|module.exports = [shopConfig, adminConfig, appShopConfig, appAdminConfig];||g' webpack.config.js); \
 		(cd ${APP_DIR} && rm -rf compose.override.yml-e); \
+		(cd ${APP_DIR} && rm -rf webpack.config.js-e); \
 		(cd ${APP_DIR} && rm -rf composer.json-e); \
 		(cd ${APP_DIR} && rm -rf .babelrc-e); \
 		(cd ${APP_DIR} && echo "const tailwindTheme = require('./themes/TailwindTheme/webpack.config');" >> ./webpack.config.js); \
@@ -104,16 +106,17 @@ platform:
 		(cp postcss.config.mjs ${APP_DIR}/postcss.config.mjs); \
 	fi
 
-	#cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config github-oauth.github.com ${GITHUB_TOKEN})
+	${MAKE} platform_up
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config github-oauth.github.com ${GITHUB_TOKEN})
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config minimum-stability dev)
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config extra.symfony.allow-contrib true)
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config repositories.plugin '{"type": "path", "url": "../../"}')
-	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config extra.symfony.require "~${SYMFONY_VERSION}")
-	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer require --no-install --no-scripts --no-progress sylius/sylius="~${SYLIUS_VERSION}")
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer config extra.symfony.require "${SYMFONY_VERSION}")
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer require --no-install --no-scripts --no-progress sylius/sylius="${SYLIUS_VERSION}")
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer require --no-install --no-scripts --dev friendsoftwig/twigcs)
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer global config allow-plugins.${PLUGIN_NAME} true)
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer dump-autoload)
-	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer install --no-interaction --no-scripts --prefer-dist)
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm php composer install --no-interaction --no-scripts)
 	${MAKE} platform_up
 	${MAKE} platform_assets
 
@@ -122,7 +125,7 @@ platform_assets:
 	mkdir ${APP_DIR}/node_modules
 	rm -rf ${APP_DIR}/package-lock.json
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm install -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss")
-	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm nodejs)
+	cd ${APP_DIR} && (ENV=$(ENV) docker compose run --rm -i nodejs "npm run build:prod")
 
 platform_debug:
 	cd ${APP_DIR} && (ENV=$(ENV) docker compose -f compose.yml -f compose.override.yml -f compose.debug.yml up -d)
