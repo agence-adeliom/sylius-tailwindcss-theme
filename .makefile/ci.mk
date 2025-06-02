@@ -36,14 +36,12 @@ sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci insta
 .PHONY: sylius-ci
 
 sylius-standard-ci:
-	${COMPOSER_CI_ROOT} create-project sylius/sylius-standard ${TEST_DIRECTORY_CI} "~${SYLIUS_VERSION}" --no-install --no-scripts
+	${COMPOSER_CI_ROOT} create-project sylius/sylius-standard ${TEST_DIRECTORY_CI} "${SYLIUS_VERSION}" --no-install --no-scripts
 	${COMPOSER_CI} config allow-plugins true
-	#https://github.com/api-platform/core/issues/6226
-	${COMPOSER_CI} req api-platform/core:v2.7.16 --prefer-source --no-scripts --no-install
-	${COMPOSER_CI} require sylius/sylius:"~${SYLIUS_VERSION}"
+	${COMPOSER_CI} require sylius/sylius:"${SYLIUS_VERSION}"
 
 update-dependencies-ci:
-	${COMPOSER_CI} config extra.symfony.require "~${SYMFONY_VERSION}"
+	${COMPOSER_CI} config extra.symfony.require "${SYMFONY_VERSION}"
 	${COMPOSER_CI} update --no-progress -n
 
 install-plugin-ci:
@@ -63,8 +61,7 @@ endif
 	cp -r templates ${TEST_DIRECTORY_CI}/themes/TailwindTheme
 	cp composer.json ${TEST_DIRECTORY_CI}/themes/TailwindTheme
 	cp webpack.config.js ${TEST_DIRECTORY_CI}/themes/TailwindTheme
-	cp tailwind.config.js ${TEST_DIRECTORY_CI}
-	cp postcss.config.js ${TEST_DIRECTORY_CI}
+	cp postcss.config.mjs ${TEST_DIRECTORY_CI}
 	echo "const tailwindTheme = require('./themes/TailwindTheme/webpack.config');" >> ${TEST_DIRECTORY_CI}/webpack.config.js
 	echo "module.exports = [shopConfig, adminConfig, appShopConfig, appAdminConfig, tailwindTheme];" >> ${TEST_DIRECTORY_CI}/webpack.config.js
 	echo "            tailwindTheme:" >> ${TEST_DIRECTORY_CI}/config/packages/assets.yaml
@@ -79,15 +76,13 @@ install-sylius-ci:
 	${CONSOLE_CI} sylius:fixtures:load default -n
 	${CONSOLE_CI} doctrine:query:sql "UPDATE sylius_channel SET theme_name = 'agence-adeliom/sylius-tailwindcss-theme' WHERE id = 1"
 	${NPM_CI} install
-	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
-	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
+	${NPM_CI} install install -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss
 	${NPM_CI} run build:prod
 	${CONSOLE_CI} cache:clear
 
 install-sylius-docker:
 	${NPM_CI} install
-	${NPM_CI} install tailwindcss @fortawesome/fontawesome-free daisyui
-	${NPM_CI} install postcss-loader@^7.0.0 autoprefixer --save-dev
+	${NPM_CI} install -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss
 	${NPM_CI} run build:prod
 
 phpunit-configure-ci:
