@@ -31,17 +31,15 @@ phpunit-ci: phpunit-configure-ci phpunit-run-ci ## Run PHPUnit
 ### OTHER
 ### ¯¯¯¯¯¯
 
-sylius-ci: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-ci
-sylius-docker: sylius-standard-ci update-dependencies-ci install-plugin-ci install-theme-ci install-sylius-docker set-proxies
+sylius-ci: sylius-standard-ci install-plugin-ci install-theme-ci install-sylius-ci
+sylius-docker: sylius-standard-ci install-plugin-ci install-theme-ci install-sylius-docker set-proxies
 .PHONY: sylius-ci
 
 sylius-standard-ci:
 	${COMPOSER_CI_ROOT} create-project sylius/sylius-standard ${TEST_DIRECTORY_CI} "${SYLIUS_VERSION}" --no-install --no-scripts
 	${COMPOSER_CI} config allow-plugins true
-	${COMPOSER_CI} require sylius/sylius="${SYLIUS_VERSION}" --no-scripts --no-install
-
-update-dependencies-ci:
 	${COMPOSER_CI} config extra.symfony.require "${SYMFONY_VERSION}"
+	${COMPOSER_CI} require sylius/sylius="${SYLIUS_VERSION}" --no-scripts --no-install
 
 install-plugin-ci:
 	${COMPOSER_CI} config repositories.plugin '{"type": "path", "url": "../../"}'
@@ -49,7 +47,7 @@ install-plugin-ci:
 	${COMPOSER_CI} config extra.symfony.allow-contrib true
 	${COMPOSER_CI} config minimum-stability "dev"
 	${COMPOSER_CI} config prefer-stable true
-	${COMPOSER_CI} req ${PLUGIN_NAME}:* --prefer-source --no-scripts
+	${COMPOSER_CI} require ${PLUGIN_NAME}:* --prefer-source --no-scripts --with-all-dependencies
 
 install-theme-ci:
 ifneq ("$(wildcard install/Application)","")
@@ -75,7 +73,7 @@ install-sylius-ci:
 	${CONSOLE_CI} sylius:fixtures:load default -n
 	${CONSOLE_CI} doctrine:query:sql "UPDATE sylius_channel SET theme_name = 'agence-adeliom/sylius-tailwindcss-theme' WHERE id = 1"
 	${NPM_CI} install
-	${NPM_CI} install install -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss
+	${NPM_CI} install -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss
 	${NPM_CI} run build:prod
 	${CONSOLE_CI} cache:clear
 

@@ -18,9 +18,9 @@ jobs:
                 php:
                     - 8.2
                 sylius:
-                    - 2.0.0
+                    - "~2.0.0"
                 sylius_standard:
-                    - 2.0.0
+                    - "~2.0.0"
                 symfony:
                     - "~7.2.5"
                 node:
