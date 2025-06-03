@@ -47,6 +47,7 @@ install-plugin-ci:
 	${COMPOSER_CI} config extra.symfony.allow-contrib true
 	${COMPOSER_CI} config minimum-stability "dev"
 	${COMPOSER_CI} config prefer-stable true
+	rm install/Application/composer.lock || true
 	${COMPOSER_CI} require ${PLUGIN_NAME}:* --prefer-source --no-scripts --with-all-dependencies
 
 install-theme-ci:
