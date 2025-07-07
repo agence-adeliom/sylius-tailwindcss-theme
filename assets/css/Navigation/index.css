@@ -11,3 +11,9 @@
 .breadcrumb .breadcrumb-item.active {
     @apply text-primary;
 }
+.nav {
+    @apply gap-4 flex flex-col;
+    .nav-link {
+        @apply font-normal lg:hover:text-primary transition-all w-fit;
+    }
+}

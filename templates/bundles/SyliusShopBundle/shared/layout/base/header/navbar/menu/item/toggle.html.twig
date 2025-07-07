@@ -1,7 +1,5 @@
 {% set taxon = hookable_metadata.context.taxon %}
-
-<summary>
-    {# <a class="dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> #}
-        {{ taxon.name }}
-    {# </a> #}
-</summary>
+<div tabindex="{{ taxon.id }}" role="button" class="cusor-pointer">
+    {{ taxon.name }}
+    <i class="fa-solid fa-chevron-down"></i>
+</div>

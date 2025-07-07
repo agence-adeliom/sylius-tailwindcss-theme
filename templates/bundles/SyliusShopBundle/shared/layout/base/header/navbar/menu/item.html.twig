@@ -2,11 +2,11 @@
 
 {% for taxon in taxons %}
     {% if taxon.enabledChildren|length > 0 %}
-            <li>
-                <details>
-                    {% hook 'item#dropdown' with {taxon} %}
-                </details>
-            </li>
+        {# <li> #}
+        <li class="dropdown">
+            {% hook 'item#dropdown' with {taxon} %}
+        </li> 
+        {# </li> #}
     {% else %}
         {% if taxon.level == 1 %}
             {% hook 'item#link' with {taxon} %}

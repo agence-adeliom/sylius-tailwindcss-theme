@@ -13,3 +13,13 @@
 .rating-product:has(:checked) i {
     @apply text-primary
 }
+
+.page-item {
+    @apply font-semibold lg:hover:text-primary transition-all;
+    &.active {
+        @apply text-primary;
+    }
+    &.disabled {
+        @apply pointer-events-none opacity-60; 
+    }
+}

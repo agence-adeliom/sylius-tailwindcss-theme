@@ -1,4 +1,4 @@
-<div class="order-first col-span-full md:col-span-6 lg:col-span-3 flex gap-4 max-lg:flex-col">
+<div class="order-first col-span-full md:col-span-6 lg:col-span-3 flex gap-4 flex-col">
     <a href="{{ path('sylius_shop_homepage') }}" class="mb-4" aria-label="sylius logo">
         <div style="width: 10rem">
             {% include '@SyliusShop/shared/logo.html.twig' %}
@@ -7,6 +7,6 @@
 
     <div class="">
         &copy; {{ 'sylius.ui.your_store'|trans }}, {{ 'sylius.ui.powered_by'|trans }}
-        <a href="https://sylius.com" target="_blank" class="text-primary">Sylius</a> & <a href="https://adeliom.com" target="_blank" class="text-primary">Adeliom</a>.
+        <a href="https://sylius.com" target="_blank" class="btn-link">Sylius</a> & <a href="https://adeliom.com" target="_blank" class="btn-link">Adeliom</a>.
     </div>
 </div>

@@ -4,7 +4,7 @@
 
 <div class="relative" {{ attributes }}>
     <div {{ sylius_test_html_attribute('cart-button') }}>
-        <button class="flex items-center gap-2 px-0 relative" js-cart-opener>
+        <button class="flex items-center gap-2 px-0 relative cursor-pointer lg:hover:text-primary transition-all" js-cart-opener>
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="hidden lg:block ps-1" {{ sylius_test_html_attribute('cart-total') }}>
             {{- money.convertAndFormat(cart.itemsTotal) -}}
