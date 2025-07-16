@@ -3,7 +3,7 @@
 
 <div class="flex items-center gap-4">
     <div style="width: 6rem;">
-        <div class="overflow-auto bg-light rounded-3 aspect-[3/4]">
+        <div class="overflow-hidden rounded aspect-[3/4]">
             {{ component('sylius_shop:main_image', {
                 product: variant.hasImages ? variant : product,
                 class: "w-full h-full object-cover",

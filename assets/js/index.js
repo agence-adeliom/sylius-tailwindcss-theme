@@ -26,6 +26,31 @@ import '@fortawesome/fontawesome-free/scss/brands.scss';
 import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Toggle
+  const toggleMenu = document.querySelector('[js-toggle-menu]');
+  const menu = document.querySelector('[js-menu]');
+  const closeMenu = document.querySelector('[js-close-menu]');
+  const backdropMenu = document.querySelector('[js-menu-backdrop]');
+  console.log(menu);
+  if (toggleMenu && menu && window.innerWidth < 1024) {
+    toggleMenu.addEventListener('click', () => {
+      menu.classList.toggle('is-open');
+    })
+    closeMenu.addEventListener('click', () => {
+      closeMenuFct(menu);
+    })
+    backdropMenu.addEventListener('click', () => {
+      closeMenuFct(menu);
+    })
+  }
+
+const closeMenuFct = (menu) => {
+  if (menu.classList.contains('is-open')) {
+    menu.classList.remove('is-open');
+  }   
+}
+  
+
   // Add to cart
   document.querySelectorAll('[data-js-add-to-cart="form"]')
     .forEach(el => SyliusAddToCart(el));

@@ -1,5 +1,5 @@
 {% set taxon = hookable_metadata.context.taxon %}
-<div tabindex="{{ taxon.id }}" role="button" class="cusor-pointer">
+<div tabindex="{{ taxon.id }}" role="button" class="cursor-pointer">
     {{ taxon.name }}
-    <i class="fa-solid fa-chevron-down"></i>
+    <i class="fa-solid fa-chevron-down max-lg:!hidden"></i>
 </div>

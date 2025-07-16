@@ -1,4 +1,4 @@
-<div class="col-span-1" {{ sylius_test_html_attribute('product', '%s'|format(product.code)) }} >
+{# <div class="col-span-1" {{ sylius_test_html_attribute('product', '%s'|format(product.code)) }} >
     <a class="link-reset" href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" {{ sylius_test_html_attribute('product-content') }} aria-label="{{ product.name }}">
         <div class="mb-4">
             <div class="overflow-hidden bg-light rounded-sm aspect-3/4">
@@ -15,4 +15,9 @@
             <span class="text-lg">{{ component('sylius_shop:product:card:price', {variant: variant, template: '@SyliusShop/product/common/price.html.twig'}) }}</span>
         </div>
     {% endif %}
+</div> #}
+
+<div {{ sylius_test_html_attribute('product', '%s'|format(product.code)) }} class="group">
+    {% hook 'card' with {_prefixes: ['sylius_shop.shared.product']} %}
 </div>
+
