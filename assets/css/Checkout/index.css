@@ -1,5 +1,9 @@
 @reference '../main.css';
 
+.steps {
+    @apply my-4;
+}
+
 .steps .steps-item-active a {
     @apply text-primary
 }
@@ -10,4 +14,8 @@
 
 .tunnelHeight {
    @apply min-h-[calc(100vh-84px)]
+}
+
+.steps.steps-complete {
+    @apply justify-center;
 }
