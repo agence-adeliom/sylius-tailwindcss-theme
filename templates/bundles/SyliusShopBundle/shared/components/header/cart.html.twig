@@ -11,7 +11,7 @@
                 {{- 'sylius.ui.item.choice'|trans({'%count%': cart.totalQuantity}) }}
         </span>
             {% if cart.totalQuantity > 0 %}
-                <span class="absolute top-1/2 text-xs w-4 h-4 flex itesm-center justify-center left-2 bg-primary rounded-full">
+                <span class="absolute text-primary-content top-1/2 text-xs w-4 h-4 flex itesm-center justify-center left-2 bg-primary rounded-full">
                     {{ cart.totalQuantity }}
                 </span>
             {% endif %}

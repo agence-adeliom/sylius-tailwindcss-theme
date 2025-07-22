@@ -11,7 +11,7 @@
 </div> #}
 
 
-<div class="container mb-6" role="region" aria-labelledby="{{ hookable_metadata.configuration['test_attribute']|default('latest-products') ~ '-heading' }}">
+<div class="container mt-10 mb-6" role="region" aria-labelledby="{{ hookable_metadata.configuration['test_attribute']|default('latest-products') ~ '-heading' }}">
     <h2 class="heading-4 mb-5" id="{{ hookable_metadata.configuration['test_attribute']|default('latest-products') ~ '-heading' }}">{{ hookable_metadata.configuration.title|default('sylius.ui.latest_products')|trans }}</h2>
 
     <div {{ sylius_test_html_attribute(hookable_metadata.configuration.test_attribute|default('latest-products')) }}>
