@@ -43,7 +43,7 @@ jobs:
                 with:
                     node-version: '${{ matrix.node }}'
             -
-                uses: actions/checkout@v4
+                uses: actions/checkout@v5
             -
                 name: 'Composer - Get Cache Directory'
                 id: composer-cache
