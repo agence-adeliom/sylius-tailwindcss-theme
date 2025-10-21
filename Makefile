@@ -12,7 +12,7 @@ SYLIUS_STANDARD_VERSION="2.0.0"
 SYLIUS_VERSION="~v2.0.8"
 SYMFONY_VERSION="v7.2.5"
 NODE_VERSION=20
-COMPOSE_PROJECT_NAME=sylius-happy-cms-plugin
+COMPOSE_PROJECT_NAME=sylius-tailwind-plugin
 
 PLUGIN_NAME=agence-adeliom/sylius-tailwindcss-theme
 PLUGIN_DIR=themes/TailwindTheme

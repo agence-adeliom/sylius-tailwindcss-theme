@@ -1,8 +1,6 @@
 ## Manual installation
 
-#### 1. Copy files from the repository to `./themes/TailwindTheme`
-
-Files/folders to copy:
+#### 1. Create a folder `./themes/TailwindTheme` and copy the following files from the repository :
 
 -   `assets`
 -   `templates`
@@ -21,6 +19,7 @@ $ yarn add -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fon
 ```diff
 * Encore.reset();
 + const tailwindTheme = require('./themes/TailwindTheme/webpack.config');
++ Encore.reset();
 
 // ...
 

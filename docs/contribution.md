@@ -17,7 +17,7 @@ https://getcomposer.org/doc/articles/authentication-for-private-packages.md#gith
 
 ### Run theme plugin test
 
-`make tests.all`
+`make test.all`
 
 ### List all available commands
 
