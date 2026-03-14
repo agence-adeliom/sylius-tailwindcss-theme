@@ -1,0 +1,34 @@
+{% macro accordion(items, open = false, auto_close = null, flush = false) %}
+
+    {% set auto_close = auto_close|default(true) %}
+    {% set id = id|default(random()) %}
+    {% set input_type = auto_close ? 'radio' : 'checkbox' %}
+
+    <div class="join join-vertical w-full" id="{{ id }}">
+        {% for item in items %}
+            {% set item = {
+                'open': open,
+                'flag': null,
+                'icon': null,
+            }|merge(item) %}
+
+            <div class="collapse collapse-arrow join-item border border-base-300">
+                <input type="{{ input_type }}" name="{{ id }}" {% if item.open == true %}checked{% endif %} />
+                <div class="collapse-title font-medium">
+                    <span class="flex gap-2 items-center">
+                        {% if item.flag %}
+                            <span class="flag flag-country-{{ item.flag }}"></span>
+                        {% endif %}
+                        {% if item.icon %}
+                            <span class="flex items-center">{{ ux_icon(item.icon) }}</span>
+                        {% endif %}
+                        {{ item.title|default('Title') }}
+                    </span>
+                </div>
+                <div class="collapse-content">
+                    {{ item.content|default('Content') }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endmacro %}

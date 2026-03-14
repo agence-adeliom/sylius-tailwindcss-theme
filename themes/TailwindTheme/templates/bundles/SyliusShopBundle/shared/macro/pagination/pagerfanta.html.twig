@@ -1,0 +1,51 @@
+{%- extends '@BabDevPagerfanta/default.html.twig' -%}
+
+{%- block pager_widget -%}
+    <ul class="flex justify-center mt-4 lg:my-10 gap-1">
+        {{- block('pager') -}}
+    </ul>
+{%- endblock pager_widget -%}
+
+{%- block page_link -%}
+    <li><a class="join-item btn btn-sm" href="{{- path -}}" {{ sylius_test_html_attribute('page', page)}}>{{- page -}}</a></li>
+{%- endblock page_link -%}
+
+{%- block current_page_link -%}
+    <li><span {{ sylius_test_html_attribute('current-page')}} class="join-item btn btn-sm btn-active">{{- page -}}</span></li>
+{%- endblock current_page_link -%}
+
+{%- block previous_page_link -%}
+    <li>
+        <a class="join-item btn btn-sm" href="{{- path -}}" rel="prev">
+            {{ ux_icon('tabler:chevron-left') }} {{- block('previous_page_message') -}}
+        </a>
+    </li>
+{%- endblock previous_page_link -%}
+
+{%- block previous_page_link_disabled -%}
+    <li>
+        <span class="join-item btn btn-sm btn-disabled">
+            {{ ux_icon('tabler:chevron-left') }} {{- block('previous_page_message') -}}
+        </span>
+    </li>
+{%- endblock previous_page_link_disabled -%}
+
+{%- block next_page_link -%}
+    <li>
+        <a class="join-item btn btn-sm" href="{{- path -}}" rel="next">
+            {{- block('next_page_message') -}} {{ ux_icon('tabler:chevron-right') }}
+        </a>
+    </li>
+{%- endblock next_page_link -%}
+
+{%- block next_page_link_disabled -%}
+    <li>
+        <span class="join-item btn btn-sm btn-disabled">
+            {{- block('next_page_message') -}} {{ ux_icon('tabler:chevron-right') }}
+        </span>
+    </li>
+{%- endblock next_page_link_disabled -%}
+
+{%- block ellipsis -%}
+    <li><span class="join-item btn btn-sm btn-disabled">&hellip;</span></li>
+{%- endblock ellipsis -%}

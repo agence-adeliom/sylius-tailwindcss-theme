@@ -61,8 +61,6 @@
             "vendor/bin/console assets:install"
         ],
         "specific-plugin": [
-            "cd vendor/sylius/test-application && yarn install && yarn build",
-            "vendor/bin/console assets:install"
         ],
         "test-app-init": [
             "@database-reset",
