@@ -1,74 +1,129 @@
 <p align="center">
-    <img width="40%" src="./docs/medias/sylius.svg" />
-    <h1 align="center">SyliusTailwindcssTheme</h1>
-    <p align="center">A Sylius theme powered by Tailwindcss, DaisyUI with build process based on <a target="_blank" href="https://symfony.com/doc/current/frontend.html">Webpack Encore.</a>
-    <br/>By <a target="_blank" href="https://www.adeliom.com">Adeliom</a></p>
+    <a href="https://sylius.com" target="_blank">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://media.sylius.com/sylius-logo-800-dark.png">
+          <source media="(prefers-color-scheme: light)" srcset="https://media.sylius.com/sylius-logo-800.png">
+          <img alt="Sylius Logo." src="https://media.sylius.com/sylius-logo-800.png">
+        </picture>
+    </a>
 </p>
 
-[//]: # (<p align="center">)
-[//]: # (    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />)
-[//]: # (</p>)
+<h1 align="center">Plugin Skeleton</h1>
 
-### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
-### NEW ✨ Compatible with Sylius 2.0
-
-## Introduction
-
-- A new Sylius front-end alternative based on Tailwindcss and daisyUI
-- Pure CSS UI components
-- Create themes with zero effort
-- Only `5kB` of Javascript & `45kB` of CSS
-- Start your Sylius projects with an optimized code : 💯 in Lighthouse page load report
-## Preview
-
-<a href="./docs/medias/home1.png" target="_blank">
-    <img src="./docs/medias/home1.png" align="center" height="50%">
-</a>
-
-### [View more](./docs/screenshots.md)
-
-### Performance tests
-
-<details>
-    <summary>Desktop</summary>
-    <hr>
-    <a href="./docs/medias/notes_desktop.png" target="_blank">
-        <img src="./docs/medias/notes_desktop.png" align="center">
-    </a>
-</details>
-
-<details>
-    <summary>Mobile</summary>
-    <hr>
-    <a href="./docs/medias/notes_mobile.png" target="_blank">
-        <img src="./docs/medias/notes_mobile.png" align="center">
-    </a>
-</details>
+<p align="center">Skeleton for starting Sylius plugins.</p>
 
 ## Documentation
 
-[Documentation is available in the *docs* folder.](docs/index.md)
+For a comprehensive guide on Sylius Plugins development please go to Sylius documentation,
+there you will find the <a href="https://docs.sylius.com/plugins-development-guide/how-to-create-a-plugin-for-sylius">Plugin Development Guide</a> - it's a great place to start.
 
-## Bug Tracking
+For more information about the **Test Application** included in the skeleton, please refer to the [Sylius documentation](https://docs.sylius.com/plugins-development-guide/test-application).
 
-If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/agence-adeliom/sylius-tailwindcss-theme/issues).
+## Quickstart Installation
 
-## Contribution
+Run `composer create-project sylius/plugin-skeleton ProjectName`.
 
-[Documentation is available in the *docs/contribution.md* file.](docs/contribution.md)
+### Traditional
 
-## Authors
+1. From the plugin skeleton root directory, run the following commands:
 
-The theme was created by [Adeliom](https://www.adeliom.com).
+    ```bash
+    (cd vendor/sylius/test-application && yarn install)
+    (cd vendor/sylius/test-application && yarn build)
+    vendor/bin/console assets:install
+   
+    vendor/bin/console doctrine:database:create
+    vendor/bin/console doctrine:migrations:migrate -n
+    # Optionally load data fixtures
+    vendor/bin/console sylius:fixtures:load -n
+    ```
 
-Thanks to [@djacquemard](https://github.com/djacquemard) [@BaptisteAdeliom](https://github.com/BaptisteAdeliom) [@hschuhler](https://github.com/hschuhler) [@jeromeengeln](https://github.com/jeromeengeln) [@arnaud-ritti](https://github.com/arnaud-ritti)
+To be able to set up a plugin's database, remember to configure your database credentials in `tests/TestApplication/.env` and `tests/TestApplication/.env.test`.
 
-And was originally inspired by [Sylius community BootstrapTheme](https://github.com/SyliusCrafts/BootstrapTheme).
+2. Run your local server:
 
-[//]: # ([![]&#40;https://contrib.rocks/image?repo=agence-adeliom/sylius-tailwindcss-theme&#41;]&#40;https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors&#41;)
+      ```bash
+      symfony server:ca:install
+      symfony server:start -d
+      ```
 
-## License
+3. Open your browser and navigate to `https://localhost:8000`.
 
-This theme uses [MIT License](LICENSE.md).
+### Docker
 
+1. Execute `make init` to initialize the container and install the dependencies.
 
+2. Execute `make database-init` to create the database and run migrations.
+
+3. (Optional) Execute `make load-fixtures` to load the fixtures.
+
+4. Your app is available at `http://localhost`.
+
+## Usage
+
+### Running plugin tests
+
+  - PHPUnit
+
+    ```bash
+    vendor/bin/phpunit
+    ```
+
+  - Behat (non-JS scenarios)
+
+    ```bash
+    vendor/bin/behat --strict --tags="~@javascript&&~@mink:chromedriver"
+    ```
+
+  - Behat (JS scenarios)
+ 
+    1. [Install Symfony CLI command](https://symfony.com/download).
+ 
+    2. Start Headless Chrome:
+    
+      ```bash
+      google-chrome-stable --enable-automation --disable-background-networking --no-default-browser-check --no-first-run --disable-popup-blocking --disable-default-apps --allow-insecure-localhost --disable-translate --disable-extensions --no-sandbox --enable-features=Metal --headless --remote-debugging-port=9222 --window-size=2880,1800 --proxy-server='direct://' --proxy-bypass-list='*' http://127.0.0.1
+      ```
+    
+    3. Install SSL certificates (only once needed) and run test application's webserver on `127.0.0.1:8080`:
+    
+      ```bash
+      symfony server:ca:install
+      APP_ENV=test symfony server:start --port=8080 --daemon
+      ```
+    
+    4. Run Behat:
+    
+      ```bash
+      vendor/bin/behat --strict --tags="@javascript,@mink:chromedriver"
+      ```
+    
+  - Static Analysis
+      
+    - PHPStan
+    
+      ```bash
+      vendor/bin/phpstan analyse -c phpstan.neon -l max src/  
+      ```
+
+  - Coding Standard
+  
+    ```bash
+    vendor/bin/ecs check
+    ```
+
+### Opening Sylius with your plugin
+
+- Using `test` environment:
+
+    ```bash
+    APP_ENV=test vendor/bin/console sylius:fixtures:load -n
+    APP_ENV=test symfony server:start -d
+    ```
+    
+- Using `dev` environment:
+
+    ```bash
+    vendor/bin/console sylius:fixtures:load -n
+    symfony server:start -d
+    ```

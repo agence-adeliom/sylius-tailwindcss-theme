@@ -5,42 +5,69 @@
     "description": "Tailwindcss and daisyUI Theme for Sylius",
     "license": "MIT",
     "authors": [
-        {
-            "name": "Community contributions",
-            "homepage": "https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors"
-        }
+      {
+        "name": "Community contributions",
+        "homepage": "https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors"
+      }
     ],
     "require": {
-        "php": "~8.2|~8.3|~8.4",
-        "symfony/webpack-encore-bundle": "^1.12 || ^2.0",
-        "ext-json": "*",
-        "ext-intl": "*",
-        "ext-exif": "*",
-        "sylius/sylius": "^2.0"
+        "php": "^8.2",
+        "sylius/sylius": "^2.0",
+        "sylius/theme-bundle": "^2.5"
     },
     "require-dev": {
-        "friendsoftwig/twigcs": "^6.5"
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\TailwindTheme\\": "tests/PHPUnit/"
-        }
-    },
-    "extra": {
-        "sylius-theme": {
-            "title": "Sylius Tailwind Theme"
-        },
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        }
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": true,
-            "symfony/runtime": true,
-            "symfony/thanks": true
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "php-http/discovery": false,
+            "phpstan/extension-installer": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        },
+        "symfony": {
+            "require": "^7.4 || ^8.0"
+        },
+        "public-dir": "vendor/sylius/test-application/public"
+    },
+    "autoload": {
+        "psr-4": {
+            "Adeliom\\SyliusTailwindcssPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Adeliom\\SyliusTailwindcssPlugin\\": [
+                "tests/",
+                "tests/TestApplication/src/"
+            ]
+        }
+    },
+    "scripts": {
+        "database-reset": [
+            "vendor/bin/console doctrine:database:drop --force --if-exists",
+            "vendor/bin/console doctrine:database:create",
+            "vendor/bin/console doctrine:migration:migrate -n",
+            "vendor/bin/console sylius:fixtures:load -n"
+        ],
+        "frontend-clear": [
+            "cd vendor/sylius/test-application && yarn install && yarn build",
+            "vendor/bin/console assets:install"
+        ],
+        "specific-plugin": [
+            "cd vendor/sylius/test-application && yarn install && yarn build",
+            "vendor/bin/console assets:install"
+        ],
+        "test-app-init": [
+            "@database-reset",
+            "@frontend-clear",
+            "@specific-plugin"
+        ]
     }
 }

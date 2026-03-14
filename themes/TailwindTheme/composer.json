@@ -1,0 +1,16 @@
+{
+    "name": "agence-adeliom/sylius-tailwindcss-plugin",
+    "description": "Tailwind MX theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adeliom",
+            "email": "dev@adeliom.com"
+        }
+    ],
+    "extra": {
+        "sylius-theme": {
+            "title": "Tailwind MX theme"
+        }
+    }
+}
