@@ -1,4 +1,9 @@
 @import "tailwindcss";
+
+@source "../../templates/**/*.twig";
+@source "../../templates/**/*.html";
+@source "../**/*.js";
+
 @plugin "daisyui" {
     themes: light --default, dark --prefersdark;
 }
