@@ -98,7 +98,7 @@
 /*@import url("./Layout/index.css");*/
 
 /*!* Typography *!*/
-/*@import url("./Typography/index.css");*/
+@import url("./Typography/index.css");
 
 /*!* Action *!*/
 /*@import url("./Action/index.css");*/
