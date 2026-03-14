@@ -8,7 +8,7 @@
     default: true;
     --color-accent: #1A866B;
     --color-accent-content: "#000000";
-    --color-primary-dark: #1A866B; 
+    --color-primary-dark: #1A866B;
     --color-primary: #22b99a;
     --color-primary-content: #ffffff;
     --color-secondary-dark: #002270;
@@ -89,30 +89,30 @@
 /* Fonts */
 @import url("./Fonts/index.css");
 
-/* Layout */
-@import url("./Layout/index.css");
+/*!* Layout *!*/
+/*@import url("./Layout/index.css");*/
 
-/* Typography */
-@import url("./Typography/index.css");
+/*!* Typography *!*/
+/*@import url("./Typography/index.css");*/
 
-/* Action */
-@import url("./Action/index.css");
+/*!* Action *!*/
+/*@import url("./Action/index.css");*/
 
-/* Checkout */
-@import url("./Checkout/index.css");
+/*!* Checkout *!*/
+/*@import url("./Checkout/index.css");*/
 
-/* Feedback */
-@import url("./Feedback/index.css");
+/*!* Feedback *!*/
+/*@import url("./Feedback/index.css");*/
 
-/* Utils */
-@import url("./Utils/index.css");
+/*!* Utils *!*/
+/*@import url("./Utils/index.css");*/
 
-/* Form */
-@import url("./Forms/index.css");
+/*!* Form *!*/
+/*@import url("./Forms/index.css");*/
 
-/* Product page */
-@import url("./Product/index.css");
+/*!* Product page *!*/
+/*@import url("./Product/index.css");*/
 
-/* Navigation page */
-@import url("./Navigation/index.css");
+/*!* Navigation page *!*/
+/*@import url("./Navigation/index.css");*/
 
