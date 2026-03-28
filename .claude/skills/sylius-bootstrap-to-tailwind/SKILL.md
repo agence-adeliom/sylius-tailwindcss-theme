@@ -5,18 +5,18 @@ description: Use when converting Sylius ShopBundle Twig templates from Bootstrap
 
 # Sylius Bootstrap → Tailwind CSS / daisyUI
 
-Référence complète des correspondances : voir `reference.md` dans ce même dossier.
+Full mapping reference: see `reference.md` in this same folder.
 
-## Règles fondamentales
+## Fundamental rules
 
-- Ne **jamais** modifier la logique métier Twig (blocs, variables, includes, filtres Sylius)
-- Conserver intacts les attributs Symfony UX Live : `data-controller`, `data-model`, `data-live-*`
-- Conserver `sylius_template_event()` sans modification
-- Utiliser **daisyUI** pour les composants interactifs (modal, dropdown, accordéon) → moins de JS custom
-- Utiliser la classe **`heading`** pour tous les titres `h1`–`h6` (typographie + SEO)
-- Compatibilité cible : **Sylius 2.0**
+- **Never** modify Twig business logic (blocks, variables, includes, Sylius filters)
+- Keep Symfony UX Live attributes intact: `data-controller`, `data-model`, `data-live-*`
+- Keep `sylius_template_event()` unmodified
+- Use **daisyUI** for interactive components (modal, dropdown, accordion) → less custom JS
+- Use the **`heading`** class for all `h1`–`h6` headings (typography + SEO)
+- Target compatibility: **Sylius 2.0**
 
-## Correspondances clés (quick reference)
+## Key mappings (quick reference)
 
 | Bootstrap | Tailwind / daisyUI |
 |-----------|-------------------|
@@ -36,25 +36,25 @@ Référence complète des correspondances : voir `reference.md` dans ce même do
 | `display-4` | `text-5xl font-bold` |
 | `lead` | `text-lg text-base-content/70` |
 
-→ Pour toutes les correspondances (typographie, grille, badges, formulaires, navigation) : voir `reference.md`
+→ For all mappings (typography, grid, badges, forms, navigation): see `reference.md`
 
-## Composants interactifs — Décisions
+## Interactive components — Decisions
 
-| Besoin | Solution |
-|--------|----------|
-| Modal Bootstrap (`data-bs-toggle`) | `<dialog class="modal">` + `showModal()` |
-| Accordion Bootstrap | daisyUI `collapse` + `input[type=checkbox]` |
-| Dropdown Bootstrap | daisyUI `dropdown` + `menu` |
-| Pagination pagerfanta | `join` + `join-item btn btn-sm` |
-| Formulaires Sylius (`form_themes`) | Créer un form theme Twig, référencer dans `twig.yaml` |
+| Need | Solution |
+|------|----------|
+| Bootstrap modal (`data-bs-toggle`) | `<dialog class="modal">` + `showModal()` |
+| Bootstrap accordion | daisyUI `collapse` + `input[type=checkbox]` |
+| Bootstrap dropdown | daisyUI `dropdown` + `menu` |
+| Pagerfanta pagination | `join` + `join-item btn btn-sm` |
+| Sylius forms (`form_themes`) | Create a Twig form theme, reference in `twig.yaml` |
 
-## Erreurs fréquentes
+## Common mistakes
 
-| Erreur | Correction |
-|--------|------------|
-| Supprimer `data-controller` d'un Live Component | Ne jamais toucher aux attributs Symfony UX |
-| `text-2xl font-bold` pour un titre | Utiliser `class="heading"` |
-| Recoder un modal en JS custom | Utiliser `<dialog class="modal">` daisyUI |
-| Modifier la logique d'un bloc Twig | Seulement les classes CSS, jamais la logique |
-| Oublier `mx-auto` sur `container` | Bootstrap centrait auto, pas Tailwind |
-| Modifier `sylius_price` ou `sylius_format_money` | Conserver ces filtres intacts |
+| Mistake | Correction |
+|---------|------------|
+| Removing `data-controller` from a Live Component | Never touch Symfony UX attributes |
+| Using `text-2xl font-bold` for a heading | Use `class="heading"` |
+| Recoding a modal in custom JS | Use daisyUI `<dialog class="modal">` |
+| Modifying Twig block logic | Only CSS classes, never the logic |
+| Forgetting `mx-auto` on `container` | Bootstrap auto-centered, Tailwind does not |
+| Modifying `sylius_price` or `sylius_format_money` | Keep these filters intact |

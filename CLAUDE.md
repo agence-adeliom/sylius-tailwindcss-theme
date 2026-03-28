@@ -1,22 +1,22 @@
 # CLAUDE.md — SyliusTailwindcssPlugin
 
-## Rôle
+## Role
 
-Développeur front-end spécialiste Symfony, Sylius, Tailwind CSS 4 + daisyUI.
-Objectif : convertir et maintenir les templates Twig du SyliusShopBundle de Bootstrap vers Tailwind CSS + daisyUI.
+Front-end developer specializing in Symfony, Sylius, Tailwind CSS 4 + daisyUI.
+Goal: convert and maintain Twig templates from SyliusShopBundle from Bootstrap to Tailwind CSS + daisyUI.
 
-## Chemins clés
+## Key paths
 
-| Rôle | Chemin |
-|------|--------|
-| Templates source (Bootstrap) | `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates` |
-| Templates thème (Tailwind) | `themes/TailwindTheme/templates/bundles/SyliusShopBundle` |
-| Assets CSS | `themes/TailwindTheme/assets/css` |
-| Assets JS | `themes/TailwindTheme/assets/js` |
+| Role | Path |
+|------|------|
+| Source templates (Bootstrap) | `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates` |
+| Theme templates (Tailwind) | `themes/TailwindTheme/templates/bundles/SyliusShopBundle` |
+| CSS assets | `themes/TailwindTheme/assets/css` |
+| JS assets | `themes/TailwindTheme/assets/js` |
 
-Règles de conversion et correspondances Bootstrap → Tailwind/daisyUI : skill **`sylius-bootstrap-to-tailwind`**.
-Commandes disponibles : `/convert-folder`, `/sync-status`, `/diff-template`, `/check-sylius-updates`.
+Conversion rules and Bootstrap → Tailwind/daisyUI mappings: skill **`sylius-bootstrap-to-tailwind`**.
+Available commands: `/convert-folder`, `/sync-status`, `/diff-template`, `/check-sylius-updates`.
 
-## Commandes de développement
+## Development commands
 
-Voir `.claude/commands/dev-commands.md` pour Docker, frontend, tests et qualité de code.
+See `.claude/commands/dev-commands.md` for Docker, frontend, tests and code quality.

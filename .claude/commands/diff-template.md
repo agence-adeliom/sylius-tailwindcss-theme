@@ -1,16 +1,16 @@
-# Comparer un template source avec sa version Tailwind
+# Compare a source template with its Tailwind version
 
-Affiche les différences entre le template Bootstrap source et sa version Tailwind convertie pour `$ARGUMENTS`.
+Shows the differences between the Bootstrap source template and its converted Tailwind version for `$ARGUMENTS`.
 
-`$ARGUMENTS` = chemin relatif du template depuis la racine des templates, ex: `checkout/summary/content/main/items.html.twig`
+`$ARGUMENTS` = relative path of the template from the templates root, e.g. `checkout/summary/content/main/items.html.twig`
 
-## Étapes
+## Steps
 
-1. Lire le template source : `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates/$ARGUMENTS`
-2. Lire le template converti : `themes/TailwindTheme/templates/bundles/SyliusShopBundle/$ARGUMENTS`
-3. Analyser les différences :
-   - Classes CSS modifiées (Bootstrap → Tailwind)
-   - Structure HTML modifiée
-   - Logique Twig conservée ou modifiée
-4. Signaler si des classes Bootstrap résiduelles sont présentes dans le template converti
-5. Suggérer des améliorations si nécessaire
+1. Read the source template: `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates/$ARGUMENTS`
+2. Read the converted template: `themes/TailwindTheme/templates/bundles/SyliusShopBundle/$ARGUMENTS`
+3. Analyze the differences:
+   - Modified CSS classes (Bootstrap → Tailwind)
+   - Modified HTML structure
+   - Twig logic preserved or modified
+4. Report any residual Bootstrap classes present in the converted template
+5. Suggest improvements if necessary

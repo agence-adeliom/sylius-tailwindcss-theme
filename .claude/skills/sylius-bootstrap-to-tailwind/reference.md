@@ -1,13 +1,13 @@
-# Référence complète Bootstrap → Tailwind CSS / daisyUI
+# Full Bootstrap → Tailwind CSS / daisyUI Reference
 
-## Classes utilitaires
+## Utility classes
 
 | Bootstrap | Tailwind |
 |-----------|----------|
 | `text-end` / `text-start` | `text-right` / `text-left` |
 | `me-{n}` / `ms-{n}` | `mr-{n}` / `ml-{n}` |
 | `me-auto` / `ms-auto` | `mr-auto` / `ml-auto` |
-| `mb-3`, `mb-5`, `gap-2`, `gap-4`, `p-0`, `m-0` | identiques (Tailwind) |
+| `mb-3`, `mb-5`, `gap-2`, `gap-4`, `p-0`, `m-0` | identical (Tailwind) |
 | `fw-bold` / `fw-medium` / `fw-semibold` | `font-bold` / `font-medium` / `font-semibold` |
 | `text-nowrap` | `whitespace-nowrap` |
 | `text-body-tertiary` | `text-base-content/60` |
@@ -22,13 +22,13 @@
 | `position-relative z-1` | `relative z-10` |
 | `bg-white` / `bg-light` | `bg-base-100` / `bg-base-200` |
 | `border-bottom` / `border-top` | `border-b` / `border-t` |
-| `rounded` | `rounded` (identique) |
+| `rounded` | `rounded` (identical) |
 | `rounded-pill` | `rounded-full` |
 | `img-fluid` | `max-w-full h-auto` |
 | `container` | `container mx-auto` |
 | `container d-flex flex-column align-items-center` | `container mx-auto flex flex-col items-center` |
 
-## Typographie
+## Typography
 
 | Bootstrap | Tailwind |
 |-----------|----------|
@@ -37,17 +37,17 @@
 | `lead` | `text-lg text-base-content/70` |
 | `small` / `<small>` | `text-sm` |
 
-## Grille
+## Grid
 
 | Bootstrap | Tailwind |
 |-----------|----------|
-| `row` | `grid` ou `flex flex-wrap` (selon contexte) |
-| `col-*` | `col-span-*` ou `w-*` (flex) |
+| `row` | `grid` or `flex flex-wrap` (depending on context) |
+| `col-*` | `col-span-*` or `w-*` (flex) |
 | `col-12` | `w-full` |
-| `col-md-6` | `md:col-span-6` ou `md:w-1/2` |
+| `col-md-6` | `md:col-span-6` or `md:w-1/2` |
 | `g-3` | `gap-3` |
 
-## Badges & Alertes
+## Badges & Alerts
 
 | Bootstrap | daisyUI |
 |-----------|---------|
@@ -70,7 +70,7 @@
 | `card-title` | `card-title` |
 | `card-header` | `<div class="font-bold text-base mb-2">` |
 
-## Boutons
+## Buttons
 
 | Bootstrap | daisyUI |
 |-----------|---------|
@@ -80,29 +80,29 @@
 | `btn btn-sm btn-danger` | `btn btn-sm btn-error` |
 | `btn btn-sm btn-outline-danger` | `btn btn-sm btn-outline btn-error` |
 
-## Formulaires
+## Forms
 
 | Bootstrap | daisyUI |
 |-----------|---------|
-| `form-control` | `input input-bordered` ou `textarea textarea-bordered` |
+| `form-control` | `input input-bordered` or `textarea textarea-bordered` |
 | `form-select` | `select select-bordered` |
 | `form-check-input` (checkbox) | `checkbox` |
 | `form-check-input` (radio) | `radio` |
 | `form-label` | `label` > `<span class="label-text">` |
 | `input-group` | `join` |
 
-### Formulaires Sylius (form_themes)
+### Sylius forms (form_themes)
 
-Les formulaires Sylius utilisent des classes Bootstrap via `form_themes`. Pour les overrider avec Tailwind :
-1. Créer un form theme Twig dans `themes/TailwindTheme/templates/form/`
-2. Le référencer dans `config/packages/twig.yaml` sous `form_themes`
+Sylius forms use Bootstrap classes via `form_themes`. To override them with Tailwind:
+1. Create a Twig form theme in `themes/TailwindTheme/templates/form/`
+2. Reference it in `config/packages/twig.yaml` under `form_themes`
 
-## Tableaux
+## Tables
 
 | Bootstrap | daisyUI |
 |-----------|---------|
 | `table table-striped` | `table table-zebra` |
-| `table table-hover` | `table` (hover natif daisyUI) |
+| `table table-hover` | `table` (native daisyUI hover) |
 
 ## Navigation
 
@@ -110,43 +110,43 @@ Les formulaires Sylius utilisent des classes Bootstrap via `form_themes`. Pour l
 |-----------|---------|
 | `nav nav-tabs` | `tabs` |
 | `nav-link active` | `tab tab-active` |
-| `list-group` | `menu` ou `ul` avec classes Tailwind |
-| `list-group-item` | `li` (dans `menu`) |
+| `list-group` | `menu` or `ul` with Tailwind classes |
+| `list-group-item` | `li` (inside `menu`) |
 
-## Composants interactifs
+## Interactive components
 
 ### Modal
 
-Bootstrap : `data-bs-toggle="modal"` + `data-bs-target`
-daisyUI : `<dialog class="modal">` + `showModal()` JS
+Bootstrap: `data-bs-toggle="modal"` + `data-bs-target`
+daisyUI: `<dialog class="modal">` + `showModal()` JS
 
 ```twig
 <button onclick="document.getElementById('confirm_modal').showModal()" class="btn btn-sm btn-error">
-  Supprimer
+  Delete
 </button>
 
 <dialog id="confirm_modal" class="modal">
   <div class="modal-box">
     <h3 class="heading font-bold text-lg">Confirmation</h3>
-    <p>Êtes-vous sûr ?</p>
+    <p>Are you sure?</p>
     <div class="modal-action">
       <form method="dialog">
-        <button class="btn">Annuler</button>
+        <button class="btn">Cancel</button>
       </form>
-      <button class="btn btn-error">Confirmer</button>
+      <button class="btn btn-error">Confirm</button>
     </div>
   </div>
-  <form method="dialog" class="modal-backdrop"><button>Fermer</button></form>
+  <form method="dialog" class="modal-backdrop"><button>Close</button></form>
 </dialog>
 ```
 
-### Accordéon
+### Accordion
 
 ```twig
 <div class="collapse collapse-arrow bg-base-200">
   <input type="checkbox" />
-  <div class="collapse-title font-medium">Titre</div>
-  <div class="collapse-content">Contenu</div>
+  <div class="collapse-title font-medium">Title</div>
+  <div class="collapse-content">Content</div>
 </div>
 ```
 
@@ -154,7 +154,7 @@ daisyUI : `<dialog class="modal">` + `showModal()` JS
 
 ```twig
 <div class="dropdown">
-  <div tabindex="0" role="button" class="btn">Ouvrir</div>
+  <div tabindex="0" role="button" class="btn">Open</div>
   <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow">
     <li><a>Option</a></li>
   </ul>
@@ -165,14 +165,14 @@ daisyUI : `<dialog class="modal">` + `showModal()` JS
 
 ```twig
 <div class="join">
-  {# items     : class="join-item btn btn-sm" #}
-  {# page active : class="join-item btn btn-sm btn-active" #}
+  {# items      : class="join-item btn btn-sm" #}
+  {# active page: class="join-item btn btn-sm btn-active" #}
 </div>
 ```
 
-## Notes spécifiques Sylius
+## Sylius-specific notes
 
-- **Twig hooks** : conserver `sylius_template_event()` — ne pas modifier
-- **Live Components** : conserver `data-controller`, `data-model`, `data-live-*` — ne pas modifier
-- **Flash messages** : utiliser `alert alert-{info|success|error|warning}` daisyUI
-- **Prix / montants** : conserver les filtres Twig `sylius_price`, `sylius_format_money` sans les modifier
+- **Twig hooks**: keep `sylius_template_event()` — do not modify
+- **Live Components**: keep `data-controller`, `data-model`, `data-live-*` — do not modify
+- **Flash messages**: use daisyUI `alert alert-{info|success|error|warning}`
+- **Prices / amounts**: keep Twig filters `sylius_price`, `sylius_format_money` unmodified

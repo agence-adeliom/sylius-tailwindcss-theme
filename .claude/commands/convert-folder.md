@@ -1,16 +1,16 @@
-# Convertir un dossier de templates Bootstrap → Tailwind
+# Convert a folder of Bootstrap templates → Tailwind
 
-Convertis tous les templates manquants du dossier `$ARGUMENTS` du SyliusShopBundle.
+Convert all missing templates from the `$ARGUMENTS` folder of SyliusShopBundle.
 
-## Étapes
+## Steps
 
-1. **Lister les templates source** dans `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates/$ARGUMENTS`
-2. **Lister les templates existants** dans `themes/TailwindTheme/templates/bundles/SyliusShopBundle/$ARGUMENTS`
-3. **Identifier les manquants** (présents en source, absents dans le thème)
-4. **Pour chaque template manquant**, lire le template source et créer sa version Tailwind en respectant :
-   - Remplacer les classes Bootstrap par leurs équivalents Tailwind/daisyUI (voir table dans CLAUDE.md)
-   - Utiliser daisyUI pour les composants interactifs
-   - Utiliser la classe `heading` pour les titres `h1`–`h6`
-   - Conserver intacts les composants Symfony UX Live
-   - Ne pas modifier la logique Twig (blocs, includes, variables)
-5. **Mettre à jour le tableau d'avancement** dans CLAUDE.md avec les nouveaux chiffres
+1. **List source templates** in `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates/$ARGUMENTS`
+2. **List existing templates** in `themes/TailwindTheme/templates/bundles/SyliusShopBundle/$ARGUMENTS`
+3. **Identify missing ones** (present in source, absent from the theme)
+4. **For each missing template**, read the source template and create its Tailwind version following these rules:
+   - Replace Bootstrap classes with their Tailwind/daisyUI equivalents (see table in CLAUDE.md)
+   - Use daisyUI for interactive components
+   - Use the `heading` class for `h1`–`h6` headings
+   - Keep Symfony UX Live components intact
+   - Do not modify Twig logic (blocks, includes, variables)
+5. **Update the progress table** in CLAUDE.md with the new figures

@@ -1,10 +1,10 @@
-# Commandes de développement
+# Development commands
 
-## Docker (recommandé)
+## Docker (recommended)
 ```bash
-make init           # Init environnement + dépendances
-make database-init  # Init BDD + migrations
-make load-fixtures  # Charger les fixtures (optionnel)
+make init           # Init environment + dependencies
+make database-init  # Init DB + migrations
+make load-fixtures  # Load fixtures (optional)
 make up / make down
 make php-shell
 make node-shell
@@ -12,7 +12,7 @@ make node-shell
 
 ## Frontend
 ```bash
-composer run frontend-clear  # Rebuild assets Tailwind
+composer run frontend-clear  # Rebuild Tailwind assets
 ```
 
 ## Tests
@@ -24,7 +24,7 @@ vendor/bin/behat --strict --tags="~@javascript&&~@mink:chromedriver"
 make behat     # Docker
 ```
 
-## Qualité de code
+## Code quality
 ```bash
 vendor/bin/phpstan analyse -c phpstan.neon -l max src/
 vendor/bin/ecs check

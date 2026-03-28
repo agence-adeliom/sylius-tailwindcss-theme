@@ -1,31 +1,31 @@
-# Détecter et migrer les templates Sylius modifiés entre deux versions
+# Detect and migrate modified Sylius templates between two versions
 
-Identifie les templates ShopBundle qui ont changé entre deux tags Sylius sur GitHub,
-puis applique la migration Tailwind CSS / daisyUI pour chacun d'eux.
+Identifies ShopBundle templates that changed between two Sylius tags on GitHub,
+then applies the Tailwind CSS / daisyUI migration for each of them.
 
-**Usage :** `/check-sylius-updates v2.2.3 v2.2.4`
+**Usage:** `/check-sylius-updates v2.2.3 v2.2.4`
 
-`$ARGUMENTS` = deux tags séparés par un espace, ex: `v2.2.3 v2.2.4`
-Si un seul tag est fourni, il est utilisé comme `TO_VERSION` et la version mémorisée est `FROM_VERSION`.
-Si aucun argument, comparer la version mémorisée avec la dernière release GitHub.
+`$ARGUMENTS` = two space-separated tags, e.g. `v2.2.3 v2.2.4`
+If a single tag is provided, it is used as `TO_VERSION` and the memorized version is `FROM_VERSION`.
+If no argument, compare the memorized version with the latest GitHub release.
 
 ---
 
-## Étapes
+## Steps
 
-### 1. Déterminer FROM_VERSION et TO_VERSION
+### 1. Determine FROM_VERSION and TO_VERSION
 
-- **2 arguments** : `FROM_VERSION` = premier, `TO_VERSION` = second.
-- **1 argument** : `TO_VERSION` = argument fourni. `FROM_VERSION` = version mémorisée en mémoire projet (`v2.2.3` au 2026-03-28).
-- **0 argument** : `FROM_VERSION` = version mémorisée. Récupérer la dernière release comme `TO_VERSION` :
+- **2 arguments**: `FROM_VERSION` = first, `TO_VERSION` = second.
+- **1 argument**: `TO_VERSION` = provided argument. `FROM_VERSION` = version memorized in project memory (`v2.2.3` as of 2026-03-28).
+- **0 arguments**: `FROM_VERSION` = memorized version. Fetch the latest release as `TO_VERSION`:
 
 ```bash
 gh api repos/Sylius/Sylius/releases/latest --jq '.tag_name'
 ```
 
-**Version mémorisée (vendor actuel) : `v2.2.3`**
+**Memorized version (current vendor): `v2.2.3`**
 
-### 2. Appeler l'API GitHub Compare
+### 2. Call the GitHub Compare API
 
 ```bash
 gh api "repos/Sylius/Sylius/compare/{FROM_VERSION}...{TO_VERSION}" \
@@ -42,128 +42,128 @@ gh api "repos/Sylius/Sylius/compare/{FROM_VERSION}...{TO_VERSION}" \
   }'
 ```
 
-**Si `files_count` == 300 et `total_commits` > 300** : la réponse est tronquée.
-Dans ce cas, passer à l'étape 2b.
+**If `files_count` == 300 and `total_commits` > 300**: the response is truncated.
+In that case, proceed to step 2b.
 
-### 2b. Fallback pour les grands écarts (si tronqué)
+### 2b. Fallback for large diffs (if truncated)
 
-Itérer sur les commits de l'intervalle en filtrant par path :
+Iterate over commits in the range, filtering by path:
 
 ```bash
 # Page 1
 gh api "repos/Sylius/Sylius/commits?sha={TO_VERSION}&per_page=100&page=1" \
   --jq '.[] | {sha: .sha, message: .commit.message}'
 
-# Pour chaque commit SHA, récupérer les fichiers modifiés
+# For each commit SHA, fetch modified files
 gh api "repos/Sylius/Sylius/commits/{SHA}" \
   --jq '.files[] | select(.filename | contains("Bundle/ShopBundle/templates")) | {file: .filename, status: .status}'
 ```
 
-Continuer jusqu'à atteindre un commit antérieur à `FROM_VERSION` (vérifier avec le compare).
+Continue until reaching a commit older than `FROM_VERSION` (verify with the compare).
 
-> Note : cette étape est coûteuse en appels API. Préférer des comparaisons patch→patch pour éviter ce cas.
+> Note: this step is expensive in API calls. Prefer patch-to-patch comparisons to avoid this case.
 
-### 3. Filtrer et classer les templates
+### 3. Filter and classify templates
 
-Pour chaque fichier trouvé, extraire le chemin relatif depuis `templates/` :
+For each file found, extract the relative path from `templates/`:
 
-- Source : `src/Sylius/Bundle/ShopBundle/templates/{path}`
-- Thème  : `themes/TailwindTheme/templates/bundles/SyliusShopBundle/{path}`
+- Source: `src/Sylius/Bundle/ShopBundle/templates/{path}`
+- Theme:  `themes/TailwindTheme/templates/bundles/SyliusShopBundle/{path}`
 
-Classer les fichiers en 3 catégories :
-- **À mettre à jour** : fichier `modified` ET présent dans le thème
-- **À créer** : fichier `added` OU `modified` ET absent du thème
-- **Supprimé upstream** : fichier `removed` (vérifier si présent dans le thème pour le supprimer)
+Classify files into 3 categories:
+- **To update**: `modified` file AND present in the theme
+- **To create**: `added` OR `modified` file AND absent from the theme
+- **Removed upstream**: `removed` file (check if present in the theme to delete it)
 
 ```bash
-# Vérifier si un template existe dans le thème
+# Check if a template exists in the theme
 ls themes/TailwindTheme/templates/bundles/SyliusShopBundle/{path} 2>/dev/null
 ```
 
-### 4. Afficher le rapport de détection
+### 4. Display the detection report
 
-Présenter un rapport structuré avant de commencer les migrations :
+Present a structured report before starting migrations:
 
 ```
-## Templates Sylius modifiés entre {FROM_VERSION} et {TO_VERSION}
+## Sylius templates modified between {FROM_VERSION} and {TO_VERSION}
 
-### À mettre à jour dans le thème (X fichiers)
+### To update in the theme (X files)
 - account/order/show/content/breadcrumbs.html.twig [modified]
 
-### À créer dans le thème (Y fichiers)
+### To create in the theme (Y files)
 - checkout/summary/content/main.html.twig [added]
 
-### Supprimés upstream — à vérifier (Z fichiers)
+### Removed upstream — to verify (Z files)
 - ...
 ```
 
-Si aucun template ShopBundle n'a changé, s'arrêter ici.
+If no ShopBundle templates have changed, stop here.
 
-### 5. Migrer chaque template — fichier par fichier
+### 5. Migrate each template — file by file
 
-Traiter les fichiers dans cet ordre : d'abord les `modified`, puis les `added`.
-**Ne pas traiter plusieurs fichiers en parallèle** — procéder un par un et attendre validation si nécessaire.
+Process files in this order: `modified` first, then `added`.
+**Do not process multiple files in parallel** — proceed one by one and wait for validation if necessary.
 
-#### Cas A — Fichier `modified` (existait déjà dans le thème)
+#### Case A — `modified` file (already existed in the theme)
 
-L'objectif est d'intégrer les changements upstream dans la version Tailwind existante **sans écraser le travail déjà fait**.
+The goal is to integrate upstream changes into the existing Tailwind version **without overwriting work already done**.
 
-1. Récupérer l'ancienne version du fichier source (avant le changement) via l'API GitHub :
+1. Fetch the old version of the source file (before the change) via the GitHub API:
 ```bash
 gh api "repos/Sylius/Sylius/contents/{path}?ref={FROM_VERSION}" --jq '.content' | base64 -d
 ```
 
-2. Lire la nouvelle version depuis le vendor local :
+2. Read the new version from the local vendor:
 ```
 vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates/{path}
 ```
 
-3. Analyser **ce qui a changé** entre les deux versions Bootstrap :
-   - Nouvelle structure HTML ajoutée ?
-   - Attribut Twig modifié (bloc, variable, include) ?
-   - Logique métier ajoutée/modifiée ?
-   - Simple correction de classe CSS Bootstrap ?
+3. Analyze **what changed** between the two Bootstrap versions:
+   - New HTML structure added?
+   - Twig attribute modified (block, variable, include)?
+   - Business logic added/modified?
+   - Simple Bootstrap CSS class correction?
 
-4. Lire la version Tailwind existante dans le thème :
+4. Read the existing Tailwind version in the theme:
 ```
 themes/TailwindTheme/templates/bundles/SyliusShopBundle/{path}
 ```
 
-5. Appliquer l'équivalent du changement dans la version Tailwind :
-   - Si c'est un changement de logique Twig → le reporter tel quel
-   - Si c'est un ajout HTML avec classes Bootstrap → convertir en Tailwind/daisyUI
-   - Si c'est une correction CSS Bootstrap → adapter en Tailwind
-   - Conserver intacts tous les composants Symfony UX Live (`data-controller`, `data-model`, etc.)
+5. Apply the equivalent change in the Tailwind version:
+   - If it's a Twig logic change → port it as-is
+   - If it's an HTML addition with Bootstrap classes → convert to Tailwind/daisyUI
+   - If it's a Bootstrap CSS correction → adapt to Tailwind
+   - Keep all Symfony UX Live components intact (`data-controller`, `data-model`, etc.)
 
-#### Cas B — Fichier `added` (nouveau upstream, absent du thème)
+#### Case B — `added` file (new upstream, absent from the theme)
 
-Conversion Bootstrap → Tailwind from scratch :
+Bootstrap → Tailwind conversion from scratch:
 
-1. Lire le fichier source depuis le vendor local
-2. Créer le répertoire cible si nécessaire
-3. Convertir en appliquant les règles de la table de correspondance (voir CLAUDE.md)
-4. Utiliser daisyUI pour les composants interactifs
-5. Utiliser la classe `heading` pour les titres `h1`–`h6`
+1. Read the source file from the local vendor
+2. Create the target directory if necessary
+3. Convert by applying the mapping table rules (see CLAUDE.md)
+4. Use daisyUI for interactive components
+5. Use the `heading` class for `h1`–`h6` headings
 
-#### Cas C — Fichier `removed` (supprimé upstream)
+#### Case C — `removed` file (removed upstream)
 
-1. Vérifier si le fichier existe dans le thème
-2. Si oui : signaler à l'utilisateur et demander confirmation avant suppression — le fichier thème peut avoir une raison d'exister indépendamment
+1. Check if the file exists in the theme
+2. If yes: notify the user and ask for confirmation before deletion — the theme file may have a reason to exist independently
 
-### 6. Mettre à jour la version mémorisée
+### 6. Update the memorized version
 
-Après avoir traité tous les fichiers, si `TO_VERSION` correspond à la version dans `vendor/sylius/sylius/composer.json` :
-- Mettre à jour `~/.claude/projects/-Users-adeliom-Documents-Projets-SyliusTailwindcssPlugin/memory/project_plugin_context.md` : ligne `Version Sylius dans vendor` → nouvelle version + date du jour.
-- Mettre à jour ce fichier : **Version mémorisée** et exemple **Usage**.
+After processing all files, if `TO_VERSION` matches the version in `vendor/sylius/sylius/composer.json`:
+- Update `~/.claude/projects/-Users-adeliom-Documents-Projets-SyliusTailwindcssPlugin/memory/project_plugin_context.md`: line `Sylius version in vendor` → new version + today's date.
+- Update this file: **Memorized version** and **Usage** example.
 
-### 7. Résumé final
+### 7. Final summary
 
 ```
-## Migration terminée
+## Migration complete
 
-- X fichiers mis à jour
-- Y fichiers créés
-- Z fichiers supprimés upstream (en attente de décision)
+- X files updated
+- Y files created
+- Z files removed upstream (awaiting decision)
 
-Version de référence mise à jour : {TO_VERSION} ({date})
+Reference version updated: {TO_VERSION} ({date})
 ```

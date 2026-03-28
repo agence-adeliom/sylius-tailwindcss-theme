@@ -1,13 +1,13 @@
-# Synchroniser le statut d'avancement des templates
+# Sync template progress status
 
-Recalcule le tableau d'avancement réel en comparant les dossiers source et thème.
+Recalculate the actual progress table by comparing the source and theme folders.
 
-## Étapes
+## Steps
 
-1. Pour chaque dossier du tableau dans CLAUDE.md, compter :
-   - Fichiers `.html.twig` dans `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates/{dossier}` (récursif)
-   - Fichiers `.html.twig` dans `themes/TailwindTheme/templates/bundles/SyliusShopBundle/{dossier}` (récursif)
-2. Calculer les manquants = source - thème (si positif)
-3. Mettre à jour le tableau dans CLAUDE.md avec les vrais chiffres
-4. Recalculer le total et le pourcentage de couverture
-5. Mettre à jour la date "Dernière mise à jour"
+1. For each folder in the CLAUDE.md table, count:
+   - `.html.twig` files in `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates/{folder}` (recursive)
+   - `.html.twig` files in `themes/TailwindTheme/templates/bundles/SyliusShopBundle/{folder}` (recursive)
+2. Calculate missing = source - theme (if positive)
+3. Update the table in CLAUDE.md with the actual figures
+4. Recalculate the total and coverage percentage
+5. Update the "Last updated" date
