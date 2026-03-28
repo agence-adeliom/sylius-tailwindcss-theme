@@ -1,7 +1,5 @@
-{% import "@SyliusShop/shared/macro/money.html.twig" as money %}
-
 {% set order = hookable_metadata.context.order %}
 
-<table class="table mb-3">
+<div class="space-y-2">
     {% hook 'total' with {order} %}
-</table>
+</div>

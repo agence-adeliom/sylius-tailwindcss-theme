@@ -1,8 +1,41 @@
-<div class="mb-6">
-    <div class="overflow-hidden">
-        <div class="flex justify-center items-center relative">
-            <img src="{{ asset('build/shop/images/homepage-banner.webp', 'shop') }}" width="1920" height="100%" class="w-full h-auto" alt="Home">
-            <img src="{{ asset('build/shop/images/homepage-banner-logo.webp', 'shop') }}" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="max-width: 40vw" alt="New collection">
+<section class="hero min-h-[85vh] relative overflow-hidden">
+    <img
+        src="{{ asset('build/shop/images/homepage-banner.webp', 'shop') }}"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+        width="1920"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+    >
+    <div class="hero-overlay bg-base-content/40"></div>
+
+    <div class="hero-content text-center flex flex-col items-center gap-8 py-20 z-10">
+        <img
+            src="{{ asset('build/shop/images/homepage-banner-logo.webp', 'shop') }}"
+            class="max-w-[240px] md:max-w-sm drop-shadow-2xl"
+            alt="{{ 'sylius.ui.your_store'|trans }}"
+        >
+
+        {# Tagline — customize this text or replace with a Twig variable #}
+        <p class="text-white/80 text-lg md:text-xl max-w-lg drop-shadow leading-relaxed">
+            {{ 'sylius.ui.your_store'|trans }} — {{ 'sylius.ui.powered_by'|trans }} Sylius
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+            {# Primary CTA — link to your main catalog taxon #}
+            <a href="#" class="btn btn-primary btn-lg">
+                Shop now
+                {{ ux_icon('tabler:arrow-right', {class: 'size-5'}) }}
+            </a>
+            {# Optional secondary CTA #}
+            <a href="{{ path('sylius_shop_contact_request') }}" class="btn btn-outline btn-lg text-white border-white/60 hover:bg-white/10 hover:border-white">
+                {{ 'sylius.ui.contact_us'|trans }}
+            </a>
         </div>
     </div>
-</div>
+
+    {# Scroll indicator #}
+    <a href="#main-content" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce" aria-label="Scroll down">
+        {{ ux_icon('tabler:chevrons-down', {class: 'size-7'}) }}
+    </a>
+</section>

@@ -1,6 +1,6 @@
 <div class="w-full">
     <form method="get" action="{{ path('sylius_shop_product_index', {'slug': app.request.attributes.get('slug')}) }}">
-        <div class="flex">
+        <div class="join w-full">
             {% hook 'search' %}
         </div>
     </form>

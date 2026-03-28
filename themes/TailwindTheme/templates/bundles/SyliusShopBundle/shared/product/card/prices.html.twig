@@ -1,6 +1,6 @@
 {% set product = hookable_metadata.context.product %}
 
-<div class="mt-4">
+<div class="mt-2 flex items-center gap-2">
     {% if not product.enabledVariants.empty() %}
         {% hook 'prices' %}
     {% endif %}

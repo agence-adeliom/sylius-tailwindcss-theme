@@ -2,7 +2,7 @@
 
 {% set order = hookable_metadata.context.order %}
 
-<tr>
-    <td>{{ 'sylius.ui.items_total'|trans }}:</td>
-    <td id="sylius-shop-checkout-summary-items-total" class="text-right">{{ money.convertAndFormat(order.itemsSubtotal) }}</td>
-</tr>
+<div class="flex justify-between text-sm">
+    <span class="text-base-content/70">{{ 'sylius.ui.items_total'|trans }}</span>
+    <span id="sylius-shop-checkout-summary-items-total">{{ money.convertAndFormat(order.itemsSubtotal) }}</span>
+</div>

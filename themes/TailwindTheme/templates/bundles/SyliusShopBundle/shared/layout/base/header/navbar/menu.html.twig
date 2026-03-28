@@ -12,9 +12,9 @@
                     {# <div class="menu !flex w-fit  rounded-box lg:mx-auto" {{ sylius_test_html_attribute('menu') }}>
                         {% hook 'menu' with { taxons } %}
                     </div> #}
-                    <div class="menu flex lg:flex-row lg:mx-auto lg:w-fit" {{ sylius_test_html_attribute('menu') }}>
+                    <ul class="menu flex lg:flex-row lg:mx-auto lg:w-fit" {{ sylius_test_html_attribute('menu') }}>
                         {% hook 'menu' with {taxons} %}
-                    </div>
+                    </ul>
                 </nav>
             </div>
         {% endif %}

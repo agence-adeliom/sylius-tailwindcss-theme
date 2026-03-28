@@ -8,6 +8,7 @@
         'name': 'address',
         'route': 'sylius_shop_checkout_address',
         'label': 'sylius.ui.address'|trans,
+        'icon': 'tabler:map-pin',
         'required': true,
         'state': active_step == 'address' ? 'active' : 'completed',
         'test_attribute': 'step-address',
@@ -16,6 +17,7 @@
         'name': 'select_shipping',
         'route': 'sylius_shop_checkout_select_shipping',
         'label': 'sylius.ui.shipping'|trans,
+        'icon': 'tabler:truck',
         'required': order_requires_shipping,
         'state': active_step == 'select_shipping' ? 'active' : (active_step == 'address' ? 'disabled' : 'completed'),
         'test_attribute': 'step-shipping',
@@ -24,6 +26,7 @@
         'name': 'select_payment',
         'route': 'sylius_shop_checkout_select_payment',
         'label': 'sylius.ui.payment'|trans,
+        'icon': 'tabler:credit-card',
         'required': order_requires_payment,
         'state': active_step == 'select_payment' ? 'active' : (active_step == 'complete' ? 'completed' : 'disabled'),
         'test_attribute': 'step-payment',
@@ -32,26 +35,54 @@
         'name': 'complete',
         'route': 'sylius_shop_checkout_complete',
         'label': 'sylius.ui.complete'|trans,
+        'icon': 'tabler:circle-check',
         'required': true,
         'state': active_step == 'complete' ? 'active' : 'disabled',
         'test_attribute': 'step-complete',
     },
 ] %}
 
-<div class="flex gap-4 steps steps-{{ active_step }} mb-5">
-    {% for step in steps|filter(step => step.required) %}
-        <div class="steps-item steps-item-{{ step.state }}" {{ sylius_test_html_attribute(step.test_attribute) }}>
-            {% if step.state != 'disabled' %}
-                <a href="{{ path(step.route) }}" >
-                    {{ step.label|trans }}
-                </a>
-            {% else %}
-                {{ step.label|trans }}
-            {% endif %}
+{%- set visible_steps = steps|filter(s => s.required) -%}
 
-            {% if not loop.last %}
-                <i class="fa-regular fa-chevron-right text-xs"></i>
-            {% endif %}
-        </div>
-    {% endfor %}
-</div>
+<nav aria-label="{{ 'sylius.ui.checkout'|trans }}" class="mb-6">
+    <ol class="flex items-center">
+        {% for step in visible_steps %}
+            {%- set is_last = loop.last -%}
+
+            <li class="flex items-center {{ not is_last ? 'flex-1' }}">
+
+                {%- if step.state == 'completed' -%}
+                    <a href="{{ path(step.route) }}"
+                       class="flex items-center gap-2 group"
+                       {{ sylius_test_html_attribute(step.test_attribute) }}>
+                        <span class="size-8 rounded-full bg-primary text-primary-content flex items-center justify-center shrink-0 transition-opacity group-hover:opacity-80">
+                            {{ ux_icon('tabler:check', {class: 'size-4'}) }}
+                        </span>
+                        <span class="text-sm font-medium text-primary hidden sm:block whitespace-nowrap">{{ step.label }}</span>
+                    </a>
+
+                {%- elseif step.state == 'active' -%}
+                    <span class="flex items-center gap-2" {{ sylius_test_html_attribute(step.test_attribute) }}>
+                        <span class="size-8 rounded-full bg-primary text-primary-content flex items-center justify-center shrink-0 ring-2 ring-primary ring-offset-2">
+                            {{ ux_icon(step.icon, {class: 'size-4'}) }}
+                        </span>
+                        <span class="text-sm font-semibold text-primary hidden sm:block whitespace-nowrap">{{ step.label }}</span>
+                    </span>
+
+                {%- else -%}
+                    <span class="flex items-center gap-2" {{ sylius_test_html_attribute(step.test_attribute) }}>
+                        <span class="size-8 rounded-full bg-base-200 text-base-content/40 flex items-center justify-center shrink-0">
+                            {{ ux_icon(step.icon, {class: 'size-4'}) }}
+                        </span>
+                        <span class="text-sm font-medium text-base-content/40 hidden sm:block whitespace-nowrap">{{ step.label }}</span>
+                    </span>
+                {%- endif -%}
+
+                {%- if not is_last -%}
+                    <div class="flex-1 h-px mx-3 {{ step.state == 'completed' ? 'bg-primary' : 'bg-base-300' }}"></div>
+                {%- endif -%}
+
+            </li>
+        {% endfor %}
+    </ol>
+</nav>

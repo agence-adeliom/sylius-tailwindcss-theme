@@ -7,11 +7,11 @@
         {% set fee = form.method.vars.shipping_costs[choice_form.vars.value] %}
         {% set method = form.method.vars.choices[key].data %}
 
-        <div class="card bg-neutral border-0 mb-3 card-body" {{ sylius_test_html_attribute('shipping-item') }}>
-            <label class="flex justify-between gap-3">
+        <label class="card card-border bg-base-100 mb-3 cursor-pointer transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5" {{ sylius_test_html_attribute('shipping-item') }}>
+            <div class="card-body flex-row items-center gap-4 py-4">
                 {% hook 'choice' with {fee, 'form': choice_form, method} %}
-            </label>
-        </div>
+            </div>
+        </label>
     {% else %}
         {% hook 'choice#unavailable' %}
     {% endfor %}

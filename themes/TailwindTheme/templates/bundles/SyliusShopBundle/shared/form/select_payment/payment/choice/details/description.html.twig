@@ -1,5 +1,5 @@
 {% set method = hookable_metadata.context.method %}
 
 {% if method.description is not null %}
-    <div class="px-4"><small class="">{{ method.description }}</small></div>
+    <p class="text-sm text-base-content/60 mt-1 ml-9">{{ method.description }}</p>
 {% endif %}

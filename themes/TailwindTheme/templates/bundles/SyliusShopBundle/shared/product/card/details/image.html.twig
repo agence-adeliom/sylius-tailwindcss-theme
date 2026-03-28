@@ -1,7 +1,7 @@
 {% set product = hookable_metadata.context.product %}
 
-<div class="mb-4">
-    <div class="overflow-hidden rounded" style="aspect-ratio: 3/4; ">
-        {{ component('sylius_shop:main_image', {product: product, class: "w-100 h-100 object-fit-cover"}) }}
+<div class="mb-3">
+    <div class="overflow-hidden rounded-lg aspect-[3/4] bg-base-200">
+        {{ component('sylius_shop:main_image', {product: product, class: "w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"}) }}
     </div>
 </div>

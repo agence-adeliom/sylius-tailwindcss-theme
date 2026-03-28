@@ -48,13 +48,13 @@
     --color-secondary-content: "#FFFFFF";
     --color-accent: "#B7B1AD";
     --color-accent-content: "#000000";
-    --color-neutral: "#f5f5f5";
+    --color-neutral: "#505050";
     --color-neutral-content: "#FFFFFF";
     --color-base-100: "#2D2D2E";
     --color-base-200: "#464647";
     --color-base-300: "#58585A";
     --color-base-content: "#e9f3f1";
-    --color-success: "#FFFFFF";
+    --color-success: "#177c68";
     --color-success-content: "#FFFFFF";
     --color-warning: "#E89300";
     --color-warning-content: "#FFFFFF";
@@ -65,20 +65,37 @@
     --color-light-content: "#FFFFFF";
 }
 
+@plugin "daisyui/theme" {
+    name: "adeliom";
+    --color-primary: #8c46ff;
+    --color-primary-content: #FFFFFF;
+    --color-secondary: #530ECB;
+    --color-secondary-content: #FFFFFF;
+    --color-accent: #fcb900;
+    --color-accent-content: #FFFFFF;
+    --color-neutral: #eeeeee;
+    --color-neutral-content: #0a0a0a;
+    --color-base-100: #FFFFFF;
+    --color-base-200: #f5f5f5;
+    --color-base-300: #e5e5e5;
+    --color-base-content: #0a0a0a;
+    --color-success: #8c46ff;
+    --color-success-content: #FFFFFF;
+    --color-warning: #FBAB24;
+    --color-warning-content: #FFFFFF;
+    --color-info: #48485C;
+    --color-info-content: #FFFFFF;
+    --color-error: #ec2e69;
+    --color-error-content: #FFFFFF;
+    --color-light-content: #FFFFFF;
+
+    --radius-field: 0;
+    --btn-shadow: none;
+}
+
 @utility container {
     margin-inline: auto;
     padding-inline: 1rem;
-}
-
-@theme {
-    --font-heading: "BWT-title";
-    --font-text: "BWT-text";
-    --font-awesome: [ '"Font Awesome 6"'];
-    --hero-gradient: 270deg, rgba(0, 0, 0, 0) 20.66%, rgba(0, 0, 0, 0.7) 66.42%;
-    --gray-gradient: 360deg, rgba(228, 228, 231, 0) 48.07%,
-    rgba(228, 228, 231, 0.7) 100%;
-    --color-base-50: #f9f9f9;
-    --color-neutral-200: #E4E4E7;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

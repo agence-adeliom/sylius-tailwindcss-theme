@@ -2,6 +2,6 @@
 
 {% set fee = hookable_metadata.context.fee %}
 
-<div {{ sylius_test_html_attribute('shipping-method-fee') }}>
+<div class="font-semibold shrink-0 ml-auto" {{ sylius_test_html_attribute('shipping-method-fee') }}>
     {{ money.convertAndFormat(fee) }}
 </div>

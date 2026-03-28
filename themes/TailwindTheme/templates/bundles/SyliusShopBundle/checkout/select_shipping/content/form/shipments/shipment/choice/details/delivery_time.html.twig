@@ -7,6 +7,9 @@
     {% set max = attribute(method, 'maxDeliveryTimeDays') %}
     {% set text = delivery.delivery_time_text(min, max)|trim %}
     {% if text is not empty %}
-        <div class="pl-4"><small class="text-base-content/60">{{ 'sylius.ui.estimated_delivery_time'|trans }}: {{ text }}</small></div>
+        <p class="text-sm text-base-content/60 mt-1 ml-9">
+            {{ ux_icon('tabler:clock', {class: 'size-3.5 inline align-middle'}) }}
+            {{ 'sylius.ui.estimated_delivery_time'|trans }}: {{ text }}
+        </p>
     {% endif %}
 {% endif %}

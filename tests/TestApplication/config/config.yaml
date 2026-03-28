@@ -3,6 +3,7 @@ imports:
     - { resource: "packages/assets.yaml" }
     - { resource: "packages/webpack_encore.yaml" }
     - { resource: "packages/sylius_theme.yaml" }
+    - { resource: "packages/web_profiler.yaml" }
     - { resource: "services_test.php" }
 
 twig:

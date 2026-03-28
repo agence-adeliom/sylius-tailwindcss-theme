@@ -4,24 +4,22 @@
 {% set tax_included = order.getTaxIncludedTotal() %}
 {% set tax_excluded = order.getTaxExcludedTotal() %}
 
-<tr {% if tax_included and not tax_excluded %}class="opacity-50" {% endif %}>
-    <td class="pb-4">
-        {{ 'sylius.ui.taxes_total'|trans }}:
+<div class="flex justify-between text-sm{{ tax_included and not tax_excluded ? ' opacity-50' }}">
+    <span class="text-base-content/70">
+        {{ 'sylius.ui.taxes_total'|trans }}
         {% if tax_included %}
-            <div class="text-base-content/60"><small>({{ 'sylius.ui.included_in_price'|trans }})</small></div>
+            <span class="text-xs">({{ 'sylius.ui.included_in_price'|trans }})</span>
         {% endif %}
-    </td>
-    <td class="pb-4 text-right">
-        <div id="sylius-shop-checkout-summary-taxes-total">
-            {%- if not tax_included and not tax_excluded -%}
-                {{ money.convertAndFormat(0) }}
-            {%- endif -%}
-            {%- if tax_excluded -%}
-                {{ money.convertAndFormat(tax_excluded) }}
-            {%- endif -%}
-            {%- if tax_included -%}
-                {{ money.convertAndFormat(tax_included) }}
-            {%- endif -%}
-        </div>
-    </td>
-</tr>
+    </span>
+    <span id="sylius-shop-checkout-summary-taxes-total">
+        {%- if not tax_included and not tax_excluded -%}
+            {{ money.convertAndFormat(0) }}
+        {%- endif -%}
+        {%- if tax_excluded -%}
+            {{ money.convertAndFormat(tax_excluded) }}
+        {%- endif -%}
+        {%- if tax_included -%}
+            {{ money.convertAndFormat(tax_included) }}
+        {%- endif -%}
+    </span>
+</div>

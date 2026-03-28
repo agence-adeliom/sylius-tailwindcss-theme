@@ -1,5 +1,5 @@
 {% set product = hookable_metadata.context.product %}
 
-<div class="font-bold lg:group-hover:text-primary" {{ sylius_test_html_attribute('product-name', product.name) }}>
+<div class="font-semibold text-sm leading-snug transition-colors duration-200 group-hover:text-primary" {{ sylius_test_html_attribute('product-name', product.name) }}>
     {{ product.name }}
 </div>

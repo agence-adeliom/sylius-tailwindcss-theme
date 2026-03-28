@@ -9,7 +9,11 @@
       "Bash(gh api:*)",
       "Bash(mkdir -p /Users/adeliom/Documents/Projets/SyliusTailwindcssPlugin/.claude/skills/sylius-bootstrap-to-tailwind)",
       "Bash(mv /Users/adeliom/.claude/skills/sylius-bootstrap-to-tailwind/SKILL.md /Users/adeliom/Documents/Projets/SyliusTailwindcssPlugin/.claude/skills/sylius-bootstrap-to-tailwind/SKILL.md)",
-      "Bash(rmdir /Users/adeliom/.claude/skills/sylius-bootstrap-to-tailwind)"
+      "Bash(rmdir /Users/adeliom/.claude/skills/sylius-bootstrap-to-tailwind)",
+      "Bash(grep -r \"star\\\\|rating\\\\|StarRating\\\\|star_rating\" /Users/adeliom/Documents/Projets/SyliusTailwindcssPlugin/vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/ --include=*.php --include=*.twig -l)",
+      "Bash(grep -r \"remember_me\\\\|_remember_me\\\\|remember-me\" /Users/adeliom/Documents/Projets/SyliusTailwindcssPlugin/vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/ --include=*.php -l)",
+      "Bash(grep -r \"_remember_me\\\\|remember_me\" /Users/adeliom/Documents/Projets/SyliusTailwindcssPlugin/vendor/symfony/security-bundle/ --include=*.php -l)",
+      "Bash(grep -r \"sylius:product:card\\\\|product_card\\\\|''''card''''\" /Users/adeliom/Documents/Projets/SyliusTailwindcssPlugin/themes/TailwindTheme/templates --include=*.html.twig -l)"
     ]
   }
 }

@@ -1,7 +1,7 @@
 {% set order = hookable_metadata.context.order %}
 
-<table class="table border-b border-neutral-300 mb-3" {{ sylius_test_html_attribute('checkout-subtotal') }}>
+<div class="divide-y divide-base-200 mb-4 pb-2 border-b border-base-200" {{ sylius_test_html_attribute('checkout-subtotal') }}>
     {% for item in order.items %}
         {% hook 'items' with {item} %}
     {% endfor %}
-</table>
+</div>

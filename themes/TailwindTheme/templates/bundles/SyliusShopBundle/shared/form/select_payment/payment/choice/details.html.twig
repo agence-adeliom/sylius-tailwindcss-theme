@@ -1,5 +1,5 @@
-<div class="card bg-neutral border-0 mb-3" {{ sylius_test_html_attribute('payment-item') }}>
-    <label class="p-6">
-        {% hook 'details' %}
-    </label>
+{% set method = hookable_metadata.context.method %}
+
+<div class="flex-1 min-w-0">
+    {% hook 'details' with {method} %}
 </div>
