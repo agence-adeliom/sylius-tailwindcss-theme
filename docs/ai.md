@@ -12,6 +12,10 @@ mkdir -p .claude/commands
 
 # Copy the Sylius update tracking command
 cp vendor/agence-adeliom/sylius-tailwindcss-theme/.claude/commands/check-sylius-updates.md .claude/commands/check-sylius-updates.md
+
+# Set the Sylius version currently installed in your project
+# (replace with your actual installed version)
+echo "v2.2.4" > .claude/sylius-version
 ```
 
 Then open Claude Code in your project root and run:
@@ -22,7 +26,7 @@ Then open Claude Code in your project root and run:
 
 This will automatically detect which ShopBundle templates changed between your current Sylius version and the latest release, migrate each one, and write a `CHANGELOG.md` to track the history.
 
-> **Note:** After copying, edit the `Memorized version` line in `.claude/commands/check-sylius-updates.md` to match the Sylius version currently installed in your project.
+The command reads the reference version from `.claude/sylius-version` — **no need to edit the command file itself**. After each migration run, the file is updated automatically so subsequent runs always start from the right version.
 
 ### Available commands
 

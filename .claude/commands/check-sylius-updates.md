@@ -3,9 +3,9 @@
 Identifies ShopBundle templates that changed between two Sylius tags on GitHub,
 then applies the Tailwind CSS / daisyUI migration for each of them.
 
-**Usage:** `/check-sylius-updates v2.2.3 v2.2.4`
+**Usage:** `/check-sylius-updates v2.2.4 v2.2.5`
 
-`$ARGUMENTS` = two space-separated tags, e.g. `v2.2.3 v2.2.4`
+`$ARGUMENTS` = two space-separated tags, e.g. `v2.2.4 v2.2.5`
 If a single tag is provided, it is used as `TO_VERSION` and the memorized version is `FROM_VERSION`.
 If no argument, compare the memorized version with the latest GitHub release.
 
@@ -15,15 +15,31 @@ If no argument, compare the memorized version with the latest GitHub release.
 
 ### 1. Determine FROM_VERSION and TO_VERSION
 
-- **2 arguments**: `FROM_VERSION` = first, `TO_VERSION` = second.
-- **1 argument**: `TO_VERSION` = provided argument. `FROM_VERSION` = version memorized in project memory (`v2.2.3` as of 2026-03-28).
+#### Resolve the memorized version (FROM_VERSION source)
+
+The memorized version is resolved with the following priority:
+
+1. **`.claude/sylius-version`** file at the project root — read its content:
+   ```bash
+   cat .claude/sylius-version 2>/dev/null
+   ```
+   If the file exists and is non-empty, use its trimmed content as the memorized version.
+
+2. **Fallback** — use the default hardcoded in this file: **`v2.2.4`**
+
+> This allows any project that copies this command from the theme's vendor folder to set its own reference version without editing the command file.
+
+#### Resolve FROM_VERSION and TO_VERSION from arguments
+
+- **2 arguments**: `FROM_VERSION` = first, `TO_VERSION` = second. (Memorized version is not used.)
+- **1 argument**: `TO_VERSION` = provided argument. `FROM_VERSION` = memorized version (from above).
 - **0 arguments**: `FROM_VERSION` = memorized version. Fetch the latest release as `TO_VERSION`:
 
 ```bash
 gh api repos/Sylius/Sylius/releases/latest --jq '.tag_name'
 ```
 
-**Memorized version (current vendor): `v2.2.3`**
+Display which version source was used: `Using memorized version: {version} (from .claude/sylius-version)` or `(from command default)`.
 
 ### 2. Call the GitHub Compare API
 
@@ -177,9 +193,17 @@ If no template changed, write a single line: `_No ShopBundle template changes in
 
 ### 7. Update the memorized version
 
-After processing all files, if `TO_VERSION` matches the version in `vendor/sylius/sylius/composer.json`:
-- Update `~/.claude/projects/-Users-adeliom-Documents-Projets-SyliusTailwindcssPlugin/memory/project_plugin_context.md`: line `Sylius version in vendor` → new version + today's date.
-- Update this file: **Memorized version** and **Usage** example.
+After processing all files, write `TO_VERSION` to `.claude/sylius-version` (create if absent):
+
+```bash
+echo "{TO_VERSION}" > .claude/sylius-version
+```
+
+This updates the reference for the next run regardless of whether the version came from the file or the command default.
+
+Additionally, if `TO_VERSION` matches the version in `vendor/sylius/sylius/composer.json`, update the project memory and the hardcoded default in this file:
+- Project memory: `Sylius version in vendor` → new version + today's date.
+- This file: **hardcoded default** in step 1 and **Usage** example.
 
 ### 8. Final summary
 
@@ -191,5 +215,5 @@ After processing all files, if `TO_VERSION` matches the version in `vendor/syliu
 - Z files removed upstream (awaiting decision)
 
 CHANGELOG.md updated with entry for {FROM_VERSION} → {TO_VERSION}.
-Reference version updated: {TO_VERSION} ({date})
+Reference version updated: {TO_VERSION} ({date}) → written to .claude/sylius-version
 ```
