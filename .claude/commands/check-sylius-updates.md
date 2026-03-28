@@ -150,13 +150,38 @@ Bootstrap → Tailwind conversion from scratch:
 1. Check if the file exists in the theme
 2. If yes: notify the user and ask for confirmation before deletion — the theme file may have a reason to exist independently
 
-### 6. Update the memorized version
+### 6. Write / update CHANGELOG.md
+
+After processing all files, append a new entry to `CHANGELOG.md` at the project root.
+
+- If `CHANGELOG.md` does not exist, create it with a header.
+- If it already exists, **prepend** the new entry (most recent first).
+
+Entry format:
+
+```markdown
+## Sylius {FROM_VERSION} → {TO_VERSION} — {YYYY-MM-DD}
+
+### Updated templates
+- `account/order/show/content/breadcrumbs.html.twig` — upstream change ported to Tailwind
+
+### Added templates
+- `checkout/summary/content/new-file.html.twig` — new upstream template converted to Tailwind
+
+### Removed upstream
+- `old/template.html.twig` — removed upstream; theme copy kept pending manual review
+```
+
+Omit sections that have no entries (e.g. omit "### Removed upstream" if nothing was removed).
+If no template changed, write a single line: `_No ShopBundle template changes in this release._`
+
+### 7. Update the memorized version
 
 After processing all files, if `TO_VERSION` matches the version in `vendor/sylius/sylius/composer.json`:
 - Update `~/.claude/projects/-Users-adeliom-Documents-Projets-SyliusTailwindcssPlugin/memory/project_plugin_context.md`: line `Sylius version in vendor` → new version + today's date.
 - Update this file: **Memorized version** and **Usage** example.
 
-### 7. Final summary
+### 8. Final summary
 
 ```
 ## Migration complete
@@ -165,5 +190,6 @@ After processing all files, if `TO_VERSION` matches the version in `vendor/syliu
 - Y files created
 - Z files removed upstream (awaiting decision)
 
+CHANGELOG.md updated with entry for {FROM_VERSION} → {TO_VERSION}.
 Reference version updated: {TO_VERSION} ({date})
 ```

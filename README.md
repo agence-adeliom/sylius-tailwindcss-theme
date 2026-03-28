@@ -49,21 +49,19 @@
 
 [Documentation is available in the *docs* folder.](docs/index.md)
 
+## Claude Code integration
+
+If you use [Claude Code](https://claude.ai/code) in your Sylius project, you can leverage the maintenance commands bundled with this theme to keep your customized templates in sync with upstream Sylius updates.
+
+[Documentation is available in the *docs* folder.](docs/ai.md)
+
 ## Bug Tracking
 
 If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/agence-adeliom/sylius-tailwindcss-theme/issues).
 
-## Contribution
-
-[Documentation is available in the *docs/contribution.md* file.](docs/contribution.md)
-
 ## Authors
 
 The theme was created by [Adeliom](https://www.adeliom.com).
-
-Thanks to [@djacquemard](https://github.com/djacquemard) [@BaptisteAdeliom](https://github.com/BaptisteAdeliom) [@hschuhler](https://github.com/hschuhler) [@jeromeengeln](https://github.com/jeromeengeln) [@arnaud-ritti](https://github.com/arnaud-ritti)
-
-And was originally inspired by [Sylius community BootstrapTheme](https://github.com/SyliusCrafts/BootstrapTheme).
 
 [//]: # ([![]&#40;https://contrib.rocks/image?repo=agence-adeliom/sylius-tailwindcss-theme&#41;]&#40;https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors&#41;)
 
