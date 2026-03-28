@@ -20,7 +20,7 @@ Commandes disponibles : `/convert-folder`, `/sync-status`, `/diff-template`, `/c
 ## Suivi d'avancement
 
 Dernière mise à jour : 2026-03-28
-Total source : 589 templates | Total convertis : ~465 (~79%)
+Total source : 589 templates | Total convertis : ~504 (~86%)
 
 | Dossier        | Source | Thème | Manquants | Statut       |
 |----------------|--------|-------|-----------|--------------|
@@ -28,7 +28,7 @@ Total source : 589 templates | Total convertis : ~465 (~79%)
 | homepage       | 3      | 3     | 0         | terminé ✓    |
 | product        | 82     | 82    | 0         | terminé ✓    |
 | account        | 166    | 166   | 0         | terminé ✓    |
-| checkout       | 64     | 25    | 39        | en cours     |
+| checkout       | 64     | 64    | 0         | terminé ✓    |
 | order          | 14     | 2     | 12        | en cours     |
 | cart           | 30     | 14    | 16        | en cours     |
 | contact        | 7      | 4     | 3         | en cours     |
@@ -39,7 +39,7 @@ Total source : 589 templates | Total convertis : ~465 (~79%)
 | form           | 1      | 0     | 1         | non démarré  |
 | integrations   | 1      | 0     | 1         | non démarré  |
 
-Priorités : checkout (39) → product_review (35) → cart (16) → order (12) → contact/grid → email/errors/form/integrations
+Priorités : product_review (35) → cart (16) → order (12) → contact/grid → email/errors/form/integrations
 
 ## Commandes de développement
 

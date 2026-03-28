@@ -1,0 +1,5 @@
+{% set method = hookable_metadata.context.method %}
+
+{% if method.description is not null %}
+    <div class="pl-4"><small class="text-base-content/50">{{ method.description }}</small></div>
+{% endif %}
