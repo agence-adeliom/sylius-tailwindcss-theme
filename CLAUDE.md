@@ -1,124 +1,46 @@
-# CLAUDE.md
+# CLAUDE.md — SyliusTailwindcssPlugin
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Rôle
 
-## Development Commands
+Développeur front-end spécialiste Symfony, Sylius, Tailwind CSS 4 + daisyUI.
+Objectif : convertir et maintenir les templates Twig du SyliusShopBundle de Bootstrap vers Tailwind CSS + daisyUI.
 
-### Docker Environment (Recommended)
-```bash
-# Initialize Docker environment and install dependencies
-make init
+## Chemins clés
 
-# Initialize database and run migrations
-make database-init
+| Rôle | Chemin |
+|------|--------|
+| Templates source (Bootstrap) | `vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle/templates` |
+| Templates thème (Tailwind) | `themes/TailwindTheme/templates/bundles/SyliusShopBundle` |
+| Assets CSS | `themes/TailwindTheme/assets/css` |
+| Assets JS | `themes/TailwindTheme/assets/js` |
 
-# Load fixtures (optional)
-make load-fixtures
+Règles de conversion et correspondances Bootstrap → Tailwind/daisyUI : skill **`sylius-bootstrap-to-tailwind`**.
+Commandes disponibles : `/convert-folder`, `/sync-status`, `/diff-template`, `/check-sylius-updates`.
 
-# Start/stop containers
-make up
-make down
+## Suivi d'avancement
 
-# Access containers
-make php-shell
-make node-shell
-```
+Dernière mise à jour : 2026-03-28
+Total source : 589 templates | Total convertis : ~465 (~79%)
 
-### Traditional Development
-```bash
-# Frontend setup
-(cd vendor/sylius/test-application && yarn install)
-(cd vendor/sylius/test-application && yarn build)
-vendor/bin/console assets:install
+| Dossier        | Source | Thème | Manquants | Statut       |
+|----------------|--------|-------|-----------|--------------|
+| shared         | 168    | 169   | 0         | terminé ✓    |
+| homepage       | 3      | 3     | 0         | terminé ✓    |
+| product        | 82     | 82    | 0         | terminé ✓    |
+| account        | 166    | 166   | 0         | terminé ✓    |
+| checkout       | 64     | 25    | 39        | en cours     |
+| order          | 14     | 2     | 12        | en cours     |
+| cart           | 30     | 14    | 16        | en cours     |
+| contact        | 7      | 4     | 3         | en cours     |
+| grid           | 5      | 1     | 4         | en cours     |
+| product_review | 35     | 0     | 35        | non démarré  |
+| email          | 6      | 0     | 6         | non démarré  |
+| errors         | 7      | 0     | 7         | non démarré  |
+| form           | 1      | 0     | 1         | non démarré  |
+| integrations   | 1      | 0     | 1         | non démarré  |
 
-# Database setup
-vendor/bin/console doctrine:database:create
-vendor/bin/console doctrine:migrations:migrate -n
-vendor/bin/console sylius:fixtures:load -n
+Priorités : checkout (39) → product_review (35) → cart (16) → order (12) → contact/grid → email/errors/form/integrations
 
-# Start server
-symfony server:start -d
-```
+## Commandes de développement
 
-### Testing
-```bash
-# PHPUnit tests
-vendor/bin/phpunit
-make phpunit  # Docker
-
-# Behat tests (non-JS)
-vendor/bin/behat --strict --tags="~@javascript&&~@mink:chromedriver"
-make behat  # Docker
-
-# Behat tests (JS scenarios)
-# Requires Chrome headless and symfony server
-APP_ENV=test symfony server:start --port=8080 --daemon
-vendor/bin/behat --strict --tags="@javascript,@mink:chromedriver"
-```
-
-### Code Quality
-```bash
-# PHPStan analysis
-vendor/bin/phpstan analyse -c phpstan.neon -l max src/
-make phpstan  # Docker
-
-# Coding standards
-vendor/bin/ecs check
-make ecs  # Docker
-```
-
-### Composer Scripts
-```bash
-# Database reset with fixtures
-composer run database-reset
-
-# Frontend rebuild
-composer run frontend-clear
-
-# Complete test app initialization
-composer run test-app-init
-```
-
-## Architecture
-
-This is a **Sylius Plugin Skeleton** - a template for creating Sylius e-commerce plugins. It provides a complete development environment with both traditional and Docker setups.
-
-### Core Structure
-- **Main Plugin Class**: `src/AcmeSyliusExamplePlugin.php` - Entry point using `SyliusPluginTrait`
-- **DI Extension**: `src/DependencyInjection/AcmeSyliusExampleExtension.php` - Handles service loading and Doctrine migrations
-- **Services**: `config/services.xml` - Service definitions with XML configuration
-- **Routes**: `config/routes/` - Separate admin and shop route definitions
-- **Templates**: `templates/` - Twig templates for admin and shop with Twig hooks support
-
-### Key Features
-- **Test Application**: Uses `sylius/test-application` for plugin testing in isolation
-- **Asset Management**: Webpack Encore for frontend asset compilation
-- **Database**: Doctrine migrations with proper namespace handling
-- **Testing**: Full Behat + PHPUnit setup with browser testing support
-- **Code Quality**: PHPStan, ECS (Easy Coding Standard), and Rector integration
-
-### Development Environment
-- **Docker**: Complete containerized environment with PHP, Node.js, and database
-- **Traditional**: Local Symfony server with manual dependency management
-- **Frontend**: Yarn-based asset pipeline through test application
-
-### Testing Strategy
-- **Unit/Integration**: PHPUnit for isolated component testing
-- **Functional**: Behat for feature testing with browser automation
-- **Static Analysis**: PHPStan for type checking and code quality
-- **Standards**: ECS for coding standard enforcement
-
-### Database Configuration
-Database credentials should be configured in:
-- `tests/TestApplication/.env` (for development)
-- `tests/TestApplication/.env.test` (for testing)
-
-## AI Development Guides
-
-This project includes specialized AI guides to assist with common plugin development tasks:
-
-- **CLEANUP_GUIDE.md** - Guidelines for cleaning up and organizing plugin code
-- **RENAME_GUIDE.md** - Step-by-step instructions for renaming plugins and components
-- **COMPATIBILITY_GUIDE.md** - Best practices for maintaining compatibility across different Sylius versions
-
-These guides provide detailed instructions and automated workflows to help maintain code quality and ensure proper plugin structure.
+Voir `.claude/commands/dev-commands.md` pour Docker, frontend, tests et qualité de code.

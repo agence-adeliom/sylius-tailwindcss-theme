@@ -57,7 +57,7 @@
             "vendor/bin/console sylius:fixtures:load -n"
         ],
         "frontend-clear": [
-            "cd vendor/sylius/test-application && yarn install && yarn build",
+            "cd vendor/sylius/test-application && yarn install && yarn build:prod",
             "vendor/bin/console assets:install"
         ],
         "specific-plugin": [
