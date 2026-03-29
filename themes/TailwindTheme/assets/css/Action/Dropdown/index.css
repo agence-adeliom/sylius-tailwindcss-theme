@@ -1,9 +1,0 @@
-@reference '../../main.css';
-
-.dropdown-header {
-    @apply p-2 mt-3 z-[100] card bg-neutral text-neutral-content shadow-xl;
-}
-
-.dropdown-item-header {
-    @apply btn btn-sm w-full btn-block;
-}

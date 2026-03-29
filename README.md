@@ -14,7 +14,7 @@
 
 ## Introduction
 
-- A new Sylius front-end alternative based on Tailwindcss and daisyUI
+- A Sylius front-end alternative based on Tailwindcss 4 and daisyUI 5, 
 - Pure CSS UI components
 - Create themes with zero effort
 - Only `5kB` of Javascript & `45kB` of CSS
