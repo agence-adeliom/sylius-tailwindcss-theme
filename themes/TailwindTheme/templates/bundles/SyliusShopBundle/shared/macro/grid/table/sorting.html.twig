@@ -1,5 +1,6 @@
 {% macro table_header(grid, field, attributes) %}
     {% from _self import link %}
+    {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
 
     {% set order = grid.getSortingOrder(field.name) %}
 
@@ -7,13 +8,11 @@
         <th class="sortable sorted {{ order == 'desc' ? 'descending' : 'ascending' }} sylius-table-column-{{ field.name }}">
             <a class="link-reset" href="{{ link(field.name, attributes, (order == 'desc' ? 'asc' : 'desc'), grid.parameters.all) }}">
                 {{ field.label|trans }}
-
                 {% if order == 'desc' %}
-                    {# {{ ux_icon('tabler:chevron-down') }} #}
-                    <i class="fa-solid fa-chevron-down"></i>
+                    {{ icon('chevron-down') }}
                 {% endif %}
                 {% if order == 'asc' %}
-                    <i class="fa-solid fa-chevron-up"></i>
+                    {{ icon('chevron-up') }}
                 {% endif %}
             </a>
         </th>
@@ -21,10 +20,9 @@
         <th class="sortable sylius-table-column-{{ field.name }}">
             <a class="link-reset items-center gap-2 flex" href="{{ link(field.name, attributes, order, grid.parameters.all) }}">
                 {{ field.label|trans }}
-                {# {{ ux_icon('tabler:selector') }} #}
-                <div class="flex flex-col ">
-                    <i class="fa-solid fa-chevron-up"></i>
-                    <i class="fa-solid fa-chevron-down"></i>
+                <div class="flex flex-col">
+                    {{ icon('chevron-up') }}
+                    {{ icon('chevron-down') }}
                 </div>
             </a>
         </th>

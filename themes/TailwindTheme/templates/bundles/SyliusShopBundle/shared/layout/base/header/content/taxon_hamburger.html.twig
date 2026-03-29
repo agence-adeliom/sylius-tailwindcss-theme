@@ -1,1 +1,4 @@
-<i class="fa fa-regular fa-bars lg:!hidden" js-toggle-menu></i>
+{% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
+<label for="nav-drawer" class="lg:hidden cursor-pointer p-2" aria-label="{{ 'sylius.ui.menu'|trans }}">
+    {{ icon('bars') }}
+</label>

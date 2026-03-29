@@ -1,4 +1,5 @@
+{% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
 <a href="{{ path('sylius_shop_account_profile_update') }}" class="btn btn-sm btn-secondary">
-    <i class="fa-regular fa-pen"></i>
+    {{ icon('pencil') }}
     {{ 'sylius.ui.edit'|trans }}
 </a>

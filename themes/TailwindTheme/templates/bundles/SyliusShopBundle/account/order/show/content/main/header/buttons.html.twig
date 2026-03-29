@@ -4,6 +4,6 @@
     {% import '@SyliusShop/shared/buttons.html.twig' as buttons %}
 
     <div class="flex gap-3 justify-end mb-3">
-        {{ buttons.primary(path('sylius_shop_order_show', {'tokenValue': order.tokenValue}), 'sylius.ui.pay', null, 'fa-credit-card', 'green') }}
+        {{ buttons.primary(path('sylius_shop_order_show', {'tokenValue': order.tokenValue}), 'sylius.ui.pay', null, 'credit-card', 'green') }}
     </div>
 {% endif %}

@@ -7,10 +7,11 @@
             {% endif %}
 
             <div class="alert alert-{{ type }} my-10 relative" role="alert" data-test-sylius-flash-message>
-                <div class="flex justify-between">
+                {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
+            <div class="flex justify-between">
                     <div class="font-bold">{{ header|trans }}</div>
                     <span class="absolute right-4" data-bs-dismiss="alert" aria-label="Close">
-                        <i class="fa-solid fa-xmark"></i>
+                        {{ icon('x-mark') }}
                     </span>
                 </div>
                 <div {{ sylius_test_html_attribute('flash-messages') }}>

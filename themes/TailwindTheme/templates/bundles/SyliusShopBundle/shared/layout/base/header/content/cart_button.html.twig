@@ -1,8 +1,9 @@
 {% import "@SyliusShop/shared/macro/money.html.twig" as money %}
 
 <div {{ sylius_test_html_attribute('cart-button') }}>
+    {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
     <button class="flex items-center px-0 relative">
-        <i class="fa-solid fa-cart-shopping"></i>
+        {{ icon('cart') }}
         hello
         <span class="hidden lg:block" {{ sylius_test_html_attribute('cart-total') }}>
             {{- money.convertAndFormat(cart.itemsTotal) -}}

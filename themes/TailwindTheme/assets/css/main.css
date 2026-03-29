@@ -1,11 +1,12 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 
-@source "../../templates/**/*.twig";
-@source "../../templates/**/*.html";
-@source "../**/*.js";
+@source "../../templates/bundles/SyliusShopBundle/**/*.twig";
 
 @plugin "daisyui" {
     themes: light;
+    logs: false;
+    include: alert, badge, breadcrumbs, button, card, checkbox, collapse, dropdown, fieldset, hero, drawer, input, label, link, divider, list, loading, mask, menu, navbar, radio, select, steps, rating, table, textarea, toggle, join;
+    exclude: tabnavbar, kbd, avatar, carousel, chat, countdown, hover-3d, hover-gallery, diff, stats, fieldset, indicator, skeleton, toast, tooltip;
 }
 
 @plugin "daisyui/theme" {
@@ -204,16 +205,6 @@
     margin-inline: auto;
     padding-inline: 1rem;
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
-@variant is-loading (&:where(.is-loading, .is-loading *));
-@variant is-open (&:where(.is-open, .is-open *));
-@variant menu-open (&:where(.menu-open, .menu-open *));
-@variant block-bg-gray (&:where(.block-bg-gray, .block-bg-gray *));
-@variant block-bg-secondary (&:where(.block-bg-secondary, .block-bg-secondary *));
-@variant is-selected (&:where(.is-selected, .is-selected *));
-@variant open-container (&:where(.open-container, .open-container *));
-@variant open-container (&:where(.open-desktop, .open-desktop *));
 
 /*!* Typography *!*/
 @import url("./Typography/index.css");

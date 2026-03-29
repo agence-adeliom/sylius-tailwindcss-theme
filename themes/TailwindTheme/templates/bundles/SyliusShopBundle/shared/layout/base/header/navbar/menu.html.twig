@@ -1,22 +1,29 @@
-<div js-menu>
-    <div class="pointer-events-none bg-black/60 opacity-0 z-20 fixed w-screen h-dvh top-0 left-0 is-open:opacity-100 duration-300 ease-in-out is-open:pointer-events-auto lg:hidden" js-menu-backdrop></div>
-    <div class="w-screen h-dvh bg-base-100 md:w-[60vw] lg:h-fit lg:w-full border-b border-neutral-300 max-lg:fixed z-[100] is-open:translate-x-0 max-lg:-translate-x-full duration-300 ease-in-out top-0 left-0">
-        <i class="fa-regular fa-xmark lg:!hidden right-6 top-6 text-xl absolute" js-close-menu></i>
-        {% if taxons|length > 0 %}
-            <div class="container">
-                <nav class="navbar" id="navbarNav">
-                    {# <div class="offcanvas-header w-full">
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#navbarNav" aria-label="Close"></button>
-                    </div> #}
+{# Checkbox daisyUI drawer — position:fixed donc accessible via label[for] depuis n'importe quel endroit du DOM #}
+<input id="nav-drawer" type="checkbox" class="drawer-toggle" />
 
-                    {# <div class="menu !flex w-fit  rounded-box lg:mx-auto" {{ sylius_test_html_attribute('menu') }}>
-                        {% hook 'menu' with { taxons } %}
-                    </div> #}
-                    <ul class="menu flex lg:flex-row lg:mx-auto lg:w-fit" {{ sylius_test_html_attribute('menu') }}>
-                        {% hook 'menu' with {taxons} %}
-                    </ul>
-                </nav>
-            </div>
+{# drawer-side : overlay fixe sur mobile, rendu statique sur desktop via !important #}
+<div class="drawer-side z-[100]
+    lg:!static lg:!block lg:!h-auto lg:!w-auto
+    lg:!opacity-100 lg:!visible lg:!pointer-events-auto lg:!overflow-visible lg:!bg-transparent">
+
+    {# Backdrop : visible sur mobile, masqué sur desktop #}
+    <label for="nav-drawer" aria-label="{{ 'sylius.ui.close'|trans }}" class="drawer-overlay lg:hidden"></label>
+
+    {# Panneau : pleine hauteur sur mobile, auto sur desktop #}
+    <div class="min-h-dvh w-[85vw] max-w-xs bg-base-100 p-6 pt-16 lg:min-h-0 lg:w-auto lg:max-w-[100%] lg:min-w-[100%] lg:text-center lg:bg-transparent lg:p-0 lg:translate-x-0">
+
+        {# Bouton fermeture mobile #}
+        {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
+        <label for="nav-drawer" class="lg:hidden absolute top-4 right-4 btn btn-ghost btn-sm" aria-label="{{ 'sylius.ui.close'|trans }}">
+            {{ icon('x-mark') }}
+        </label>
+
+        {% if taxons|length > 0 %}
+            <nav>
+                <ul class="menu lg:menu-horizontal" {{ sylius_test_html_attribute('menu') }}>
+                    {% hook 'menu' with {taxons} %}
+                </ul>
+            </nav>
         {% endif %}
     </div>
 </div>

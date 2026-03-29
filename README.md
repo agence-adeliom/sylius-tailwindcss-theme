@@ -15,10 +15,8 @@
 ## Introduction
 
 - A Sylius front-end alternative based on Tailwindcss 4 and daisyUI 5, 
-- Pure CSS UI components
+- Pure CSS UI components and icons (heroicons) with zero javascript dependency
 - Create themes with zero effort
-- Only `5kB` of Javascript & `45kB` of CSS
-- Start your Sylius projects with an optimized code : 💯 in Lighthouse page load report
 ## Preview
 
 <a href="./docs/medias/home1.png" target="_blank">

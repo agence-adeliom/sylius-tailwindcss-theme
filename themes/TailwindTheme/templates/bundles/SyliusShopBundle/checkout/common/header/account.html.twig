@@ -9,8 +9,9 @@
     </div>
 {% else %}
     <div class="">
+        {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
         <a class="btn btn-icon px-2" href="{{ path('sylius_shop_login') }}">
-            <i class="fa-regular fa-user"></i>
+            {{ icon('user') }}
             <div class="hidden lg:block px-2">{{ 'sylius.ui.sign_in'|trans }}</div>
         </a>
     </div>
