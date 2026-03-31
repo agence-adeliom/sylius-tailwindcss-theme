@@ -15,7 +15,7 @@
         "symfony/webpack-encore-bundle": "^1.12",
         "ext-json": "*",
         "ext-intl": "*",
-        "sylius/sylius": ">=1.13 <1.14"
+        "sylius/sylius": "^1.13 || ^1.14"
     },
     "require-dev": {
         "behat/behat": "^3.13.0",
