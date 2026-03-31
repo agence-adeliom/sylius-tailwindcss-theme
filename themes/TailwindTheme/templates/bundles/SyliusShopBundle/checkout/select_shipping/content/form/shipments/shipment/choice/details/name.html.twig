@@ -1,0 +1,7 @@
+{% set form = hookable_metadata.context.form %}
+{% set method = hookable_metadata.context.method %}
+
+<div class="flex items-center gap-3" {{ sylius_test_html_attribute('shipping-method-checkbox') }}>
+    {{ form_widget(form, sylius_test_form_attribute('shipping-method-select')) }}
+    <span class="font-semibold">{{ method.name }}</span>
+</div>

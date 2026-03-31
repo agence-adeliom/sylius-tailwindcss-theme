@@ -1,70 +1,21 @@
+/vendor/
+/var/
+/node_modules/
+/drivers/
 /composer.lock
 
 /etc/build/*
 !/etc/build/.gitignore
 
-/tests/Application/
-/install/Application/*.local
-
 /.phpunit.result.cache
 /behat.yml
-
-###> symfony/webpack-encore-bundle ###
-/node_modules/
-/public/build/
-npm-debug.log
-yarn-error.log
-###< symfony/webpack-encore-bundle ###
-
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
-/vendor/
-###< symfony/framework-bundle ###
-
-###> phpunit/phpunit ###
 /phpunit.xml
+/compose.override.yml
 .phpunit.result.cache
-###< phpunit/phpunit ###
 
-###> friendsofphp/php-cs-fixer ###
-/.php-cs-fixer.php
-/.php-cs-fixer.cache
-###< friendsofphp/php-cs-fixer ###
-
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
-
-install/Application
-tests/Application
-.idea
-
-/phpspec.yml
-/package-lock.json
+# Symfony CLI https://symfony.com/doc/current/setup/symfony_server.html#different-php-settings-per-project
 /.php-version
 /php.ini
-/node_modules
-/yarn.lock
 
-###> squizlabs/php_codesniffer ###
-/.phpcs-cache
-/phpcs.xml
-###< squizlabs/php_codesniffer ###
-
-###> friends-of-behat/symfony-extension ###
-/behat.yml
-###< friends-of-behat/symfony-extension ###
-
-###> liip/imagine-bundle ###
-/public/media/cache/
-###< liip/imagine-bundle ###
-
-###> lexik/jwt-authentication-bundle ###
-/config/jwt/*.pem
-###< lexik/jwt-authentication-bundle ###
-.makefile/composer.mk
+/tests/TestApplication/.env.local
+/tests/TestApplication/.env.*.local

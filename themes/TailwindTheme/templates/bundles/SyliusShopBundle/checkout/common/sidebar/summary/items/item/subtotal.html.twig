@@ -1,0 +1,7 @@
+{% import "@SyliusShop/shared/macro/money.html.twig" as money %}
+
+{% set item = hookable_metadata.context.item %}
+
+<div class="text-sm font-medium shrink-0" {{ sylius_test_html_attribute('item-subtotal', item.variant.product.slug) }}>
+    {{ money.convertAndFormat(item.subtotal) }}
+</div>

@@ -1,0 +1,15 @@
+{% import "@SyliusShop/shared/macro/money.html.twig" as money %}
+
+{% set order = hookable_metadata.context.order %}
+
+{% if order.shipments is not empty %}
+    <div class="flex justify-between text-sm">
+        <span class="text-base-content/70">{{ 'sylius.ui.shipping_estimated_cost'|trans }}</span>
+        <span>
+            {% if order.getAdjustmentsTotal('shipping') > order.shippingTotal %}
+                <del class="text-base-content/40 mr-1">{{ money.convertAndFormat(order.getAdjustmentsTotal('shipping')) }}</del>
+            {% endif %}
+            <span id="sylius-shop-checkout-summary-shipping-total">{{ money.convertAndFormat(order.shippingTotal) }}</span>
+        </span>
+    </div>
+{% endif %}

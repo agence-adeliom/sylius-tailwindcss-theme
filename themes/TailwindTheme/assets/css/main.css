@@ -1,0 +1,210 @@
+@import "tailwindcss" source(none);
+
+@source "../../templates/bundles/SyliusShopBundle/**/*.twig";
+
+@plugin "daisyui" {
+    themes: light;
+    logs: false;
+    include: alert, badge, breadcrumbs, button, card, checkbox, collapse, dropdown, fieldset, hero, drawer, input, label, link, divider, list, loading, mask, menu, navbar, radio, select, steps, rating, table, textarea, toggle, join;
+    exclude: tabnavbar, kbd, avatar, carousel, chat, countdown, hover-3d, hover-gallery, diff, stats, fieldset, indicator, skeleton, toast, tooltip;
+}
+
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-accent: #1A866B;
+    --color-accent-content: "#000000";
+    --color-primary-dark: #1A866B;
+    --color-primary: #22b99a;
+    --color-primary-content: #ffffff;
+    --color-secondary-dark: #002270;
+    --color-secondary: #00174b;
+    --color-secondary-content: #ffffff;
+    --color-neutral: "#f5f5f5";
+    --color-neutral-content: "#262626";
+    --color-base-100: "#FFFFFF";
+    --color-base-200: "#E4E5E7";
+    --color-base-300: "#D4D4D8";
+    --color-base-content: "#3F3F46";
+    --color-success: "#16A34A";
+    --color-success-content: "#FFFFFF";
+    --color-warning: "#E89300";
+    --color-warning-content: "#FFFFFF";
+    --color-info: "#464647";
+    --color-info-content: "#FFFFFF";
+    --color-error: "#DC3526";
+    --color-error-content: "#FFFFFF";
+    --color-light-content: "#FFFFFF";
+
+    --radius-field: 0;
+    --btn-shadow: none;
+}
+
+@plugin "daisyui/theme" {
+    name: "dark";
+    --color-primary-dark: "#FFFFFF";
+    --color-primary: #177c68;
+    --color-primary-content: "#FFFFFF";
+    --color-secondary: #48485C;
+    --color-secondary-content: "#FFFFFF";
+    --color-accent: "#B7B1AD";
+    --color-accent-content: "#000000";
+    --color-neutral: "#505050";
+    --color-neutral-content: "#FFFFFF";
+    --color-base-100: "#2D2D2E";
+    --color-base-200: "#464647";
+    --color-base-300: "#58585A";
+    --color-base-content: "#e9f3f1";
+    --color-success: "#177c68";
+    --color-success-content: "#FFFFFF";
+    --color-warning: "#E89300";
+    --color-warning-content: "#FFFFFF";
+    --color-info: "#464647";
+    --color-info-content: "#FFFFFF";
+    --color-error: "#DC3526";
+    --color-error-content: "#FFFFFF";
+    --color-light-content: "#FFFFFF";
+}
+
+@plugin "daisyui/theme" {
+    name: "forest";
+    --color-primary: #2d6a4f;
+    --color-primary-content: #ffffff;
+    --color-secondary: #74c69d;
+    --color-secondary-content: #1b4332;
+    --color-accent: #d4a373;
+    --color-accent-content: #3a1e00;
+    --color-neutral: #e9f5ee;
+    --color-neutral-content: #1b4332;
+    --color-base-100: #f8faf4;
+    --color-base-200: #e8f0e3;
+    --color-base-300: #d1e4c9;
+    --color-base-content: #1b4332;
+    --color-success: #52b788;
+    --color-success-content: #ffffff;
+    --color-warning: #e9c46a;
+    --color-warning-content: #3a1e00;
+    --color-info: #74c69d;
+    --color-info-content: #1b4332;
+    --color-error: #c1440e;
+    --color-error-content: #ffffff;
+
+    --radius-field: 4px;
+    --btn-shadow: none;
+}
+
+@plugin "daisyui/theme" {
+    name: "sunset";
+    --color-primary: #e63946;
+    --color-primary-content: #ffffff;
+    --color-secondary: #f4a261;
+    --color-secondary-content: #4a1a00;
+    --color-accent: #457b9d;
+    --color-accent-content: #ffffff;
+    --color-neutral: #fff0eb;
+    --color-neutral-content: #4a1a00;
+    --color-base-100: #fff9f5;
+    --color-base-200: #fde8dc;
+    --color-base-300: #f9cfc0;
+    --color-base-content: #4a1a00;
+    --color-success: #2a9d8f;
+    --color-success-content: #ffffff;
+    --color-warning: #e9c46a;
+    --color-warning-content: #4a1a00;
+    --color-info: #457b9d;
+    --color-info-content: #ffffff;
+    --color-error: #c1121f;
+    --color-error-content: #ffffff;
+
+    --radius-field: 999px;
+    --btn-shadow: none;
+}
+
+@plugin "daisyui/theme" {
+    name: "ocean";
+    --color-primary: #0077b6;
+    --color-primary-content: #ffffff;
+    --color-secondary: #00b4d8;
+    --color-secondary-content: #023e8a;
+    --color-accent: #48cae4;
+    --color-accent-content: #023e8a;
+    --color-neutral: #e0f4fb;
+    --color-neutral-content: #023e8a;
+    --color-base-100: #f0fbff;
+    --color-base-200: #caf0f8;
+    --color-base-300: #ade8f4;
+    --color-base-content: #023e8a;
+    --color-success: #0096c7;
+    --color-success-content: #ffffff;
+    --color-warning: #f4a261;
+    --color-warning-content: #023e8a;
+    --color-info: #00b4d8;
+    --color-info-content: #023e8a;
+    --color-error: #e63946;
+    --color-error-content: #ffffff;
+
+    --radius-field: 2px;
+    --btn-shadow: none;
+}
+
+@plugin "daisyui/theme" {
+    name: "candy";
+    --color-primary: #ff6eb4;
+    --color-primary-content: #ffffff;
+    --color-secondary: #00e5c0;
+    --color-secondary-content: #003d34;
+    --color-accent: #ffe066;
+    --color-accent-content: #3d3300;
+    --color-neutral: #f5e6f7;
+    --color-neutral-content: #3d0033;
+    --color-base-100: #fff0fa;
+    --color-base-200: #fddcf5;
+    --color-base-300: #f9c2ec;
+    --color-base-content: #3d0033;
+    --color-success: #00e5c0;
+    --color-success-content: #003d34;
+    --color-warning: #ffb347;
+    --color-warning-content: #3d2200;
+    --color-info: #b47ffe;
+    --color-info-content: #ffffff;
+    --color-error: #ff3e6c;
+    --color-error-content: #ffffff;
+
+    --radius-field: 999px;
+    --btn-shadow: none;
+}
+
+@plugin "daisyui/theme" {
+    name: "void";
+    --color-primary: #b347ff;
+    --color-primary-content: #ffffff;
+    --color-secondary: #00ff9f;
+    --color-secondary-content: #000d06;
+    --color-accent: #ff3864;
+    --color-accent-content: #ffffff;
+    --color-neutral: #1a0a2e;
+    --color-neutral-content: #b347ff;
+    --color-base-100: #0d0d1a;
+    --color-base-200: #130d24;
+    --color-base-300: #1e1036;
+    --color-base-content: #e8d5ff;
+    --color-success: #00ff9f;
+    --color-success-content: #000d06;
+    --color-warning: #ffdb00;
+    --color-warning-content: #0d0d1a;
+    --color-info: #00cfff;
+    --color-info-content: #0d0d1a;
+    --color-error: #ff3864;
+    --color-error-content: #ffffff;
+
+    --radius-field: 0;
+    --btn-shadow: none;
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+/*!* Typography *!*/
+@import url("./Typography/index.css");

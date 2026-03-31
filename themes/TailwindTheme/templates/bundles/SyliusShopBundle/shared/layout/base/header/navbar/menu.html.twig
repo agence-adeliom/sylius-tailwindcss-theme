@@ -1,0 +1,29 @@
+{# Checkbox daisyUI drawer — position:fixed donc accessible via label[for] depuis n'importe quel endroit du DOM #}
+<input id="nav-drawer" type="checkbox" class="drawer-toggle" />
+
+{# drawer-side : overlay fixe sur mobile, rendu statique sur desktop via !important #}
+<div class="drawer-side z-[100]
+    lg:!static lg:!block lg:!h-auto lg:!w-auto
+    lg:!opacity-100 lg:!visible lg:!pointer-events-auto lg:!overflow-visible lg:!bg-transparent">
+
+    {# Backdrop : visible sur mobile, masqué sur desktop #}
+    <label for="nav-drawer" aria-label="{{ 'sylius.ui.close'|trans }}" class="drawer-overlay lg:hidden"></label>
+
+    {# Panneau : pleine hauteur sur mobile, auto sur desktop #}
+    <div class="min-h-dvh w-[85vw] max-w-xs bg-base-100 p-6 pt-16 lg:min-h-0 lg:w-auto lg:max-w-[100%] lg:min-w-[100%] lg:text-center lg:bg-transparent lg:p-0 lg:translate-x-0">
+
+        {# Bouton fermeture mobile #}
+        {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
+        <label for="nav-drawer" class="lg:hidden absolute top-4 right-4 btn btn-ghost btn-sm" aria-label="{{ 'sylius.ui.close'|trans }}">
+            {{ icon('x-mark') }}
+        </label>
+
+        {% if taxons|length > 0 %}
+            <nav>
+                <ul class="menu lg:menu-horizontal" {{ sylius_test_html_attribute('menu') }}>
+                    {% hook 'menu' with {taxons} %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+</div>

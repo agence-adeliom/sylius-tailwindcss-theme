@@ -1,0 +1,25 @@
+{% set visible = options.visible is defined ? options.visible : true %}
+
+{% if visible %}
+    <ul class="menu">
+        {% if action.label %}
+            <li class="menu-title">{{ action.label|trans }}</li>
+        {% endif %}
+
+        {% for link in options.links|default %}
+            {% set is_link_visible = link.visible is defined ? link.visible : true %}
+
+            {% if is_link_visible %}
+                {% set path = link.url is defined ? link.url : path(link.route, link.parameters|default([])) %}
+                <li>
+                    <a href="{{ path }}">
+                        {% if link.icon is defined %}
+                            {{ ux_icon(link.icon, {'class': 'icon' }) }}
+                        {% endif %}
+                        {{ link.label|trans }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}

@@ -1,0 +1,8 @@
+{% set resources = hookable_metadata.context.resources %}
+{% set pagination_limits = (resources.definition.limits) %}
+<ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box shadow-lg w-28 z-10">
+    {% for limit in pagination_limits|filter(limit => limit != resources.data.maxPerPage) %}
+        {% set path = path(app.request.attributes.get('_route'), app.request.attributes.all('_route_params')|merge(app.request.query.all)|merge({'limit': limit})) %}
+        <li><a href="{{ path }}">{{ limit }}</a></li>
+    {% endfor %}
+</ul>

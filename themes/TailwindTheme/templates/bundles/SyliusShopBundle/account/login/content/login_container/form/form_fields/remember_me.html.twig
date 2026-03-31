@@ -1,0 +1,9 @@
+{%- set field = hookable_metadata.context.form._remember_me -%}
+
+<div class="flex items-center gap-2 mt-2" {{ sylius_test_form_attribute('remember-me').attr|keys|join('') }}>
+    {{ form_widget(field) }}
+    <label for="{{ field.vars.id }}" class="text-sm cursor-pointer select-none">
+        {{ field.vars.label|trans({}, field.vars.translation_domain|default('messages')) }}
+    </label>
+    {{ form_errors(field) }}
+</div>

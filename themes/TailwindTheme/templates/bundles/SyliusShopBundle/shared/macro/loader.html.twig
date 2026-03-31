@@ -1,0 +1,10 @@
+{%- macro render(class='', size='md', label=null) -%}
+    {%- set _label = label is not null ? label : 'sylius.ui.loading'|trans -%}
+
+    <div data-loading>
+        <div class="flex items-center justify-center{{ class ? ' ' ~ class }}">
+            <span class="loading loading-spinner loading-{{ size }} text-primary" aria-label="{{ _label }}"></span>
+            <span class="sr-only">{{ _label }}</span>
+        </div>
+    </div>
+{%- endmacro -%}

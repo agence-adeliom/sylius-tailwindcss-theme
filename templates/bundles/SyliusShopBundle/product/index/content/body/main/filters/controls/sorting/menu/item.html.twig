@@ -1,5 +1,0 @@
-{% set sorting = hookable_metadata.configuration.sorting|default(null) %}
-{% set path = path(hookable_metadata.context.route, hookable_metadata.context.route_parameters|merge({sorting, 'criteria': hookable_metadata.context.criteria})) %}
-{% set title = hookable_metadata.configuration.title|trans %}
-
-<a class="lg:hover:bg-neutral-200 transition-all block py-2 px-4" href="{{ path }}" data-text="{{ title|lower }}">{{ title }}</a>

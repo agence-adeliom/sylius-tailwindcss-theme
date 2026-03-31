@@ -1,0 +1,11 @@
+{% macro show(rating=3) %}
+    {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
+    <div class="flex">
+        {% for i in 1..5 %}
+            <label class="rating-product">
+                <input class="hidden" type="radio" {% if loop.index == rating %}checked{% endif %} disabled>
+                {{ icon(loop.index <= rating ? 'star-solid' : 'star') }}
+            </label>
+        {% endfor %}
+    </div>
+{% endmacro %}

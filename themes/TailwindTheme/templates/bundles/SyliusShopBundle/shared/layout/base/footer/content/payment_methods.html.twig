@@ -1,0 +1,32 @@
+<div class="col-span-full md:col-span-6 lg:col-span-3 flex flex-col gap-4">
+
+    <div>
+        <h6 class="footer-title">{{ 'sylius.ui.payment_methods'|trans }}</h6>
+        <div class="flex flex-wrap gap-2">
+            <a href="https://sylius.com/partner/paypal/" target="_blank" class="btn btn-ghost btn-sm px-2 h-auto py-1" aria-label="PayPal">
+                <img width="64" height="18" src="{{ asset('build/shop/images/paypal-logo.svg', 'shop') }}" alt="PayPal" />
+            </a>
+            <a href="https://sylius.com/partner/adyen/" target="_blank" class="btn btn-ghost btn-sm px-2 h-auto py-1" aria-label="Adyen">
+                <img width="64" height="18" src="{{ asset('build/shop/images/adyen-logo.svg', 'shop') }}" alt="Adyen" />
+            </a>
+            <a href="https://sylius.com/partner/mollie/" target="_blank" class="btn btn-ghost btn-sm px-2 h-auto py-1" aria-label="Mollie">
+                <img width="64" height="18" src="{{ asset('build/shop/images/mollie-logo.svg', 'shop') }}" alt="Mollie" />
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-12">
+        <div class="flex gap-3">
+            <a class="btn btn-ghost btn-sm btn-square" href="#" aria-label="Follow us on Instagram">
+                {{ ux_icon('tabler:brand-instagram', {class: 'size-5'}) }}
+            </a>
+            <a class="btn btn-ghost btn-sm btn-square" href="#" aria-label="Follow us on Facebook">
+                {{ ux_icon('tabler:brand-facebook', {class: 'size-5'}) }}
+            </a>
+            <a class="btn btn-ghost btn-sm btn-square" href="#" aria-label="Follow us on X">
+                {{ ux_icon('tabler:brand-x', {class: 'size-5'}) }}
+            </a>
+        </div>
+    </div>
+
+</div>

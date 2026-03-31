@@ -1,0 +1,3 @@
+{% set greeting = hookable_metadata.context.greeting %}
+
+<div id="greeting" data-greeting="{{ greeting }}" {{ sylius_test_html_attribute('dynamic-greeting') }}>Loading...</div>

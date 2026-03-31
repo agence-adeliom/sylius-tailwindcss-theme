@@ -1,0 +1,9 @@
+{% from '@SyliusShop/shared/macro/flags.html.twig' import flag %}
+
+<div class="flex justify-between items-center py-2 text-sm">
+    <span class="text-base-content/70">{{ 'sylius.ui.locale'|trans }}</span>
+    <div class="flex items-center gap-2 font-semibold" {{ sylius_test_html_attribute('order-locale-name') }}>
+        <span class="w-5 shrink-0">{{ flag(sylius.localeCode|sylius_locale_country) }}</span>
+        <span>{{ sylius.localeCode|sylius_locale_name }}</span>
+    </div>
+</div>

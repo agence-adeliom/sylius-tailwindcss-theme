@@ -1,0 +1,6 @@
+{% set order = hookable_metadata.context.order %}
+
+<div class="flex justify-between items-center py-2 text-sm">
+    <span class="text-base-content/70">{{ 'sylius.ui.currency'|trans }}</span>
+    <span class="font-semibold" {{ sylius_test_html_attribute('order-currency-code') }}>{{ order.currencyCode }}</span>
+</div>

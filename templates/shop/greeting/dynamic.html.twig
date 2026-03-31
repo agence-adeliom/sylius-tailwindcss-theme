@@ -1,0 +1,8 @@
+{% set dynamic_greetings_hook = 'app_shop.greeting.dynamic' %}
+{% set prefixes = [dynamic_greetings_hook] %}
+
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block content %}
+    {% hook dynamic_greetings_hook %}
+{% endblock %}

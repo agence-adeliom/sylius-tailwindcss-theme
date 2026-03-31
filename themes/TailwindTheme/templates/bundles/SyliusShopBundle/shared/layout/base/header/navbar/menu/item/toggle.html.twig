@@ -1,0 +1,7 @@
+{% set taxon = hookable_metadata.context.taxon %}
+{% set loop = hookable_metadata.context.loop %}
+{% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
+<div tabindex="{{ loop.index }}" role="button" class="cursor-pointer">
+    {{ taxon.name }}
+    {{ icon('chevron-down', 'max-lg:!hidden') }}
+</div>

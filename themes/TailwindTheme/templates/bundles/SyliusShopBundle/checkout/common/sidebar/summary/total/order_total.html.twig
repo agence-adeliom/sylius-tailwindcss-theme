@@ -1,0 +1,8 @@
+{% import "@SyliusShop/shared/macro/money.html.twig" as money %}
+
+{% set order = hookable_metadata.context.order %}
+
+<div class="flex justify-between items-center pt-3 mt-1 border-t border-base-300 font-semibold">
+    <span>{{ 'sylius.ui.order_total'|trans }}</span>
+    <span>{{ money.convertAndFormat(order.total) }}</span>
+</div>

@@ -1,0 +1,23 @@
+imports:
+    - { resource: "@AdeliomSyliusTailwindcssPlugin/config/config.yaml" }
+    - { resource: "packages/assets.yaml" }
+    - { resource: "packages/webpack_encore.yaml" }
+    - { resource: "packages/sylius_theme.yaml" }
+    - { resource: "packages/web_profiler.yaml" }
+    - { resource: "services_test.php" }
+
+twig:
+    paths:
+        '%kernel.project_dir%/../../../tests/TestApplication/templates': ~
+
+# Remove if you do not need to extend entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    TestApplication:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/../../../tests/TestApplication/src/Entity'
+                        prefix: Tests\Adeliom\SyliusTailwindcssPlugin

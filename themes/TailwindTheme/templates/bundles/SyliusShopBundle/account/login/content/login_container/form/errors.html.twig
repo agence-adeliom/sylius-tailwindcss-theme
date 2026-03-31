@@ -1,0 +1,8 @@
+{% set last_error = hookable_metadata.context.last_error|default() %}
+
+{% if last_error is not empty %}
+    <div class="alert alert-error my-2" role="alert" {{ sylius_test_html_attribute('sylius-flash-message', 'alert-error') }}>
+        {{ ux_icon('tabler:alert-circle', {class: 'size-5 shrink-0'}) }}
+        <span>{{ last_error.messageKey|trans(last_error.messageData, 'security') }}</span>
+    </div>
+{% endif %}

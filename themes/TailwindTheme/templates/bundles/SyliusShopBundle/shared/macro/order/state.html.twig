@@ -1,0 +1,27 @@
+{% macro label(state) %}
+    {% set value = 'sylius.ui.' ~ state %}
+    {% set view_options = {
+        authorized: { color: 'warning' },
+        awaiting_payment: { color: 'neutral' },
+        cancelled: { color: 'error' },
+        completed: { color: 'success' },
+        cart: { color: 'neutral' },
+        failed: { color: 'error' },
+        new: { color: 'success' },
+        paid: { color: 'success' },
+        partially_authorized: { color: 'warning' },
+        partially_paid: { color: 'warning' },
+        partially_refunded: { color: 'secondary' },
+        processing: { color: 'secondary' },
+        ready: { color: 'info' },
+        refunded: { color: 'secondary' },
+        shipped: { color: 'success' },
+        partially_shipped: { color: 'warning' },
+    } %}
+
+    {% set color = view_options[state]['color']|default('success') %}
+
+    <span class="badge badge-{{ color }}">
+        {{ value|trans }}
+    </span>
+{% endmacro %}

@@ -1,0 +1,165 @@
+{% extends 'bootstrap_5_layout.html.twig' %}
+
+{# ── Row wrappers ────────────────────────────────────────────────────── #}
+
+{% block form_row -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    {%- set row_class = 'field mb-4' -%}
+    {%- if required -%}{%- set row_class = row_class ~ ' required' -%}{%- endif -%}
+    {%- if is_invalid -%}{%- set row_class = row_class ~ ' error' -%}{%- endif -%}
+    {%- set row_attr = row_attr|merge({'class': (row_attr.class|default('') ~ ' ' ~ row_class)|trim}) -%}
+    <div {% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row %}
+
+{% block checkbox_row -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    {%- set row_class = 'flex items-center gap-2 mb-2' -%}
+    {%- if required -%}{%- set row_class = row_class ~ ' required' -%}{%- endif -%}
+    {%- if is_invalid -%}{%- set row_class = row_class ~ ' error' -%}{%- endif -%}
+    <div class="{{ row_class }}">
+        {{- form_widget(form) -}}
+        {%- if label is not same as(false) -%}
+            {%- set label_text = label is not empty ? label : (label_format is not empty ? label_format|replace({'%name%': name, '%id%': id}) : name|humanize) -%}
+            <label for="{{ id }}" class="text-sm cursor-pointer select-none{{ is_invalid ? ' text-error' }}">
+                {{- translation_domain is same as(false) ? label_text : label_text|trans(label_translation_parameters|default({}), translation_domain) -}}
+            </label>
+        {%- endif -%}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock checkbox_row %}
+
+{% block radio_row -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    <div class="flex items-center gap-2 mb-2{{ is_invalid ? ' error' }}">
+        {{- form_widget(form) -}}
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock radio_row %}
+
+{# ── Label ───────────────────────────────────────────────────────────── #}
+
+{% block form_label -%}
+    {%- if label is not same as(false) -%}
+        {%- if label is empty -%}
+            {%- if label_format is not empty -%}
+                {%- set label = label_format|replace({'%name%': name, '%id%': id}) -%}
+            {%- else -%}
+                {%- set label = name|humanize -%}
+            {%- endif -%}
+        {%- endif -%}
+        {%- set label_attr = label_attr|merge({'class': ('block font-medium text-sm mb-1' ~ (label_attr.class is defined ? ' ' ~ label_attr.class : ''))|trim}) -%}
+        <label{% if label_attr %}{% with {attr: label_attr} %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not compound %} for="{{ id }}"{% endif %}>
+            {{- translation_domain is same as(false) ? label : label|trans(label_translation_parameters|default({}), translation_domain) -}}
+        </label>
+    {%- endif -%}
+{%- endblock form_label %}
+
+{# ── Text / generic inputs ───────────────────────────────────────────── #}
+
+{% block form_widget_simple -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    {%- if type is defined and type == 'hidden' -%}
+        <input type="hidden" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {%- elseif type is defined and type == 'range' -%}
+        {%- set required = false -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' range w-full')|trim}) -%}
+        <input type="range" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {%- elseif type is defined and type == 'color' -%}
+        {%- set required = false -%}
+        <input type="color" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {%- else -%}
+        {%- set base = 'input input-bordered w-full' ~ (is_invalid ? ' input-error' : '') -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
+        <input type="{{ type|default('text') }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {%- endif -%}
+{%- endblock form_widget_simple %}
+
+{# ── Textarea ────────────────────────────────────────────────────────── #}
+
+{% block textarea_widget -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    {%- set base = 'textarea textarea-bordered w-full min-h-24' ~ (is_invalid ? ' textarea-error' : '') -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+{%- endblock textarea_widget %}
+
+{# ── Select ──────────────────────────────────────────────────────────── #}
+
+{% block choice_widget_collapsed -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    {%- set base = 'select select-bordered w-full' ~ (is_invalid ? ' select-error' : '') -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
+    {{- parent() -}}
+{%- endblock choice_widget_collapsed %}
+
+{# ── Checkbox ────────────────────────────────────────────────────────── #}
+
+{% block checkbox_widget -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    {%- set base = 'checkbox' ~ (is_invalid ? ' checkbox-error' : '') -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
+    <input type="checkbox" {{ block('widget_attributes') }} {% if value is defined %}value="{{ value }}" {% endif %}{% if checked %} checked="checked"{% endif %}/>
+{%- endblock checkbox_widget %}
+
+{# ── Radio ───────────────────────────────────────────────────────────── #}
+
+{% block radio_widget -%}
+    {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
+    {%- set base = 'radio' ~ (is_invalid ? ' radio-error' : '') -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
+    <input type="radio" {{ block('widget_attributes') }} {% if value is defined %}value="{{ value }}" {% endif %}{% if checked %} checked="checked"{% endif %}/>
+{%- endblock radio_widget %}
+
+{# ── Help text ───────────────────────────────────────────────────────── #}
+
+{% block form_help -%}
+    {%- if help is not empty -%}
+        <p class="text-sm text-base-content/60 mt-1">
+            {{- translation_domain is same as(false) ? help : help|trans({}, help_translation_domain) -}}
+        </p>
+    {%- endif -%}
+{%- endblock form_help %}
+
+{# ── Errors ──────────────────────────────────────────────────────────── #}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        {%- if form is rootform -%}
+            <div class="alert alert-error mb-4" role="alert" {{ sylius_test_html_attribute('form-errors') }}>
+                <div class="flex flex-col gap-1">
+                    {%- for error in errors -%}
+                        <div class="text-sm" {{ sylius_test_html_attribute('validation-error') }}>{{ error.message }}</div>
+                    {%- endfor -%}
+                </div>
+            </div>
+        {%- else -%}
+            {%- for error in errors -%}
+                <div class="text-error text-sm mt-1" {{ sylius_test_html_attribute('validation-error') }}>{{ error.message }}</div>
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{# ── Star rating (product review) ────────────────────────────────────── #}
+
+{% block _sylius_shop_product_review_rating_widget %}
+    <div class="rating rating-lg" {{ sylius_test_html_attribute('rating') }}>
+        {% for entry in form.children %}
+            <input
+                type="radio"
+                class="mask mask-star-2 bg-warning"
+                value="{{ entry.vars.value }}"
+                id="{{ entry.vars.id }}"
+                name="{{ entry.vars.full_name }}"
+                {{ sylius_test_html_attribute('rating-option', entry.vars.value) }}
+                {{ entry.vars.checked ? 'checked' }}
+            />
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% set theme_name = hookable_metadata.context.form.themeName %}
+
+{% if theme_name %}
+    <div class="col-span-12 md:col-span-6">
+        {{ form_row(theme_name, sylius_test_form_attribute('theme')) }}
+    </div>
+{% endif %}

@@ -1,0 +1,5 @@
+adeliom_sylius_tailwindcss_admin:
+    resource: "@AdeliomSyliusTailwindcssPlugin/config/routes/admin.yaml"
+
+adeliom_sylius_tailwindcss_shop:
+    resource: "@AdeliomSyliusTailwindcssPlugin/config/routes/shop.yaml"

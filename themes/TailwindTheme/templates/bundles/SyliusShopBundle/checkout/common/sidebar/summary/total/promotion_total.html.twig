@@ -1,0 +1,10 @@
+{% import "@SyliusShop/shared/macro/money.html.twig" as money %}
+
+{% set order = hookable_metadata.context.order %}
+
+{% if order.orderPromotionTotal != 0 %}
+    <div class="flex justify-between text-sm text-success">
+        <span>{{ 'sylius.ui.discount'|trans }}</span>
+        <span id="sylius-shop-checkout-summary-promotion-total">{{ money.convertAndFormat(order.orderPromotionTotal) }}</span>
+    </div>
+{% endif %}

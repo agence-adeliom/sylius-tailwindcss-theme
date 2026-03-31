@@ -9,16 +9,15 @@
 [//]: # (    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />)
 [//]: # (</p>)
 
-### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
+[//]: # (### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/]&#40;https://sylius-tailwind.adeliom.io/&#41;)
 ### NEW ✨ Compatible with Sylius 2.0
 
 ## Introduction
 
-- A new Sylius front-end alternative based on Tailwindcss and daisyUI
-- Pure CSS UI components
-- Create themes with zero effort
-- Only `5kB` of Javascript & `45kB` of CSS
-- Start your Sylius projects with an optimized code : 💯 in Lighthouse page load report
+- A Sylius front-end alternative based on Tailwindcss 4 and daisyUI 5.
+- Built with Webpack Encore, it provides a modern and efficient development experience.
+- Pure CSS UI components and icons with zero javascript dependency
+- Get all up to date sylius standard default templates but with tailwindcss and daisyUI styling
 ## Preview
 
 <a href="./docs/medias/home1.png" target="_blank">
@@ -27,43 +26,55 @@
 
 ### [View more](./docs/screenshots.md)
 
-### Performance tests
+[//]: # (### Performance tests)
 
-<details>
-    <summary>Desktop</summary>
-    <hr>
-    <a href="./docs/medias/notes_desktop.png" target="_blank">
-        <img src="./docs/medias/notes_desktop.png" align="center">
-    </a>
-</details>
+[//]: # ()
+[//]: # (<details>)
 
-<details>
-    <summary>Mobile</summary>
-    <hr>
-    <a href="./docs/medias/notes_mobile.png" target="_blank">
-        <img src="./docs/medias/notes_mobile.png" align="center">
-    </a>
-</details>
+[//]: # (    <summary>Desktop</summary>)
+
+[//]: # (    <hr>)
+
+[//]: # (    <a href="./docs/medias/notes_desktop.png" target="_blank">)
+
+[//]: # (        <img src="./docs/medias/notes_desktop.png" align="center">)
+
+[//]: # (    </a>)
+
+[//]: # (</details>)
+
+[//]: # ()
+[//]: # (<details>)
+
+[//]: # (    <summary>Mobile</summary>)
+
+[//]: # (    <hr>)
+
+[//]: # (    <a href="./docs/medias/notes_mobile.png" target="_blank">)
+
+[//]: # (        <img src="./docs/medias/notes_mobile.png" align="center">)
+
+[//]: # (    </a>)
+
+[//]: # (</details>)
 
 ## Documentation
 
 [Documentation is available in the *docs* folder.](docs/index.md)
 
+## AI Maintenance
+
+If you use [Claude Code](https://claude.ai/code) in your Sylius project, you can leverage the maintenance commands bundled with this theme to keep your customized templates in sync with upstream Sylius updates.
+
+[Documentation is available in the *docs* folder.](docs/ai.md)
+
 ## Bug Tracking
 
 If you want to report a bug or suggest an idea, please use [GitHub issues](https://github.com/agence-adeliom/sylius-tailwindcss-theme/issues).
 
-## Contribution
-
-[Documentation is available in the *docs/contribution.md* file.](docs/contribution.md)
-
 ## Authors
 
 The theme was created by [Adeliom](https://www.adeliom.com).
-
-Thanks to [@djacquemard](https://github.com/djacquemard) [@BaptisteAdeliom](https://github.com/BaptisteAdeliom) [@hschuhler](https://github.com/hschuhler) [@jeromeengeln](https://github.com/jeromeengeln) [@arnaud-ritti](https://github.com/arnaud-ritti)
-
-And was originally inspired by [Sylius community BootstrapTheme](https://github.com/SyliusCrafts/BootstrapTheme).
 
 [//]: # ([![]&#40;https://contrib.rocks/image?repo=agence-adeliom/sylius-tailwindcss-theme&#41;]&#40;https://github.com/agence-adeliom/sylius-tailwindcss-theme/graphs/contributors&#41;)
 

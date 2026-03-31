@@ -1,0 +1,8 @@
+{% set item = hookable_metadata.context.item %}
+
+<div class="flex-1 min-w-0">
+    <div class="text-sm font-medium truncate">{{ item.variant.product.name }}</div>
+    {% if item.variant.name is not empty %}
+        <div class="text-xs text-base-content/60 truncate">{{ item.variant.name }}</div>
+    {% endif %}
+</div>

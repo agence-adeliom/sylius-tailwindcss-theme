@@ -1,0 +1,5 @@
+{% set item = hookable_metadata.context.item %}
+
+<div class="flex items-center gap-2 py-2">
+    {% hook 'item' with {item} %}
+</div>

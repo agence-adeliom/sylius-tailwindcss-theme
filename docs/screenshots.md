@@ -9,8 +9,8 @@
 <details>
     <summary>Checkout</summary>
     <hr>
-    <a href="./medias/address.png" target="_blank">
-        <img src="./medias/address.png" align="center">
+    <a href="./medias/cart.png" target="_blank">
+        <img src="./medias/cart.png" align="center">
     </a>
 </details>
 
@@ -39,5 +39,15 @@
     <hr>
     <a href="./docs/cart-dropdown.png" target="_blank">
         <img src="./docs/cart-dropdown.png" align="center" style="height: 400px">
+    </a>
+</details>
+
+### Checkout
+
+<details>
+    <summary>Checkout</summary>
+    <hr>
+    <a href="./medias/cart.png" target="_blank">
+        <img src="./medias/cart.png" align="center">
     </a>
 </details>
