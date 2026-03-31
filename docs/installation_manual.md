@@ -2,16 +2,13 @@
 
 #### 1. Create a folder `./themes/TailwindTheme` and copy the following files from the repository :
 
--   `assets`
--   `templates`
--   `webpack.config.js`
--   `composer.json`
+-   `themes/TailwindTheme`
 
 #### 2. Install node dependencies
 
 ```bash
-$ npm install -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss
-$ yarn add -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fontawesome-free daisyui@5 @tailwindcss/postcss
+$ npm install -D tailwindcss@4 postcss postcss-loader autoprefixer daisyui@5 @tailwindcss/postcss
+$ yarn add -D tailwindcss@4 postcss postcss-loader autoprefixer daisyui@5 @tailwindcss/postcss
 ```
 
 #### 3. Import `tailwind-theme` config in your `./webpack.config.js`
@@ -27,17 +24,7 @@ $ yarn add -D tailwindcss@4 postcss postcss-loader autoprefixer @fortawesome/fon
 + module.exports = [shopConfig, adminConfig, appShopConfig, appAdminConfig, tailwindTheme];
 ```
 
-#### 4. Create `postcss.config.mjs` file in your project root directory
-
-```bash
-export default {
-  plugins: {
-    "@tailwindcss/postcss": {},
-  }
-}
-````
-
-#### 5. Edit project configuration
+#### 4. Edit project configuration
 
 ```diff
 # ./config/packages/assets.yaml
@@ -58,7 +45,7 @@ webpack_encore:
 +        tailwindTheme: '%kernel.project_dir%/public/themes/tailwind-theme'
 ```
 
-#### 6. Build assets
+#### 5. Build assets
 
 ```bash
 # compile assets once
@@ -71,7 +58,7 @@ npm|yarn run watch
 npm|yarn run build:prod
 ```
 
-#### 7. Change theme in the admin panel
+#### 6. Change theme in the admin panel
 
 1. Go to `Configuration > Channels`
 2. Edit desired channel from the list

@@ -9,14 +9,15 @@
 [//]: # (    <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dm/agence-adeliom/sylius-tailwindcss-theme" />)
 [//]: # (</p>)
 
-### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/](https://sylius-tailwind.adeliom.io/)
+[//]: # (### Try our demo 🚀 [https://sylius-tailwind.adeliom.io/]&#40;https://sylius-tailwind.adeliom.io/&#41;)
 ### NEW ✨ Compatible with Sylius 2.0
 
 ## Introduction
 
-- A Sylius front-end alternative based on Tailwindcss 4 and daisyUI 5, 
-- Pure CSS UI components and icons (heroicons) with zero javascript dependency
-- Create themes with zero effort
+- A Sylius front-end alternative based on Tailwindcss 4 and daisyUI 5.
+- Built with Webpack Encore, it provides a modern and efficient development experience.
+- Pure CSS UI components and icons with zero javascript dependency
+- Get all up to date sylius standard default templates but with tailwindcss and daisyUI styling
 ## Preview
 
 <a href="./docs/medias/home1.png" target="_blank">
@@ -25,29 +26,43 @@
 
 ### [View more](./docs/screenshots.md)
 
-### Performance tests
+[//]: # (### Performance tests)
 
-<details>
-    <summary>Desktop</summary>
-    <hr>
-    <a href="./docs/medias/notes_desktop.png" target="_blank">
-        <img src="./docs/medias/notes_desktop.png" align="center">
-    </a>
-</details>
+[//]: # ()
+[//]: # (<details>)
 
-<details>
-    <summary>Mobile</summary>
-    <hr>
-    <a href="./docs/medias/notes_mobile.png" target="_blank">
-        <img src="./docs/medias/notes_mobile.png" align="center">
-    </a>
-</details>
+[//]: # (    <summary>Desktop</summary>)
+
+[//]: # (    <hr>)
+
+[//]: # (    <a href="./docs/medias/notes_desktop.png" target="_blank">)
+
+[//]: # (        <img src="./docs/medias/notes_desktop.png" align="center">)
+
+[//]: # (    </a>)
+
+[//]: # (</details>)
+
+[//]: # ()
+[//]: # (<details>)
+
+[//]: # (    <summary>Mobile</summary>)
+
+[//]: # (    <hr>)
+
+[//]: # (    <a href="./docs/medias/notes_mobile.png" target="_blank">)
+
+[//]: # (        <img src="./docs/medias/notes_mobile.png" align="center">)
+
+[//]: # (    </a>)
+
+[//]: # (</details>)
 
 ## Documentation
 
 [Documentation is available in the *docs* folder.](docs/index.md)
 
-## Claude Code integration
+## AI Maintenance
 
 If you use [Claude Code](https://claude.ai/code) in your Sylius project, you can leverage the maintenance commands bundled with this theme to keep your customized templates in sync with upstream Sylius updates.
 

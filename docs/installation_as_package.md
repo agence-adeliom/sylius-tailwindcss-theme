@@ -16,11 +16,7 @@ composer require agence-adeliom/sylius-tailwindcss-theme ^2.0.0
 
 ```bash
 mkdir -p themes/TailwindTheme
-cp -R vendor/agence-adeliom/sylius-tailwindcss-theme/assets ./themes/TailwindTheme/
-cp -R vendor/agence-adeliom/sylius-tailwindcss-theme/templates ./themes/TailwindTheme/
-cp vendor/agence-adeliom/sylius-tailwindcss-theme/webpack.config.js ./themes/TailwindTheme/
-cp vendor/agence-adeliom/sylius-tailwindcss-theme/composer.json ./themes/TailwindTheme/
-cp vendor/agence-adeliom/sylius-tailwindcss-theme/postcss.config.mjs ./
+cp -R vendor/agence-adeliom/sylius-tailwindcss-theme/themes/TailwindTheme ./themes/TailwindTheme/
 ```
 
 3. Configure assets and webpack
@@ -50,9 +46,10 @@ webpack_encore:
 ```js
 // TailwindTheme
 Encore.reset();
-const tailwindTheme = require('./themes/TailwindTheme/webpack.config');
+const tailwindThemeConfig = require('../../../themes/TailwindTheme/webpack.config.js');
+tailwindThemeConfig.resolve.modules = nodeModulesPath;
 
-module.exports = [shopConfig, adminConfig, appShopConfig, appAdminConfig, tailwindTheme];
+module.exports = [shopConfig, adminConfig, appShopConfig, appAdminConfig, tailwindThemeConfig];
 ```
 
 - Run :
