@@ -45,7 +45,7 @@ jobs:
                 run: composer update --no-progress
 
             -   name: Setup node
-                uses: actions/setup-node@v4
+                uses: actions/setup-node@v6
                 with:
                     node-version: 18
 
