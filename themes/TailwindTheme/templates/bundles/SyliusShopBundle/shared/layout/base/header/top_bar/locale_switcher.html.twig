@@ -4,15 +4,15 @@
 
 {% if available_locales|length > 1 %}
     <div class="col-auto">
-        <div class="dropdown" {{ sylius_test_html_attribute('locale-selector') }}>
-            <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" {{ sylius_test_html_attribute('active-locale', active_locale) }}>
+        <div class="dropdown dropdown-hover" {{ sylius_test_html_attribute('locale-selector') }}>
+            <div class="btn btn-sm" type="button" {{ sylius_test_html_attribute('active-locale', active_locale) }}>
                 {{ locale(active_locale) }}
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+            </div>
+            <ul tabindex="-1" class="dropdown-content menu bg-base-100 text-base-content rounded-box z-1 w-52 p-2 shadow-sm">
                 {% for code in available_locales %}
                     {% if code is not same as(active_locale) %}
                         <li>
-                            <a class="dropdown-item py-2" href="{{ path('sylius_shop_switch_locale', {'code': code}) }}" {{ sylius_test_html_attribute('available-locale', code) }} >
+                            <a href="{{ path('sylius_shop_switch_locale', {'code': code}) }}" {{ sylius_test_html_attribute('available-locale', code) }} >
                                 {{ locale(code) }}
                             </a>
                         </li>
