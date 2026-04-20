@@ -5,7 +5,7 @@
         <div class="hidden">
             <div class="alert alert-danger" data-api-login-target="errorPrototype"></div>
         </div>
-        {{ form_row(form.customer.email, sylius_test_form_attribute('login-email')|sylius_merge_recursive({attr: {'data-api-login-target': 'email', 'class': 'input input-bordered w-full'}})) }}
+        {{ form_row(form.customer.email, sylius_test_form_attribute('login-email')|sylius_merge_recursive({attr: {'data-api-login-target': 'email', 'class': 'input w-full'}})) }}
         {% if hookable_metadata.context.email_exists %}
             <div class="input-group mb-2">
                 <input type="password" class="form-control input input-bordered" placeholder="{{ 'sylius.ui.password'|trans }}" data-api-login-target="password" {{ sylius_test_html_attribute('password-input') }}>

@@ -3,4 +3,4 @@
 {% if form.type is defined %}
     {{ form_row(form.type, {'label': filter.label}) }}
 {% endif %}
-{{ form_widget(form.value, {attr: {placeholder: form.value.vars.label, class: 'input-bordered input w-full rounded-l-sm'}, 'label': form.type is defined ? form.value.vars.label : filter.label}) }}
+{{ form_widget(form.value, {attr: {placeholder: form.value.vars.label, class: 'input w-full rounded-l-sm'}, 'label': form.type is defined ? form.value.vars.label : filter.label}) }}

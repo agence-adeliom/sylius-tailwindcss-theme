@@ -74,7 +74,7 @@
         {%- set required = false -%}
         <input type="color" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {%- else -%}
-        {%- set base = 'input input-bordered w-full' ~ (is_invalid ? ' input-error' : '') -%}
+        {%- set base = 'input w-full' ~ (is_invalid ? ' input-error' : '') -%}
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
         <input type="{{ type|default('text') }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {%- endif -%}
@@ -84,7 +84,7 @@
 
 {% block textarea_widget -%}
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
-    {%- set base = 'textarea textarea-bordered w-full min-h-24' ~ (is_invalid ? ' textarea-error' : '') -%}
+    {%- set base = 'textarea w-full min-h-24' ~ (is_invalid ? ' textarea-error' : '') -%}
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
 {%- endblock textarea_widget %}
@@ -93,7 +93,7 @@
 
 {% block choice_widget_collapsed -%}
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
-    {%- set base = 'select select-bordered w-full' ~ (is_invalid ? ' select-error' : '') -%}
+    {%- set base = 'select w-full' ~ (is_invalid ? ' select-error' : '') -%}
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ base)|trim}) -%}
     {{- parent() -}}
 {%- endblock choice_widget_collapsed %}

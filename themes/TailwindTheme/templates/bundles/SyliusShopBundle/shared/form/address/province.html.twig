@@ -2,8 +2,8 @@
 
 <div>
     {% if form.provinceCode is defined %}
-        {{ form_row(form.provinceCode, {'attr': {'class': 'input input-bordered w-full'}}) }}
+        {{ form_row(form.provinceCode, {'attr': {'class': 'input w-full'}}) }}
     {% elseif form.provinceName is defined %}
-        {{ form_row(form.provinceName, {'attr': {'class': 'input input-bordered w-full'}}) }}
+        {{ form_row(form.provinceName, {'attr': {'class': 'input w-full'}}) }}
     {% endif %}
 </div>
