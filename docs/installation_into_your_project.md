@@ -1,10 +1,12 @@
-## Manual installation
+## Installation into your project
 
 #### 1. Create a folder `./themes/TailwindTheme` and copy the following files from the repository :
 
--   `themes/TailwindTheme`
+-   `themes/TailwindTheme/assets`
+-   `themes/TailwindTheme/templates`
+-   `themes/TailwindTheme/webpack.config.js`
 
-#### 2. Install node dependencies
+#### 2. Install dependencies
 
 ```bash
 $ npm install -D tailwindcss@4 postcss postcss-loader autoprefixer daisyui@5 @tailwindcss/postcss
