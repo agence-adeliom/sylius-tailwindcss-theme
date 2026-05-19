@@ -60,7 +60,23 @@ npm|yarn run watch
 npm|yarn run build:prod
 ```
 
-#### 6. Change theme in the admin panel
+#### 6. Create a composer.json file in the theme folder
+
+This step is necessary to make the theme appear in the admin panel and be selectable for channels.
+
+```json
+{
+    "name": "your-vendor-name/sylius-tailwind-theme",
+    "description": "A Sylius front-end alternative based on Tailwindcss 4 and daisyUI 5.",
+    "extra": {
+        "sylius-theme": {
+          "title": "Tailwind theme"
+        }
+    }
+}
+```
+
+#### 7. Change theme in the admin panel
 
 1. Go to `Configuration > Channels`
 2. Edit desired channel from the list
