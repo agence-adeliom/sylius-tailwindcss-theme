@@ -1,9 +1,11 @@
 name: Deploy
 
+# Déploiement automatique désactivé : la démo a été retirée du cluster.
+# Pour la réactiver, restaurer le déclencheur workflow_run ci-dessous.
+#  workflow_run:
+#    workflows: ["Release"]
+#    types: [completed]
 on:
-  workflow_run:
-    workflows: ["Release"]
-    types: [completed]
   workflow_dispatch:
 
 
