@@ -23,6 +23,9 @@ app:
             price:
                 original: "Original price:"
                 current: "Current price:"
+            subcategories: Subcategories
+            pagination: Pagination
+            results: "{1} 1 product|]1,Inf[ %count% products"
             new_window: (new window)
             main_navigation: Main navigation
             footer_navigation: Footer navigation

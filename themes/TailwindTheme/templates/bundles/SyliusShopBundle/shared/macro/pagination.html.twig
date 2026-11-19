@@ -5,12 +5,12 @@
 {% endmacro %}
 
 {% macro number_of_results_selector(paginator, pagination_limits) %}
-    <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-sm btn-ghost">
+    <div class="relative" data-disclosure>
+        <button type="button" class="btn btn-sm btn-ghost" aria-expanded="false" aria-controls="results-limit-panel">
             {{ 'sylius.ui.show'|trans }} {{ paginator.maxPerPage }}
             <svg aria-hidden="true" focusable="false" class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </label>
-        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-32 z-10">
+        </button>
+        <ul id="results-limit-panel" role="list" hidden class="menu absolute end-0 top-full mt-1 p-2 shadow bg-base-100 rounded-box w-32 z-10">
             {% for limit in pagination_limits|filter(limit => limit != paginator.maxPerPage) %}
                 {% set path = path(app.request.attributes.get('_route'), app.request.attributes.all('_route_params')|merge(app.request.query)|merge({'limit': limit})) %}
                 <li><a href="{{ path }}">{{ limit }}</a></li>

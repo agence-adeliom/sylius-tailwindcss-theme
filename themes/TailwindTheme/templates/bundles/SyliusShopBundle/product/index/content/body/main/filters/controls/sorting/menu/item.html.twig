@@ -1,5 +1,6 @@
 {% set sorting = hookable_metadata.configuration.sorting|default(null) %}
 {% set path = path(hookable_metadata.context.route, hookable_metadata.context.route_parameters|merge({sorting, 'criteria': hookable_metadata.context.criteria})) %}
 {% set title = hookable_metadata.configuration.title|trans %}
+{% set current = title|lower == hookable_metadata.context.current_sorting_label %}
 
-<li><a href="{{ path }}" class="capitalize">{{ title }}</a></li>
+<li><a href="{{ path }}#products" class="capitalize {{ current ? 'font-semibold' : '' }}" {% if current %}aria-current="true"{% endif %}>{{ title }}</a></li>

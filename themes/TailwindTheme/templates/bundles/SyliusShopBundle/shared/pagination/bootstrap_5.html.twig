@@ -1,7 +1,34 @@
 {%- extends '@BabDevPagerfanta/twitter_bootstrap5.html.twig' -%}
 
+{#- Option "fragment": anchor added to every page URL, so the focus lands on the listing after a page change -#}
+{%- block page_fragment -%}
+    {%- if options.fragment is defined %}#{{ options.fragment }}{% endif -%}
+{%- endblock page_fragment -%}
+
 {%- block pager_widget -%}
-    <ul class="flex justify-center mt-4 lg:my-10 gap-4 ">
-        {{- block('pager') -}}
-    </ul>
+    <nav role="navigation" aria-label="{{ 'app.ui.a11y.pagination'|trans }}">
+        <ul role="list" class="flex flex-wrap justify-center mt-4 lg:my-10 gap-x-4 gap-y-2">
+            {{- block('pager') -}}
+        </ul>
+    </nav>
 {%- endblock pager_widget -%}
+
+{%- block page_link -%}
+    <li class="page-item"><a class="page-link" href="{{- path -}}{{- block('page_fragment') -}}"{{- block('link_attributes') -}}><span class="sr-only">{{ 'sylius.ui.page'|trans }} </span>{{- page -}}</a></li>
+{%- endblock page_link -%}
+
+{%- block current_page_link -%}
+    <li class="page-item active"><span class="page-link font-semibold underline" aria-current="page"><span class="sr-only">{{ 'sylius.ui.page'|trans }} </span>{{- page -}}</span></li>
+{%- endblock current_page_link -%}
+
+{%- block previous_page_link -%}
+    <li class="page-item"><a class="page-link" href="{{- path -}}{{- block('page_fragment') -}}" rel="prev"{{- block('link_attributes') -}}>{{- block('previous_page_message') -}}</a></li>
+{%- endblock previous_page_link -%}
+
+{%- block next_page_link -%}
+    <li class="page-item"><a class="page-link" href="{{- path -}}{{- block('page_fragment') -}}" rel="next"{{- block('link_attributes') -}}>{{- block('next_page_message') -}}</a></li>
+{%- endblock next_page_link -%}
+
+{%- block ellipsis -%}
+    <li class="page-item disabled" aria-hidden="true"><span class="page-link">&hellip;</span></li>
+{%- endblock ellipsis -%}

@@ -1,5 +1,5 @@
 <div class="w-full">
-    <form method="get" action="{{ path('sylius_shop_product_index', {'slug': app.request.attributes.get('slug')}) }}">
+    <form role="search" method="get" action="{{ path('sylius_shop_product_index', {'slug': app.request.attributes.get('slug')}) }}#products">
         <div class="join w-full">
             {% hook 'search' %}
         </div>
