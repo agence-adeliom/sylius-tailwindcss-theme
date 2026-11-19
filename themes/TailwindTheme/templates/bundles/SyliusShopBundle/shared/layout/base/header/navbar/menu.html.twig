@@ -8,7 +8,7 @@
 
     {% embed '@SyliusShop/shared/components/side_dialog.html.twig' with {id: 'nav-dialog', title: 'app.ui.a11y.menu'|trans, side: 'start', attributes: ''} %}
         {% block body %}
-            <nav role="navigation" aria-label="{{ 'app.ui.a11y.menu_navigation'|trans }}">
+            <nav role="navigation" aria-label="{{ 'app.ui.a11y.main_navigation'|trans }}">
                 <ul role="list" class="menu w-full p-0">
                     {% hook 'menu' with {taxons, variant: 'mobile'} %}
                 </ul>

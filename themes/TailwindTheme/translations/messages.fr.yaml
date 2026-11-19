@@ -22,7 +22,6 @@ app:
             new_window: (nouvelle fenêtre)
             main_navigation: Navigation principale
             footer_navigation: Navigation du pied de page
-            menu_navigation: Navigation du menu
             locale:
                 button: "%value%, langue"
             currency:

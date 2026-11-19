@@ -3,6 +3,7 @@
  *
  * - button[data-dialog-open="<id>"] opens the dialog with showModal() and sets aria-expanded="true";
  * - [data-dialog-close] (close button, backdrop) closes it; Escape is handled natively;
+ * - openers whose dialog is missing from the page are hidden;
  * - on close, the focus goes back to the opener and aria-expanded returns to "false" (RGAA 7.1, 12.8).
  */
 const openers = new WeakMap();
@@ -18,6 +19,11 @@ export function openDialog(dialog, opener = null) {
 }
 
 export function initDialogs(root = document) {
+    // The navigation dialog is absent when the menu has no taxon: hide its burger rather than leave a dangling aria-controls.
+    root.querySelectorAll('[data-dialog-open]').forEach((button) => {
+        button.hidden = !document.getElementById(button.dataset.dialogOpen);
+    });
+
     root.addEventListener('click', (event) => {
         const opener = event.target.closest('[data-dialog-open]');
 
