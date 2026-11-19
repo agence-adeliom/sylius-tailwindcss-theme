@@ -28,6 +28,9 @@ app:
                 label: Product images
                 enlarge: "Enlarge image %index% of %count%: %product%"
                 enlarge_single: "Enlarge image: %product%"
+            rating:
+                value: "Rating: %rating% out of 5"
+                option: "%rating% out of 5"
             variant_choice: Variant selection
             variant_selection: Selection
             subcategories: Subcategories

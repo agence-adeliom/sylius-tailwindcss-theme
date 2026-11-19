@@ -310,7 +310,7 @@
 {# ── Star rating (product review) ────────────────────────────────────── #}
 
 {% block _sylius_shop_product_review_rating_widget %}
-    <div class="rating rating-lg" {{ sylius_test_html_attribute('rating') }}>
+    <div class="rating rating-lg rounded-sm has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-(--focus-ring-color)" {{ sylius_test_html_attribute('rating') }}>
         {% for entry in form.children %}
             <input
                 type="radio"
@@ -318,6 +318,8 @@
                 value="{{ entry.vars.value }}"
                 id="{{ entry.vars.id }}"
                 name="{{ entry.vars.full_name }}"
+                aria-label="{{ 'app.ui.a11y.rating.option'|trans({'%rating%': entry.vars.value}) }}"
+                {% if not valid %}aria-invalid="true"{% endif %}
                 {{ sylius_test_html_attribute('rating-option', entry.vars.value) }}
                 {{ entry.vars.checked ? 'checked' }}
             />
