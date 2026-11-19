@@ -42,6 +42,7 @@ app:
                 candy: Bonbon
                 void: Néant
             required_fields: "Les champs marqués d’un * sont obligatoires."
+            all_fields_required: "Tous les champs sont obligatoires."
             form_errors: "{1} Le formulaire contient 1 erreur :|]1,Inf[ Le formulaire contient %count% erreurs :"
             title:
                 search: "Recherche « %term% »"

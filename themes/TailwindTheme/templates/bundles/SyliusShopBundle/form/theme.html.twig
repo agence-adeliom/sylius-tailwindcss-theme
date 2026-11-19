@@ -15,19 +15,11 @@
 {#- Error summary at the top of a submitted invalid form; assets/js/form-errors.js moves the focus to it. -#}
 {% block form_start -%}
     {{- parent() -}}
-    {%- if form is rootform and form.vars.name not in ['sylius_shop_add_to_cart'] -%}
-        {%- set shows_asterisk = false -%}
-        {%- for level1 in form -%}
-            {%- for child in [level1]|merge(level1.children|default([])) -%}
-                {%- for leaf in [child]|merge(child.children|default([])) -%}
-                    {%- if leaf.vars.required and not leaf.vars.compound and leaf.vars.label is not same as(false)
-                        and 'hidden' not in leaf.vars.block_prefixes and 'radio' not in leaf.vars.block_prefixes -%}
-                        {%- set shows_asterisk = true -%}
-                    {%- endif -%}
-                {%- endfor -%}
-            {%- endfor -%}
-        {%- endfor -%}
-        {%- if shows_asterisk -%}
+    {%- if form is rootform -%}
+        {%- set required_mode %}{{ block('form_required_mode') }}{% endset -%}
+        {%- if required_mode|trim == 'all' -%}
+            <p class="text-sm text-base-content/70 mb-4">{{ 'app.ui.a11y.all_fields_required'|trans }}</p>
+        {%- elseif required_mode|trim == 'marked' -%}
             <p class="text-sm text-base-content/70 mb-4">{{ 'app.ui.a11y.required_fields'|trans }}</p>
         {%- endif -%}
     {%- endif -%}
@@ -161,16 +153,51 @@
 
 {# ── Label ───────────────────────────────────────────────────────────── #}
 
-{#- Asterisk of a required field, explained at the top of the form (block form_start).
-    Not on the add-to-cart form: its fields (variant, quantity) are prefilled options, not entries the customer can forget;
-    the required attribute still tells screen readers. Keep this list in sync with form_start. -#}
+{#- How a form flags its required fields, computed from the root form: none, all or marked.
+    An entry field is a visible leaf the user fills or picks; an expanded choice counts as one field, an optional single checkbox as none.
+    none: add-to-cart and cart forms (prefilled quantities, still required), no required entry field, or a single entry field.
+    all: two entry fields or more, all required: one sentence above the form, no asterisk.
+    marked: otherwise, an asterisk on required fields explained above the form. -#}
+{% block form_required_mode -%}
+    {%- set root = form -%}
+    {%- for depth in 1..10 -%}
+        {%- if root.parent is not null -%}{%- set root = root.parent -%}{%- endif -%}
+    {%- endfor -%}
+    {%- set entries = 0 -%}
+    {%- set required_entries = 0 -%}
+    {%- set pending = root.children|default([]) -%}
+    {%- for depth in 1..8 -%}
+        {%- set next = [] -%}
+        {%- for node in pending -%}
+            {%- set prefixes = node.vars.block_prefixes -%}
+            {%- if node.vars.compound -%}
+                {%- if 'choice' in prefixes and node.vars.expanded|default(false) -%}
+                    {%- if node.vars.label is not same as(false) -%}
+                        {%- set entries = entries + 1 -%}
+                        {%- if node.vars.required -%}{%- set required_entries = required_entries + 1 -%}{%- endif -%}
+                    {%- endif -%}
+                {%- else -%}
+                    {%- for child in node.children -%}{%- set next = next|merge([child]) -%}{%- endfor -%}
+                {%- endif -%}
+            {%- elseif node.vars.label is not same as(false) and 'hidden' not in prefixes and 'button' not in prefixes
+                and (node.vars.required or 'checkbox' not in prefixes) -%}
+                {%- set entries = entries + 1 -%}
+                {%- if node.vars.required -%}{%- set required_entries = required_entries + 1 -%}{%- endif -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- set pending = next -%}
+    {%- endfor -%}
+    {%- if root.vars.name in ['sylius_shop_add_to_cart', 'sylius_shop_cart'] or required_entries == 0 or entries < 2 -%}none
+    {%- elseif required_entries == entries -%}all
+    {%- else -%}marked
+    {%- endif -%}
+{%- endblock form_required_mode %}
+
+{#- Asterisk of a required field, only in the marked mode (see form_required_mode); the required attribute still tells screen readers. -#}
 {% block required_marker -%}
     {%- if required -%}
-        {%- set root = form -%}
-        {%- for depth in 1..10 -%}
-            {%- if root.parent is not null -%}{%- set root = root.parent -%}{%- endif -%}
-        {%- endfor -%}
-        {%- if root.vars.name not in ['sylius_shop_add_to_cart'] %} <span aria-hidden="true">*</span>{% endif -%}
+        {%- set required_mode %}{{ block('form_required_mode') }}{% endset -%}
+        {%- if required_mode|trim == 'marked' %} <span aria-hidden="true">*</span>{% endif -%}
     {%- endif -%}
 {%- endblock required_marker %}
 

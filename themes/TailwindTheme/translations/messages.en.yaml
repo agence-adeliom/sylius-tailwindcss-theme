@@ -42,6 +42,7 @@ app:
                 candy: Candy
                 void: Void
             required_fields: "Fields marked with * are required."
+            all_fields_required: "All fields are required."
             form_errors: "{1} The form contains 1 error:|]1,Inf[ The form contains %count% errors:"
             title:
                 search: "Search “%term%”"
