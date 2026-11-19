@@ -206,5 +206,17 @@
     padding-inline: 1rem;
 }
 
+/* Focus indicator (RGAA 10.7). Each project sets --focus-ring-color to reach a 3:1 contrast with its own colours (RGAA 3.3). */
+@layer base {
+    :root {
+        --focus-ring-color: currentColor;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--focus-ring-color);
+        outline-offset: 2px;
+    }
+}
+
 /*!* Typography *!*/
 @import url("./Typography/index.css");

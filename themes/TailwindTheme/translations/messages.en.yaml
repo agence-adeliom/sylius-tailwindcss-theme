@@ -1,0 +1,50 @@
+app:
+    ui:
+        footer:
+            about: { label: About, url: "#" }
+            terms: { label: Terms and conditions, url: "#" }
+            privacy: { label: Privacy policy, url: "#" }
+            help: { label: Help }
+            faq: { label: FAQ, url: "#" }
+            delivery: { label: Delivery and shipping, url: "#" }
+            returns: { label: Returns policy, url: "#" }
+            social:
+                label: Social networks
+                instagram_url: "#"
+                facebook_url: "#"
+                x_url: "#"
+        a11y:
+            skip_to_content: Skip to content
+            close: Close
+            close_cart: Close cart
+            breadcrumb: Breadcrumb
+            home_logo: Home
+            scroll_to_content: Scroll to content
+            new_window: (new window)
+            main_navigation: Main navigation
+            footer_navigation: Footer navigation
+            menu: Menu
+            social:
+                instagram: Follow us on Instagram
+                facebook: Follow us on Facebook
+                x: Follow us on X
+            theme:
+                label: Theme
+                light: Light
+                dark: Dark
+                forest: Forest
+                sunset: Sunset
+                ocean: Ocean
+                candy: Candy
+                void: Void
+            required_fields: "Fields marked with * are required."
+            form_errors: "{1} The form contains 1 error:|]1,Inf[ The form contains %count% errors:"
+            title:
+                search: "Search “%term%”"
+                not_found: Page not found
+                forbidden: Access denied
+                server_error: Server error
+            accessibility_statement:
+                label: "Accessibility: not compliant"
+                # Each project sets the URL of its accessibility statement page; empty, the mention is shown without a link.
+                url: ""

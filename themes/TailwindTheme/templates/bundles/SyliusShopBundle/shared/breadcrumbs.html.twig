@@ -1,6 +1,6 @@
 {% macro breadcrumbs(items) %}
     <div class="breadcrumbs">
-        <ol class="breadcrumb" aria-label="breadcrumbs">
+        <ol class="breadcrumb" aria-label="{{ 'app.ui.a11y.breadcrumb'|trans }}">
             {% for item in items %}
                 <li>
                     {% if item.path is defined %}

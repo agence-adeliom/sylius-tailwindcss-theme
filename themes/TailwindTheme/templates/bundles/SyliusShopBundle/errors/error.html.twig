@@ -1,5 +1,7 @@
 {% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
+{% block title %}{{ 'sylius.ui.error'|trans }} | {{ parent() }}{% endblock %}
+
 {% block content %}
     {% hook 'sylius_shop.shared.error' %}
 {% endblock %}

@@ -1,12 +1,21 @@
+{% set new_window = 'app.ui.a11y.new_window'|trans %}
 <div class="order-first col-span-full md:col-span-6 lg:col-span-3 flex gap-4 flex-col">
-    <a href="{{ path('sylius_shop_homepage') }}" class="mb-4" aria-label="sylius logo">
-        <div style="width: 10rem">
-            {% include '@SyliusShop/shared/logo.html.twig' %}
-        </div>
-    </a>
+    <ul>
+        <li>
+            <a href="{{ path('sylius_shop_homepage') }}" class="mb-4 inline-block" aria-label="{{ 'app.ui.a11y.home_logo'|trans }}">
+                <div style="width: 10rem">
+                    {% include '@SyliusShop/shared/logo.html.twig' %}
+                </div>
+            </a>
+        </li>
+    </ul>
 
-    <div class="">
+    <p>
         &copy; {{ 'sylius.ui.your_store'|trans }}, {{ 'sylius.ui.powered_by'|trans }}
-        <a href="https://sylius.com" target="_blank" class="btn-link">Sylius</a> & <a href="https://adeliom.com" target="_blank" class="btn-link">Adeliom</a>.
-    </div>
+    </p>
+    <ul class="flex gap-1">
+        <li><a href="https://sylius.com" target="_blank" class="btn-link">Sylius<span class="sr-only"> {{ new_window }}</span></a></li>
+        <li aria-hidden="true">&amp;</li>
+        <li><a href="https://adeliom.com" target="_blank" class="btn-link">Adeliom<span class="sr-only"> {{ new_window }}</span></a>.</li>
+    </ul>
 </div>

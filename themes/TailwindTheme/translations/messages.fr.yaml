@@ -1,0 +1,50 @@
+app:
+    ui:
+        footer:
+            about: { label: À propos, url: "#" }
+            terms: { label: Conditions générales de vente, url: "#" }
+            privacy: { label: Politique de confidentialité, url: "#" }
+            help: { label: Aide }
+            faq: { label: Questions fréquentes, url: "#" }
+            delivery: { label: Livraison, url: "#" }
+            returns: { label: Retours, url: "#" }
+            social:
+                label: Réseaux sociaux
+                instagram_url: "#"
+                facebook_url: "#"
+                x_url: "#"
+        a11y:
+            skip_to_content: Aller au contenu
+            close: Fermer
+            close_cart: Fermer le panier
+            breadcrumb: Fil d’Ariane
+            home_logo: Accueil
+            scroll_to_content: Défiler jusqu’au contenu
+            new_window: (nouvelle fenêtre)
+            main_navigation: Navigation principale
+            footer_navigation: Navigation du pied de page
+            menu: Menu
+            social:
+                instagram: Suivez-nous sur Instagram
+                facebook: Suivez-nous sur Facebook
+                x: Suivez-nous sur X
+            theme:
+                label: Thème
+                light: Clair
+                dark: Sombre
+                forest: Forêt
+                sunset: Coucher de soleil
+                ocean: Océan
+                candy: Bonbon
+                void: Néant
+            required_fields: "Les champs marqués d’un * sont obligatoires."
+            form_errors: "{1} Le formulaire contient 1 erreur :|]1,Inf[ Le formulaire contient %count% erreurs :"
+            title:
+                search: "Recherche « %term% »"
+                not_found: Page introuvable
+                forbidden: Accès refusé
+                server_error: Erreur du serveur
+            accessibility_statement:
+                label: "Accessibilité : non conforme"
+                # Each project sets the URL of its accessibility statement page; empty, the mention is shown without a link.
+                url: ""

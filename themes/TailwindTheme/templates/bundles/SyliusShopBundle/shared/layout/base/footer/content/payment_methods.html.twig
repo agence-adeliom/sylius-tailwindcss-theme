@@ -1,32 +1,33 @@
+{% set new_window = 'app.ui.a11y.new_window'|trans %}
 <div class="col-span-full md:col-span-6 lg:col-span-3 flex flex-col gap-4">
 
     <div>
-        <h6 class="footer-title">{{ 'sylius.ui.payment_methods'|trans }}</h6>
-        <div class="flex flex-wrap gap-2">
-            <a href="https://sylius.com/partner/paypal/" target="_blank" class="btn btn-ghost btn-sm px-2 h-auto py-1" aria-label="PayPal">
-                <img width="64" height="18" src="{{ asset('build/shop/images/paypal-logo.svg', 'shop') }}" alt="PayPal" />
-            </a>
-            <a href="https://sylius.com/partner/adyen/" target="_blank" class="btn btn-ghost btn-sm px-2 h-auto py-1" aria-label="Adyen">
-                <img width="64" height="18" src="{{ asset('build/shop/images/adyen-logo.svg', 'shop') }}" alt="Adyen" />
-            </a>
-            <a href="https://sylius.com/partner/mollie/" target="_blank" class="btn btn-ghost btn-sm px-2 h-auto py-1" aria-label="Mollie">
-                <img width="64" height="18" src="{{ asset('build/shop/images/mollie-logo.svg', 'shop') }}" alt="Mollie" />
-            </a>
-        </div>
+        <h2 id="footer-payment-methods-title" class="footer-title">{{ 'sylius.ui.payment_methods'|trans }}</h2>
+        <ul class="flex flex-wrap gap-2" aria-labelledby="footer-payment-methods-title">
+            {% for method in [
+                {name: 'PayPal', url: 'https://sylius.com/partner/paypal/', logo: 'paypal-logo.svg'},
+                {name: 'Adyen', url: 'https://sylius.com/partner/adyen/', logo: 'adyen-logo.svg'},
+                {name: 'Mollie', url: 'https://sylius.com/partner/mollie/', logo: 'mollie-logo.svg'},
+            ] %}
+                <li>
+                    <a href="{{ method.url }}" target="_blank" class="btn btn-ghost btn-sm px-2 h-auto py-1" aria-label="{{ method.name }} {{ new_window }}">
+                        <img width="64" height="18" src="{{ asset('build/shop/images/' ~ method.logo, 'shop') }}" alt="" />
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 
     <div class="mt-12">
-        <div class="flex gap-3">
-            <a class="btn btn-ghost btn-sm btn-square" href="#" aria-label="Follow us on Instagram">
-                {{ ux_icon('tabler:brand-instagram', {class: 'size-5'}) }}
-            </a>
-            <a class="btn btn-ghost btn-sm btn-square" href="#" aria-label="Follow us on Facebook">
-                {{ ux_icon('tabler:brand-facebook', {class: 'size-5'}) }}
-            </a>
-            <a class="btn btn-ghost btn-sm btn-square" href="#" aria-label="Follow us on X">
-                {{ ux_icon('tabler:brand-x', {class: 'size-5'}) }}
-            </a>
-        </div>
+        <ul class="flex gap-3" aria-label="{{ 'app.ui.footer.social.label'|trans }}">
+            {% for network in ['instagram', 'facebook', 'x'] %}
+                <li>
+                    <a class="btn btn-ghost btn-sm btn-square" href="{{ ('app.ui.footer.social.' ~ network ~ '_url')|trans }}" aria-label="{{ ('app.ui.a11y.social.' ~ network)|trans }}">
+                        {{ ux_icon('tabler:brand-' ~ network, {class: 'size-5'}) }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 
 </div>

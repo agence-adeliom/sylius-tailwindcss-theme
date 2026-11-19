@@ -1,0 +1,13 @@
+{#-
+    Mention of the accessibility statement, required on every page by the RGAA.
+    Each project sets app.ui.a11y.accessibility_statement.url (and the compliance level in .label);
+    while the URL is empty, the mention is shown without a link, to avoid a link to a missing page.
+-#}
+{%- set statement_url = 'app.ui.a11y.accessibility_statement.url'|trans -%}
+<p class="col-span-full">
+    {%- if statement_url is not empty and statement_url != 'app.ui.a11y.accessibility_statement.url' -%}
+        <a class="link link-hover" href="{{ statement_url }}">{{ 'app.ui.a11y.accessibility_statement.label'|trans }}</a>
+    {%- else -%}
+        {{ 'app.ui.a11y.accessibility_statement.label'|trans }}
+    {%- endif -%}
+</p>

@@ -1,3 +1,4 @@
-<div class="container">
+{#- Live region present from the first render, so new messages are announced (RGAA 7.5) -#}
+<div class="container" data-flashes aria-live="polite">
     {% hook 'flashes' %}
 </div>

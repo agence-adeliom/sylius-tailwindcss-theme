@@ -4,7 +4,10 @@
 
 -   `themes/TailwindTheme/assets`
 -   `themes/TailwindTheme/templates`
+-   `themes/TailwindTheme/translations`
 -   `themes/TailwindTheme/webpack.config.js`
+
+The theme's `translations` folder holds the texts used by its templates (`app.ui.*` keys). It sits next to your project's `./translations` folder, which keeps your own keys. When a key exists in both, the theme's value wins: to change a theme text, edit it in `themes/TailwindTheme/translations`, not in `./translations`.
 
 #### 2. Install dependencies
 

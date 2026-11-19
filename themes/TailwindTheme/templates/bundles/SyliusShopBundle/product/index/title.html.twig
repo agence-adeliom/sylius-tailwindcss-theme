@@ -1,0 +1,7 @@
+{#- Page title of a category: search term, category name and page number (RGAA 8.6) -#}
+{%- set search = app.request.query.all('criteria').search.value|default('')|trim -%}
+{%- set page = app.request.query.getInt('page', 1) -%}
+{%- if search is not empty -%}
+    {{ 'app.ui.a11y.title.search'|trans({'%term%': search}) }} - {% endif -%}
+{{ taxon.name }}
+{%- if page > 1 %} - {{ 'sylius.ui.page'|trans }} {{ page }}{% endif -%}

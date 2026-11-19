@@ -2,14 +2,14 @@
 
 {% block body %}
     <div class="flex flex-col min-h-screen overflow-hidden">
-        <div class="bg-base border-b border-neutral-300 py-4 ">
+        <header role="banner" class="bg-base border-b border-neutral-300 py-4 ">
             <div class="container">
                 <div class="flex gap-6 justify-between items-center">
                     {% hook 'sylius_shop.checkout.common.header' with {order} %}
                 </div>
             </div>
-        </div>
-        <div class="relative">
+        </header>
+        <main id="main" role="main" tabindex="-1" class="relative focus:outline-none">
             <div class="container">
                 {%- set is_complete = active_step == 'complete' -%}
                 <div class="grid grid-cols-12 tunnelHeight">
@@ -27,6 +27,11 @@
                     {% endblock %}
                 </div>
             </div>
-        </div>
+        </main>
+        <footer role="contentinfo" class="border-t border-neutral-300 py-6">
+            <div class="container grid grid-cols-12 gap-6">
+                {% include '@SyliusShop/shared/layout/base/footer/content/accessibility.html.twig' %}
+            </div>
+        </footer>
     </div>
 {% endblock %}

@@ -1,5 +1,7 @@
 {% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
+{% block title %}{{ 'app.ui.a11y.title.not_found'|trans }} | {{ parent() }}{% endblock %}
+
 {% block content %}
     {% hook 'error' with { _prefixes: ['sylius_shop.error404', 'sylius_shop.shared'] } %}
 {% endblock %}

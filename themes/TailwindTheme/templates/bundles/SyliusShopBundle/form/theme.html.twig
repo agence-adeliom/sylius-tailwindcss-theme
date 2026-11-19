@@ -1,5 +1,70 @@
 {% extends 'bootstrap_5_layout.html.twig' %}
 
+{# ── Accessibility (RGAA 11.10) ──────────────────────────────────────── #}
+
+{#- Every widget lists its help and errors in aria-describedby (only the ids rendered by form_help and form_errors) and carries aria-invalid when invalid. -#}
+{% block widget_attributes -%}
+    {%- set described = attr['aria-describedby']|default('')|split(' ')|filter(v => v is not empty) -%}
+    {%- if help is not empty -%}{%- set described = described|merge([id ~ '_help']) -%}{%- endif -%}
+    {%- if errors|length > 0 -%}{%- set described = described|merge([id ~ '_errors']) -%}{%- endif -%}
+    {%- if described is not empty -%}{%- set attr = attr|merge({'aria-describedby': described|join(' ')}) -%}{%- endif -%}
+    {%- if (not compound or force_error|default(false)) and not valid -%}{%- set attr = attr|merge({'aria-invalid': 'true'}) -%}{%- endif -%}
+    {{- parent() -}}
+{%- endblock widget_attributes %}
+
+{#- Error summary at the top of a submitted invalid form; assets/js/form-errors.js moves the focus to it. -#}
+{% block form_start -%}
+    {{- parent() -}}
+    {%- if form is rootform and form.vars.name not in ['sylius_shop_add_to_cart'] -%}
+        {%- set shows_asterisk = false -%}
+        {%- for level1 in form -%}
+            {%- for child in [level1]|merge(level1.children|default([])) -%}
+                {%- for leaf in [child]|merge(child.children|default([])) -%}
+                    {%- if leaf.vars.required and not leaf.vars.compound and leaf.vars.label is not same as(false)
+                        and 'hidden' not in leaf.vars.block_prefixes and 'radio' not in leaf.vars.block_prefixes -%}
+                        {%- set shows_asterisk = true -%}
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endfor -%}
+        {%- endfor -%}
+        {%- if shows_asterisk -%}
+            <p class="text-sm text-base-content/70 mb-4">{{ 'app.ui.a11y.required_fields'|trans }}</p>
+        {%- endif -%}
+    {%- endif -%}
+    {%- if form is rootform and submitted|default(false) and not valid -%}
+        {%- set field_errors = [] -%}
+        {%- for field_error in form.vars.errors.form.getErrors(true) -%}
+            {%- if field_error.origin is not null and field_error.origin.parent is not null -%}
+                {%- set field_errors = field_errors|merge([field_error]) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if field_errors is not empty -%}
+            <div class="alert alert-error mb-4 flex flex-col items-start gap-2" tabindex="-1" data-form-error-summary>
+                <p class="font-bold">{{ 'app.ui.a11y.form_errors'|trans({'%count%': field_errors|length}) }}</p>
+                <ul class="list-disc pl-5 text-sm">
+                    {%- for field_error in field_errors -%}
+                        {#- Symfony builds a field id from its parents' names: rebuild it to link the field -#}
+                        {%- set node = field_error.origin -%}
+                        {%- set names = [] -%}
+                        {%- for depth in 1..10 -%}
+                            {%- if node is not null -%}
+                                {%- set names = [node.name]|merge(names) -%}
+                                {%- set node = node.parent -%}
+                            {%- endif -%}
+                        {%- endfor -%}
+                        {#- A compound field (expanded choice…) renders a div that cannot take the focus: link its first input -#}
+                        {%- if field_error.origin.count > 0 -%}
+                            {%- set names = names|merge([field_error.origin.all|keys|first]) -%}
+                        {%- endif -%}
+                        {%- set field_id = names|join('_') -%}
+                        <li><a class="link" href="#{{ field_id }}">{{ field_error.message }}</a></li>
+                    {%- endfor -%}
+                </ul>
+            </div>
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock form_start %}
+
 {# ── Row wrappers ────────────────────────────────────────────────────── #}
 
 {% block form_row -%}
@@ -27,6 +92,7 @@
             {%- set label_text = label is not empty ? label : (label_format is not empty ? label_format|replace({'%name%': name, '%id%': id}) : name|humanize) -%}
             <label for="{{ id }}" class="text-sm cursor-pointer select-none{{ is_invalid ? ' text-error' }}">
                 {{- translation_domain is same as(false) ? label_text : label_text|trans(label_translation_parameters|default({}), translation_domain) -}}
+                {{- block('required_marker') -}}
             </label>
         {%- endif -%}
         {{- form_errors(form) -}}
@@ -37,12 +103,26 @@
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
     <div class="flex items-center gap-2 mb-2{{ is_invalid ? ' error' }}">
         {{- form_widget(form) -}}
-        {{- form_label(form) -}}
+        {#- An option is not a required field on its own: no asterisk on each radio -#}
+        {{- form_label(form, null, {required: false}) -}}
         {{- form_errors(form) -}}
     </div>
 {%- endblock radio_row %}
 
 {# ── Label ───────────────────────────────────────────────────────────── #}
+
+{#- Asterisk of a required field, explained at the top of the form (block form_start).
+    Not on the add-to-cart form: its fields (variant, quantity) are prefilled options, not entries the customer can forget;
+    the required attribute still tells screen readers. Keep this list in sync with form_start. -#}
+{% block required_marker -%}
+    {%- if required -%}
+        {%- set root = form -%}
+        {%- for depth in 1..10 -%}
+            {%- if root.parent is not null -%}{%- set root = root.parent -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if root.vars.name not in ['sylius_shop_add_to_cart'] %} <span aria-hidden="true">*</span>{% endif -%}
+    {%- endif -%}
+{%- endblock required_marker %}
 
 {% block form_label -%}
     {%- if label is not same as(false) -%}
@@ -56,6 +136,7 @@
         {%- set label_attr = label_attr|merge({'class': ('block font-medium text-sm mb-1' ~ (label_attr.class is defined ? ' ' ~ label_attr.class : ''))|trim}) -%}
         <label{% if label_attr %}{% with {attr: label_attr} %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not compound %} for="{{ id }}"{% endif %}>
             {{- translation_domain is same as(false) ? label : label|trans(label_translation_parameters|default({}), translation_domain) -}}
+            {%- if not compound -%}{{- block('required_marker') -}}{%- endif -%}
         </label>
     {%- endif -%}
 {%- endblock form_label %}
@@ -120,7 +201,7 @@
 
 {% block form_help -%}
     {%- if help is not empty -%}
-        <p class="text-sm text-base-content/60 mt-1">
+        <p id="{{ id }}_help" class="text-sm text-base-content/60 mt-1">
             {{- translation_domain is same as(false) ? help : help|trans({}, help_translation_domain) -}}
         </p>
     {%- endif -%}
@@ -139,9 +220,12 @@
                 </div>
             </div>
         {%- else -%}
-            {%- for error in errors -%}
-                <div class="text-error text-sm mt-1" {{ sylius_test_html_attribute('validation-error') }}>{{ error.message }}</div>
-            {%- endfor -%}
+            <div id="{{ id }}_errors">
+                {%- for error in errors -%}
+                    {#- The icon gives the error state another cue than the colour (RGAA 3.1) -#}
+                    <div class="text-error text-sm mt-1 flex items-center gap-1" {{ sylius_test_html_attribute('validation-error') }}>{{ ux_icon('tabler:alert-circle', {class: 'size-4 shrink-0', 'aria-hidden': 'true'}) }}{{ error.message }}</div>
+                {%- endfor -%}
+            </div>
         {%- endif -%}
     {%- endif -%}
 {%- endblock form_errors -%}
