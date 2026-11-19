@@ -5,18 +5,17 @@
 
 <div class="relative" {{ attributes }}>
     <div {{ sylius_test_html_attribute('cart-button') }}>
-        <button type="button" class="flex items-center gap-2 px-0 relative cursor-pointer lg:hover:text-primary transition-all" data-dialog-open="cart-dialog" aria-controls="cart-dialog" aria-expanded="false">
+        <button type="button" class="flex items-center gap-2 px-0 relative cursor-pointer lg:hover:text-primary transition-all" data-dialog-open="cart-dialog" aria-controls="cart-dialog" aria-expanded="false" aria-label="{{ 'sylius.ui.cart'|trans }}, {{ money.convertAndFormat(cart.itemsTotal) }}{{ 'sylius.ui.item.choice'|trans({'%count%': cart.totalQuantity}) }}">
             {{ icon('cart') }}
             <span class="hidden lg:block ps-1" {{ sylius_test_html_attribute('cart-total') }}>
             {{- money.convertAndFormat(cart.itemsTotal) -}}
-                {{- 'sylius.ui.item.choice'|trans({'%count%': cart.totalQuantity}) }}
+                {{- 'sylius.ui.item.choice'|trans({'%count%': cart.totalQuantity}) -}}
         </span>
-            {% if cart.totalQuantity > 0 %}
-                <span class="absolute text-primary-content top-1/2 text-xs w-4 h-4 flex itesm-center justify-center left-2 bg-primary rounded-full">
+            {%- if cart.totalQuantity > 0 -%}
+                <span aria-hidden="true" class="absolute text-primary-content top-1/2 text-xs w-4 h-4 flex itesm-center justify-center left-2 bg-primary rounded-full">
                     {{ cart.totalQuantity }}
                 </span>
-            {% endif %}
-            <span class="sr-only">, {{ 'sylius.ui.cart'|trans }}</span>
+            {%- endif -%}
         </button>
     </div>
 </div>
