@@ -68,6 +68,50 @@
 {# ── Row wrappers ────────────────────────────────────────────────────── #}
 
 {% block form_row -%}
+    {%- if expanded is defined and expanded and 'choice' in block_prefixes -%}
+        {{- block('choice_row_expanded') -}}
+    {%- else -%}
+        {{- block('form_row_simple') -}}
+    {%- endif -%}
+{%- endblock form_row %}
+
+{#- Expanded choices (radios, checkboxes) are grouped in a fieldset named by its legend -#}
+{% block choice_row_expanded -%}
+    {%- set described = [] -%}
+    {%- if help is not empty -%}{%- set described = described|merge([id ~ '_help']) -%}{%- endif -%}
+    {%- if errors|length > 0 -%}{%- set described = described|merge([id ~ '_errors']) -%}{%- endif -%}
+    {%- set row_class = 'field mb-4' ~ (required ? ' required') ~ (not valid ? ' error') -%}
+    {%- set row_attr = row_attr|merge({'class': (row_attr.class|default('') ~ ' ' ~ row_class)|trim}) -%}
+    {%- if described is not empty -%}{%- set row_attr = row_attr|merge({'aria-describedby': described|join(' ')}) -%}{%- endif -%}
+    <fieldset {% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {%- if label is not same as(false) -%}
+            {%- set label_text = label is not empty ? label : (label_format is not empty ? label_format|replace({'%name%': name, '%id%': id}) : name|humanize) -%}
+            <legend class="{{ ('block font-medium text-sm mb-1 ' ~ label_attr.class|default(''))|trim }}">
+                {{- translation_domain is same as(false) ? label_text : label_text|trans(label_translation_parameters|default({}), translation_domain) -}}
+                {{- block('required_marker') -}}
+            </legend>
+        {%- endif -%}
+        {{- form_widget(form) -}}
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </fieldset>
+{%- endblock choice_row_expanded %}
+
+{#- Each option is rendered with its row (radio_row, checkbox_row), so it keeps its own label. -#}
+{% block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form -%}
+            {#- An option is not a required field on its own: the asterisk is on the legend -#}
+            {{- form_row(child, {
+                translation_domain: choice_translation_domain,
+                valid: valid,
+                required: false,
+            }) -}}
+        {%- endfor -%}
+    </div>
+{%- endblock choice_widget_expanded %}
+
+{% block form_row_simple -%}
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
     {%- set row_class = 'field mb-4' -%}
     {%- if required -%}{%- set row_class = row_class ~ ' required' -%}{%- endif -%}
@@ -79,7 +123,7 @@
         {{- form_help(form) -}}
         {{- form_errors(form) -}}
     </div>
-{%- endblock form_row %}
+{%- endblock form_row_simple %}
 
 {% block checkbox_row -%}
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
@@ -103,8 +147,14 @@
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
     <div class="flex items-center gap-2 mb-2{{ is_invalid ? ' error' }}">
         {{- form_widget(form) -}}
-        {#- An option is not a required field on its own: no asterisk on each radio -#}
-        {{- form_label(form, null, {required: false}) -}}
+        {#- The label is written here: form_label would resolve to bootstrap's radio_label, which renders nothing without a widget.
+            An option is not a required field on its own: no asterisk on each radio. -#}
+        {%- if label is not same as(false) -%}
+            {%- set label_text = label is not empty ? label : (label_format is not empty ? label_format|replace({'%name%': name, '%id%': id}) : name|humanize) -%}
+            <label for="{{ id }}" class="text-sm cursor-pointer select-none{{ is_invalid ? ' text-error' }}">
+                {{- translation_domain is same as(false) ? label_text : label_text|trans(label_translation_parameters|default({}), translation_domain) -}}
+            </label>
+        {%- endif -%}
         {{- form_errors(form) -}}
     </div>
 {%- endblock radio_row %}

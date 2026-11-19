@@ -9,6 +9,10 @@
 
 The theme's `translations` folder holds the texts used by its templates (`app.ui.*` keys). It sits next to your project's `./translations` folder, which keeps your own keys. When a key exists in both, the theme's value wins: to change a theme text, edit it in `themes/TailwindTheme/translations`, not in `./translations`.
 
+Set this key in both `messages.fr.yaml` and `messages.en.yaml` of the theme:
+
+-   `app.ui.a11y.accessibility_statement.url`: URL of your accessibility statement page, and `app.ui.a11y.accessibility_statement.label` for your compliance level. The RGAA requires this link on every page. While the URL is empty, the footer shows the mention without a link.
+
 #### 2. Install dependencies
 
 ```bash
