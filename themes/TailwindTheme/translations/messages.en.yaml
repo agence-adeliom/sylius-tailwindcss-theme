@@ -16,7 +16,6 @@ app:
         a11y:
             skip_to_content: Skip to content
             close: Close
-            close_cart: Close cart
             breadcrumb: Breadcrumb
             home_logo: Home
             scroll_to_content: Scroll to content

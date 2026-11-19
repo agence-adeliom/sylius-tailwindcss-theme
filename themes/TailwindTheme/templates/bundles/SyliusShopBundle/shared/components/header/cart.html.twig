@@ -5,7 +5,7 @@
 
 <div class="relative" {{ attributes }}>
     <div {{ sylius_test_html_attribute('cart-button') }}>
-        <button class="flex items-center gap-2 px-0 relative cursor-pointer lg:hover:text-primary transition-all" js-cart-opener>
+        <button type="button" class="flex items-center gap-2 px-0 relative cursor-pointer lg:hover:text-primary transition-all" data-dialog-open="cart-dialog" aria-controls="cart-dialog" aria-expanded="false">
             {{ icon('cart') }}
             <span class="hidden lg:block ps-1" {{ sylius_test_html_attribute('cart-total') }}>
             {{- money.convertAndFormat(cart.itemsTotal) -}}
@@ -16,6 +16,7 @@
                     {{ cart.totalQuantity }}
                 </span>
             {% endif %}
+            <span class="sr-only">, {{ 'sylius.ui.cart'|trans }}</span>
         </button>
     </div>
 </div>

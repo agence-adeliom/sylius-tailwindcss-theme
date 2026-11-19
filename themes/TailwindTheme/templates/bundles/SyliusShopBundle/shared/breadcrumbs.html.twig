@@ -1,15 +1,17 @@
 {% macro breadcrumbs(items) %}
-    <div class="breadcrumbs">
-        <ol class="breadcrumb" aria-label="{{ 'app.ui.a11y.breadcrumb'|trans }}">
+    <nav role="navigation" class="breadcrumbs max-w-full" aria-label="{{ 'app.ui.a11y.breadcrumb'|trans }}">
+        <ol class="flex-wrap whitespace-normal" role="list">
             {% for item in items %}
                 <li>
                     {% if item.path is defined %}
-                        <a class="link-reset" href="{{ item.path }}">{{ item.label|raw }}</a>
+                        <a class="link-reset" href="{{ item.path }}"{% if loop.last %} aria-current="page"{% endif %}>{{ item.label|raw }}</a>
+                    {% elseif loop.last %}
+                        <span class="text-body-tertiary text-break" aria-current="page">{{ item.label|raw }}</span>
                     {% else %}
                         <span class="text-body-tertiary text-break">{{ item.label|raw }}</span>
                     {% endif %}
                 </li>
             {% endfor %}
         </ol>
-    </div>
+    </nav>
 {% endmacro %}

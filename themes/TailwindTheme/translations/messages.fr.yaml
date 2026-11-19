@@ -16,7 +16,6 @@ app:
         a11y:
             skip_to_content: Aller au contenu
             close: Fermer
-            close_cart: Fermer le panier
             breadcrumb: Fil d’Ariane
             home_logo: Accueil
             scroll_to_content: Défiler jusqu’au contenu

@@ -2,9 +2,8 @@
 
 <div {{ sylius_test_html_attribute('cart-button') }}>
     {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
-    <button class="flex items-center px-0 relative">
+    <button type="button" class="flex items-center px-0 relative" data-dialog-open="cart-dialog" aria-controls="cart-dialog" aria-expanded="false">
         {{ icon('cart') }}
-        hello
         <span class="hidden lg:block" {{ sylius_test_html_attribute('cart-total') }}>
             {{- money.convertAndFormat(cart.itemsTotal) -}}
             {{- 'sylius.ui.item.choice'|trans({'%count%': cart.totalQuantity}) }}
@@ -14,5 +13,6 @@
                 {{ cart.totalQuantity }}
             </span>
         {% endif %}
+        <span class="sr-only">, {{ 'sylius.ui.cart'|trans }}</span>
     </button>
 </div>

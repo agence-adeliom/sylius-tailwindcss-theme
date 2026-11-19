@@ -7,8 +7,9 @@
 -#}
 {%- set side = side|default('end') -%}
 {%- set side_class = side == 'start' ? 'modal-start' : 'modal-end' -%}
+{%- set box_class = box_class|default('w-[85vw] max-w-md') -%}
 <dialog id="{{ id }}" class="modal {{ side_class }}" aria-labelledby="{{ id }}-title" {{ attributes|default('')|raw }}>
-    <div class="modal-box flex flex-col h-dvh max-h-dvh w-[85vw] max-w-md rounded-none overflow-y-auto">
+    <div class="modal-box flex flex-col h-dvh max-h-dvh {{ box_class }} rounded-none overflow-y-auto">
         <div class="flex items-center justify-between gap-4 mb-6">
             <h2 id="{{ id }}-title" class="heading-4">{{ title }}</h2>
             <button type="button" class="btn btn-ghost btn-square btn-sm" data-dialog-close aria-label="{{ 'app.ui.a11y.close'|trans }}">
