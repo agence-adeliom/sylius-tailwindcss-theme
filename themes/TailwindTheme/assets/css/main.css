@@ -5,7 +5,7 @@
 @plugin "daisyui" {
     themes: light;
     logs: false;
-    include: alert, badge, breadcrumbs, button, card, checkbox, collapse, dropdown, fieldset, hero, drawer, input, label, link, divider, list, loading, mask, menu, navbar, radio, select, steps, rating, table, textarea, toggle, join;
+    include: alert, badge, breadcrumbs, button, card, checkbox, collapse, dropdown, fieldset, hero, drawer, input, label, link, divider, list, loading, mask, menu, modal, navbar, radio, select, steps, rating, table, textarea, toggle, join;
     exclude: tabnavbar, kbd, avatar, carousel, chat, countdown, hover-3d, hover-gallery, diff, stats, fieldset, indicator, skeleton, toast, tooltip;
 }
 

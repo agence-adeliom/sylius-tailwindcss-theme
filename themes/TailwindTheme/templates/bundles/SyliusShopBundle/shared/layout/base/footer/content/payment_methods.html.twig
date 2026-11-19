@@ -3,7 +3,7 @@
 
     <div>
         <h2 id="footer-payment-methods-title" class="footer-title">{{ 'sylius.ui.payment_methods'|trans }}</h2>
-        <ul class="flex flex-wrap gap-2" aria-labelledby="footer-payment-methods-title">
+        <ul role="list" class="flex flex-wrap gap-2" aria-labelledby="footer-payment-methods-title">
             {% for method in [
                 {name: 'PayPal', url: 'https://sylius.com/partner/paypal/', logo: 'paypal-logo.svg'},
                 {name: 'Adyen', url: 'https://sylius.com/partner/adyen/', logo: 'adyen-logo.svg'},
@@ -19,7 +19,7 @@
     </div>
 
     <div class="mt-12">
-        <ul class="flex gap-3" aria-label="{{ 'app.ui.footer.social.label'|trans }}">
+        <ul role="list" class="flex gap-3" aria-label="{{ 'app.ui.footer.social.label'|trans }}">
             {% for network in ['instagram', 'facebook', 'x'] %}
                 <li>
                     <a class="btn btn-ghost btn-sm btn-square" href="{{ ('app.ui.footer.social.' ~ network ~ '_url')|trans }}" aria-label="{{ ('app.ui.a11y.social.' ~ network)|trans }}">

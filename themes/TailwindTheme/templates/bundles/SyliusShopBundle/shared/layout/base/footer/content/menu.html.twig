@@ -1,8 +1,8 @@
 <div class="max-lg:order-first col-span-full lg:col-span-6 grid gap-6 grid-cols-12">
 
-    <nav class="col-span-full md:col-span-6 flex flex-col gap-2" aria-labelledby="footer-information-title">
+    <nav role="navigation" class="col-span-full md:col-span-6 flex flex-col gap-2" aria-labelledby="footer-information-title">
         <h2 id="footer-information-title" class="footer-title">{{ 'sylius.ui.information'|trans }}</h2>
-        <ul class="flex flex-col gap-2">
+        <ul role="list" class="flex flex-col gap-2">
             <li><a class="link link-hover" href="{{ 'app.ui.footer.about.url'|trans }}">{{ 'app.ui.footer.about.label'|trans }}</a></li>
             <li><a class="link link-hover" href="{{ 'app.ui.footer.terms.url'|trans }}">{{ 'app.ui.footer.terms.label'|trans }}</a></li>
             <li><a class="link link-hover" href="{{ 'app.ui.footer.privacy.url'|trans }}">{{ 'app.ui.footer.privacy.label'|trans }}</a></li>
@@ -10,8 +10,8 @@
         </ul>
     </nav>
 
-    <nav class="col-span-full md:col-span-6 flex flex-col gap-2" aria-label="{{ 'app.ui.footer.help.label'|trans }}">
-        <ul class="flex flex-col gap-2">
+    <nav role="navigation" class="col-span-full md:col-span-6 flex flex-col gap-2" aria-label="{{ 'app.ui.footer.help.label'|trans }}">
+        <ul role="list" class="flex flex-col gap-2">
             <li><a class="link link-hover" href="{{ 'app.ui.footer.faq.url'|trans }}">{{ 'app.ui.footer.faq.label'|trans }}</a></li>
             <li><a class="link link-hover" href="{{ 'app.ui.footer.delivery.url'|trans }}">{{ 'app.ui.footer.delivery.label'|trans }}</a></li>
             <li><a class="link link-hover" href="{{ 'app.ui.footer.returns.url'|trans }}">{{ 'app.ui.footer.returns.label'|trans }}</a></li>

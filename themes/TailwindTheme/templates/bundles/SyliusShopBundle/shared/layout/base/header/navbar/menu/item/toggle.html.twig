@@ -1,6 +1,7 @@
 {% set taxon = hookable_metadata.context.taxon %}
+{% set variant = hookable_metadata.context.variant|default('desktop') %}
 {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
-<div tabindex="0" role="button" class="cursor-pointer">
+<button type="button" class="cursor-pointer" aria-expanded="false" aria-controls="submenu-{{ variant }}-{{ taxon.id }}">
     {{ taxon.name }}
-    {{ icon('chevron-down', 'max-lg:!hidden') }}
-</div>
+    {{ icon('chevron-down') }}
+</button>

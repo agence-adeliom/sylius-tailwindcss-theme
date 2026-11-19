@@ -1,6 +1,8 @@
-<button class="btn btn-icon btn-transparent px-0" data-bs-toggle="dropdown" aria-expanded="false">
-    {{ ux_icon('tabler:user') }}
-</button>
-<ul class="dropdown-menu dropdown-menu-end">
-    {% hook 'menu' %}
-</ul>
+<div class="relative" data-disclosure>
+    <button type="button" class="btn btn-ghost btn-sm px-0" aria-expanded="false" aria-controls="account-menu-mobile" aria-label="{{ 'sylius.ui.my_account'|trans }}">
+        {{ ux_icon('tabler:user', {'aria-hidden': 'true'}) }}
+    </button>
+    <ul id="account-menu-mobile" role="list" hidden class="menu absolute end-0 top-full z-[100] w-52 rounded-box bg-base-100 p-2 text-base-content shadow-sm">
+        {% hook 'menu' %}
+    </ul>
+</div>

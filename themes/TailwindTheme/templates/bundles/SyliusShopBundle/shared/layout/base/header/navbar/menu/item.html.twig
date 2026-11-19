@@ -1,19 +1,12 @@
 {% set taxons = hookable_metadata.context.taxons %}
+{% set variant = hookable_metadata.context.variant|default('desktop') %}
 
 {% for taxon in taxons %}
     {% if taxon.enabledChildren|length > 0 %}
-        {# <li> #}
-        <li class="dropdown">
-            {% hook 'item#dropdown' with {taxon} %}
+        <li class="relative" data-disclosure>
+            {% hook 'item#dropdown' with {taxon, variant} %}
         </li>
-        {# </li> #}
     {% else %}
-        {% if taxon.level == 1 %}
-            {% hook 'item#link' with {taxon} %}
-        {% else %}
-            <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                {% hook 'item#link' with {taxon} %}
-            </ul>
-        {% endif %}
+        {% hook 'item#link' with {taxon, variant} %}
     {% endif %}
 {% endfor %}
