@@ -17,7 +17,7 @@
     {% endif %}
 </div> #}
 
-<div {{ sylius_test_html_attribute('product', '%s'|format(product.code)) }} class="group">
+<div {{ sylius_test_html_attribute('product', '%s'|format(product.code)) }} class="group relative">
     {% hook 'card' with {_prefixes: ['sylius_shop.shared.product']} %}
 </div>
 

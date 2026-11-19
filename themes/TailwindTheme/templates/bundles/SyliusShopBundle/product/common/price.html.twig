@@ -1,4 +1,4 @@
 {% if has_discount %}
-    <span {{ sylius_test_html_attribute('product-original-price') }}><del>{{ original_price }}</del></span>
+    <span {{ sylius_test_html_attribute('product-original-price') }}><span class="sr-only">{{ 'app.ui.a11y.price.original'|trans }}</span> <del>{{ original_price }}</del></span>
 {% endif %}
-<span {{ sylius_test_html_attribute('product-price') }}>{{ price }}</span>
+<span {{ sylius_test_html_attribute('product-price') }}>{% if has_discount %}<span class="sr-only">{{ 'app.ui.a11y.price.current'|trans }}</span> {% endif %}{{ price }}</span>

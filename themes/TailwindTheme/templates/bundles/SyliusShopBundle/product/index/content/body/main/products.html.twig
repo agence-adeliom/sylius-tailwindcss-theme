@@ -3,6 +3,7 @@
 {% set resources = hookable_metadata.context.resources %}
 
 {% if resources.data|length > 0 %}
+    <h2 class="sr-only">{{ 'sylius.ui.products'|trans }}</h2>
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-6" {{ sylius_test_html_attribute('products') }}>
         {% for product in resources.data %}
             {{ component('sylius_shop:product:card', {product: product, template: '@SyliusShop/product/common/card.html.twig'}) }}

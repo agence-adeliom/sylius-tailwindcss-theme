@@ -20,6 +20,9 @@ app:
             close: Close
             breadcrumb: Breadcrumb
             home_logo: Home
+            price:
+                original: "Original price:"
+                current: "Current price:"
             new_window: (new window)
             main_navigation: Main navigation
             footer_navigation: Footer navigation
