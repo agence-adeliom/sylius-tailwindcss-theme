@@ -9,7 +9,7 @@
         {% hook 'prices' with { variant, has_discount, has_lowest_price, days } %}
     </div>
 {% else %}
-    <div class="mb-3 pb-1" {{ sylius_test_html_attribute('product-price', 'sylius.ui.unavailable'|trans ) }}>
+    <div class="mb-3 pb-1" data-price-announce {{ sylius_test_html_attribute('product-price', 'sylius.ui.unavailable'|trans ) }}>
         {{ 'sylius.ui.unavailable'|trans }}
     </div>
 {% endif %}

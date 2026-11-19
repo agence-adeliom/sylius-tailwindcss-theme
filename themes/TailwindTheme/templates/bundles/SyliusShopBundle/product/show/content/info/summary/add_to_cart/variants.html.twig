@@ -1,11 +1,15 @@
 {% set product = hookable_metadata.context.product %}
 
-<div class="mb-3">
+{# A fieldset keeps its children's margins: the last field margin moves to the wrapper. #}
+<div class="{{ not product.simple and not product.variantSelectionMethodChoice ? 'mb-4' : 'mb-3' }}">
     {% if not product.simple %}
-        {% if product.variantSelectionMethodChoice %}
-            {% hook 'variants' %}
-        {% else %}
-            {% hook 'options' %}
-        {% endif %}
+        <fieldset class="min-w-0 [&>*:last-child]:mb-0">
+            <legend class="sr-only">{{ 'app.ui.a11y.variant_choice'|trans }}</legend>
+            {% if product.variantSelectionMethodChoice %}
+                {% hook 'variants' %}
+            {% else %}
+                {% hook 'options' %}
+            {% endif %}
+        </fieldset>
     {% endif %}
 </div>

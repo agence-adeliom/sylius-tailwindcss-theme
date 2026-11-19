@@ -2,7 +2,7 @@
 
 <div class="w-full">
     <a href="{{ hookable_metadata.context.original_path }}" class="block overflow-hidden rounded">
-        <img src="{{ hookable_metadata.context.path }}" alt="{{ product.name }}" class="img-fluid w-full h-full object-cover"
+        <img src="{{ hookable_metadata.context.path }}" alt="{{ product.images|length > 1 ? 'app.ui.a11y.gallery.enlarge'|trans({'%index%': 1, '%count%': product.images|length, '%product%': product.name}) : 'app.ui.a11y.gallery.enlarge_single'|trans({'%product%': product.name}) }}" class="img-fluid w-full h-full object-cover"
             {% if product.images.first %}
                 {{ sylius_test_html_attribute('main-image', product.images.first.type) }}
             {% else %}

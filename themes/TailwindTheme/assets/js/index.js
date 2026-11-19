@@ -4,6 +4,7 @@ import { initDialogs } from './dialog';
 import { initDisclosures } from './disclosure';
 import { initFlashes } from './flashes';
 import { focusFragmentTarget } from './fragment-focus';
+import { initPriceStatus } from './price-status';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Toggle themes
@@ -17,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Flash messages
     initFlashes();
+
+    // Product page: price announced after a variant change
+    initPriceStatus();
 
     // Listing reloaded on its results anchor (sorting, filters, pagination)
     focusFragmentTarget();

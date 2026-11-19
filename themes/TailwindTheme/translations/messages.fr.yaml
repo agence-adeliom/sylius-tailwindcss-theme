@@ -23,6 +23,13 @@ app:
             price:
                 original: "Prix initial :"
                 current: "Prix actuel :"
+                announce: "Prix : %price%"
+            gallery:
+                label: Images du produit
+                enlarge: "Agrandir l’image %index% sur %count% : %product%"
+                enlarge_single: "Agrandir l’image : %product%"
+            variant_choice: Choix de la variante
+            variant_selection: Sélection
             subcategories: Sous-catégories
             pagination: Pagination
             results: "{1} 1 produit|]1,Inf[ %count% produits"
