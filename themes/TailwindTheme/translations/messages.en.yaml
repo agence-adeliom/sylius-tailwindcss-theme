@@ -1,24 +1,25 @@
 app:
     ui:
         footer:
-            about: { label: About, url: "#" }
-            terms: { label: Terms and conditions, url: "#" }
-            privacy: { label: Privacy policy, url: "#" }
-            help: { label: Help }
-            faq: { label: FAQ, url: "#" }
-            delivery: { label: Delivery and shipping, url: "#" }
-            returns: { label: Returns policy, url: "#" }
-            social:
-                label: Social networks
-                instagram_url: "#"
-                facebook_url: "#"
-                x_url: "#"
+            about: About
+            terms: Terms and conditions
+            privacy: Privacy policy
+            help: Help
+            faq: FAQ
+            delivery: Delivery and shipping
+            returns: Returns policy
+            social: Social networks
+        homepage:
+            shop_now: Shop now
+            collection:
+                new_arrivals: New arrivals
+                best_sellers: Best sellers
+                sale: Sale
         a11y:
             skip_to_content: Skip to content
             close: Close
             breadcrumb: Breadcrumb
             home_logo: Home
-            scroll_to_content: Scroll to content
             new_window: (new window)
             main_navigation: Main navigation
             footer_navigation: Footer navigation

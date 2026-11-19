@@ -1,20 +1,21 @@
+{# Replace href="#" with the URLs of your CMS pages #}
 <div class="max-lg:order-first col-span-full lg:col-span-6 grid gap-6 grid-cols-12">
 
     <nav role="navigation" class="col-span-full md:col-span-6 flex flex-col gap-2" aria-labelledby="footer-information-title">
         <h2 id="footer-information-title" class="footer-title">{{ 'sylius.ui.information'|trans }}</h2>
         <ul role="list" class="flex flex-col gap-2">
-            <li><a class="link link-hover" href="{{ 'app.ui.footer.about.url'|trans }}">{{ 'app.ui.footer.about.label'|trans }}</a></li>
-            <li><a class="link link-hover" href="{{ 'app.ui.footer.terms.url'|trans }}">{{ 'app.ui.footer.terms.label'|trans }}</a></li>
-            <li><a class="link link-hover" href="{{ 'app.ui.footer.privacy.url'|trans }}">{{ 'app.ui.footer.privacy.label'|trans }}</a></li>
+            <li><a class="link link-hover" href="#">{{ 'app.ui.footer.about'|trans }}</a></li>
+            <li><a class="link link-hover" href="#">{{ 'app.ui.footer.terms'|trans }}</a></li>
+            <li><a class="link link-hover" href="#">{{ 'app.ui.footer.privacy'|trans }}</a></li>
             <li><a class="link link-hover" href="{{ path('sylius_shop_contact_request') }}">{{ 'sylius.ui.contact_us'|trans }}</a></li>
         </ul>
     </nav>
 
-    <nav role="navigation" class="col-span-full md:col-span-6 flex flex-col gap-2" aria-label="{{ 'app.ui.footer.help.label'|trans }}">
+    <nav role="navigation" class="col-span-full md:col-span-6 flex flex-col gap-2" aria-label="{{ 'app.ui.footer.help'|trans }}">
         <ul role="list" class="flex flex-col gap-2">
-            <li><a class="link link-hover" href="{{ 'app.ui.footer.faq.url'|trans }}">{{ 'app.ui.footer.faq.label'|trans }}</a></li>
-            <li><a class="link link-hover" href="{{ 'app.ui.footer.delivery.url'|trans }}">{{ 'app.ui.footer.delivery.label'|trans }}</a></li>
-            <li><a class="link link-hover" href="{{ 'app.ui.footer.returns.url'|trans }}">{{ 'app.ui.footer.returns.label'|trans }}</a></li>
+            <li><a class="link link-hover" href="#">{{ 'app.ui.footer.faq'|trans }}</a></li>
+            <li><a class="link link-hover" href="#">{{ 'app.ui.footer.delivery'|trans }}</a></li>
+            <li><a class="link link-hover" href="#">{{ 'app.ui.footer.returns'|trans }}</a></li>
         </ul>
     </nav>
 

@@ -19,10 +19,11 @@
     </div>
 
     <div class="mt-12">
-        <ul role="list" class="flex gap-3" aria-label="{{ 'app.ui.footer.social.label'|trans }}">
-            {% for network in ['instagram', 'facebook', 'x'] %}
+        <ul role="list" class="flex gap-3" aria-label="{{ 'app.ui.footer.social'|trans }}">
+            {# Replace href="#" with the URLs of your social network pages #}
+            {% for network, href in {instagram: '#', facebook: '#', x: '#'} %}
                 <li>
-                    <a class="btn btn-ghost btn-sm btn-square" href="{{ ('app.ui.footer.social.' ~ network ~ '_url')|trans }}" aria-label="{{ ('app.ui.a11y.social.' ~ network)|trans }}">
+                    <a class="btn btn-ghost btn-sm btn-square" href="{{ href }}" aria-label="{{ ('app.ui.a11y.social.' ~ network)|trans }}">
                         {{ ux_icon('tabler:brand-' ~ network, {class: 'size-5'}) }}
                     </a>
                 </li>
