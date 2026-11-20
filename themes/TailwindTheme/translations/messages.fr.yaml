@@ -57,6 +57,8 @@ app:
                 ocean: Océan
                 candy: Bonbon
                 void: Néant
+            checkout_steps: Étapes de la commande
+            step_completed: ", terminée"
             cart:
                 items: Articles du panier
                 quantity: "Quantité : %item%"

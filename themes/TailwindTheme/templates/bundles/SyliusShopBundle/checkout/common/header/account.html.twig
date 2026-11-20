@@ -1,9 +1,9 @@
 {% set order = hookable_metadata.context.order %}
 
 {% if order.customer.id|default(null) is not null %}
-    <div class="" {{ sylius_test_html_attribute('purchaser-name-or-email') }}>
+    <div class="min-w-0 text-right text-sm sm:text-base" {{ sylius_test_html_attribute('purchaser-name-or-email') }}>
         {{ 'sylius.ui.checking_out_as'|trans }}
-        <a class="link-reset" href="{{ path('sylius_shop_account_dashboard') }}">
+        <a class="link-reset break-all" href="{{ path('sylius_shop_account_dashboard') }}">
             {{ app.user is null ? order.customer.email : order.customer.fullName|default(order.customer.email) }}.
         </a>
     </div>
@@ -12,7 +12,7 @@
         {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
         <a class="btn btn-icon px-2" href="{{ path('sylius_shop_login') }}">
             {{ icon('user') }}
-            <div class="hidden lg:block px-2">{{ 'sylius.ui.sign_in'|trans }}</div>
+            <span class="sr-only lg:not-sr-only lg:px-2">{{ 'sylius.ui.sign_in'|trans }}</span>
         </a>
     </div>
 {% endif %}

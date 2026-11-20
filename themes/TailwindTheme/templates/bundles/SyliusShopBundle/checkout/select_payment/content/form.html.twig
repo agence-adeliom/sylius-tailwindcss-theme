@@ -3,6 +3,7 @@
 {% form_theme form '@SyliusShop/form/theme.html.twig' %}
 
 <div {{ attributes }}>
+    <h1 class="mb-4 heading-4">{{ 'sylius.ui.payment'|trans }}</h1>
     {{ form_start(form, {'action': path('sylius_shop_checkout_select_payment'), 'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_errors(form) }}
 

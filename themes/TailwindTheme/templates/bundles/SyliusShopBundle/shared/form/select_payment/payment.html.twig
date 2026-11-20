@@ -1,7 +1,9 @@
 {% set form = hookable_metadata.context.form %}
 
 {% for payment_form in form.payments %}
-    {% hook 'payment' with { 'form': payment_form, 'index': loop.index } %}
+    <fieldset>
+        {% hook 'payment' with { 'form': payment_form, 'index': loop.index, 'count': loop.length } %}
+    </fieldset>
 {% else %}
     {% hook 'payment#unavailable' %}
 {% endfor %}

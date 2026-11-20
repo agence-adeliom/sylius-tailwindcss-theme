@@ -3,7 +3,7 @@
 
 {% for key, shipment in order.shipments %}
     <fieldset>
-        {% hook 'shipment' with { 'form': form.shipments[key], 'index': loop.index } %}
+        {% hook 'shipment' with { 'form': form.shipments[key], 'index': loop.index, 'count': loop.length } %}
     </fieldset>
 {% else %}
     {% hook 'shipment#unavailable' %}

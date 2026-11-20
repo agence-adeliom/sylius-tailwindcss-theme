@@ -57,6 +57,8 @@ app:
                 ocean: Ocean
                 candy: Candy
                 void: Void
+            checkout_steps: Checkout steps
+            step_completed: ", completed"
             cart:
                 items: Cart items
                 quantity: "Quantity: %item%"
