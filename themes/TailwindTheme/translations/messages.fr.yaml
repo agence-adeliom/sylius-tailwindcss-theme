@@ -59,6 +59,7 @@ app:
                 void: Néant
             checkout_steps: Étapes de la commande
             step_completed: ", terminée"
+            password_rules: Au moins 4 caractères.
             cart:
                 items: Articles du panier
                 quantity: "Quantité : %item%"

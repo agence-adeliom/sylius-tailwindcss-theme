@@ -279,7 +279,7 @@
 {% block form_help -%}
     {%- if help is not empty -%}
         <p id="{{ id }}_help" class="text-sm text-base-content/60 mt-1">
-            {{- translation_domain is same as(false) ? help : help|trans({}, help_translation_domain) -}}
+            {{- translation_domain is same as(false) ? help : help|trans(help_translation_parameters|default({}), translation_domain) -}}
         </p>
     {%- endif -%}
 {%- endblock form_help %}

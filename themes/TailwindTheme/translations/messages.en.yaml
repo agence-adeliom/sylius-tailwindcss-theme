@@ -59,6 +59,7 @@ app:
                 void: Void
             checkout_steps: Checkout steps
             step_completed: ", completed"
+            password_rules: At least 4 characters.
             cart:
                 items: Cart items
                 quantity: "Quantity: %item%"
