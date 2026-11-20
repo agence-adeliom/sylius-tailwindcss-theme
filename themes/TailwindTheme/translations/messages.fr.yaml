@@ -57,6 +57,13 @@ app:
                 ocean: Océan
                 candy: Bonbon
                 void: Néant
+            cart:
+                items: Articles du panier
+                quantity: "Quantité : %item%"
+                remove: "Supprimer %item%"
+                remove_coupon: Retirer le code promo
+                total: "Total de la commande : %total%"
+                continue_shopping: Continuer mes achats
             required_fields: "Les champs marqués d’un * sont obligatoires."
             all_fields_required: "Tous les champs sont obligatoires."
             form_errors: "{1} Le formulaire contient 1 erreur :|]1,Inf[ Le formulaire contient %count% erreurs :"

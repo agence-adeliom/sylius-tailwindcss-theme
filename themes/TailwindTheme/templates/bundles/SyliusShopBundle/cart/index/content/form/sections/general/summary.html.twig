@@ -1,9 +1,14 @@
 {# Rendered with \Sylius\Bundle\ShopBundle\Twig\Component\Cart\SummaryComponent #}
 
+{% import "@SyliusShop/shared/macro/money.html.twig" as money %}
+
 <div class="relative" {{ attributes }}>
     <div class="p-4 bg-neutral mb-4 rounded">
-        <h3 class="heading-5 mb-4">{{ 'sylius.ui.summary'|trans }}</h3>
+        <h2 class="heading-5 mb-4">{{ 'sylius.ui.summary'|trans }}</h2>
         {% hook 'summary' with {cart} %}
+        <p class="sr-only" role="status" {{ sylius_test_html_attribute('cart-total-status') }}>
+            {{- 'app.ui.a11y.cart.total'|trans({'%total%': money.convertAndFormat(cart.total)}) -}}
+        </p>
     </div>
 </div>
 

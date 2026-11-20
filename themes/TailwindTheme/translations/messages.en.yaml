@@ -57,6 +57,13 @@ app:
                 ocean: Ocean
                 candy: Candy
                 void: Void
+            cart:
+                items: Cart items
+                quantity: "Quantity: %item%"
+                remove: "Remove %item%"
+                remove_coupon: Remove the promotion code
+                total: "Order total: %total%"
+                continue_shopping: Continue shopping
             required_fields: "Fields marked with * are required."
             all_fields_required: "All fields are required."
             form_errors: "{1} The form contains 1 error:|]1,Inf[ The form contains %count% errors:"

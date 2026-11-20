@@ -1,8 +1,13 @@
 <tbody>
     {% for index, form_item in hookable_metadata.context.form.items %}
         {% set item = form_item.vars.data %}
+        {% set variant_details = item.variant.optionValues|map(option_value => option_value.value) %}
+        {% if variant_details is empty and item.variantName is not null %}
+            {% set variant_details = [item.variantName] %}
+        {% endif %}
+        {% set item_label = item.productName ~ (variant_details is not empty ? ' (' ~ variant_details|join(', ') ~ ')' : '') %}
         <tr {{ sylius_test_html_attribute('cart-item', index) }} {{ sylius_test_html_attribute('cart-item-product-row', item.productName) }}>
-            {% hook 'body' with { form: form_item, item, index } %}
+            {% hook 'body' with { form: form_item, item, index, item_label } %}
         </tr>
     {% endfor %}
 </tbody>

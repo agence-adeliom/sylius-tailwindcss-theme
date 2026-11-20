@@ -18,10 +18,12 @@
                             data-live-action-param="removeCoupon"
                             {{ sylius_test_html_attribute('cart-promotion-remove-coupon') }}
                         >
-                            {{ ux_icon('tabler:trash', {class: 'icon icon-sm'}) }}
+                            {{ ux_icon('tabler:trash', {class: 'icon icon-sm', 'aria-hidden': 'true'}) }}
+                            <span class="sr-only">{{ 'app.ui.a11y.cart.remove_coupon'|trans }}</span>
                         </button>
                     </div>
                 {% else %}
+                    <label class="block font-medium text-sm mb-1" for="{{ form_promotion_coupon.vars.id }}">{{ 'sylius.ui.coupon'|trans }}</label>
                     <div class="join field">
                         {{ form_widget(form_promotion_coupon, sylius_test_form_attribute('cart-promotion-coupon-input')|sylius_merge_recursive({'attr': {'data-model': 'norender|sylius_shop_cart[promotionCoupon]', 'form': form.vars.id, 'placeholder': 'sylius.ui.enter_your_code'|trans ~ '...', 'class': 'input join-item'}})) }}
                         <button class="btn btn-primary join-item rounded-r-lg" type="button" {{ sylius_test_html_attribute('apply-coupon-button') }} data-action="live#$render">{{ 'sylius.ui.apply_coupon'|trans }}</button>
