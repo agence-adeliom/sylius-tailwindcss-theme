@@ -218,5 +218,13 @@
     }
 }
 
+/* Badges grow with their text. Outside daisyUI's sub-layers of `utilities`, so this rule wins over them. */
+@layer utilities {
+    .badge {
+        height: auto;
+        min-height: var(--size);
+    }
+}
+
 /*!* Typography *!*/
 @import url("./Typography/index.css");

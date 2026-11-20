@@ -16,7 +16,6 @@
 {% endblock %}
 
 {% block item %}
-    {# Current page: exact match, or a sub-page of the item (order details under the order history). #}
     {%- set request_path = app.request.pathInfo -%}
     {%- set is_current = item.uri == request_path or (item.uri|length > 1 and item.uri ends with '/' and request_path starts with item.uri) -%}
     <li>

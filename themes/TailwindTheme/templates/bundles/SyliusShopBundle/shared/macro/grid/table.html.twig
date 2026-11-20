@@ -26,7 +26,6 @@
         {% if definition.actionGroups.bulk is defined and definition.getEnabledActions('bulk')|length > 0 %}
             <td class="center aligned"><input class="form-check-input" type="checkbox" value="{{ row.id }}" /></td>
         {% endif %}
-        {# The first field names the row: actions such as « Afficher » are read with it (RGAA 6.1). #}
         {% for field in definition.enabledFields|sylius_sort_by('position') %}
             {% if loop.first %}
                 <th scope="row" class="font-normal text-left">{{ sylius_grid_render_field(grid, field, row) }}</th>

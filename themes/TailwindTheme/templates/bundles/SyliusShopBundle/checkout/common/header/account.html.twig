@@ -3,7 +3,7 @@
 {% if order.customer.id|default(null) is not null %}
     <div class="min-w-0 text-right text-sm sm:text-base" {{ sylius_test_html_attribute('purchaser-name-or-email') }}>
         {{ 'sylius.ui.checking_out_as'|trans }}
-        <a class="link-reset break-all" href="{{ path('sylius_shop_account_dashboard') }}">
+        <a class="link-reset break-words" href="{{ path('sylius_shop_account_dashboard') }}">
             {{ app.user is null ? order.customer.email : order.customer.fullName|default(order.customer.email) }}.
         </a>
     </div>
