@@ -46,18 +46,12 @@
     {{ _self.default(url, message, id, icon, 'btn-link') }}
 {% endmacro %}
 
-{% macro delete(url, message, labeled=true, resourceId=null, hidden_label=null) %}
+{% macro delete(url, message, labeled=true, resourceId=null) %}
     {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
     <form action="{{ url }}" method="post">
         <input type="hidden" name="_method" value="DELETE">
         <button class="btn btn-sm btn-danger  w-fit" type="submit" data-requires-confirmation {{ sylius_test_html_attribute('button', 'delete') }}>
-            {{ icon('trash') }}
-            {% if hidden_label is not empty -%}
-                {#- One inline wrapper: the hidden text must not count as a flex item (button gap). -#}
-                <span>{{ ((message is empty and labeled) ? 'sylius.ui.delete' : message)|trans }}<span class="sr-only">, {{ hidden_label }}</span></span>
-            {%- else -%}
-                {{ ((message is empty and labeled) ? 'sylius.ui.delete' : message)|trans }}
-            {%- endif %}
+            {{ icon('trash') }} {{ ((message is empty and labeled) ? 'sylius.ui.delete' : message)|trans }}
         </button>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token(resourceId) }}" />
     </form>

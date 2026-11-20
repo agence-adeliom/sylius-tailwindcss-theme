@@ -1,5 +1,31 @@
-{% import '@SyliusShop/shared/buttons.html.twig' as buttons %}
+{% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
 
 {% set address = hookable_metadata.context.address %}
+{% set dialog_id = 'delete-address-' ~ address.id %}
+{% set address_label = address.fullName ~ ', ' ~ address.street %}
 
-{{ buttons.delete(path('sylius_shop_account_address_book_delete', {'id': address.id}), null, true, address.id, address.fullName ~ ', ' ~ address.street) }}
+<button
+    type="button"
+    class="btn btn-sm btn-danger w-fit"
+    data-dialog-open="{{ dialog_id }}"
+    aria-haspopup="dialog"
+    aria-controls="{{ dialog_id }}"
+    aria-expanded="false"
+    {{ sylius_test_html_attribute('button', 'delete') }}
+>
+    {{ icon('trash') }}
+    <span>{{ 'sylius.ui.delete'|trans }}<span class="sr-only">, {{ address_label }}</span></span>
+</button>
+
+<dialog id="{{ dialog_id }}" class="modal" aria-labelledby="{{ dialog_id }}-title" aria-describedby="{{ dialog_id }}-text">
+    <div class="modal-box">
+        <h2 id="{{ dialog_id }}-title" class="heading-5 mb-2">{{ 'app.ui.a11y.address_delete.title'|trans }}</h2>
+        <p id="{{ dialog_id }}-text">{{ address_label }}, {{ address.city }}, {{ address.postcode }}</p>
+        <form action="{{ path('sylius_shop_account_address_book_delete', {'id': address.id}) }}" method="post" class="modal-action">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token(address.id) }}">
+            <button type="button" class="btn btn-sm" data-dialog-close>{{ 'sylius.ui.cancel'|trans }}</button>
+            <button type="submit" class="btn btn-sm btn-error" {{ sylius_test_html_attribute('confirm-button') }}>{{ 'sylius.ui.delete'|trans }}</button>
+        </form>
+    </div>
+</dialog>

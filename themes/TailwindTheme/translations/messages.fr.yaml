@@ -61,6 +61,8 @@ app:
             step_completed: ", terminée"
             password_rules: Au moins 4 caractères.
             back_home: Retour à l’accueil
+            address_delete:
+                title: "Supprimer cette adresse ?"
             cart:
                 items: Articles du panier
                 quantity: "Quantité : %item%"
