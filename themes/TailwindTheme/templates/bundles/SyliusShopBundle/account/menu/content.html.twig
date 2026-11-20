@@ -1,21 +1,28 @@
 {% extends 'knp_menu.html.twig' %}
 
 {% block root %}
-    <div class="heading-5 mb-4">{{ item.label|trans }}</div>
-    {{ block('list') }}
+    <nav role="navigation" aria-label="{{ item.label|trans }}">
+        <div class="heading-5 mb-4" aria-hidden="true">{{ item.label|trans }}</div>
+        {{ block('list') }}
+    </nav>
 {% endblock %}
 
 {% block list %}
-    <div class="flex flex-col">
+    <ul class="flex flex-col" role="list">
         {% for item in item.children %}
             {{ block('item') }}
         {% endfor %}
-    </div>
+    </ul>
 {% endblock %}
 
 {% block item %}
-    <a class="flex items-center gap-2 py-1 w-fit lg:hover:text-primary" href="{{ item.uri }}">
-        {{ ux_icon(item.labelAttributes.icon, {'class': 'icon mr-2 w-6 h-6'}) }}
-        {{ item.label|trans }}
-    </a>
+    {# Current page: exact match, or a sub-page of the item (order details under the order history). #}
+    {%- set request_path = app.request.pathInfo -%}
+    {%- set is_current = item.uri == request_path or (item.uri|length > 1 and item.uri ends with '/' and request_path starts with item.uri) -%}
+    <li>
+        <a class="flex items-center gap-2 py-1 w-fit lg:hover:text-primary{{ is_current ? ' font-semibold text-primary' }}" href="{{ item.uri }}"{% if is_current %} aria-current="page"{% endif %}>
+            {{ ux_icon(item.labelAttributes.icon, {'class': 'icon mr-2 w-6 h-6', 'aria-hidden': 'true'}) }}
+            {{ item.label|trans }}
+        </a>
+    </li>
 {% endblock %}

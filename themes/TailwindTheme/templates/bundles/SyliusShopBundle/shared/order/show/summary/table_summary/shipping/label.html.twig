@@ -2,7 +2,7 @@
 
 {% set order = hookable_metadata.context.order %}
 
-<td class="text-right w-3/4">
+<th scope="row" class="font-normal text-right w-3/4">
     {{ 'sylius.ui.shipping_total'|trans }}:
     {% if order is defined and order.shipments is not empty %}
         {% set shipment = order.shipments|first %}
@@ -15,4 +15,4 @@
             {% endif %}
         {% endif %}
     {% endif %}
-</td>
+</th>

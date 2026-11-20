@@ -60,6 +60,7 @@ app:
             checkout_steps: Étapes de la commande
             step_completed: ", terminée"
             password_rules: Au moins 4 caractères.
+            back_home: Retour à l’accueil
             cart:
                 items: Articles du panier
                 quantity: "Quantité : %item%"

@@ -60,6 +60,7 @@ app:
             checkout_steps: Checkout steps
             step_completed: ", completed"
             password_rules: At least 4 characters.
+            back_home: Back to homepage
             cart:
                 items: Cart items
                 quantity: "Quantity: %item%"

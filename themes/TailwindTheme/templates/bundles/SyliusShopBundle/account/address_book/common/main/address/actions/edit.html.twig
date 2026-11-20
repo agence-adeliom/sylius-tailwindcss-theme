@@ -1,5 +1,6 @@
 {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
-<a {{ sylius_test_html_attribute('edit-button') }} class="btn btn-sm btn-primary" href="{{ path('sylius_shop_account_address_book_update', {'id': hookable_metadata.context.address.id}) }}">
+{% set address = hookable_metadata.context.address %}
+<a {{ sylius_test_html_attribute('edit-button') }} class="btn btn-sm btn-primary" href="{{ path('sylius_shop_account_address_book_update', {'id': address.id}) }}">
     {{ icon('pencil') }}
-    {{ 'sylius.ui.edit'|trans }}
+    <span>{{ 'sylius.ui.edit'|trans }}<span class="sr-only">, {{ address.fullName }}, {{ address.street }}</span></span>
 </a>
