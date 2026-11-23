@@ -44,7 +44,7 @@
 
 {%- set visible_steps = steps|filter(s => s.required) -%}
 
-<nav aria-label="{{ 'app.ui.a11y.checkout_steps'|trans }}" class="mb-6">
+<nav aria-label="{{ 'sylius_tailwindcss.ui.a11y.checkout_steps'|trans }}" class="mb-6">
     <ol class="flex items-center">
         {% for step in visible_steps %}
             {%- set is_last = loop.last -%}
@@ -58,7 +58,7 @@
                         <span class="size-8 rounded-full bg-primary text-primary-content flex items-center justify-center shrink-0 transition-opacity group-hover:opacity-80">
                             {{ ux_icon('tabler:check', {class: 'size-4'}) }}
                         </span>
-                        <span class="text-sm font-medium text-primary sr-only sm:not-sr-only whitespace-nowrap">{{ step.label }}<span class="sr-only">{{ 'app.ui.a11y.step_completed'|trans }}</span></span>
+                        <span class="text-sm font-medium text-primary sr-only sm:not-sr-only whitespace-nowrap">{{ step.label }}<span class="sr-only">{{ 'sylius_tailwindcss.ui.a11y.step_completed'|trans }}</span></span>
                     </a>
 
                 {%- elseif step.state == 'active' -%}

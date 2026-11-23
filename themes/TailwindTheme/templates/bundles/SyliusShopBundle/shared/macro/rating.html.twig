@@ -1,6 +1,6 @@
 {% macro show(rating=3) %}
     {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
-    <div class="flex" role="img" aria-label="{{ 'app.ui.a11y.rating.value'|trans({'%rating%': rating}) }}">
+    <div class="flex" role="img" aria-label="{{ 'sylius_tailwindcss.ui.a11y.rating.value'|trans({'%rating%': rating}) }}">
         {% for i in 1..5 %}
             <span class="rating-product">
                 {{ icon(i <= rating ? 'star-solid' : 'star') }}

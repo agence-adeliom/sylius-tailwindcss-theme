@@ -1,4 +1,4 @@
-app:
+sylius_tailwindcss:
     ui:
         footer:
             about: About
@@ -79,6 +79,4 @@ app:
                 forbidden: Access denied
                 server_error: Server error
             accessibility_statement:
-                label: "Accessibility: not compliant"
-                # Each project sets the URL of its accessibility statement page; empty, the mention is shown without a link.
-                url: ""
+                default_label: "Accessibility: not compliant"

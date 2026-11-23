@@ -10,7 +10,7 @@
         {{ messages.info('sylius.ui.your_cart_is_empty') }}
         <p class="mt-4">
             <a class="btn btn-primary" href="{{ path('sylius_shop_homepage') }}" {{ sylius_test_html_attribute('cart-continue-shopping') }}>
-                {{- 'app.ui.a11y.cart.continue_shopping'|trans -}}
+                {{- 'sylius_tailwindcss.ui.a11y.cart.continue_shopping'|trans -}}
             </a>
         </p>
     {% else %}

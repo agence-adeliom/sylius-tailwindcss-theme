@@ -1,4 +1,4 @@
-<nav role="navigation" aria-label="{{ 'app.ui.a11y.subcategories'|trans }}" {{ sylius_test_html_attribute('vertical-menu') }}>
+<nav role="navigation" aria-label="{{ 'sylius_tailwindcss.ui.a11y.subcategories'|trans }}" {{ sylius_test_html_attribute('vertical-menu') }}>
     <ul role="list" class="list bg-base-100 rounded-box shadow-md">
         {% if taxon.parent is not empty and not taxon.parent.isRoot() and taxon.parent.enabled %}
             <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">

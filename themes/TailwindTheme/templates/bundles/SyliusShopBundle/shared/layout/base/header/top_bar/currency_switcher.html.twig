@@ -3,7 +3,7 @@
 {% if available_currencies|length > 1 %}
     <div class="col-auto">
         <div class="relative" data-disclosure {{ sylius_test_html_attribute('currency-selector') }}>
-            <button type="button" class="btn btn-sm" aria-expanded="false" aria-controls="currency-panel" aria-label="{{ 'app.ui.a11y.currency.button'|trans({'%value%': active_currency}) }}" {{ sylius_test_html_attribute('active-currency') }}>
+            <button type="button" class="btn btn-sm" aria-expanded="false" aria-controls="currency-panel" aria-label="{{ 'sylius_tailwindcss.ui.a11y.currency.button'|trans({'%value%': active_currency}) }}" {{ sylius_test_html_attribute('active-currency') }}>
                 {{ active_currency }}
             </button>
             <ul id="currency-panel" role="list" hidden class="menu absolute end-0 top-full z-[100] w-52 rounded-box bg-base-100 p-2 text-base-content shadow-sm">

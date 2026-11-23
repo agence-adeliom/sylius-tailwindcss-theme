@@ -18,9 +18,9 @@
     {%- if form is rootform -%}
         {%- set required_mode %}{{ block('form_required_mode') }}{% endset -%}
         {%- if required_mode|trim == 'all' -%}
-            <p class="text-sm text-base-content/70 mb-4">{{ 'app.ui.a11y.all_fields_required'|trans }}</p>
+            <p class="text-sm text-base-content/70 mb-4">{{ 'sylius_tailwindcss.ui.a11y.all_fields_required'|trans }}</p>
         {%- elseif required_mode|trim == 'marked' -%}
-            <p class="text-sm text-base-content/70 mb-4">{{ 'app.ui.a11y.required_fields'|trans }}</p>
+            <p class="text-sm text-base-content/70 mb-4">{{ 'sylius_tailwindcss.ui.a11y.required_fields'|trans }}</p>
         {%- endif -%}
     {%- endif -%}
     {%- if form is rootform and submitted|default(false) and not valid -%}
@@ -32,7 +32,7 @@
         {%- endfor -%}
         {%- if field_errors is not empty -%}
             <div class="alert alert-error mb-4 flex flex-col items-start gap-2" tabindex="-1" data-form-error-summary>
-                <p class="font-bold">{{ 'app.ui.a11y.form_errors'|trans({'%count%': field_errors|length}) }}</p>
+                <p class="font-bold">{{ 'sylius_tailwindcss.ui.a11y.form_errors'|trans({'%count%': field_errors|length}) }}</p>
                 <ul class="list-disc pl-5 text-sm">
                     {%- for field_error in field_errors -%}
                         {#- Symfony builds a field id from its parents' names: rebuild it to link the field -#}
@@ -318,7 +318,7 @@
                 value="{{ entry.vars.value }}"
                 id="{{ entry.vars.id }}"
                 name="{{ entry.vars.full_name }}"
-                aria-label="{{ 'app.ui.a11y.rating.option'|trans({'%rating%': entry.vars.value}) }}"
+                aria-label="{{ 'sylius_tailwindcss.ui.a11y.rating.option'|trans({'%rating%': entry.vars.value}) }}"
                 {% if not valid %}aria-invalid="true"{% endif %}
                 {{ sylius_test_html_attribute('rating-option', entry.vars.value) }}
                 {{ entry.vars.checked ? 'checked' }}

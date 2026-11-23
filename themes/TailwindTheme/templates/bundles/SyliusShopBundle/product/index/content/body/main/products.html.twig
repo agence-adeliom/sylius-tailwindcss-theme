@@ -8,7 +8,7 @@
 {# Status region present on every load, so a result update is announced #}
 <p role="status" class="mb-4 text-sm text-base-content/70">
     {%- if resources.data.nbResults > 0 -%}
-        {{ 'app.ui.a11y.results'|trans({'%count%': resources.data.nbResults}) }}
+        {{ 'sylius_tailwindcss.ui.a11y.results'|trans({'%count%': resources.data.nbResults}) }}
     {%- endif -%}
 </p>
 

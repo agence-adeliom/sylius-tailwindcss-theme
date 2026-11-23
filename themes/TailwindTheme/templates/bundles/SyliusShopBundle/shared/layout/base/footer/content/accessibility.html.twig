@@ -1,13 +1,13 @@
-{#-
-    Mention of the accessibility statement, required on every page by the RGAA.
-    Each project sets app.ui.a11y.accessibility_statement.url (and the compliance level in .label);
-    while the URL is empty, the mention is shown without a link, to avoid a link to a missing page.
--#}
-{%- set statement_url = 'app.ui.a11y.accessibility_statement.url'|trans -%}
+{#- The project sets accessibility_statement.url and .label in its own translations; the theme only ships default_label. -#}
+{%- set statement_url = 'sylius_tailwindcss.ui.a11y.accessibility_statement.url'|trans -%}
+{%- set statement_label = 'sylius_tailwindcss.ui.a11y.accessibility_statement.label'|trans -%}
+{%- if statement_label == 'sylius_tailwindcss.ui.a11y.accessibility_statement.label' -%}
+    {%- set statement_label = 'sylius_tailwindcss.ui.a11y.accessibility_statement.default_label'|trans -%}
+{%- endif -%}
 <p class="col-span-full">
-    {%- if statement_url is not empty and statement_url != 'app.ui.a11y.accessibility_statement.url' -%}
-        <a class="link link-hover" href="{{ statement_url }}">{{ 'app.ui.a11y.accessibility_statement.label'|trans }}</a>
+    {%- if statement_url is not empty and statement_url != 'sylius_tailwindcss.ui.a11y.accessibility_statement.url' -%}
+        <a class="link link-hover" href="{{ statement_url }}">{{ statement_label }}</a>
     {%- else -%}
-        {{ 'app.ui.a11y.accessibility_statement.label'|trans }}
+        {{ statement_label }}
     {%- endif -%}
 </p>

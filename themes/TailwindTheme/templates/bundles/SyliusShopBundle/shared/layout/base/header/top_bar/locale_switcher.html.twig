@@ -5,7 +5,7 @@
 {% if available_locales|length > 1 %}
     <div class="col-auto">
         <div class="relative" data-disclosure {{ sylius_test_html_attribute('locale-selector') }}>
-            <button type="button" class="btn btn-sm" aria-expanded="false" aria-controls="locale-panel" aria-label="{{ 'app.ui.a11y.locale.button'|trans({'%value%': locale(active_locale)|trim}) }}" {{ sylius_test_html_attribute('active-locale', active_locale) }}>
+            <button type="button" class="btn btn-sm" aria-expanded="false" aria-controls="locale-panel" aria-label="{{ 'sylius_tailwindcss.ui.a11y.locale.button'|trans({'%value%': locale(active_locale)|trim}) }}" {{ sylius_test_html_attribute('active-locale', active_locale) }}>
                 {{ locale(active_locale) }}
             </button>
             <ul id="locale-panel" role="list" hidden class="menu absolute end-0 top-full z-[100] w-52 rounded-box bg-base-100 p-2 text-base-content shadow-sm">

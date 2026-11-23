@@ -1,4 +1,4 @@
-app:
+sylius_tailwindcss:
     ui:
         footer:
             about: À propos
@@ -79,6 +79,4 @@ app:
                 forbidden: Accès refusé
                 server_error: Erreur du serveur
             accessibility_statement:
-                label: "Accessibilité : non conforme"
-                # Each project sets the URL of its accessibility statement page; empty, the mention is shown without a link.
-                url: ""
+                default_label: "Accessibilité : non conforme"

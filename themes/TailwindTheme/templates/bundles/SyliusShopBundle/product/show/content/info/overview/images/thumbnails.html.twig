@@ -3,7 +3,7 @@
 
 {% if count > 1 %}
     <div class="col-span-12 sm:col-span-3 mb-3">
-        <ul role="list" class="flex gap-3" aria-label="{{ 'app.ui.a11y.gallery.label'|trans }}" {{ sylius_test_html_attribute('thumbnails') }}>
+        <ul role="list" class="flex gap-3" aria-label="{{ 'sylius_tailwindcss.ui.a11y.gallery.label'|trans }}" {{ sylius_test_html_attribute('thumbnails') }}>
             {% for image in product.images %}
                 {% set path = image.path is not null ? image.path|imagine_filter('sylius_shop_product_small_thumbnail') : asset('build/shop/images/200x200.png') %}
                 <li>

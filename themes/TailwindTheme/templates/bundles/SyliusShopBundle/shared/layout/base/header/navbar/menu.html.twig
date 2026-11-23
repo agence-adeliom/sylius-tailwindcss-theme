@@ -1,14 +1,14 @@
 {#- Rendered twice with distinct ids (variant): inline on desktop, in the side dialog on mobile. -#}
 {% if taxons|length > 0 %}
-    <nav role="navigation" class="max-lg:hidden text-center" aria-label="{{ 'app.ui.a11y.main_navigation'|trans }}">
+    <nav role="navigation" class="max-lg:hidden text-center" aria-label="{{ 'sylius_tailwindcss.ui.a11y.main_navigation'|trans }}">
         <ul role="list" class="menu menu-horizontal" {{ sylius_test_html_attribute('menu') }}>
             {% hook 'menu' with {taxons, variant: 'desktop'} %}
         </ul>
     </nav>
 
-    {% embed '@SyliusShop/shared/components/side_dialog.html.twig' with {id: 'nav-dialog', title: 'app.ui.a11y.menu'|trans, side: 'start', attributes: ''} %}
+    {% embed '@SyliusShop/shared/components/side_dialog.html.twig' with {id: 'nav-dialog', title: 'sylius_tailwindcss.ui.a11y.menu'|trans, side: 'start', attributes: ''} %}
         {% block body %}
-            <nav role="navigation" aria-label="{{ 'app.ui.a11y.main_navigation'|trans }}">
+            <nav role="navigation" aria-label="{{ 'sylius_tailwindcss.ui.a11y.main_navigation'|trans }}">
                 <ul role="list" class="menu w-full p-0">
                     {% hook 'menu' with {taxons, variant: 'mobile'} %}
                 </ul>

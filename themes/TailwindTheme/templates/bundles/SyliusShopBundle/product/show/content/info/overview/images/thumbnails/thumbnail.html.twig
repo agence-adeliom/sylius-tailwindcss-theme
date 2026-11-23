@@ -5,6 +5,6 @@
 <a href="{{ image.path|imagine_filter('sylius_shop_product_original') }}" class="block overflow-hidden bg-base-200 rounded-lg spotlight">
     <img src="{{ path }}"
          data-large-thumbnail="{{ image.path|imagine_filter('sylius_shop_product_large_thumbnail') }}"
-         alt="{{ 'app.ui.a11y.gallery.enlarge'|trans({'%index%': hookable_metadata.context.index|default(1), '%count%': hookable_metadata.context.count|default(1), '%product%': product.name}) }}" {{ sylius_test_html_attribute('thumbnail-image', image.type) }}
+         alt="{{ 'sylius_tailwindcss.ui.a11y.gallery.enlarge'|trans({'%index%': hookable_metadata.context.index|default(1), '%count%': hookable_metadata.context.count|default(1), '%product%': product.name}) }}" {{ sylius_test_html_attribute('thumbnail-image', image.type) }}
          class="max-w-full w-full h-full object-cover" />
 </a>

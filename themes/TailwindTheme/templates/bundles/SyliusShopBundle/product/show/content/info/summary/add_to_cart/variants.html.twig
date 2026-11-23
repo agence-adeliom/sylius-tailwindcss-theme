@@ -4,7 +4,7 @@
 <div class="{{ not product.simple and not product.variantSelectionMethodChoice ? 'mb-4' : 'mb-3' }}">
     {% if not product.simple %}
         <fieldset class="min-w-0 [&>*:last-child]:mb-0">
-            <legend class="sr-only">{{ 'app.ui.a11y.variant_choice'|trans }}</legend>
+            <legend class="sr-only">{{ 'sylius_tailwindcss.ui.a11y.variant_choice'|trans }}</legend>
             {% if product.variantSelectionMethodChoice %}
                 {% hook 'variants' %}
             {% else %}

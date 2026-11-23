@@ -19,7 +19,7 @@
 
 <dialog id="{{ dialog_id }}" class="modal" aria-labelledby="{{ dialog_id }}-title" aria-describedby="{{ dialog_id }}-text">
     <div class="modal-box">
-        <h2 id="{{ dialog_id }}-title" class="heading-5 mb-2">{{ 'app.ui.a11y.address_delete.title'|trans }}</h2>
+        <h2 id="{{ dialog_id }}-title" class="heading-5 mb-2">{{ 'sylius_tailwindcss.ui.a11y.address_delete.title'|trans }}</h2>
         <p id="{{ dialog_id }}-text">{{ address_label }}, {{ address.city }}, {{ address.postcode }}</p>
         <form action="{{ path('sylius_shop_account_address_book_delete', {'id': address.id}) }}" method="post" class="modal-action">
             <input type="hidden" name="_method" value="DELETE">

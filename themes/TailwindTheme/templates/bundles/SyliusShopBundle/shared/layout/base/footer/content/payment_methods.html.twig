@@ -1,4 +1,4 @@
-{% set new_window = 'app.ui.a11y.new_window'|trans %}
+{% set new_window = 'sylius_tailwindcss.ui.a11y.new_window'|trans %}
 <div class="col-span-full md:col-span-6 lg:col-span-3 flex flex-col gap-4">
 
     <div>
@@ -19,11 +19,11 @@
     </div>
 
     <div class="mt-12">
-        <ul role="list" class="flex gap-3" aria-label="{{ 'app.ui.footer.social'|trans }}">
+        <ul role="list" class="flex gap-3" aria-label="{{ 'sylius_tailwindcss.ui.footer.social'|trans }}">
             {# Replace href="#" with the URLs of your social network pages #}
             {% for network, href in {instagram: '#', facebook: '#', x: '#'} %}
                 <li>
-                    <a class="btn btn-ghost btn-sm btn-square" href="{{ href }}" aria-label="{{ ('app.ui.a11y.social.' ~ network)|trans }}">
+                    <a class="btn btn-ghost btn-sm btn-square" href="{{ href }}" aria-label="{{ ('sylius_tailwindcss.ui.a11y.social.' ~ network)|trans }}">
                         {{ ux_icon('tabler:brand-' ~ network, {class: 'size-5'}) }}
                     </a>
                 </li>
