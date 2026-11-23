@@ -1,6 +1,7 @@
 {% set product = hookable_metadata.context.product %}
 
 {# The link covers the whole card (::after), so the card holds a single link.
+   Another interactive element added to the card (wishlist, add to cart) needs `relative z-10` to stay above it and receive clicks.
    card_heading: false renders the name as a paragraph (card placed before the page h1). #}
 {% set tag = hookable_metadata.context.card_heading ?? true ? 'h3' : 'p' %}
 <{{ tag }} class="font-semibold text-sm leading-snug transition-colors duration-200 group-hover:text-primary" {{ sylius_test_html_attribute('product-name', product.name) }}>
