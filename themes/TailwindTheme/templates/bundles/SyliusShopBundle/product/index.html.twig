@@ -9,3 +9,8 @@
 {% block content %}
     {% hook 'sylius_shop.product.index' with { products, resources } %}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('fragment-focus', null, 'tailwindTheme') }}
+{% endblock %}

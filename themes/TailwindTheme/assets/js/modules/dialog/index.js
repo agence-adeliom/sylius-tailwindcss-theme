@@ -18,12 +18,14 @@ export function openDialog(dialog, opener = null) {
     dialog.showModal();
 }
 
-export function initDialogs(root = document) {
-    // The navigation dialog is absent when the menu has no taxon: hide its burger rather than leave a dangling aria-controls.
+// The navigation dialog is absent when the menu has no taxon: hide its burger rather than leave a dangling aria-controls.
+export function hideOrphanDialogOpeners(root = document) {
     root.querySelectorAll('[data-dialog-open]').forEach((button) => {
         button.hidden = !document.getElementById(button.dataset.dialogOpen);
     });
+}
 
+export function initDialogs(root = document) {
     root.addEventListener('click', (event) => {
         const opener = event.target.closest('[data-dialog-open]');
 
