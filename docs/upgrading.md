@@ -25,6 +25,7 @@ Then:
 -   Set `--focus-ring-color` on `:root` to a colour with a 3:1 contrast against your backgrounds. The default is `currentColor`.
 -   If you override `confirmation_modal.html.twig` or `delete_modal.html.twig`, remove their `onclick` attributes: the trigger opens the dialog with `data-dialog-open` and the cancel button closes it with `data-dialog-close`. The dialog title goes in the `title` block, an optional text in the `description` block.
 -   If a page renders the sorting, limit, locale or currency control twice, pass a `variant` in the hook context of the second one, for instance `variant: 'mobile'`. Its panel id then gets the suffix (`sorting-panel-mobile`).
+-   Forms say which fields are required: one sentence above the form, and asterisks only when some entry fields are optional. The theme picks the mode from the fields; to force it on a form, pass `required_mode` to `form_start`: `{{ form_start(form, {required_mode: 'none'}) }}` (`none`, `all` or `marked`). If you override `required_marker`, keep its classes: the asterisk is shown by CSS from the `data-required-mode` attribute of the form tag.
 -   Add an accessibility statement page to your project: see step 8 of [the installation](./installation_into_your_project.md).
 -   If your project already has translation files in `themes/TailwindTheme/translations`, merge the keys instead of replacing the files.
 -   If you moved the theme templates out of `themes/TailwindTheme` (for instance into `./templates`), put the keys in `./translations` and import the scripts from your own entry point.
