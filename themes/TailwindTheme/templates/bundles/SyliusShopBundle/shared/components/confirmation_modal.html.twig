@@ -1,17 +1,20 @@
 {% import '@SyliusShop/shared/buttons.html.twig' as buttons %}
 {% props modal_id = null, type = null %}
 
+{#- Opened by a button[data-dialog-open="<modal_id>"] and closed by [data-dialog-close] (assets/js/modules/dialog). -#}
+{%- set description -%}{% block description %}{% endblock %}{%- endset -%}
 <div {{ attributes }} {{ sylius_test_html_attribute('modal', type) }}>
     {% block trigger %}{% endblock %}
 
-    <dialog id="{{ modal_id }}" class="modal modal-middle">
+    <dialog id="{{ modal_id }}" class="modal modal-middle" aria-labelledby="{{ modal_id }}-title"{% if description|trim is not empty %} aria-describedby="{{ modal_id }}-text"{% endif %}>
         {% block content %}
             <div class="modal-box">
-                <div class="py-3">
-                    {% block header %}
-                        <h6 class="font-bold">{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}</h6>
-                    {% endblock %}
-                </div>
+                {% block header %}
+                    <h2 id="{{ modal_id }}-title" class="heading-5 mb-2">{% block title %}{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}{% endblock %}</h2>
+                {% endblock %}
+                {% if description|trim is not empty %}
+                    <p id="{{ modal_id }}-text">{{ description }}</p>
+                {% endif %}
                 <div class="modal-action">
                     {% block footer %}{% endblock %}
                 </div>

@@ -5,17 +5,17 @@
 {% set modal_id = 'delete-modal-' ~ id %}
 
 {% block trigger %}
-    <button type="button" class="btn btn-sm btn-outline btn-error" {% if disabled %}disabled {% endif %}onclick="document.getElementById('{{ modal_id }}').showModal()">
-        {{ ux_icon(icon, {'class': 'icon icon-xs'}) }} {{ label|trans }}
+    <button type="button" class="btn btn-sm btn-outline btn-error" data-dialog-open="{{ modal_id }}" aria-haspopup="dialog" aria-controls="{{ modal_id }}" aria-expanded="false" {% if disabled %}disabled {% endif %}>
+        {{ ux_icon(icon, {'class': 'icon icon-xs', 'aria-hidden': 'true'}) }} {{ label|trans }}
     </button>
 {% endblock %}
 
 {% block footer %}
-    <form action="{{ path }}" method="post" {{ form_attr }}>
+    <form action="{{ path }}" method="post" class="flex flex-wrap justify-end gap-2" {{ form_attr }}>
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token(id) }}" />
 
-        <button type="button" class="btn btn-sm" onclick="document.getElementById('{{ modal_id }}').close()">
+        <button type="button" class="btn btn-sm" data-dialog-close>
             {{ 'sylius.ui.cancel'|trans }}
         </button>
         <button type="submit" class="btn btn-sm btn-error" {{ sylius_test_html_attribute('confirm-button') }}>
