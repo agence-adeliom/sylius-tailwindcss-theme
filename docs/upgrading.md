@@ -23,6 +23,6 @@ Then:
 -   Delete `themes/TailwindTheme/assets/js/sylius-toggle-theme.js`.
 -   If you override `product/show.html.twig` or `product/index.html.twig`, keep their `javascripts` block: it loads the `price-status` or `fragment-focus` entry. If you import the theme scripts from your own entry point, declare these 2 entries in your Webpack config and load them in the same blocks.
 -   Set `--focus-ring-color` on `:root` to a colour with a 3:1 contrast against your backgrounds. The default is `currentColor`.
--   Link your accessibility statement: see step 8 of [the installation](./installation_into_your_project.md).
+-   Add an accessibility statement page to your project: see step 8 of [the installation](./installation_into_your_project.md).
 -   If your project already has translation files in `themes/TailwindTheme/translations`, merge the keys instead of replacing the files.
 -   If you moved the theme templates out of `themes/TailwindTheme` (for instance into `./templates`), put the keys in `./translations` and import the scripts from your own entry point.

@@ -88,17 +88,6 @@ This step is necessary to make the theme appear in the admin panel and be select
 3. Go to `Look & feel > Theme` section
 4. Change theme to `Sylius Tailwind Theme`
 
-#### 8. Link your accessibility statement
+#### 8. Add an accessibility statement page
 
-The footer of every page, checkout included, shows the accessibility mention required by the RGAA. Set the URL of your statement page and your compliance level in your project's translations (`./translations/messages.<locale>.yaml`), for each locale:
-
-```yaml
-sylius_tailwindcss:
-    ui:
-        a11y:
-            accessibility_statement:
-                url: /en_US/accessibility-statement
-                label: "Accessibility: partially compliant"
-```
-
-Without `url`, the mention is shown without a link. Without `label`, it reads "Accessibility: not compliant" (`default_label` in the theme). Keep these two keys in `./translations`, out of `themes/TailwindTheme/translations`, so that updating the theme files never overwrites them.
+The RGAA requires an accessibility statement page, linked from every page. The theme does not ship it: add it to your project, with a link in the footers (hooks `sylius_shop.base.footer.content` and `sylius_shop.checkout.common.footer`).
