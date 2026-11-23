@@ -78,5 +78,3 @@ sylius_tailwindcss:
                 not_found: Page not found
                 forbidden: Access denied
                 server_error: Server error
-            accessibility_statement:
-                default_label: "Accessibility: not compliant"

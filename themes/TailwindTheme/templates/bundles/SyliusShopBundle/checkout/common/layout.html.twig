@@ -28,10 +28,16 @@
                 </div>
             </div>
         </main>
-        <footer role="contentinfo" class="border-t border-neutral-300 py-6">
-            <div class="container grid grid-cols-12 gap-6">
-                {% include '@SyliusShop/shared/layout/base/footer/content/accessibility.html.twig' %}
-            </div>
-        </footer>
+        {%- set footer_content -%}
+            {% hook 'sylius_shop.checkout.common.footer' with {order} %}
+        {%- endset -%}
+        {#- Debug mode wraps an empty hook in BEGIN/END comments: the footer is rendered only around real content. -#}
+        {% if not (footer_content matches '{^[[:space:]]*(?:<!--(?:(?!-->).)*-->[[:space:]]*)*$}s') %}
+            <footer role="contentinfo" class="border-t border-neutral-300 py-6">
+                <div class="container grid grid-cols-12 gap-6">
+                    {{ footer_content }}
+                </div>
+            </footer>
+        {% endif %}
     </div>
 {% endblock %}

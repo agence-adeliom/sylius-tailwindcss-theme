@@ -78,5 +78,3 @@ sylius_tailwindcss:
                 not_found: Page introuvable
                 forbidden: Accès refusé
                 server_error: Erreur du serveur
-            accessibility_statement:
-                default_label: "Accessibilité : non conforme"
