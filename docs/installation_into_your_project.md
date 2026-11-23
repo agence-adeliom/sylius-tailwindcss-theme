@@ -7,11 +7,9 @@
 -   `themes/TailwindTheme/translations`
 -   `themes/TailwindTheme/webpack.config.js`
 
-The theme's `translations` folder holds the texts used by its templates (`app.ui.*` keys). It sits next to your project's `./translations` folder, which keeps your own keys. When a key exists in both, the theme's value wins: to change a theme text, edit it in `themes/TailwindTheme/translations`, not in `./translations`.
+The theme's `translations` folder holds the texts used by its templates, under the `sylius_tailwindcss.ui.*` keys. It ships `fr` and `en`: for another locale, add a `messages.<locale>.yaml` file with all the keys, or the templates display raw keys. When a key exists in both the theme and your project's `./translations`, the theme's value wins: to change a theme text, edit it in `themes/TailwindTheme/translations`.
 
-Set this key in both `messages.fr.yaml` and `messages.en.yaml` of the theme:
-
--   `app.ui.a11y.accessibility_statement.url`: URL of your accessibility statement page, and `app.ui.a11y.accessibility_statement.label` for your compliance level. The RGAA requires this link on every page. While the URL is empty, the footer shows the mention without a link.
+The templates also rely on the theme's scripts (`assets/js`) and styles (`assets/css/main.css`): without them, the side cart, the menus and the dropdowns do not open. To update an existing project, see [Upgrading the theme](./upgrading.md).
 
 #### 2. Install dependencies
 
@@ -89,3 +87,18 @@ This step is necessary to make the theme appear in the admin panel and be select
 2. Edit desired channel from the list
 3. Go to `Look & feel > Theme` section
 4. Change theme to `Sylius Tailwind Theme`
+
+#### 8. Link your accessibility statement
+
+The footer of every page, checkout included, shows the accessibility mention required by the RGAA. Set the URL of your statement page and your compliance level in your project's translations (`./translations/messages.<locale>.yaml`), for each locale:
+
+```yaml
+sylius_tailwindcss:
+    ui:
+        a11y:
+            accessibility_statement:
+                url: /en_US/accessibility-statement
+                label: "Accessibility: partially compliant"
+```
+
+Without `url`, the mention is shown without a link. Without `label`, it reads "Accessibility: not compliant" (`default_label` in the theme). Keep these two keys in `./translations`, out of `themes/TailwindTheme/translations`, so that updating the theme files never overwrites them.
