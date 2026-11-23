@@ -13,13 +13,23 @@
 {%- endblock widget_attributes %}
 
 {#- Error summary at the top of a submitted invalid form; assets/js/form-errors.js moves the focus to it. -#}
+{#- The required mode is computed once per form and set on the form tag: required_marker shows its asterisk by CSS from it.
+    A template forces it with form_start(form, {required_mode: 'none'|'all'|'marked'}). -#}
 {% block form_start -%}
+    {%- if form is rootform -%}
+        {%- if required_mode|default(null) is not null -%}
+            {%- set required_mode = required_mode|trim -%}
+        {%- else -%}
+            {%- set required_mode %}{{ block('form_required_mode') }}{% endset -%}
+            {%- set required_mode = required_mode|trim -%}
+        {%- endif -%}
+        {%- set attr = attr|merge({'data-required-mode': required_mode}) -%}
+    {%- endif -%}
     {{- parent() -}}
     {%- if form is rootform -%}
-        {%- set required_mode %}{{ block('form_required_mode') }}{% endset -%}
-        {%- if required_mode|trim == 'all' -%}
+        {%- if required_mode == 'all' -%}
             <p class="text-sm text-base-content/70 mb-4">{{ 'sylius_tailwindcss.ui.a11y.all_fields_required'|trans }}</p>
-        {%- elseif required_mode|trim == 'marked' -%}
+        {%- elseif required_mode == 'marked' -%}
             <p class="text-sm text-base-content/70 mb-4">{{ 'sylius_tailwindcss.ui.a11y.required_fields'|trans }}</p>
         {%- endif -%}
     {%- endif -%}
@@ -193,12 +203,9 @@
     {%- endif -%}
 {%- endblock form_required_mode %}
 
-{#- Asterisk of a required field, only in the marked mode (see form_required_mode); the required attribute still tells screen readers. -#}
+{#- Asterisk of a required field, shown only inside a form in the marked mode (data-required-mode set by form_start); the required attribute still tells screen readers. -#}
 {% block required_marker -%}
-    {%- if required -%}
-        {%- set required_mode %}{{ block('form_required_mode') }}{% endset -%}
-        {%- if required_mode|trim == 'marked' %} <span aria-hidden="true">*</span>{% endif -%}
-    {%- endif -%}
+    {%- if required %} <span aria-hidden="true" class="hidden in-data-[required-mode=marked]:inline">*</span>{% endif -%}
 {%- endblock required_marker %}
 
 {% block form_label -%}
