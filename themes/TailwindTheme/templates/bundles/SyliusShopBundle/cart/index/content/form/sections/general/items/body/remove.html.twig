@@ -1,3 +1,5 @@
+{% set item_label = hookable_metadata.context.item_label|default(hookable_metadata.context.item.productName) %}
+
 <td>
     <button
         class="btn btn-sm btn-ghost px-2"
@@ -7,10 +9,11 @@
         data-live-index-param="{{ hookable_metadata.context.index }}"
         {{ sylius_test_html_attribute('remove-cart-item') }}
     >
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-tabler" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M18 6l-12 12"></path>
             <path d="M6 6l12 12"></path>
         </svg>
+        <span class="sr-only">{{ 'sylius_tailwindcss.ui.a11y.cart.remove'|trans({'%item%': item_label}) }}</span>
     </button>
 </td>

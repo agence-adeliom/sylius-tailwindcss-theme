@@ -1,3 +1,3 @@
 {{ form_row(hookable_metadata.context.form.phoneNumber, {
-    'attr': {'class': 'input w-full'}
+    'attr': {'class': 'input w-full', 'autocomplete': hookable_metadata.context.autocomplete_section|default('') ~ 'tel'}
 }) }}

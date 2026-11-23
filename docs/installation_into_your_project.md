@@ -4,7 +4,12 @@
 
 -   `themes/TailwindTheme/assets`
 -   `themes/TailwindTheme/templates`
+-   `themes/TailwindTheme/translations`
 -   `themes/TailwindTheme/webpack.config.js`
+
+The theme's `translations` folder holds the texts used by its templates, under the `sylius_tailwindcss.ui.*` keys. It ships `fr` and `en`: for another locale, add a `messages.<locale>.yaml` file with all the keys, or the templates display raw keys. When a key exists in both the theme and your project's `./translations`, the theme's value wins: to change a theme text, edit it in `themes/TailwindTheme/translations`.
+
+The templates also rely on the theme's scripts (`assets/js`) and styles (`assets/css/main.css`): without them, the side cart, the menus and the dropdowns do not open. To update an existing project, see [Upgrading the theme](./upgrading.md).
 
 #### 2. Install dependencies
 
@@ -82,3 +87,7 @@ This step is necessary to make the theme appear in the admin panel and be select
 2. Edit desired channel from the list
 3. Go to `Look & feel > Theme` section
 4. Change theme to `Sylius Tailwind Theme`
+
+#### 8. Add an accessibility statement page
+
+The RGAA requires an accessibility statement page, linked from every page. The theme does not ship it: add it to your project, with a link in the footers (hooks `sylius_shop.base.footer.content` and `sylius_shop.checkout.common.footer`).

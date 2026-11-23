@@ -1,8 +1,119 @@
 {% extends 'bootstrap_5_layout.html.twig' %}
 
+{# ── Accessibility (RGAA 11.10) ──────────────────────────────────────── #}
+
+{#- Every widget lists its help and errors in aria-describedby (only the ids rendered by form_help and form_errors) and carries aria-invalid when invalid. -#}
+{% block widget_attributes -%}
+    {%- set described = attr['aria-describedby']|default('')|split(' ')|filter(v => v is not empty) -%}
+    {%- if help is not empty -%}{%- set described = described|merge([id ~ '_help']) -%}{%- endif -%}
+    {%- if errors|length > 0 -%}{%- set described = described|merge([id ~ '_errors']) -%}{%- endif -%}
+    {%- if described is not empty -%}{%- set attr = attr|merge({'aria-describedby': described|join(' ')}) -%}{%- endif -%}
+    {%- if (not compound or force_error|default(false)) and not valid -%}{%- set attr = attr|merge({'aria-invalid': 'true'}) -%}{%- endif -%}
+    {{- parent() -}}
+{%- endblock widget_attributes %}
+
+{#- Error summary at the top of a submitted invalid form; assets/js/form-errors.js moves the focus to it. -#}
+{#- The required mode is computed once per form and set on the form tag: required_marker shows its asterisk by CSS from it.
+    A template forces it with form_start(form, {required_mode: 'none'|'all'|'marked'}). -#}
+{% block form_start -%}
+    {%- if form is rootform -%}
+        {%- if required_mode|default(null) is not null -%}
+            {%- set required_mode = required_mode|trim -%}
+        {%- else -%}
+            {%- set required_mode %}{{ block('form_required_mode') }}{% endset -%}
+            {%- set required_mode = required_mode|trim -%}
+        {%- endif -%}
+        {%- set attr = attr|merge({'data-required-mode': required_mode}) -%}
+    {%- endif -%}
+    {{- parent() -}}
+    {%- if form is rootform -%}
+        {%- if required_mode == 'all' -%}
+            <p class="text-sm text-base-content/70 mb-4">{{ 'sylius_tailwindcss.ui.a11y.all_fields_required'|trans }}</p>
+        {%- elseif required_mode == 'marked' -%}
+            <p class="text-sm text-base-content/70 mb-4">{{ 'sylius_tailwindcss.ui.a11y.required_fields'|trans }}</p>
+        {%- endif -%}
+    {%- endif -%}
+    {%- if form is rootform and submitted|default(false) and not valid -%}
+        {%- set field_errors = [] -%}
+        {%- for field_error in form.vars.errors.form.getErrors(true) -%}
+            {%- if field_error.origin is not null and field_error.origin.parent is not null -%}
+                {%- set field_errors = field_errors|merge([field_error]) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if field_errors is not empty -%}
+            <div class="alert alert-error mb-4 flex flex-col items-start gap-2" tabindex="-1" data-form-error-summary>
+                <p class="font-bold">{{ 'sylius_tailwindcss.ui.a11y.form_errors'|trans({'%count%': field_errors|length}) }}</p>
+                <ul class="list-disc pl-5 text-sm">
+                    {%- for field_error in field_errors -%}
+                        {#- Symfony builds a field id from its parents' names: rebuild it to link the field -#}
+                        {%- set node = field_error.origin -%}
+                        {%- set names = [] -%}
+                        {%- for depth in 1..10 -%}
+                            {%- if node is not null -%}
+                                {%- set names = [node.name]|merge(names) -%}
+                                {%- set node = node.parent -%}
+                            {%- endif -%}
+                        {%- endfor -%}
+                        {#- A compound field (expanded choice…) renders a div that cannot take the focus: link its first input -#}
+                        {%- if field_error.origin.count > 0 -%}
+                            {%- set names = names|merge([field_error.origin.all|keys|first]) -%}
+                        {%- endif -%}
+                        {%- set field_id = names|join('_') -%}
+                        <li><a class="link" href="#{{ field_id }}">{{ field_error.message }}</a></li>
+                    {%- endfor -%}
+                </ul>
+            </div>
+        {%- endif -%}
+    {%- endif -%}
+{%- endblock form_start %}
+
 {# ── Row wrappers ────────────────────────────────────────────────────── #}
 
 {% block form_row -%}
+    {%- if expanded is defined and expanded and 'choice' in block_prefixes -%}
+        {{- block('choice_row_expanded') -}}
+    {%- else -%}
+        {{- block('form_row_simple') -}}
+    {%- endif -%}
+{%- endblock form_row %}
+
+{#- Expanded choices (radios, checkboxes) are grouped in a fieldset named by its legend -#}
+{% block choice_row_expanded -%}
+    {%- set described = [] -%}
+    {%- if help is not empty -%}{%- set described = described|merge([id ~ '_help']) -%}{%- endif -%}
+    {%- if errors|length > 0 -%}{%- set described = described|merge([id ~ '_errors']) -%}{%- endif -%}
+    {%- set row_class = 'field mb-4' ~ (required ? ' required') ~ (not valid ? ' error') -%}
+    {%- set row_attr = row_attr|merge({'class': (row_attr.class|default('') ~ ' ' ~ row_class)|trim}) -%}
+    {%- if described is not empty -%}{%- set row_attr = row_attr|merge({'aria-describedby': described|join(' ')}) -%}{%- endif -%}
+    <fieldset {% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {%- if label is not same as(false) -%}
+            {%- set label_text = label is not empty ? label : (label_format is not empty ? label_format|replace({'%name%': name, '%id%': id}) : name|humanize) -%}
+            <legend class="{{ ('block font-medium text-sm mb-1 ' ~ label_attr.class|default(''))|trim }}">
+                {{- translation_domain is same as(false) ? label_text : label_text|trans(label_translation_parameters|default({}), translation_domain) -}}
+                {{- block('required_marker') -}}
+            </legend>
+        {%- endif -%}
+        {{- form_widget(form) -}}
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </fieldset>
+{%- endblock choice_row_expanded %}
+
+{#- Each option is rendered with its row (radio_row, checkbox_row), so it keeps its own label. -#}
+{% block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form -%}
+            {#- An option is not a required field on its own: the asterisk is on the legend -#}
+            {{- form_row(child, {
+                translation_domain: choice_translation_domain,
+                valid: valid,
+                required: false,
+            }) -}}
+        {%- endfor -%}
+    </div>
+{%- endblock choice_widget_expanded %}
+
+{% block form_row_simple -%}
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
     {%- set row_class = 'field mb-4' -%}
     {%- if required -%}{%- set row_class = row_class ~ ' required' -%}{%- endif -%}
@@ -14,7 +125,7 @@
         {{- form_help(form) -}}
         {{- form_errors(form) -}}
     </div>
-{%- endblock form_row %}
+{%- endblock form_row_simple %}
 
 {% block checkbox_row -%}
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
@@ -27,6 +138,7 @@
             {%- set label_text = label is not empty ? label : (label_format is not empty ? label_format|replace({'%name%': name, '%id%': id}) : name|humanize) -%}
             <label for="{{ id }}" class="text-sm cursor-pointer select-none{{ is_invalid ? ' text-error' }}">
                 {{- translation_domain is same as(false) ? label_text : label_text|trans(label_translation_parameters|default({}), translation_domain) -}}
+                {{- block('required_marker') -}}
             </label>
         {%- endif -%}
         {{- form_errors(form) -}}
@@ -37,12 +149,64 @@
     {%- set is_invalid = (not compound or force_error|default(false)) and not valid -%}
     <div class="flex items-center gap-2 mb-2{{ is_invalid ? ' error' }}">
         {{- form_widget(form) -}}
-        {{- form_label(form) -}}
+        {#- The label is written here: form_label would resolve to bootstrap's radio_label, which renders nothing without a widget.
+            An option is not a required field on its own: no asterisk on each radio. -#}
+        {%- if label is not same as(false) -%}
+            {%- set label_text = label is not empty ? label : (label_format is not empty ? label_format|replace({'%name%': name, '%id%': id}) : name|humanize) -%}
+            <label for="{{ id }}" class="text-sm cursor-pointer select-none{{ is_invalid ? ' text-error' }}">
+                {{- translation_domain is same as(false) ? label_text : label_text|trans(label_translation_parameters|default({}), translation_domain) -}}
+            </label>
+        {%- endif -%}
         {{- form_errors(form) -}}
     </div>
 {%- endblock radio_row %}
 
 {# ── Label ───────────────────────────────────────────────────────────── #}
+
+{#- How a form flags its required fields, computed from the root form: none, all or marked.
+    An entry field is a visible leaf the user fills or picks; an expanded choice counts as one field, an optional single checkbox as none.
+    none: add-to-cart and cart forms (prefilled quantities, still required), no required entry field, or a single entry field.
+    all: two entry fields or more, all required: one sentence above the form, no asterisk.
+    marked: otherwise, an asterisk on required fields explained above the form. -#}
+{% block form_required_mode -%}
+    {%- set root = form -%}
+    {%- for depth in 1..10 -%}
+        {%- if root.parent is not null -%}{%- set root = root.parent -%}{%- endif -%}
+    {%- endfor -%}
+    {%- set entries = 0 -%}
+    {%- set required_entries = 0 -%}
+    {%- set pending = root.children|default([]) -%}
+    {%- for depth in 1..8 -%}
+        {%- set next = [] -%}
+        {%- for node in pending -%}
+            {%- set prefixes = node.vars.block_prefixes -%}
+            {%- if node.vars.compound -%}
+                {%- if 'choice' in prefixes and node.vars.expanded|default(false) -%}
+                    {%- if node.vars.label is not same as(false) -%}
+                        {%- set entries = entries + 1 -%}
+                        {%- if node.vars.required -%}{%- set required_entries = required_entries + 1 -%}{%- endif -%}
+                    {%- endif -%}
+                {%- else -%}
+                    {%- for child in node.children -%}{%- set next = next|merge([child]) -%}{%- endfor -%}
+                {%- endif -%}
+            {%- elseif node.vars.label is not same as(false) and 'hidden' not in prefixes and 'button' not in prefixes
+                and (node.vars.required or 'checkbox' not in prefixes) -%}
+                {%- set entries = entries + 1 -%}
+                {%- if node.vars.required -%}{%- set required_entries = required_entries + 1 -%}{%- endif -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- set pending = next -%}
+    {%- endfor -%}
+    {%- if root.vars.name in ['sylius_shop_add_to_cart', 'sylius_shop_cart'] or required_entries == 0 or entries < 2 -%}none
+    {%- elseif required_entries == entries -%}all
+    {%- else -%}marked
+    {%- endif -%}
+{%- endblock form_required_mode %}
+
+{#- Asterisk of a required field, shown only inside a form in the marked mode (data-required-mode set by form_start); the required attribute still tells screen readers. -#}
+{% block required_marker -%}
+    {%- if required %} <span aria-hidden="true" class="hidden in-data-[required-mode=marked]:inline">*</span>{% endif -%}
+{%- endblock required_marker %}
 
 {% block form_label -%}
     {%- if label is not same as(false) -%}
@@ -56,6 +220,7 @@
         {%- set label_attr = label_attr|merge({'class': ('block font-medium text-sm mb-1' ~ (label_attr.class is defined ? ' ' ~ label_attr.class : ''))|trim}) -%}
         <label{% if label_attr %}{% with {attr: label_attr} %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not compound %} for="{{ id }}"{% endif %}>
             {{- translation_domain is same as(false) ? label : label|trans(label_translation_parameters|default({}), translation_domain) -}}
+            {%- if not compound -%}{{- block('required_marker') -}}{%- endif -%}
         </label>
     {%- endif -%}
 {%- endblock form_label %}
@@ -120,8 +285,8 @@
 
 {% block form_help -%}
     {%- if help is not empty -%}
-        <p class="text-sm text-base-content/60 mt-1">
-            {{- translation_domain is same as(false) ? help : help|trans({}, help_translation_domain) -}}
+        <p id="{{ id }}_help" class="text-sm text-base-content/60 mt-1">
+            {{- translation_domain is same as(false) ? help : help|trans(help_translation_parameters|default({}), translation_domain) -}}
         </p>
     {%- endif -%}
 {%- endblock form_help %}
@@ -139,9 +304,12 @@
                 </div>
             </div>
         {%- else -%}
-            {%- for error in errors -%}
-                <div class="text-error text-sm mt-1" {{ sylius_test_html_attribute('validation-error') }}>{{ error.message }}</div>
-            {%- endfor -%}
+            <div id="{{ id }}_errors">
+                {%- for error in errors -%}
+                    {#- The icon gives the error state another cue than the colour (RGAA 3.1) -#}
+                    <div class="text-error text-sm mt-1 flex items-center gap-1" {{ sylius_test_html_attribute('validation-error') }}>{{ ux_icon('tabler:alert-circle', {class: 'size-4 shrink-0', 'aria-hidden': 'true'}) }}{{ error.message }}</div>
+                {%- endfor -%}
+            </div>
         {%- endif -%}
     {%- endif -%}
 {%- endblock form_errors -%}
@@ -149,7 +317,7 @@
 {# ── Star rating (product review) ────────────────────────────────────── #}
 
 {% block _sylius_shop_product_review_rating_widget %}
-    <div class="rating rating-lg" {{ sylius_test_html_attribute('rating') }}>
+    <div class="rating rating-lg rounded-sm has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-(--focus-ring-color)" {{ sylius_test_html_attribute('rating') }}>
         {% for entry in form.children %}
             <input
                 type="radio"
@@ -157,6 +325,8 @@
                 value="{{ entry.vars.value }}"
                 id="{{ entry.vars.id }}"
                 name="{{ entry.vars.full_name }}"
+                aria-label="{{ 'sylius_tailwindcss.ui.a11y.rating.option'|trans({'%rating%': entry.vars.value}) }}"
+                {% if not valid %}aria-invalid="true"{% endif %}
                 {{ sylius_test_html_attribute('rating-option', entry.vars.value) }}
                 {{ entry.vars.checked ? 'checked' }}
             />

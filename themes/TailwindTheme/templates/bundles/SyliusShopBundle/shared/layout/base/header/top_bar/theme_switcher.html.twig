@@ -1,45 +1,52 @@
-<div class="dropdown z-10">
-    <div tabindex="0" role="button" class="btn btn-sm m-1">Theme</div>
-    <div
-            tabindex="0"
-            class="dropdown-content card card-sm bg-base-100 z-1 w-64 shadow-md">
-        <ul class="list bg-base-100 text-base-content rounded-box shadow-md">
-            <li class="list-row">
-                <label class="label">
-                    <input type="radio" name="theme-dropdown" class="theme-controller dropdown-item-header justify-start" aria-label="Light" value="light"/> Light
-                </label>
-            </li>
-            <li class="list-row">
-                <label class="label">
-                    <input type="radio" name="theme-dropdown" class="theme-controller dropdown-item-header justify-start" aria-label="Dark" value="dark"/> Dark
-                </label>
-            </li>
-            <li class="list-row">
-                <label class="label">
-                    <input type="radio" name="theme-dropdown" class="theme-controller dropdown-item-header justify-start" aria-label="Forest" value="forest"/> Forest
-                </label>
-            </li>
-            <li class="list-row">
-                <label class="label">
-                    <input type="radio" name="theme-dropdown" class="theme-controller dropdown-item-header justify-start" aria-label="Sunset" value="sunset"/> Sunset
-                </label>
-            </li>
-            <li class="list-row">
-                <label class="label">
-                    <input type="radio" name="theme-dropdown" class="theme-controller dropdown-item-header justify-start" aria-label="Ocean" value="ocean"/> Ocean
-                </label>
-            </li>
-            <li class="list-row">
-                <label class="label">
-                    <input type="radio" name="theme-dropdown" class="theme-controller dropdown-item-header justify-start" aria-label="Candy" value="candy"/> Candy
-                </label>
-            </li>
-            <li class="list-row">
-                <label class="label">
-                    <input type="radio" name="theme-dropdown" class="theme-controller dropdown-item-header justify-start" aria-label="Void" value="void"/> Void
-                </label>
-            </li>
-        </ul>
+<div class="relative z-10" data-disclosure>
+    <button type="button" class="btn btn-sm m-1" aria-expanded="false" aria-controls="theme-panel">{{ 'sylius_tailwindcss.ui.a11y.theme.label'|trans }}</button>
+    <div id="theme-panel" hidden class="card card-sm absolute end-0 top-full z-[100] w-64 bg-base-100 text-base-content shadow-md">
+        <fieldset class="card-body">
+            <legend class="sr-only">{{ 'sylius_tailwindcss.ui.a11y.theme.label'|trans }}</legend>
+            <ul role="list" class="list rounded-box bg-base-100">
+                <li class="list-row">
+                    <label class="label" for="theme-light">
+                        <input id="theme-light" type="radio" name="theme-dropdown" class="theme-controller justify-start" value="light"/>
+                        {{ 'sylius_tailwindcss.ui.a11y.theme.light'|trans }}
+                    </label>
+                </li>
+                <li class="list-row">
+                    <label class="label" for="theme-dark">
+                        <input id="theme-dark" type="radio" name="theme-dropdown" class="theme-controller justify-start" value="dark"/>
+                        {{ 'sylius_tailwindcss.ui.a11y.theme.dark'|trans }}
+                    </label>
+                </li>
+                <li class="list-row">
+                    <label class="label" for="theme-forest">
+                        <input id="theme-forest" type="radio" name="theme-dropdown" class="theme-controller justify-start" value="forest"/>
+                        {{ 'sylius_tailwindcss.ui.a11y.theme.forest'|trans }}
+                    </label>
+                </li>
+                <li class="list-row">
+                    <label class="label" for="theme-sunset">
+                        <input id="theme-sunset" type="radio" name="theme-dropdown" class="theme-controller justify-start" value="sunset"/>
+                        {{ 'sylius_tailwindcss.ui.a11y.theme.sunset'|trans }}
+                    </label>
+                </li>
+                <li class="list-row">
+                    <label class="label" for="theme-ocean">
+                        <input id="theme-ocean" type="radio" name="theme-dropdown" class="theme-controller justify-start" value="ocean"/>
+                        {{ 'sylius_tailwindcss.ui.a11y.theme.ocean'|trans }}
+                    </label>
+                </li>
+                <li class="list-row">
+                    <label class="label" for="theme-candy">
+                        <input id="theme-candy" type="radio" name="theme-dropdown" class="theme-controller justify-start" value="candy"/>
+                        {{ 'sylius_tailwindcss.ui.a11y.theme.candy'|trans }}
+                    </label>
+                </li>
+                <li class="list-row">
+                    <label class="label" for="theme-void">
+                        <input id="theme-void" type="radio" name="theme-dropdown" class="theme-controller justify-start" value="void"/>
+                        {{ 'sylius_tailwindcss.ui.a11y.theme.void'|trans }}
+                    </label>
+                </li>
+            </ul>
+        </fieldset>
     </div>
-
 </div>

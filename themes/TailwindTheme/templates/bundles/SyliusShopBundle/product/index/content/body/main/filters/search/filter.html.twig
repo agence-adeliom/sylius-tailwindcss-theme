@@ -1,6 +1,6 @@
 {% set products = hookable_metadata.context.products %}
 
-<div class="join-item flex-1 [&_input]:input [&_input]:[&_input]:w-full [&_input]:rounded-none [&_input]:focus:outline-none [&_input]:focus:border-base-300">
+<div class="join-item flex-1 [&_input]:input [&_input]:[&_input]:w-full [&_input]:rounded-none [&_input]:focus-visible:outline-2 [&_input]:focus-visible:outline-offset-2 [&_input]:focus-visible:outline-(--focus-ring-color)">
     {% for filter in products.definition.enabledFilters %}
         {{ sylius_grid_render_filter(products, filter) }}
     {% endfor %}

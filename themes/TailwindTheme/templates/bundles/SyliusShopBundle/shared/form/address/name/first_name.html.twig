@@ -1,5 +1,5 @@
 <div class="col-span-12 md:col-span-6">
     {{ form_row(hookable_metadata.context.form.firstName, {
-        'attr': {'class': 'input w-full'}
+        'attr': {'class': 'input w-full', 'autocomplete': hookable_metadata.context.autocomplete_section|default('') ~ 'given-name'}
     }) }}
 </div>

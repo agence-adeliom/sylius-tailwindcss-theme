@@ -1,0 +1,80 @@
+sylius_tailwindcss:
+    ui:
+        footer:
+            about: About
+            terms: Terms and conditions
+            privacy: Privacy policy
+            help: Help
+            faq: FAQ
+            delivery: Delivery and shipping
+            returns: Returns policy
+            social: Social networks
+        homepage:
+            shop_now: Shop now
+            collection:
+                new_arrivals: New arrivals
+                best_sellers: Best sellers
+                sale: Sale
+        a11y:
+            skip_to_content: Skip to content
+            close: Close
+            breadcrumb: Breadcrumb
+            home_logo: Home
+            price:
+                original: "Original price:"
+                current: "Current price:"
+                announce: "Price: %price%"
+            gallery:
+                label: Product images
+                enlarge: "Enlarge image %index% of %count%: %product%"
+                enlarge_single: "Enlarge image: %product%"
+            rating:
+                value: "Rating: %rating% out of 5"
+                option: "%rating% out of 5"
+            variant_choice: Variant selection
+            variant_selection: Selection
+            subcategories: Subcategories
+            pagination: Pagination
+            results: "{1} 1 product|]1,Inf[ %count% products"
+            new_window: (new window)
+            main_navigation: Main navigation
+            footer_navigation: Footer navigation
+            locale:
+                button: "%value%, language"
+            currency:
+                button: "%value%, currency"
+            menu: Menu
+            social:
+                instagram: Follow us on Instagram
+                facebook: Follow us on Facebook
+                x: Follow us on X
+            theme:
+                label: Theme
+                light: Light
+                dark: Dark
+                forest: Forest
+                sunset: Sunset
+                ocean: Ocean
+                candy: Candy
+                void: Void
+            checkout_steps: Checkout steps
+            step_completed: ", completed"
+            password_rules: At least 4 characters.
+            back_home: Back to homepage
+            address_delete:
+                title: Delete this address?
+            cart:
+                items: Cart items
+                quantity: "Quantity: %item%"
+                remove: "Remove %item%"
+                remove_coupon: Remove the promotion code
+                total: "Order total: %total%"
+                continue_shopping: Continue shopping
+            required_fields: "Fields marked with * are required."
+            all_fields_required: "All fields are required."
+            form_errors: "{1} The form contains 1 error:|]1,Inf[ The form contains %count% errors:"
+            title:
+                search: "Search “%term%”"
+                not_found: Page not found
+                forbidden: Access denied
+                server_error: Server error

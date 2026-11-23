@@ -2,6 +2,16 @@
 
 {% set resources = hookable_metadata.context.resources %}
 
+{# Target of the listing links (sorting, limit, search, pagination): focused on load by fragment-focus.js #}
+<h2 id="products" tabindex="-1" data-focus-on-load class="sr-only scroll-mt-4 focus:outline-none">{{ 'sylius.ui.products'|trans }}</h2>
+
+{# Status region present on every load, so a result update is announced #}
+<p role="status" class="mb-4 text-sm text-base-content/70">
+    {%- if resources.data.nbResults > 0 -%}
+        {{ 'sylius_tailwindcss.ui.a11y.results'|trans({'%count%': resources.data.nbResults}) }}
+    {%- endif -%}
+</p>
+
 {% if resources.data|length > 0 %}
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-6" {{ sylius_test_html_attribute('products') }}>
         {% for product in resources.data %}

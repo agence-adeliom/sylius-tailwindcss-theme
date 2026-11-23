@@ -1,6 +1,10 @@
 {% form_theme form '@SyliusShop/form/theme.html.twig' %}
 
+{# Grid filters may set label: false (shop product search): the field still needs a label #}
+{% set value_label = form.type is defined ? form.value.vars.label : (filter.label ?: 'sylius.ui.search') %}
+
 {% if form.type is defined %}
     {{ form_row(form.type, {'label': filter.label}) }}
 {% endif %}
-{{ form_widget(form.value, {attr: {placeholder: form.value.vars.label, class: 'input w-full rounded-l-sm'}, 'label': form.type is defined ? form.value.vars.label : filter.label}) }}
+{{ form_label(form.value, value_label, {label_attr: {class: 'sr-only'}}) }}
+{{ form_widget(form.value, {attr: {placeholder: value_label, class: 'input w-full rounded-l-sm'}}) }}

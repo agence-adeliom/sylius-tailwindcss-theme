@@ -1,5 +1,7 @@
 {% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
+{% block title %}{{ 'sylius_tailwindcss.ui.a11y.title.forbidden'|trans }} | {{ parent() }}{% endblock %}
+
 {% block content %}
     {% hook 'error' with { _prefixes: ['sylius_shop.error403', 'sylius_shop.shared'] } %}
 {% endblock %}

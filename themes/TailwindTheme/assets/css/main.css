@@ -5,7 +5,7 @@
 @plugin "daisyui" {
     themes: light;
     logs: false;
-    include: alert, badge, breadcrumbs, button, card, checkbox, collapse, dropdown, fieldset, hero, drawer, input, label, link, divider, list, loading, mask, menu, navbar, radio, select, steps, rating, table, textarea, toggle, join;
+    include: alert, badge, breadcrumbs, button, card, checkbox, collapse, dropdown, fieldset, hero, drawer, input, label, link, divider, list, loading, mask, menu, modal, navbar, radio, select, steps, rating, table, textarea, toggle, join;
     exclude: tabnavbar, kbd, avatar, carousel, chat, countdown, hover-3d, hover-gallery, diff, stats, fieldset, indicator, skeleton, toast, tooltip;
 }
 
@@ -204,6 +204,26 @@
 @utility container {
     margin-inline: auto;
     padding-inline: 1rem;
+}
+
+/* Focus indicator (RGAA 10.7). Each project sets --focus-ring-color to reach a 3:1 contrast with its own colours (RGAA 3.3). */
+@layer base {
+    :root {
+        --focus-ring-color: currentColor;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--focus-ring-color);
+        outline-offset: 2px;
+    }
+}
+
+/* Badges grow with their text. Outside daisyUI's sub-layers of `utilities`, so this rule wins over them. */
+@layer utilities {
+    .badge {
+        height: auto;
+        min-height: var(--size);
+    }
 }
 
 /*!* Typography *!*/

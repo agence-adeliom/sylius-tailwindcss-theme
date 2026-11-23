@@ -44,12 +44,12 @@
 
 {%- set visible_steps = steps|filter(s => s.required) -%}
 
-<nav aria-label="{{ 'sylius.ui.checkout'|trans }}" class="mb-6">
+<nav aria-label="{{ 'sylius_tailwindcss.ui.a11y.checkout_steps'|trans }}" class="mb-6">
     <ol class="flex items-center">
         {% for step in visible_steps %}
             {%- set is_last = loop.last -%}
 
-            <li class="flex items-center {{ not is_last ? 'flex-1' }}">
+            <li class="flex items-center {{ not is_last ? 'flex-1' }}"{% if step.state == 'active' %} aria-current="step"{% endif %}>
 
                 {%- if step.state == 'completed' -%}
                     <a href="{{ path(step.route) }}"
@@ -58,7 +58,7 @@
                         <span class="size-8 rounded-full bg-primary text-primary-content flex items-center justify-center shrink-0 transition-opacity group-hover:opacity-80">
                             {{ ux_icon('tabler:check', {class: 'size-4'}) }}
                         </span>
-                        <span class="text-sm font-medium text-primary hidden sm:block whitespace-nowrap">{{ step.label }}</span>
+                        <span class="text-sm font-medium text-primary sr-only sm:not-sr-only whitespace-nowrap">{{ step.label }}<span class="sr-only">{{ 'sylius_tailwindcss.ui.a11y.step_completed'|trans }}</span></span>
                     </a>
 
                 {%- elseif step.state == 'active' -%}
@@ -66,7 +66,7 @@
                         <span class="size-8 rounded-full bg-primary text-primary-content flex items-center justify-center shrink-0 ring-2 ring-primary ring-offset-2">
                             {{ ux_icon(step.icon, {class: 'size-4'}) }}
                         </span>
-                        <span class="text-sm font-semibold text-primary hidden sm:block whitespace-nowrap">{{ step.label }}</span>
+                        <span class="text-sm font-semibold text-primary sr-only sm:not-sr-only whitespace-nowrap">{{ step.label }}</span>
                     </span>
 
                 {%- else -%}
@@ -74,12 +74,12 @@
                         <span class="size-8 rounded-full bg-base-200 text-base-content/40 flex items-center justify-center shrink-0">
                             {{ ux_icon(step.icon, {class: 'size-4'}) }}
                         </span>
-                        <span class="text-sm font-medium text-base-content/40 hidden sm:block whitespace-nowrap">{{ step.label }}</span>
+                        <span class="text-sm font-medium text-base-content/40 sr-only sm:not-sr-only whitespace-nowrap">{{ step.label }}</span>
                     </span>
                 {%- endif -%}
 
                 {%- if not is_last -%}
-                    <div class="flex-1 h-px mx-3 {{ step.state == 'completed' ? 'bg-primary' : 'bg-base-300' }}"></div>
+                    <span aria-hidden="true" class="flex-1 h-px mx-3 {{ step.state == 'completed' ? 'bg-primary' : 'bg-base-300' }}"></span>
                 {%- endif -%}
 
             </li>

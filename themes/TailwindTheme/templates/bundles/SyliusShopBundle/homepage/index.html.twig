@@ -3,6 +3,8 @@
 
 {% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
+{% block title %}{{ 'sylius.ui.home'|trans }} | {{ parent() }}{% endblock %}
+
 {% block content %}
     {% hook homepage_hook %}
 {% endblock %}

@@ -1,19 +1,22 @@
 {# Rendered with \Sylius\Bundle\ShopBundle\Twig\Component\Common\LocaleSwitcherComponent #}
 
+{#- A second rendering on the page passes a variant in the hook context, so that ids stay unique. -#}
+{%- set panel_id = 'locale-panel' ~ (hookable_metadata.context.variant|default(null) ? '-' ~ hookable_metadata.context.variant : '') -%}
+
 {% from '@SyliusShop/shared/macro/locales.html.twig' import locale %}
 
 {% if available_locales|length > 1 %}
     <div class="col-auto">
-        <div class="dropdown dropdown-hover" {{ sylius_test_html_attribute('locale-selector') }}>
-            <div class="btn btn-sm" type="button" {{ sylius_test_html_attribute('active-locale', active_locale) }}>
+        <div class="relative" data-disclosure {{ sylius_test_html_attribute('locale-selector') }}>
+            <button type="button" class="btn btn-sm" aria-expanded="false" aria-controls="{{ panel_id }}" aria-label="{{ 'sylius_tailwindcss.ui.a11y.locale.button'|trans({'%value%': locale(active_locale)|trim}) }}" {{ sylius_test_html_attribute('active-locale', active_locale) }}>
                 {{ locale(active_locale) }}
-            </div>
-            <ul tabindex="-1" class="dropdown-content menu bg-base-100 text-base-content rounded-box z-1 w-52 p-2 shadow-sm">
+            </button>
+            <ul id="{{ panel_id }}" role="list" hidden class="menu absolute end-0 top-full z-[100] w-52 rounded-box bg-base-100 p-2 text-base-content shadow-sm">
                 {% for code in available_locales %}
                     {% if code is not same as(active_locale) %}
                         <li>
-                            <a href="{{ path('sylius_shop_switch_locale', {'code': code}) }}" {{ sylius_test_html_attribute('available-locale', code) }} >
-                                {{ locale(code) }}
+                            <a href="{{ path('sylius_shop_switch_locale', {'code': code}) }}" lang="{{ code|replace({'_': '-'}) }}" {{ sylius_test_html_attribute('available-locale', code) }}>
+                                {{ code|locale_name(code)|u.title }}
                             </a>
                         </li>
                     {% endif %}

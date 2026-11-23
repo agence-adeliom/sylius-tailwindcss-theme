@@ -1,8 +1,9 @@
 {% set variant = hookable_metadata.context.variant %}
 {% set product = hookable_metadata.context.product %}
+{% set radio = hookable_metadata.context.form.cartItem.variant[hookable_metadata.context.key] %}
 
 <td>
-    <div class="font-semibold">{{ variant.name|default(variant.descriptor) }}</div>
+    <label for="{{ radio.vars.id }}" class="font-semibold cursor-pointer">{{ variant.name|default(variant.descriptor) }}</label>
     {% if product.hasOptions() %}
         <div class="flex flex-wrap gap-1 mt-1">
             {% for option_value in variant.optionValues %}

@@ -1,3 +1,9 @@
-<div class="grid grid-cols-12 mb-6 pt-4 lg:gap-20">
+{% set product = hookable_metadata.context.product %}
+
+<div class="grid grid-cols-12 mb-6 pt-4 lg:gap-20"{% if product.isConfigurable() %} data-price-status-scope{% endif %}>
+    {% if product.isConfigurable() %}
+        {# Outside the Live components, so it survives their re-renders #}
+        <p class="sr-only" role="status" data-price-status="{{ 'sylius_tailwindcss.ui.a11y.price.announce'|trans }}"></p>
+    {% endif %}
     {% hook 'info' %}
 </div>

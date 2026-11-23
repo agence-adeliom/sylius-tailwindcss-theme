@@ -2,6 +2,8 @@ Encore
   .setOutputPath('public/themes/tailwind-theme')
   .setPublicPath('/themes/tailwind-theme')
   .addEntry('app', './themes/TailwindTheme/assets/index.js')
+  .addEntry('price-status', './themes/TailwindTheme/assets/js/entries/price-status.js')
+  .addEntry('fragment-focus', './themes/TailwindTheme/assets/js/entries/fragment-focus.js')
   .copyFiles({
         from: './themes/TailwindTheme/assets/media',
         to: 'media/[path][name].[hash:8].[ext]',

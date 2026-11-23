@@ -7,3 +7,8 @@
 {% block content %}
     {% hook 'sylius_shop.product.show' with { product, configuration } %}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('price-status', null, 'tailwindTheme') }}
+{% endblock %}

@@ -2,6 +2,15 @@
 
 {% set prefixes = ['sylius_shop.product.index'] %}
 
+{% block title %}
+    {{- component('sylius_shop:product:show:header', {template: '@SyliusShop/product/index/title.html.twig'})|striptags|trim|raw }} | {{ parent() -}}
+{% endblock %}
+
 {% block content %}
     {% hook 'sylius_shop.product.index' with { products, resources } %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('fragment-focus', null, 'tailwindTheme') }}
 {% endblock %}

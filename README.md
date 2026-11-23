@@ -16,7 +16,7 @@
 
 - A Sylius front-end alternative based on Tailwindcss 4 and daisyUI 5.
 - Built with Webpack Encore, it provides a modern and efficient development experience.
-- Pure CSS UI components and icons with zero javascript dependency
+- daisyUI components and icons, with a few dependency-free JavaScript modules for dialogs, menus and focus management
 - Get all up to date sylius standard default templates but with tailwindcss and daisyUI styling
 ## Preview
 

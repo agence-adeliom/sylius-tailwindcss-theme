@@ -1,0 +1,22 @@
+{#-
+    Usage:
+        {% embed '@SyliusShop/shared/components/side_dialog.html.twig' with {id: 'cart-dialog', title: 'sylius.ui.cart'|trans, side: 'end', attributes: ''} %}
+            {% block body %}…{% endblock %}
+        {% endembed %}
+    Opener: <button type="button" data-dialog-open="cart-dialog" aria-controls="cart-dialog" aria-expanded="false">…</button>
+-#}
+{%- set side = side|default('end') -%}
+{%- set side_class = side == 'start' ? 'modal-start' : 'modal-end' -%}
+{%- set box_class = box_class|default('w-[85vw] max-w-md') -%}
+<dialog id="{{ id }}" class="modal {{ side_class }}" aria-labelledby="{{ id }}-title" {{ attributes|default('')|raw }}>
+    <div class="modal-box flex flex-col h-dvh max-h-dvh {{ box_class }} rounded-none overflow-y-auto">
+        <div class="flex items-center justify-between gap-4 mb-6">
+            <h2 id="{{ id }}-title" class="heading-4">{{ title }}</h2>
+            <button type="button" class="btn btn-ghost btn-square btn-sm" data-dialog-close aria-label="{{ 'sylius_tailwindcss.ui.a11y.close'|trans }}">
+                {{ ux_icon('tabler:x', {class: 'size-5', 'aria-hidden': 'true'}) }}
+            </button>
+        </div>
+        {% block body %}{% endblock %}
+    </div>
+    <div class="modal-backdrop" data-dialog-close aria-hidden="true"></div>
+</dialog>

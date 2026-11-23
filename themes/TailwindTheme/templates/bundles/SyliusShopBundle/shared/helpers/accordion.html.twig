@@ -2,8 +2,8 @@
 
     {% set auto_close = auto_close|default(true) %}
     {% set id = id|default(random()) %}
-    {% set input_type = auto_close ? 'radio' : 'checkbox' %}
 
+    {#- Native disclosures (RGAA 7.1). With auto_close, a shared name keeps one section open at a time. -#}
     <div class="join join-vertical w-full" id="{{ id }}">
         {% for item in items %}
             {% set item = {
@@ -12,23 +12,22 @@
                 'icon': null,
             }|merge(item) %}
 
-            <div class="collapse collapse-arrow join-item border border-base-300">
-                <input type="{{ input_type }}" name="{{ id }}" {% if item.open == true %}checked{% endif %} />
-                <div class="collapse-title font-medium">
+            <details class="collapse collapse-arrow join-item border border-base-300"{% if auto_close %} name="{{ id }}"{% endif %}{% if item.open == true %} open{% endif %}>
+                <summary class="collapse-title font-medium">
                     <span class="flex gap-2 items-center">
                         {% if item.flag %}
-                            <span class="flag flag-country-{{ item.flag }}"></span>
+                            <span class="flag flag-country-{{ item.flag }}" aria-hidden="true"></span>
                         {% endif %}
                         {% if item.icon %}
-                            <span class="flex items-center">{{ ux_icon(item.icon) }}</span>
+                            <span class="flex items-center">{{ ux_icon(item.icon, {'aria-hidden': 'true'}) }}</span>
                         {% endif %}
                         {{ item.title|default('Title') }}
                     </span>
-                </div>
+                </summary>
                 <div class="collapse-content">
                     {{ item.content|default('Content') }}
                 </div>
-            </div>
+            </details>
         {% endfor %}
     </div>
 {% endmacro %}

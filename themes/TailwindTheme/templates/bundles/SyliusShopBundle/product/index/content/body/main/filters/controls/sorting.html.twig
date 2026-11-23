@@ -21,7 +21,7 @@
         {% set current_sorting_label = 'sylius.ui.most_expensive_first'|trans|lower %}
     {% endif %}
 
-    <div class="dropdown">
+    <div class="relative" data-disclosure>
         {% hook 'sorting' with {route, route_parameters, current_sorting_label, criteria} %}
     </div>
 {% endif %}

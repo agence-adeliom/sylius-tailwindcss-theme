@@ -7,7 +7,7 @@
         {% set method = form.method.vars.choices[key].data %}
         {% set factory_name = method.gatewayConfig.factoryName %}
 
-        <label class="card card-border bg-base-100 mb-3 cursor-pointer transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5" {{ sylius_test_html_attribute('payment-item') }}>
+        <label for="{{ choice_form.vars.id }}" class="card card-border bg-base-100 mb-3 cursor-pointer transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5" {{ sylius_test_html_attribute('payment-item') }}>
             <div class="card-body flex-row items-center gap-4 py-4">
                 {% hook ['choice.' ~ factory_name, 'choice'] with { 'parent_form': form, 'form': choice_form, 'method': method } %}
             </div>

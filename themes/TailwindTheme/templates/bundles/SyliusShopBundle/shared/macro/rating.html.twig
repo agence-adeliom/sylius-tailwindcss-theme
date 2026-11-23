@@ -1,11 +1,10 @@
 {% macro show(rating=3) %}
     {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
-    <div class="flex">
+    <div class="flex" role="img" aria-label="{{ 'sylius_tailwindcss.ui.a11y.rating.value'|trans({'%rating%': rating}) }}">
         {% for i in 1..5 %}
-            <label class="rating-product">
-                <input class="hidden" type="radio" {% if loop.index == rating %}checked{% endif %} disabled>
-                {{ icon(loop.index <= rating ? 'star-solid' : 'star') }}
-            </label>
+            <span class="rating-product">
+                {{ icon(i <= rating ? 'star-solid' : 'star') }}
+            </span>
         {% endfor %}
     </div>
 {% endmacro %}

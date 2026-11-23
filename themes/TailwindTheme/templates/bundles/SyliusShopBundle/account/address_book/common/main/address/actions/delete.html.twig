@@ -1,5 +1,24 @@
-{% import '@SyliusShop/shared/buttons.html.twig' as buttons %}
-
 {% set address = hookable_metadata.context.address %}
+{% set address_label = address.fullName ~ ', ' ~ address.street %}
 
-{{ buttons.delete(path('sylius_shop_account_address_book_delete', {'id': address.id}), null, true, address.id) }}
+{% component 'sylius_shop:delete_modal' with {id: address.id, path: path('sylius_shop_account_address_book_delete', {'id': address.id})} %}
+    {% block trigger %}
+        {% from '@SyliusShop/shared/macro/icon.html.twig' import icon %}
+        <button
+            type="button"
+            class="btn btn-sm btn-danger w-fit"
+            data-dialog-open="{{ modal_id }}"
+            aria-haspopup="dialog"
+            aria-controls="{{ modal_id }}"
+            aria-expanded="false"
+            {{ sylius_test_html_attribute('button', 'delete') }}
+        >
+            {{ icon('trash') }}
+            <span>{{ 'sylius.ui.delete'|trans }}<span class="sr-only">, {{ address_label }}</span></span>
+        </button>
+    {% endblock %}
+
+    {% block title %}{{ 'sylius_tailwindcss.ui.a11y.address_delete.title'|trans }}{% endblock %}
+
+    {% block description %}{{ address_label }}, {{ address.city }}, {{ address.postcode }}{% endblock %}
+{% endcomponent %}

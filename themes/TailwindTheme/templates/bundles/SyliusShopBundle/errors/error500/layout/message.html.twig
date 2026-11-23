@@ -1,3 +1,9 @@
 <h1 class="heading-2 text-center">
     {{ 'sylius.ui.server_has_encountered_some_errors'|trans }}
 </h1>
+
+<p class="mt-6 text-center">
+    <a class="btn btn-primary" href="{{ path('sylius_shop_homepage') }}" {{ sylius_test_html_attribute('error-home') }}>
+        {{- 'sylius_tailwindcss.ui.a11y.back_home'|trans -}}
+    </a>
+</p>

@@ -5,14 +5,15 @@
         <div class="hidden">
             <div class="alert alert-danger" data-api-login-target="errorPrototype"></div>
         </div>
-        {{ form_row(form.customer.email, sylius_test_form_attribute('login-email')|sylius_merge_recursive({attr: {'data-api-login-target': 'email', 'class': 'input w-full'}})) }}
+        {{ form_row(form.customer.email, sylius_test_form_attribute('login-email')|sylius_merge_recursive({attr: {'data-api-login-target': 'email', 'class': 'input w-full', 'autocomplete': 'email'}})) }}
         {% if hookable_metadata.context.email_exists %}
+            <label class="block font-medium text-sm mb-1" for="checkout-login-password">{{ 'sylius.ui.password'|trans }}</label>
             <div class="input-group mb-2">
-                <input type="password" class="form-control input input-bordered" placeholder="{{ 'sylius.ui.password'|trans }}" data-api-login-target="password" {{ sylius_test_html_attribute('password-input') }}>
+                <input type="password" id="checkout-login-password" autocomplete="current-password" class="form-control input input-bordered" placeholder="{{ 'sylius.ui.password'|trans }}" data-api-login-target="password" {{ sylius_test_html_attribute('password-input') }}>
                 <button class="btn btn-primary" type="button" data-action="api-login#login" {{ sylius_test_html_attribute('login-button') }}>{{ 'sylius.ui.sign_in'|trans }}</button>
             </div>
             <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}" data-api-login-target="csrfToken">
-            <div data-api-login-target="error" {{ sylius_test_html_attribute('login-validation-error') }}></div>
+            <div data-api-login-target="error" aria-live="polite" {{ sylius_test_html_attribute('login-validation-error') }}></div>
         {% endif %}
     </div>
 {% endif %}

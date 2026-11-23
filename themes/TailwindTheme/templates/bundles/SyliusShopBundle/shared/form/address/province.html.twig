@@ -2,8 +2,8 @@
 
 <div>
     {% if form.provinceCode is defined %}
-        {{ form_row(form.provinceCode, {'attr': {'class': 'input w-full'}}) }}
+        {{ form_row(form.provinceCode, {'attr': {'class': 'input w-full', 'autocomplete': hookable_metadata.context.autocomplete_section|default('') ~ 'address-level1'}}) }}
     {% elseif form.provinceName is defined %}
-        {{ form_row(form.provinceName, {'attr': {'class': 'input w-full'}}) }}
+        {{ form_row(form.provinceName, {'attr': {'class': 'input w-full', 'autocomplete': hookable_metadata.context.autocomplete_section|default('') ~ 'address-level1'}}) }}
     {% endif %}
 </div>

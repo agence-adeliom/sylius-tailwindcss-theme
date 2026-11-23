@@ -18,7 +18,7 @@
             </a>
         </div>
 
-        <small class="" {{ sylius_test_html_attribute('product-variant-code', variant.code) }}>{{ variant.code }}</small>
+        <small class="break-all" {{ sylius_test_html_attribute('product-variant-code', variant.code) }}>{{ variant.code }}</small>
 
         {% if product.hasOptions() %}
             <div {{ sylius_test_html_attribute('product-options') }}>

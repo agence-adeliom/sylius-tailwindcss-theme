@@ -1,7 +1,7 @@
 <div class="col-span-12 md:col-span-5 lg:col-span-4">
     {% if hookable_metadata.context.product_reviews %}
-        {% hook 'sidebar' with { product: hookable_metadata.context.product_reviews[0].reviewSubject } %}
+        {% hook 'sidebar' with { product: hookable_metadata.context.product_reviews[0].reviewSubject, card_heading: false } %}
     {% else %}
-        {% hook 'sidebar' with { slug: app.request.attributes.get('slug') } %}
+        {% hook 'sidebar' with { slug: app.request.attributes.get('slug'), card_heading: false } %}
     {% endif %}
 </div>

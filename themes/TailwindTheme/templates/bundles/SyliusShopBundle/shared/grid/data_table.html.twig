@@ -6,7 +6,7 @@
 {% set definition = resources.definition %}
 
 {% if data|length > 0 %}
-    <div class="card p-6">
+    <div class="card">
         <div class="border-b py-3">
             <div class="flex border-b pb-3">
                 {% if definition.actionGroups.bulk is defined and definition.getEnabledActions('bulk')|length > 0 %}

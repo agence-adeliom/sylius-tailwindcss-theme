@@ -1,5 +1,6 @@
 {% set index = hookable_metadata.context.index %}
+{% set count = hookable_metadata.context.count|default(1) %}
 
-<h5 class="heading-5 mb-4">
-    {{ 'sylius.ui.shipment'|trans }} #{{ index }}
-</h5>
+<legend class="heading-5 mb-4">
+    {{ 'sylius.ui.shipping_method'|trans }}{% if count > 1 %} ({{ 'sylius.ui.shipment'|trans|lower }} {{ index }}){% endif %}
+</legend>
